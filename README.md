@@ -3,6 +3,8 @@
 ### Description
 Complex Wiring is a brand new Minecraft technical mod that'll be adding whole lot of stuff!
 
+[**Here**](http://complexwiring.numerios.eu) is the wiki with line up of some concepts we're going to implement.
+
 ### Download
 None yet.
 
