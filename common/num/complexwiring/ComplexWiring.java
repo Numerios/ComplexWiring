@@ -1,6 +1,10 @@
 package num.complexwiring;
 
+import num.complexwiring.block.ModBlocks;
 import num.complexwiring.lib.Reference;
+import num.complexwiring.recipe.ModCrafting;
+import num.complexwiring.recipe.ModSmelting;
+import num.complexwiring.item.ModItems;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
@@ -18,6 +22,14 @@ public class ComplexWiring {
 
     @PreInit
     public void preInit(FMLPreInitializationEvent event) {
+
+        // initialize all blocks and items
+        ModItems.init();
+        ModBlocks.init();
+        
+        // initialize all crafting and smelting recipes
+        ModCrafting.init();
+        ModSmelting.init();        
     }
 
     @Init
