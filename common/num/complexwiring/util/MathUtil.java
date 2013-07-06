@@ -23,6 +23,10 @@ public class MathUtil {
             this.z = tile.zCoord;
         }
 
+        public static MCVector3 get(TileEntity tile) {
+            return new MCVector3(tile.worldObj, tile.xCoord, tile.yCoord, tile.zCoord);
+        }
+
         public MCVector3 copy() {
             return new MCVector3(this.world, this.x, this.y, this.z);
         }
