@@ -2,6 +2,7 @@ package num.complexwiring;
 
 import net.minecraft.creativetab.CreativeTabs;
 import num.complexwiring.block.ModBlocks;
+import num.complexwiring.core.Logger;
 import num.complexwiring.creativetab.ModCreativeTabs;
 import num.complexwiring.item.ModItems;
 import num.complexwiring.lib.Reference;
@@ -26,6 +27,8 @@ public class ComplexWiring {
 
     @PreInit
     public void preInit(FMLPreInitializationEvent event) {
+        Logger.init();
+        
         // initialize all blocks and items
         ModItems.init();
         ModBlocks.init();

@@ -2,11 +2,17 @@ package num.complexwiring.core;
 
 import java.util.logging.Level;
 
+import cpw.mods.fml.common.FMLLog;
+
 import num.complexwiring.lib.Reference;
 
 public class Logger {
     private static java.util.logging.Logger cwLogger = java.util.logging.Logger.getLogger(Reference.MOD_ID);
 
+    public static void init() {
+        cwLogger.setParent(FMLLog.getLogger());
+    }
+    
     public static void log(Level level, String message) {
         cwLogger.log(level, message);
     }
