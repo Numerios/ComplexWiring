@@ -89,12 +89,12 @@ public class MathUtil {
 
         @Override
         public String toString() {
-            return "[x: " + this.x + ", y:" + this.y + ", z:" + this.z + "]";
+            return "[x: " + this.x + ", y: " + this.y + ", z: " + this.z + "]"; //[x: 1, y: 2, z: 3]
         }
-
+        
         @Override
         public int hashCode() {
-            int nl = (32 - 1); // 2 ^ 5 - 1
+            int nl = 31; // 2 ^ 5 - 1
             int hashCode = this.x;
 
             hashCode *= nl + this.y;
