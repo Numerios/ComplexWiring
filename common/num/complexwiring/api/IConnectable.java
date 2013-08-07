@@ -12,19 +12,11 @@ public interface IConnectable {
      * 
      * @param side
      *            The side that is checked
+     * @param connectable
+     *            The tile checked
      * @return True if the tile is connected to another on given side, false if
      *         not.
      */
-    public boolean getConnection(ForgeDirection side);
-
-    /**
-     * Sets connection of the tile to another on side
-     * 
-     * @param side
-     *            The side to connect to
-     * @param connected
-     *            True to connect, false to disconnect
-     */
-    public void setConnection(ForgeDirection side, boolean connected);
+    public boolean getConnection(ForgeDirection side, IConnectable connectable);
 
 }
