@@ -4,6 +4,7 @@ import java.util.logging.Level;
 
 import cpw.mods.fml.common.FMLLog;
 
+import num.complexwiring.ComplexWiring;
 import num.complexwiring.lib.Reference;
 
 public class Logger {
@@ -12,7 +13,7 @@ public class Logger {
     public static void init() {
         cwLogger.setParent(FMLLog.getLogger());
     }
-    
+
     public static void log(Level level, String message) {
         cwLogger.log(level, message);
     }
@@ -30,6 +31,7 @@ public class Logger {
     }
 
     public static void debug(String message) {
-        log(Level.WARNING, "[DEBUG] " + message);
+        if (ComplexWiring.DEBUG)
+            log(Level.WARNING, "[DEBUG] " + message);
     }
 }

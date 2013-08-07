@@ -1,8 +1,11 @@
 package num.complexwiring;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraftforge.common.MinecraftForge;
 import num.complexwiring.block.ModBlocks;
+import num.complexwiring.core.ItemNetwork;
 import num.complexwiring.core.Logger;
+import num.complexwiring.core.proxy.CommonProxy;
 import num.complexwiring.creativetab.ModCreativeTabs;
 import num.complexwiring.item.ModItems;
 import num.complexwiring.lib.Reference;
@@ -13,6 +16,7 @@ import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.Mod.PostInit;
 import cpw.mods.fml.common.Mod.PreInit;
+import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -24,7 +28,12 @@ public class ComplexWiring {
     public static ComplexWiring instance;
 
     public static CreativeTabs tabCW = new ModCreativeTabs(CreativeTabs.getNextID(), Reference.MOD_ID);
+    
+    @SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.COMMON_PROXY_CLASS)
+    public static CommonProxy proxy;
 
+    public static final boolean DEBUG = true;
+    
     @PreInit
     public void preInit(FMLPreInitializationEvent event) {
         Logger.init();
@@ -36,10 +45,13 @@ public class ComplexWiring {
         // initialize all crafting and smelting recipes
         ModCrafting.init();
         ModSmelting.init();
+        
+        MinecraftForge.EVENT_BUS.register(new ItemNetwork.NetworkLoader());
     }
 
     @Init
     public void init(FMLInitializationEvent event) {
+        proxy.initRendering();
     }
 
     @PostInit
