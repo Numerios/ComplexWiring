@@ -4,11 +4,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
-import num.complexwiring.ComplexWiring;
 import num.complexwiring.api.IConnectable;
 import num.complexwiring.api.IItemWire;
-import num.complexwiring.util.WireHelper;
-
 import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.relauncher.Side;
@@ -19,50 +16,90 @@ public class WireModelRenderer extends TileEntitySpecialRenderer {
 
     public static final ModelWire model = new ModelWire();
 
-    public void renderModel(IConnectable wire, double x, double y, double z, boolean north, boolean south,
-            boolean west, boolean east, boolean up, boolean down) {
+    public void renderModelTwo(IConnectable wire, double x, double y, double z) {
         Minecraft.getMinecraft().renderEngine.bindTexture("/mods/ComplexWiring/textures/blocks/wireModel.png");
+
         GL11.glPushMatrix();
         GL11.glTranslatef((float) x + 0.5F, (float) y + 1.5F, (float) z + 0.5F);
         GL11.glScalef(1.0F, -1F, -1F);
-        
-        if(ComplexWiring.DEBUG) {
-            System.out.println("north: " + north + "; south: " + south + "; west: " + west + "; east: " + east + "; up: " + up + "; down: " + down);
-        }
-        
-        if (north) {
-            model.renderBack();
+        // System.out.println("north: " + north + "; south: " + south +
+        // "; west: " + west + "; east: " + east + "; up: "
+        // + up + "; down: " + down);
+        if (wire.getConnection(ForgeDirection.SOUTH, wire)) {
+            model.front1.render(0.0625F);
+            model.front2.render(0.0625F);
+            model.front3.render(0.0625F);
+            model.front4.render(0.0625F);
         } else {
-            model.renderCenterBack2();
+            if (!wire.getConnection(ForgeDirection.EAST, wire)) {
+                model.centerFront2.render(0.0625F);
+            }
+            if (!wire.getConnection(ForgeDirection.WEST, wire)) {
+                model.centerFront1.render(0.0625F);
+            }
         }
-        if (south) {
-            model.renderFront();
-        } else {
-            model.renderCenterFront2();
+        if (wire.getConnection(ForgeDirection.WEST, wire)) {
+            model.right1.render(0.0625F);
+            model.right2.render(0.0625F);
+            model.right3.render(0.0625F);
+            model.right4.render(0.0625F);
         }
-        if (west) {
-            // model.renderLeft();
-            model.renderRight();
+        if (wire.getConnection(ForgeDirection.NORTH, wire)) {
+            model.back1.render(0.0625F);
+            model.back2.render(0.0625F);
+            model.back3.render(0.0625F);
+            model.back4.render(0.0625F);
         } else {
-            // model.renderCenterLeft();
-            model.renderCenterRight();
+            if (!wire.getConnection(ForgeDirection.EAST, wire)) {
+                model.centerBack1.render(0.0625F);
+            }
+            if (!wire.getConnection(ForgeDirection.WEST, wire)) {
+                model.centerBack2.render(0.0625F);
+            }
         }
-        if (east) {
-            // model.renderRight();
-            model.renderLeft();
-        } else {
-            // model.renderCenterRight();
-            model.renderCenterLeft();
+        if (wire.getConnection(ForgeDirection.EAST, wire)) {
+            model.left1.render(0.0625F);
+            model.left2.render(0.0625F);
+            model.left3.render(0.0625F);
+            model.left4.render(0.0625F);
         }
-        if (up) {
-            model.renderUp();
+        if (wire.getConnection(ForgeDirection.UP, wire)) {
+            model.up1.render(0.0625F);
+            model.up2.render(0.0625F);
+            model.up3.render(0.0625F);
+            model.up4.render(0.0625F);
         } else {
-            model.renderCenterUp();
+            if (!wire.getConnection(ForgeDirection.SOUTH, wire)) {
+                model.centerUp2.render(0.0625F);
+            }
+            if (!wire.getConnection(ForgeDirection.NORTH, wire)) {
+                model.centerUp1.render(0.0625F);
+            }
+            if (!wire.getConnection(ForgeDirection.EAST, wire)) {
+                model.centerLeft1.render(0.0625F);
+            }
+            if (!wire.getConnection(ForgeDirection.WEST, wire)) {
+                model.centerRight1.render(0.0625F);
+            }
         }
-        if (down) {
-            model.renderDown();
+        if (wire.getConnection(ForgeDirection.DOWN, wire)) {
+            model.down1.render(0.0625F);
+            model.down2.render(0.0625F);
+            model.down3.render(0.0625F);
+            model.down4.render(0.0625F);
         } else {
-            model.renderCenterDown();
+            if (!wire.getConnection(ForgeDirection.SOUTH, wire)) {
+                model.centerDown2.render(0.0625F);
+            }
+            if (!wire.getConnection(ForgeDirection.NORTH, wire)) {
+                model.centerDown1.render(0.0625F);
+            }
+            if (!wire.getConnection(ForgeDirection.EAST, wire)) {
+                model.centerLeft2.render(0.0625F);
+            }
+            if (!wire.getConnection(ForgeDirection.WEST, wire)) {
+                model.centerRight2.render(0.0625F);
+            }
         }
 
         GL11.glPopMatrix();
@@ -71,11 +108,6 @@ public class WireModelRenderer extends TileEntitySpecialRenderer {
     @Override
     public void renderTileEntityAt(TileEntity tile, double x, double y, double z, float f) {
         IItemWire wire = (IItemWire) tile;
-        renderModel(wire, x, y, z, WireHelper.getConnection(ForgeDirection.NORTH, wire),
-                WireHelper.getConnection(ForgeDirection.SOUTH, wire),
-                WireHelper.getConnection(ForgeDirection.WEST, wire),
-                WireHelper.getConnection(ForgeDirection.EAST, wire), 
-                WireHelper.getConnection(ForgeDirection.UP, wire),
-                WireHelper.getConnection(ForgeDirection.DOWN, wire));
+        renderModelTwo(wire, x, y, z);
     }
 }
