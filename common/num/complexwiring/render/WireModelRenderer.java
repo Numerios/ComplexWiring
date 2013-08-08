@@ -4,6 +4,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
+import num.complexwiring.ComplexWiring;
 import num.complexwiring.api.IConnectable;
 import num.complexwiring.api.IItemWire;
 import num.complexwiring.util.WireHelper;
@@ -18,14 +19,17 @@ public class WireModelRenderer extends TileEntitySpecialRenderer {
 
     public static final ModelWire model = new ModelWire();
 
-    public void renderModelTwo(IConnectable wire, double x, double y, double z, boolean north, boolean south,
+    public void renderModel(IConnectable wire, double x, double y, double z, boolean north, boolean south,
             boolean west, boolean east, boolean up, boolean down) {
         Minecraft.getMinecraft().renderEngine.bindTexture("/mods/ComplexWiring/textures/blocks/wireModel.png");
         GL11.glPushMatrix();
         GL11.glTranslatef((float) x + 0.5F, (float) y + 1.5F, (float) z + 0.5F);
         GL11.glScalef(1.0F, -1F, -1F);
-        //System.out.println("north: " + north + "; south: " + south + "; west: " + west + "; east: " + east + "; up: "
-        //        + up + "; down: " + down);
+        
+        if(ComplexWiring.DEBUG) {
+            System.out.println("north: " + north + "; south: " + south + "; west: " + west + "; east: " + east + "; up: " + up + "; down: " + down);
+        }
+        
         if (north) {
             model.renderBack();
         } else {
@@ -53,12 +57,12 @@ public class WireModelRenderer extends TileEntitySpecialRenderer {
         if (up) {
             model.renderUp();
         } else {
-            // model.renderCenterUp();
+            model.renderCenterUp();
         }
         if (down) {
             model.renderDown();
         } else {
-            // model.renderCenterDown();
+            model.renderCenterDown();
         }
 
         GL11.glPopMatrix();
@@ -67,7 +71,7 @@ public class WireModelRenderer extends TileEntitySpecialRenderer {
     @Override
     public void renderTileEntityAt(TileEntity tile, double x, double y, double z, float f) {
         IItemWire wire = (IItemWire) tile;
-        renderModelTwo(wire, x, y, z, WireHelper.getConnection(ForgeDirection.NORTH, wire),
+        renderModel(wire, x, y, z, WireHelper.getConnection(ForgeDirection.NORTH, wire),
                 WireHelper.getConnection(ForgeDirection.SOUTH, wire),
                 WireHelper.getConnection(ForgeDirection.WEST, wire),
                 WireHelper.getConnection(ForgeDirection.EAST, wire), 

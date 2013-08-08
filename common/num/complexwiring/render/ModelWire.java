@@ -47,7 +47,6 @@ public class ModelWire extends ModelBase {
         textureWidth = 64;
         textureHeight = 64;
 
-
         front1 = new ModelRenderer(this, 20, 0);
         front1.addBox(0F, 0F, 0F, 1, 1, 4);
         front1.setRotationPoint(-4F, 12F, -8F);
@@ -175,28 +174,28 @@ public class ModelWire extends ModelBase {
         right4.mirror = true;
         setRotation(right4, 0F, 1.570796F, 0F);
         right4.mirror = false;
-        
+
         up1 = new ModelRenderer(this, 20, 0);
         up1.addBox(0F, 0F, 0F, 1, 1, 4);
         up1.setRotationPoint(-4F, 12F, 4F);
         up1.setTextureSize(64, 64);
         up1.mirror = true;
         setRotation(up1, 1.570796F, 1.570796F, 0F);
-        
+
         up2 = new ModelRenderer(this, 20, 0);
         up2.addBox(0F, 0F, 0F, 1, 1, 4);
         up2.setRotationPoint(3F, 12F, 4F);
         up2.setTextureSize(64, 64);
         up2.mirror = true;
         setRotation(up2, 1.570796F, 1.570796F, 0F);
-        
+
         up3 = new ModelRenderer(this, 20, 0);
         up3.addBox(0F, 0F, 0F, 1, 1, 4);
         up3.setRotationPoint(3F, 12F, -3F);
         up3.setTextureSize(64, 64);
         up3.mirror = true;
         setRotation(up3, 1.570796F, 1.570796F, 0F);
-        
+
         up4 = new ModelRenderer(this, 20, 0);
         up4.addBox(0F, 0F, 0F, 1, 1, 4);
         up4.setRotationPoint(-4F, 12F, -3F);
@@ -235,97 +234,97 @@ public class ModelWire extends ModelBase {
         down4.mirror = true;
         setRotation(down4, 1.570796F, 0F, 0F);
         down4.mirror = false;
-        
+
         centerBack1 = new ModelRenderer(this, 0, 0);
         centerBack1.addBox(0F, 0F, 0F, 8, 1, 1);
         centerBack1.setRotationPoint(3F, 20F, 3F);
         centerBack1.setTextureSize(64, 64);
         centerBack1.mirror = true;
         setRotation(centerBack1, 0F, 0F, 4.712389F);
-        
+
         centerUp1 = new ModelRenderer(this, 0, 0);
         centerUp1.addBox(0F, 0F, 0F, 8, 1, 1);
         centerUp1.setRotationPoint(-4F, 12F, 3F);
         centerUp1.setTextureSize(64, 64);
         centerUp1.mirror = true;
         setRotation(centerUp1, 0F, 0F, 0F);
-        
+
         centerUp2 = new ModelRenderer(this, 0, 0);
         centerUp2.addBox(0F, 0F, 0F, 8, 1, 1);
         centerUp2.setRotationPoint(-4F, 12F, -4F);
         centerUp2.setTextureSize(64, 64);
         centerUp2.mirror = true;
         setRotation(centerUp2, 0F, 0F, 0F);
-        
+
         centerDown1 = new ModelRenderer(this, 0, 0);
         centerDown1.addBox(0F, 0F, 0F, 8, 1, 1);
         centerDown1.setRotationPoint(-4F, 19F, 3F);
         centerDown1.setTextureSize(64, 64);
         centerDown1.mirror = true;
         setRotation(centerDown1, 0F, 0F, 0F);
-        
+
         centerDown2 = new ModelRenderer(this, 0, 0);
         centerDown2.addBox(0F, 0F, 0F, 8, 1, 1);
         centerDown2.setRotationPoint(-4F, 19F, -4F);
         centerDown2.setTextureSize(64, 64);
         centerDown2.mirror = true;
         setRotation(centerDown2, 0F, 0F, 0F);
-        
+
         centerBack2 = new ModelRenderer(this, 0, 0);
         centerBack2.addBox(0F, 0F, 0F, 8, 1, 1);
         centerBack2.setRotationPoint(-4F, 20F, 3F);
         centerBack2.setTextureSize(64, 64);
         centerBack2.mirror = true;
         setRotation(centerBack2, 0F, 0F, 4.712389F);
-        
+
         centerFront1 = new ModelRenderer(this, 0, 0);
         centerFront1.addBox(0F, 0F, 0F, 8, 1, 1);
         centerFront1.setRotationPoint(-4F, 20F, -4F);
         centerFront1.setTextureSize(64, 64);
         centerFront1.mirror = true;
         setRotation(centerFront1, 0F, 0F, 4.712389F);
-        
+
         centerFront2 = new ModelRenderer(this, 0, 0);
         centerFront2.addBox(0F, 0F, 0F, 8, 1, 1);
         centerFront2.setRotationPoint(3F, 20F, -4F);
         centerFront2.setTextureSize(64, 64);
         centerFront2.mirror = true;
         setRotation(centerFront2, 0F, 0F, 4.712389F);
-        
+
         centerLeft2 = new ModelRenderer(this, 0, 0);
         centerLeft2.addBox(0F, 0F, 0F, 8, 1, 1);
-        //centerLeft2.setRotationPoint(3F, 20F, -4F);
+        // centerLeft2.setRotationPoint(3F, 20F, -4F);
         centerLeft2.setRotationPoint(4F, 20F, 4F);
         centerLeft2.setTextureSize(64, 64);
         centerLeft2.mirror = true;
         setRotation(centerLeft2, 0F, 1.570796F, 3.141593F);
-        
+
         centerLeft1 = new ModelRenderer(this, 0, 0);
         centerLeft1.addBox(0F, 0F, 0F, 8, 1, 1);
-        //centerLeft1.setRotationPoint(3F, 13F, -4F);
+        // centerLeft1.setRotationPoint(3F, 13F, -4F);
         centerLeft1.setRotationPoint(4F, 13F, 4F);
         centerLeft1.setTextureSize(64, 64);
         centerLeft1.mirror = true;
         setRotation(centerLeft1, 0F, 1.570796F, 3.141593F);
         centerLeft1.mirror = false;
-        
+
         centerRight2 = new ModelRenderer(this, 0, 0);
         centerRight2.addBox(0F, 0F, 0F, 8, 1, 1);
-       // centerRight2.setRotationPoint(-4F, 20F, -4F);
+        // centerRight2.setRotationPoint(-4F, 20F, -4F);
         centerRight2.setRotationPoint(-3F, 20F, 4F);
         centerRight2.setTextureSize(64, 64);
         centerRight2.mirror = true;
         setRotation(centerRight2, 0F, 1.570796F, 3.141593F);
-        
+
         centerRight1 = new ModelRenderer(this, 0, 0);
         centerRight1.addBox(0F, 0F, 0F, 8, 1, 1);
-        //centerRight1.setRotationPoint(-4F, 13F, -4F);
+        // centerRight1.setRotationPoint(-4F, 13F, -4F);
         centerRight1.setRotationPoint(-3F, 13F, 4F);
         centerRight1.setTextureSize(64, 64);
         centerRight1.mirror = true;
         setRotation(centerRight1, 0F, 1.570796F, 3.141593F);
         centerRight1.mirror = false;
-        
+
     }
 
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
@@ -384,21 +383,21 @@ public class ModelWire extends ModelBase {
         centerRight1.render(0.0625F);
         centerRight2.render(0.0625F);
     }
-    
-    public void renderCenterLeft2(){
+
+    public void renderCenterLeft2() {
         centerLeft1.render(0.0625F);
         centerLeft2.render(0.0625F);
         centerFront2.render(0.0625F);
         centerBack1.render(0.0625F);
     }
 
-    public void renderCenterRight2(){
+    public void renderCenterRight2() {
         centerRight1.render(0.0625F);
         centerRight2.render(0.0625F);
         centerBack2.render(0.0625F);
         centerFront1.render(0.0625F);
     }
-    
+
     public void renderCenterFront() {
         centerFront1.render(0.0625F);
         centerFront2.render(0.0625F);
@@ -409,31 +408,33 @@ public class ModelWire extends ModelBase {
         centerBack2.render(0.0625F);
     }
 
-
     public void renderCenterUp() {
-        /*centerUp1.render(0.0625F);
-        centerUp2.render(0.0625F);*/
+        /*
+         * centerUp1.render(0.0625F); centerUp2.render(0.0625F);
+         */
     }
 
     public void renderCenterDown() {
-      /*  centerDown1.render(0.0625F);
-        centerDown2.render(0.0625F);*/
+        /*
+         * centerDown1.render(0.0625F); centerDown2.render(0.0625F);
+         */
     }
-    
+
     public void renderCenterFront2() {
-      //  centerFront1.render(0.0625F);
-      //  centerFront2.render(0.0625F);
+        centerFront1.render(0.0625F);
+        centerFront2.render(0.0625F);
         centerDown2.render(0.0625F);
         centerUp2.render(0.0625F);
     }
 
     public void renderCenterBack2() {
-       // centerBack1.render(0.0625F);
-       // centerBack2.render(0.0625F);
+        centerBack1.render(0.0625F);
+        centerBack2.render(0.0625F);
         centerDown1.render(0.0625F);
         centerUp1.render(0.0625F);
     }
-    //TODO: A clever algorithm that calculates proper sides to render.
+
+    // TODO: A clever algorithm that calculates proper sides to render.
     private void setRotation(ModelRenderer model, float x, float y, float z) {
         model.rotateAngleX = x;
         model.rotateAngleY = y;
