@@ -1,26 +1,50 @@
 package num.complexwiring.util;
 
-public enum EnumColours { //possibly can shorten it (FFFFFF is the same as FFF :D)
-    WHITE("FFFFFF"),
-    ORANGE("FF9933"),
-    MAGENTA("AA44DD"),
-    YELLOW("EEEE33"),
-    LIME("77CC22"),
-    PINK("EE77AA"),
-    GRAY("555555"),
-    LGRAY("AAAAAA"),
-    CYAN("447799"),
-    PURPLE("7744AA"),
-    BLUE("3344CC"),
-    BROWN("664433"),
-    GREEN("668833"),
-    RED("CC3333"),
-    BLACK("131313"),
-    UNKNOWN("FFFFFF");
-    
-    EnumColours(String col){
-        hexColour = col;
+import java.awt.Color;
+
+public enum EnumColours {
+    BLACK(0, "131313"), DBLUE(1, "0000AA"), DGREEN(2, "00AA00"), DAQUA(3, "00AAAA"), DRED(4, "AA0000"), PURPLE(5,
+            "AA00AA"), ORANGE(6, "FFAA00"), GREY(7, "AAAAAA"), DGREY(8, "555555"), BLUE(9, "5555FF"), LIME(10, "55FF55"), AQUA(
+            11, "55FFFF"), RED(12, "FF5555"), PINK(13, "FF55FF"), YELLOW(14, "FFFF55"), WHITE(15, "FFFFFF"), UNKNOWN(
+            -1, "800000");
+
+    EnumColours(int i, String hex) {
+        intColor = i;
+        hexColor = hex;
     }
-    
-    public final String hexColour;
+
+    public static EnumColours fromInt(int id) {
+        if (id >= 0 && id < VALID_COLORS.length) {
+            return VALID_COLORS[id];
+        }
+        return UNKNOWN;
+    }
+
+    public int toInt() {
+        return intColor;
+    }
+
+    public String toChat() {
+        return "§" + Integer.toHexString(intColor);
+    }
+
+    public String getHex() {
+        return hexColor;
+    }
+
+    public Color getColor() {
+        return new Color(Integer.parseInt(hexColor, 16));
+    }
+
+    public float[] getColor_F() {
+        Color color = getColor();
+        float[] rgb = { color.getRed(), color.getGreen(), color.getGreen() };
+
+        return rgb;
+    }
+
+    private final int intColor;
+    private final String hexColor;
+    private static final EnumColours[] VALID_COLORS = { BLACK, DBLUE, DGREEN, DAQUA, DRED, PURPLE, ORANGE, GREY, DGREY,
+            BLUE, LIME, AQUA, RED, PINK, YELLOW, WHITE };
 }
