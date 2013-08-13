@@ -14,8 +14,8 @@ public enum EnumColours {
     }
 
     public static EnumColours fromInt(int id) {
-        if (id >= 0 && id < VALID_COLORS.length) {
-            return VALID_COLORS[id];
+        if (id >= 0 && id < VALID_COLOURS.length) {
+            return VALID_COLOURS[id];
         }
         return UNKNOWN;
     }
@@ -45,6 +45,7 @@ public enum EnumColours {
 
     private final int intColor;
     private final String hexColor;
-    private static final EnumColours[] VALID_COLORS = { BLACK, DBLUE, DGREEN, DAQUA, DRED, PURPLE, ORANGE, GREY, DGREY,
+    private static final EnumColours[] VALID_COLOURS = { BLACK, DBLUE, DGREEN, DAQUA, DRED, PURPLE, ORANGE, GREY, DGREY,
             BLUE, LIME, AQUA, RED, PINK, YELLOW, WHITE };
+   // private static final EnumColours[] MC_COLOURS = { WHITE, ORANGE, MAGENTA, LBLUE, YELLOW, LIME, PINK, GREY, LGREY, CYAN, PURPLE, BLUE, BROWN, GREEN, RED, BLACK, UNKNOWN};
 }
