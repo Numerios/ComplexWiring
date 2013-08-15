@@ -2,12 +2,14 @@ package num.complexwiring.util;
 
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 
 public class MCVector3 {
     public int x, y, z;
     public IBlockAccess world;
 
+    // TODO: Change world to dimID!
     public MCVector3(IBlockAccess world, int x, int y, int z) {
         this.world = world;
         this.x = x;
@@ -32,6 +34,10 @@ public class MCVector3 {
 
     public TileEntity toTile() {
         return this.world.getBlockTileEntity(this.x, this.y, this.z);
+    }
+    
+    public boolean hasTileEntity(World world) {
+        return world.blockHasTileEntity(this.x, this.y, this.z);
     }
 
     public MCVector3 getNeighbour(ForgeDirection side) {
@@ -88,12 +94,7 @@ public class MCVector3 {
 
     @Override
     public String toString() {
-        return "[x: " + this.x + ", y: " + this.y + ", z: " + this.z + "]"; // [x:
-                                                                            // 1,
-                                                                            // y:
-                                                                            // 2,
-                                                                            // z:
-                                                                            // 3]
+        return "[x: " + this.x + ", y: " + this.y + ", z: " + this.z + "]";
     }
 
     @Override
