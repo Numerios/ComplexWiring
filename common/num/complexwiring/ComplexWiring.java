@@ -1,9 +1,7 @@
 package num.complexwiring;
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraftforge.common.MinecraftForge;
 import num.complexwiring.block.ModBlocks;
-import num.complexwiring.core.ItemNetwork;
 import num.complexwiring.core.Logger;
 import num.complexwiring.core.proxy.CommonProxy;
 import num.complexwiring.creativetab.ModCreativeTabs;
@@ -28,16 +26,16 @@ public class ComplexWiring {
     public static ComplexWiring instance;
 
     public static CreativeTabs tabCW = new ModCreativeTabs(CreativeTabs.getNextID(), Reference.MOD_ID);
-    
+
     @SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.COMMON_PROXY_CLASS)
     public static CommonProxy proxy;
 
     public static final boolean DEBUG = true;
-    
+
     @PreInit
     public void preInit(FMLPreInitializationEvent event) {
         Logger.init();
-        
+
         // initialize all blocks and items
         ModItems.init();
         ModBlocks.init();
@@ -45,8 +43,6 @@ public class ComplexWiring {
         // initialize all crafting and smelting recipes
         ModCrafting.init();
         ModSmelting.init();
-        
-        MinecraftForge.EVENT_BUS.register(new ItemNetwork.NetworkLoader());
     }
 
     @Init
