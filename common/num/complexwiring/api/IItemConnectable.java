@@ -4,9 +4,9 @@ import net.minecraftforge.common.ForgeDirection;
 import num.complexwiring.core.Wrapper;
 
 /**
- * IConnectable is an interface for all connectable tiles in ComplexWiring
+ * IItemConnectable is an interface for all tiles that are connecting through the item network in Complex Wiring
  */
-public interface IConnectable {
+public interface IItemConnectable {
 
     /**
      * Checks if the tile is connected on checked side
