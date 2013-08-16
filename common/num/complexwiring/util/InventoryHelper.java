@@ -75,7 +75,7 @@ public class InventoryHelper {
     }
 
     /**
-     * Tests if the ItemStack can be inserted to a block HIGHLY EXPERIMENTAL!
+     * Tests if the ItemStack can be inserted to a block
      * 
      * @param MCVector3
      *            the block checked

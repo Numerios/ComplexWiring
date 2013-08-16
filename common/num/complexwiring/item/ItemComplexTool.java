@@ -1,7 +1,6 @@
 package num.complexwiring.item;
 
 import java.util.List;
-import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -42,8 +41,8 @@ public class ItemComplexTool extends Item {
         TileEntity tile = pos.toTile();
         if (tile instanceof TileItemWire) {
             TileItemWire wire = (TileItemWire) tile;
-            wire.contents.add(new Wrapper(new ItemStack(Block.cobblestone, 1), EnumColours.UNKNOWN, ForgeDirection.DOWN));
-            Logger.debug("Added cobble!");
+            wire.acceptWrapper(new Wrapper(new ItemStack(Block.cobblestone, 1), EnumColours.UNKNOWN, ForgeDirection.UNKNOWN));
+            Logger.debug("COMPLEX TOOL manually added one wrapper to the network with 1x Cobblestone in a proper way");
             return true;
         }
         return false;
@@ -53,7 +52,8 @@ public class ItemComplexTool extends Item {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) {
         list.add(EnumColours.AQUA.toChat() + "A DEBUG ITEM");
-        list.add(EnumColours.DAQUA.toChat() + "Active mode: " + EnumColours.YELLOW.toChat()
-                + " inserting random items!");
+        list.add(EnumColours.DAQUA.toChat() + "Active mode:" + EnumColours.YELLOW.toChat()
+                + " inserting random* items!");
+        list.add(EnumColours.WHITE.toChat() + "* all inserted items are cobble");
     }
 }
