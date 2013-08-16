@@ -4,7 +4,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
-import num.complexwiring.api.IConnectable;
+import num.complexwiring.api.IItemConnectable;
 import num.complexwiring.block.TileItemWire;
 import num.complexwiring.core.Logger;
 import num.complexwiring.core.Wrapper;
@@ -19,7 +19,7 @@ public class WireModelRenderer extends TileEntitySpecialRenderer {
 
     public static final ModelWire model = new ModelWire();
 
-    public void renderModel(IConnectable wire, double x, double y, double z) {
+    public void renderModel(IItemConnectable wire, double x, double y, double z) {
         Minecraft.getMinecraft().renderEngine.bindTexture("/mods/ComplexWiring/textures/blocks/wireModel.png");
 
         GL11.glPushMatrix();

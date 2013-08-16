@@ -1,7 +1,5 @@
 package num.complexwiring.core;
 
-import java.lang.reflect.InvocationTargetException;
-
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;

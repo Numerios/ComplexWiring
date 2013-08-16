@@ -11,7 +11,7 @@ import num.complexwiring.core.Wrapper;
 import org.lwjgl.opengl.GL11;
 
 public class WrapperRenderer {
-    public static RenderItem item;
+    public static RenderWrapperContents item;
 
     public static void render(TileItemWire wire, double x, double y, double z, Wrapper wrapper) {
         ItemStack is = wrapper.getContents();
@@ -19,18 +19,10 @@ public class WrapperRenderer {
         EntityItem itemEntity = new EntityItem(wire.worldObj);
         itemEntity.setEntityItemStack(is);
 
-        item = new RenderItem() {
-            public boolean shouldBob() {
-                return false;
-            }
-
-            public boolean shouldSpreadItems() {
-                return false;
-            }
-        };
+        item = new RenderWrapperContents();
         item.setRenderManager(RenderManager.instance);
 
-        float scale = 0.7F;
+        float scale = 0.75F;
 
         GL11.glDisable(GL11.GL_LIGHTING);
         GL11.glDisable(GL11.GL_CULL_FACE);
