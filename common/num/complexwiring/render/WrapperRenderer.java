@@ -80,6 +80,11 @@ public class WrapperRenderer {
                 z = wrapper.getProgress();
                 break;
             }
+            case UNKNOWN: {
+                x = 0.5F;
+                y = 0.5F;
+                z = 0.5F;
+            }
             default: {
                 break;
             }

@@ -44,15 +44,6 @@ public class BlockItemWire extends Block implements ITileEntityProvider {
         return new TileItemWire();
     }
 
-    /*
-     * @Override public void onBlockPlacedBy(World world, int x, int y, int z,
-     * EntityLiving entity, ItemStack itemStack) { checkConnection(world, x, y,
-     * z); }
-     * 
-     * @Override public void onNeighborBlockChange(World world, int x, int y,
-     * int z, int neighborID) { checkConnection(world, x, y, z); }
-     */
-
     @Override
     public String getItemIconName() {
         return "BlockItemWire";

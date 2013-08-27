@@ -15,7 +15,6 @@ import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
 import num.complexwiring.api.IItemConnectable;
-import num.complexwiring.core.Logger;
 import num.complexwiring.core.Wrapper;
 import num.complexwiring.core.pathfinding.PathfinderItemWire;
 import num.complexwiring.util.EnumColours;
@@ -28,7 +27,6 @@ public class TileItemHub extends TileEntity implements IItemConnectable {
     // this one just pulls the first possible itemstack out
     public ArrayList<Wrapper> contents = new ArrayList<Wrapper>();
     public ArrayList<Wrapper> pending = new ArrayList<Wrapper>();
-    public boolean working;
     public boolean forceUpdate;
     private short powered = 0;
     public ForgeDirection facing = ForgeDirection.DOWN;
@@ -61,43 +59,36 @@ public class TileItemHub extends TileEntity implements IItemConnectable {
             powered = 0;
         }
         if (powered >= 20) {
-            working = true;
             extract();
             powered = 0;
         }
-
-        if (working) {
-            ArrayList<Wrapper> forwarding = new ArrayList<Wrapper>();
-            for (Wrapper wrapper : pending) {
-                contents.add(wrapper);
-            }
-            pending.clear();
-            for (Wrapper wrapper : contents) {
-                Logger.debug("TileItemHub @ " + MCVector3.get(this).toString() + " | accepting wrapper: "
-                        + wrapper.toString());
-                wrapper.setDirection(new PathfinderItemWire(worldObj, wrapper).findPath(MCVector3.get(this),
-                        WireHelper.getAllConnections(this)));
-                wrapper.addProgress(constant);
-                if (wrapper.getProgress() >= 1) {
-                    MCVector3 vec3 = MCVector3.get(this);
-                    vec3.getNeighbour(wrapper.getDirection());
-                    TileEntity neighbour = vec3.toTile();
-                    if (neighbour instanceof IInventory && wrapper.hasContents()
-                            && InventoryHelper.canInsertToInventory(vec3, wrapper.getContents())) {
-                        forwarding.add(wrapper);
-                        InventoryHelper.insertToInventory((IInventory) neighbour, wrapper.getContents());
-                    } else if (neighbour instanceof IItemConnectable
-                            && ((IItemConnectable) neighbour).canAccept(wrapper)) {
-                        forwarding.add(wrapper);
-                        ((IItemConnectable) neighbour).acceptWrapper(wrapper);
-                    }
+        ArrayList<Wrapper> forwarding = new ArrayList<Wrapper>();
+        for (Wrapper wrapper : pending) {
+            contents.add(wrapper);
+        }
+        pending.clear();
+        for (Wrapper wrapper : contents) {
+            wrapper.setDirection(new PathfinderItemWire(worldObj, wrapper).findPath(MCVector3.get(this),
+                    WireHelper.getAllConnections(this)));
+            wrapper.addProgress(constant);
+            if (wrapper.getProgress() >= 1) {
+                MCVector3 vec3 = MCVector3.get(this);
+                vec3.getNeighbour(wrapper.getDirection());
+                TileEntity neighbour = vec3.toTile();
+                if (neighbour instanceof IInventory && wrapper.hasContents()
+                        && InventoryHelper.canInsertToInventory(vec3, wrapper.getContents())) {
+                    forwarding.add(wrapper);
+                    InventoryHelper.insertToInventory((IInventory) neighbour, wrapper.getContents());
+                } else if (neighbour instanceof IItemConnectable && ((IItemConnectable) neighbour).canAccept(wrapper)) {
+                    forwarding.add(wrapper);
+                    ((IItemConnectable) neighbour).acceptWrapper(wrapper);
                 }
             }
-            for (Wrapper wrapper : forwarding) {
-                contents.remove(wrapper);
-            }
-            working = false;
         }
+        for (Wrapper wrapper : forwarding) {
+            contents.remove(wrapper);
+        }
+
     }
 
     public void extract() {
@@ -130,7 +121,6 @@ public class TileItemHub extends TileEntity implements IItemConnectable {
 
     public void writeToNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);
-        nbt.setBoolean("WORKING", working);
         NBTTagList tagList = new NBTTagList();
         for (Wrapper wrapper : contents) {
             NBTTagCompound wrapperNBT = new NBTTagCompound();
@@ -142,7 +132,6 @@ public class TileItemHub extends TileEntity implements IItemConnectable {
 
     public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);
-        working = nbt.getBoolean("WORKING");
         NBTTagList tagList = (NBTTagList) nbt.getTag("CONTENTS");
         contents = new ArrayList<Wrapper>();
         for (int i = 0; i < tagList.tagCount(); i++) {
@@ -158,7 +147,7 @@ public class TileItemHub extends TileEntity implements IItemConnectable {
     public boolean getConnection(ForgeDirection side) {
         return WireHelper.getConnection(side, this);
     }
-    
+
     @Override
     public boolean isSideConnectable(ForgeDirection side) {
         return side == facing || side == facing.getOpposite();
