@@ -120,9 +120,9 @@ public class TileItemWire extends TileEntity implements IItemWire {
 
     @Override
     public boolean isSideConnectable(ForgeDirection side) {
-        IItemConnectable connectable = (IItemConnectable) MCVector3.get(this).getNeighbour(side).toTile();
-        if (connectable instanceof TileItemHub) {
-            if (!connectable.getConnection(side.getOpposite())) {
+        TileEntity tile = (TileEntity) MCVector3.get(this).getNeighbour(side).toTile();
+        if (tile instanceof TileItemHub) {
+            if (!((TileItemHub) tile).getConnection(side.getOpposite())) {
                 return false;
             }
         }

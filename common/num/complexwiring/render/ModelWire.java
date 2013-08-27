@@ -332,7 +332,6 @@ public class ModelWire extends ModelBase {
         setRotationAngles(f, f1, f2, f3, f4, f5, entity);
     }
 
-    // TODO: A clever algorithm that calculates proper sides to render.
     private void setRotation(ModelRenderer model, float x, float y, float z) {
         model.rotateAngleX = x;
         model.rotateAngleY = y;

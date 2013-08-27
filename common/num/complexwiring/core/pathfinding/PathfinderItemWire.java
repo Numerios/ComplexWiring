@@ -63,7 +63,7 @@ public class PathfinderItemWire {
 
             for (ForgeDirection side : ForgeDirection.VALID_DIRECTIONS) {
                 MCVector3 pos = vec3.getNeighbour(side);
-                addNode(pos, path.heading, side, path.distance + 1);
+                addNode(pos, path.heading, side, path.distance + 2);
             }
         }
         return ForgeDirection.UNKNOWN;

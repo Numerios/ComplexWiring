@@ -1,7 +1,6 @@
 package num.complexwiring.core.pathfinding;
 
 import net.minecraftforge.common.ForgeDirection;
-import num.complexwiring.core.Logger;
 import num.complexwiring.util.MCVector3;
 
 public class PathItemWire implements Comparable<PathItemWire> {
@@ -16,7 +15,6 @@ public class PathItemWire implements Comparable<PathItemWire> {
         this.heading = heading;
         this.direction = direction;
         this.distance = distance;
-       // Logger.debug("Creating a new path " + this.toString());
     }
 
     public int compareTo(PathItemWire route) {
