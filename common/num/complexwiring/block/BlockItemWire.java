@@ -17,9 +17,9 @@ import net.minecraftforge.common.ForgeDirection;
 import num.complexwiring.ComplexWiring;
 import num.complexwiring.api.IItemConnectable;
 import num.complexwiring.api.IItemWire;
+import num.complexwiring.api.vec.Vector3;
 import num.complexwiring.core.Wrapper;
 import num.complexwiring.lib.Reference;
-import num.complexwiring.util.MCVector3;
 import num.complexwiring.util.WireHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -104,7 +104,7 @@ public class BlockItemWire extends Block implements ITileEntityProvider {
     private AxisAlignedBB getAABB(IItemConnectable tile) {
         AxisAlignedBB aabb = AxisAlignedBB.getAABBPool().getAABB(0.2F, 0.2F, 0.2F, 0.8F, 0.8F, 0.8F);
         for (ForgeDirection side : ForgeDirection.VALID_DIRECTIONS) {
-            if (WireHelper.getConnection(side, tile)) {
+            if (WireHelper.getConnection(side, tile, tile.getWorld())) {
                 switch (side) {
                     case EAST: {
                         aabb.setBounds(aabb.minX, aabb.minY, aabb.minZ, 1.0F, aabb.maxY, aabb.maxZ);
@@ -164,7 +164,7 @@ public class BlockItemWire extends Block implements ITileEntityProvider {
                 double offsetX = 0.50D + random.nextDouble();
                 double offsetY = 0.50D + random.nextDouble();
                 double offsetZ = 0.50D + random.nextDouble();
-                MCVector3 vec3 = MCVector3.get(wire);
+                Vector3 vec3 = Vector3.get(wire);
                 EntityItem item = new EntityItem(wire.worldObj, vec3.x + offsetX, vec3.y + offsetY, vec3.z + offsetZ,
                         is);
 

@@ -9,14 +9,15 @@ import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 import num.complexwiring.api.IItemConnectable;
 import num.complexwiring.api.IItemWire;
+import num.complexwiring.api.vec.Vector3;
 import num.complexwiring.core.Wrapper;
 import num.complexwiring.core.pathfinding.PathfinderItemWire;
 import num.complexwiring.util.EnumColours;
 import num.complexwiring.util.InventoryHelper;
-import num.complexwiring.util.MCVector3;
 import num.complexwiring.util.WireHelper;
 import cpw.mods.fml.common.network.PacketDispatcher;
 
@@ -40,8 +41,8 @@ public class TileItemWire extends TileEntity implements IItemWire {
     public void updateEntity() {
         manageWrappers();
         worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
-        PacketDispatcher.sendPacketToAllAround(xCoord, yCoord, zCoord, 20, worldObj.getWorldInfo().getVanillaDimension(),
-                getDescriptionPacket());
+        PacketDispatcher.sendPacketToAllAround(xCoord, yCoord, zCoord, 20, worldObj.getWorldInfo()
+                .getVanillaDimension(), getDescriptionPacket());
     }
 
     @Override
@@ -79,12 +80,12 @@ public class TileItemWire extends TileEntity implements IItemWire {
         for (Wrapper wrapper : contents) {
             wrapper.addProgress(constant);
             if (wrapper.getProgress() >= 1) {
-                wrapper.setDirection(new PathfinderItemWire(worldObj, wrapper).findPath(MCVector3.get(this),
-                        WireHelper.getAllConnections(this)));
-                MCVector3 vec3 = MCVector3.get(this).getNeighbour(wrapper.getDirection());
-                TileEntity neighbour = vec3.toTile();
+                wrapper.setDirection(new PathfinderItemWire(worldObj, wrapper).findPath(Vector3.get(this),
+                        WireHelper.getAllConnections(this, worldObj)));
+                Vector3 vec3 = Vector3.get(this).step(wrapper.getDirection());
+                TileEntity neighbour = vec3.toTile(worldObj);
                 if (neighbour instanceof IInventory && wrapper.hasContents()
-                        && InventoryHelper.canInsertToInventory(vec3, wrapper.getContents())) {
+                        && InventoryHelper.canInsertToInventory(vec3, wrapper.getContents(), worldObj)) {
                     forwarding.add(wrapper);
                     InventoryHelper.insertToInventory((IInventory) neighbour, wrapper.getContents());
                 } else if (neighbour instanceof IItemConnectable && ((IItemConnectable) neighbour).canAccept(wrapper)) {
@@ -120,7 +121,7 @@ public class TileItemWire extends TileEntity implements IItemWire {
 
     @Override
     public boolean isSideConnectable(ForgeDirection side) {
-        TileEntity tile = (TileEntity) MCVector3.get(this).getNeighbour(side).toTile();
+        TileEntity tile = (TileEntity) Vector3.get(this).step(side).toTile(worldObj);
         if (tile instanceof TileItemHub) {
             if (!((TileItemHub) tile).getConnection(side.getOpposite())) {
                 return false;
@@ -131,6 +132,11 @@ public class TileItemWire extends TileEntity implements IItemWire {
 
     @Override
     public boolean getConnection(ForgeDirection side) {
-        return WireHelper.getConnection(side, this);
+        return WireHelper.getConnection(side, this, worldObj);
+    }
+
+    @Override
+    public World getWorld() {
+        return this.getWorldObj();
     }
 }

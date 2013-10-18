@@ -11,12 +11,12 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 import num.complexwiring.ComplexWiring;
+import num.complexwiring.api.vec.Vector3;
 import num.complexwiring.block.TileItemWire;
 import num.complexwiring.core.Logger;
 import num.complexwiring.core.Wrapper;
 import num.complexwiring.lib.Reference;
 import num.complexwiring.util.EnumColours;
-import num.complexwiring.util.MCVector3;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -37,8 +37,8 @@ public class ItemComplexTool extends Item {
     @Override
     public boolean onItemUse(ItemStack is, EntityPlayer player, World world, int x, int y, int z, int side,
             float targetX, float targetY, float targetZ) {
-        MCVector3 pos = new MCVector3(world, x, y, z);
-        TileEntity tile = pos.toTile();
+        Vector3 pos = new Vector3(x, y, z);
+        TileEntity tile = pos.toTile(world);
         if (tile instanceof TileItemWire) {
             TileItemWire wire = (TileItemWire) tile;
             wire.acceptWrapper(new Wrapper(new ItemStack(Block.cobblestone, 1), EnumColours.UNKNOWN, ForgeDirection.UNKNOWN));

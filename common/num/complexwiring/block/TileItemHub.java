@@ -13,13 +13,14 @@ import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 import num.complexwiring.api.IItemConnectable;
+import num.complexwiring.api.vec.Vector3;
 import num.complexwiring.core.Wrapper;
 import num.complexwiring.core.pathfinding.PathfinderItemWire;
 import num.complexwiring.util.EnumColours;
 import num.complexwiring.util.InventoryHelper;
-import num.complexwiring.util.MCVector3;
 import num.complexwiring.util.WireHelper;
 
 public class TileItemHub extends TileEntity implements IItemConnectable {
@@ -68,15 +69,15 @@ public class TileItemHub extends TileEntity implements IItemConnectable {
         }
         pending.clear();
         for (Wrapper wrapper : contents) {
-            wrapper.setDirection(new PathfinderItemWire(worldObj, wrapper).findPath(MCVector3.get(this),
-                    WireHelper.getAllConnections(this)));
+            wrapper.setDirection(new PathfinderItemWire(worldObj, wrapper).findPath(Vector3.get(this),
+                    WireHelper.getAllConnections(this, worldObj)));
             wrapper.addProgress(constant);
             if (wrapper.getProgress() >= 1) {
-                MCVector3 vec3 = MCVector3.get(this);
-                vec3.getNeighbour(wrapper.getDirection());
-                TileEntity neighbour = vec3.toTile();
+                Vector3 vec3 = Vector3.get(this);
+                vec3.step(wrapper.getDirection());
+                TileEntity neighbour = vec3.toTile(worldObj);
                 if (neighbour instanceof IInventory && wrapper.hasContents()
-                        && InventoryHelper.canInsertToInventory(vec3, wrapper.getContents())) {
+                        && InventoryHelper.canInsertToInventory(vec3, wrapper.getContents(), worldObj)) {
                     forwarding.add(wrapper);
                     InventoryHelper.insertToInventory((IInventory) neighbour, wrapper.getContents());
                 } else if (neighbour instanceof IItemConnectable && ((IItemConnectable) neighbour).canAccept(wrapper)) {
@@ -92,11 +93,11 @@ public class TileItemHub extends TileEntity implements IItemConnectable {
     }
 
     public void extract() {
-        TileEntity tile = MCVector3.get(this).getNeighbour(facing).toTile();
+        TileEntity tile = Vector3.get(this).step(facing).toTile(worldObj);
         if (tile instanceof IInventory) {
             if (InventoryHelper.canExtractFirstFromInventory((IInventory) tile)) {
                 ItemStack is = InventoryHelper.extractFirstFromInventory((IInventory) tile);
-                TileEntity oppositeTile = MCVector3.get(this).getNeighbour(facing.getOpposite()).toTile();
+                TileEntity oppositeTile = Vector3.get(this).step(facing.getOpposite()).toTile(worldObj);
                 if (oppositeTile instanceof IItemConnectable) {
                     ((IItemConnectable) oppositeTile).acceptWrapper(new Wrapper(is, EnumColours.UNKNOWN, facing
                             .getOpposite()));
@@ -108,7 +109,7 @@ public class TileItemHub extends TileEntity implements IItemConnectable {
                     double offsetX = 0.50D + random.nextDouble();
                     double offsetY = 0.50D + random.nextDouble();
                     double offsetZ = 0.50D + random.nextDouble();
-                    MCVector3 vec3 = MCVector3.get(this).getNeighbour(facing.getOpposite());
+                    Vector3 vec3 = Vector3.get(this).step(facing.getOpposite());
                     EntityItem item = new EntityItem(worldObj, vec3.x + offsetX, vec3.y + offsetY, vec3.z + offsetZ, is);
 
                     item.setVelocity(random.nextFloat() * 0.05F, random.nextFloat() * 0.10F + 0.10F,
@@ -145,7 +146,7 @@ public class TileItemHub extends TileEntity implements IItemConnectable {
 
     @Override
     public boolean getConnection(ForgeDirection side) {
-        return WireHelper.getConnection(side, this);
+        return WireHelper.getConnection(side, this, worldObj);
     }
 
     @Override
@@ -162,6 +163,11 @@ public class TileItemHub extends TileEntity implements IItemConnectable {
     public void acceptWrapper(Wrapper wrapper) {
         wrapper.resetProgress();
         pending.add(wrapper);
+    }
+
+    @Override
+    public World getWorld() {
+        return this.getWorldObj();
     }
 
 }

@@ -1,5 +1,6 @@
 package num.complexwiring.api;
 
+import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 import num.complexwiring.core.Wrapper;
 
@@ -45,4 +46,6 @@ public interface IItemConnectable {
      *         not.
      */
     public boolean isSideConnectable(ForgeDirection side);
+    
+    public World getWorld();
 }

@@ -2,6 +2,8 @@ package num.complexwiring.util;
 
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
+import num.complexwiring.api.vec.Vector3;
 
 public class InventoryHelper {
     /**
@@ -83,9 +85,9 @@ public class InventoryHelper {
      *            the ItemStack checked
      * @return true if the ItemStack is insertable, false if not
      */
-    public static boolean canInsertToInventory(MCVector3 vec3, ItemStack is) {
-        if (vec3.toTile() instanceof IInventory) {
-            return canInsertToInventory((IInventory) vec3.toTile(), is);
+    public static boolean canInsertToInventory(Vector3 vec3, ItemStack is, World world) {
+        if (vec3.toTile(world) instanceof IInventory) {
+            return canInsertToInventory((IInventory) vec3.toTile(world), is);
         }
         return false;
     }

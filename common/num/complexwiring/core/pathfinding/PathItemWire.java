@@ -1,16 +1,16 @@
 package num.complexwiring.core.pathfinding;
 
 import net.minecraftforge.common.ForgeDirection;
-import num.complexwiring.util.MCVector3;
+import num.complexwiring.api.vec.Vector3;
 
 public class PathItemWire implements Comparable<PathItemWire> {
-    public MCVector3 target;
+    public Vector3 target;
     public ForgeDirection heading;
     public ForgeDirection direction;
     public int distance;
     public boolean isFinished;
 
-    public PathItemWire(MCVector3 target, ForgeDirection heading, ForgeDirection direction, int distance) {
+    public PathItemWire(Vector3 target, ForgeDirection heading, ForgeDirection direction, int distance) {
         this.target = target;
         this.heading = heading;
         this.direction = direction;
@@ -30,18 +30,8 @@ public class PathItemWire implements Comparable<PathItemWire> {
 
         PathItemWire path = (PathItemWire) obj;
 
-        if (!target.equals(path.target))
-            return false;
-        if (!heading.equals(path.heading))
-            return false;
-        if (!direction.equals(path.direction))
-            return false;
-        if (distance != path.distance)
-            return false;
-        if (isFinished != path.isFinished)
-            return false;
-
-        return true;
+        return target.equals(path.target) && heading.equals(path.heading) && direction.equals(path.direction)
+                && distance == path.distance && isFinished == path.isFinished;
     }
 
     @Override
