@@ -164,7 +164,7 @@ public class BlockItemWire extends Block implements ITileEntityProvider {
                 double offsetX = 0.50D + random.nextDouble();
                 double offsetY = 0.50D + random.nextDouble();
                 double offsetZ = 0.50D + random.nextDouble();
-                Vector3 vec3 = Vector3.get(wire);
+                Vector3 vec3 = Vector3.getCenter(wire);
                 EntityItem item = new EntityItem(wire.worldObj, vec3.x + offsetX, vec3.y + offsetY, vec3.z + offsetZ,
                         is);
 

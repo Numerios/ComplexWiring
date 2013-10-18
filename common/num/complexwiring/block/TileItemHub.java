@@ -109,7 +109,7 @@ public class TileItemHub extends TileEntity implements IItemConnectable {
                     double offsetX = 0.50D + random.nextDouble();
                     double offsetY = 0.50D + random.nextDouble();
                     double offsetZ = 0.50D + random.nextDouble();
-                    Vector3 vec3 = Vector3.get(this).step(facing.getOpposite());
+                    Vector3 vec3 = Vector3.getCenter(this).step(facing.getOpposite());
                     EntityItem item = new EntityItem(worldObj, vec3.x + offsetX, vec3.y + offsetY, vec3.z + offsetZ, is);
 
                     item.setVelocity(random.nextFloat() * 0.05F, random.nextFloat() * 0.10F + 0.10F,
