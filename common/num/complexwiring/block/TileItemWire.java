@@ -40,7 +40,7 @@ public class TileItemWire extends TileEntity implements IItemWire {
     public void updateEntity() {
         manageWrappers();
         worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
-        PacketDispatcher.sendPacketToAllAround(xCoord, yCoord, zCoord, 20, worldObj.getWorldInfo().getDimension(),
+        PacketDispatcher.sendPacketToAllAround(xCoord, yCoord, zCoord, 20, worldObj.getWorldInfo().getVanillaDimension(),
                 getDescriptionPacket());
     }
 
@@ -55,7 +55,7 @@ public class TileItemWire extends TileEntity implements IItemWire {
 
     @Override
     public void onDataPacket(INetworkManager network, Packet132TileEntityData packet) {
-        readFromNBT(packet.customParam1);
+        readFromNBT(packet.data);
     }
 
     @Override

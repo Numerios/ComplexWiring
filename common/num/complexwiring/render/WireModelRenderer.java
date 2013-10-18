@@ -3,11 +3,12 @@ package num.complexwiring.render;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.ForgeDirection;
 import num.complexwiring.api.IItemConnectable;
 import num.complexwiring.block.TileItemWire;
-import num.complexwiring.core.Logger;
 import num.complexwiring.core.Wrapper;
+import num.complexwiring.lib.Reference;
 
 import org.lwjgl.opengl.GL11;
 
@@ -18,9 +19,11 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class WireModelRenderer extends TileEntitySpecialRenderer {
 
     public static final ModelWire model = new ModelWire();
+    private static ResourceLocation MODEL_TEXTURE = new ResourceLocation(Reference.TEXTURE_PATH
+            + "textures/blocks/wireModel.png");
 
     public void renderModel(IItemConnectable wire, double x, double y, double z) {
-        Minecraft.getMinecraft().renderEngine.bindTexture("/mods/ComplexWiring/textures/blocks/wireModel.png");
+        Minecraft.getMinecraft().renderEngine.bindTexture(MODEL_TEXTURE);
 
         GL11.glPushMatrix();
         GL11.glTranslatef((float) x + 0.5F, (float) y + 1.5F, (float) z + 0.5F);

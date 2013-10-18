@@ -45,7 +45,7 @@ public class TileItemHub extends TileEntity implements IItemConnectable {
 
     @Override
     public void onDataPacket(INetworkManager manager, Packet132TileEntityData packet) {
-        readFromNBT(packet.customParam1);
+        readFromNBT(packet.data);
         worldObj.markBlockForRenderUpdate(xCoord, yCoord, zCoord);
     }
 
