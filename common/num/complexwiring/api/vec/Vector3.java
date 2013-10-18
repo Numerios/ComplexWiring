@@ -8,10 +8,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 
 /**
- * The ultimate class for coordinates in three-dimensional space. Uses double
- * values! YOU AINT MESSIN WITH MAH JAVADOC, DAWG!
+ * The ultimate class for coordinates in three-dimensional space. Uses doubles.
  */
-public class Vector3 {
+public class Vector3 implements Cloneable {
     public double x, y, z;
 
     public Vector3(double x, double y, double z) {
@@ -26,7 +25,6 @@ public class Vector3 {
         this.z = other.z;
     }
 
-    // TODO: Is this even correct? o.O
     public Vector3(double d) {
         this(d, d, d);
     }
@@ -64,6 +62,13 @@ public class Vector3 {
 
     // TODO: getCenter(Entity) - needs to offset properly!
 
+    /**
+     * Converts Vector3 to Vector2 by dropping the Y coord.
+     */
+    public Vector2 toVector2(){
+        return new Vector2(this.x, this.z);
+    }
+    
     public Vector3 add(double d) {
         this.x += d;
         this.y += d;
@@ -167,8 +172,8 @@ public class Vector3 {
         nbt.setDouble("Z", this.z);
         return nbt;
     }
-    
-    public Vector3 step(ForgeDirection dir){
+
+    public Vector3 step(ForgeDirection dir) {
         return this.add(new Vector3(dir));
     }
 
