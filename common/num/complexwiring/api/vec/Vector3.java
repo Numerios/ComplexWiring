@@ -65,10 +65,22 @@ public class Vector3 implements Cloneable {
     /**
      * Converts Vector3 to Vector2 by dropping the Y coord.
      */
-    public Vector2 toVector2(){
+    public Vector2 toVector2() {
         return new Vector2(this.x, this.z);
     }
-    
+
+    /**
+     * Converts Vector3 to ForgeDirection format by comparing the XYZ coords
+     */
+    public ForgeDirection toDirection() {
+        for (ForgeDirection dir : ForgeDirection.VALID_DIRECTIONS) {
+            if (this.getX() == dir.offsetX && this.getY() == dir.offsetY && this.getZ() == dir.offsetZ) {
+                return dir;
+            }
+            return ForgeDirection.UNKNOWN;
+        }
+    }
+
     public Vector3 add(double d) {
         this.x += d;
         this.y += d;
