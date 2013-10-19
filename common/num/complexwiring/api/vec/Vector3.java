@@ -77,8 +77,8 @@ public class Vector3 implements Cloneable {
             if (this.getX() == dir.offsetX && this.getY() == dir.offsetY && this.getZ() == dir.offsetZ) {
                 return dir;
             }
-            return ForgeDirection.UNKNOWN;
         }
+        return ForgeDirection.UNKNOWN;
     }
 
     public Vector3 add(double d) {
