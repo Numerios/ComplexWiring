@@ -1,7 +1,6 @@
 package num.complexwiring.block;
 
-import java.util.ArrayList;
-
+import cpw.mods.fml.common.network.PacketDispatcher;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -19,7 +18,8 @@ import num.complexwiring.core.pathfinding.PathfinderItemWire;
 import num.complexwiring.util.EnumColours;
 import num.complexwiring.util.InventoryHelper;
 import num.complexwiring.util.WireHelper;
-import cpw.mods.fml.common.network.PacketDispatcher;
+
+import java.util.ArrayList;
 
 public class TileItemWire extends TileEntity implements IItemWire {
     public ArrayList<Wrapper> contents = new ArrayList<Wrapper>();

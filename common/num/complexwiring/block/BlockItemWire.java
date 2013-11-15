@@ -1,7 +1,7 @@
 package num.complexwiring.block;
 
-import java.util.Random;
-
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
@@ -21,8 +21,8 @@ import num.complexwiring.api.vec.Vector3;
 import num.complexwiring.core.Wrapper;
 import num.complexwiring.lib.Reference;
 import num.complexwiring.util.WireHelper;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+
+import java.util.Random;
 
 public class BlockItemWire extends Block implements ITileEntityProvider {
     private Random random = new Random();

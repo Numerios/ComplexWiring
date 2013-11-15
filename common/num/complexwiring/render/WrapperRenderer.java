@@ -1,13 +1,10 @@
 package num.complexwiring.render;
 
-import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import num.complexwiring.block.TileItemWire;
-import num.complexwiring.core.Logger;
 import num.complexwiring.core.Wrapper;
-
 import org.lwjgl.opengl.GL11;
 
 public class WrapperRenderer {

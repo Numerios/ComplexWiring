@@ -1,6 +1,6 @@
 package num.complexwiring.util;
 
-import java.awt.Color;
+import java.awt.*;
 
 public enum EnumColours {
     BLACK(0, "131313"), DBLUE(1, "0000AA"), DGREEN(2, "00AA00"), DAQUA(3, "00AAAA"), DRED(4, "AA0000"), PURPLE(5,
@@ -25,7 +25,7 @@ public enum EnumColours {
     }
 
     public String toChat() {
-        return "§" + Integer.toHexString(intColor);
+        return "ï¿½" + Integer.toHexString(intColor);
     }
 
     public String getHex() {
@@ -38,14 +38,14 @@ public enum EnumColours {
 
     public float[] getColor_F() {
         Color color = getColor();
-        float[] rgb = { color.getRed(), color.getGreen(), color.getGreen() };
+        float[] rgb = {color.getRed(), color.getGreen(), color.getGreen()};
 
         return rgb;
     }
 
     private final int intColor;
     private final String hexColor;
-    private static final EnumColours[] VALID_COLOURS = { BLACK, DBLUE, DGREEN, DAQUA, DRED, PURPLE, ORANGE, GREY, DGREY,
-            BLUE, LIME, AQUA, RED, PINK, YELLOW, WHITE };
-   // private static final EnumColours[] MC_COLOURS = { WHITE, ORANGE, MAGENTA, LBLUE, YELLOW, LIME, PINK, GREY, LGREY, CYAN, PURPLE, BLUE, BROWN, GREEN, RED, BLACK, UNKNOWN};
+    private static final EnumColours[] VALID_COLOURS = {BLACK, DBLUE, DGREEN, DAQUA, DRED, PURPLE, ORANGE, GREY, DGREY,
+            BLUE, LIME, AQUA, RED, PINK, YELLOW, WHITE};
+    // private static final EnumColours[] MC_COLOURS = { WHITE, ORANGE, MAGENTA, LBLUE, YELLOW, LIME, PINK, GREY, LGREY, CYAN, PURPLE, BLUE, BROWN, GREEN, RED, BLACK, UNKNOWN};
 }

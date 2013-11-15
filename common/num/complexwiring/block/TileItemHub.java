@@ -1,8 +1,5 @@
 package num.complexwiring.block;
 
-import java.util.ArrayList;
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.inventory.IInventory;
@@ -22,6 +19,9 @@ import num.complexwiring.core.pathfinding.PathfinderItemWire;
 import num.complexwiring.util.EnumColours;
 import num.complexwiring.util.InventoryHelper;
 import num.complexwiring.util.WireHelper;
+
+import java.util.ArrayList;
+import java.util.Random;
 
 public class TileItemHub extends TileEntity implements IItemConnectable {
     // a prototype of an itemHub

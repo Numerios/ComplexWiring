@@ -8,11 +8,9 @@ import num.complexwiring.api.vec.Vector3;
 public class InventoryHelper {
     /**
      * Inserts the ItemStack to an Inventory
-     * 
-     * @param inventory
-     *            the IInventory inserted in
-     * @param is
-     *            the ItemStack inserted
+     *
+     * @param inventory the IInventory inserted in
+     * @param is        the ItemStack inserted
      * @return true if success, false if fail
      */
     public static boolean insertToInventory(IInventory inventory, ItemStack is) {
@@ -49,11 +47,9 @@ public class InventoryHelper {
     /**
      * Tests if the ItemStack can be inserted to an Inventory HIGHLY
      * EXPERIMENTAL!
-     * 
-     * @param inventory
-     *            the IInventory checked
-     * @param is
-     *            the ItemStack checked
+     *
+     * @param inventory the IInventory checked
+     * @param is        the ItemStack checked
      * @return true if the ItemStack is insertable, false if not
      */
     public static boolean canInsertToInventory(IInventory inventory, ItemStack is) {
@@ -78,11 +74,9 @@ public class InventoryHelper {
 
     /**
      * Tests if the ItemStack can be inserted to a block
-     * 
-     * @param MCVector3
-     *            the block checked
-     * @param is
-     *            the ItemStack checked
+     *
+     * @param MCVector3 the block checked
+     * @param is        the ItemStack checked
      * @return true if the ItemStack is insertable, false if not
      */
     public static boolean canInsertToInventory(Vector3 vec3, ItemStack is, World world) {

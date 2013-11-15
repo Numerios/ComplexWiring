@@ -1,12 +1,12 @@
 package num.complexwiring.api;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
-
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 import num.complexwiring.api.vec.Vector3;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Pathfinder {
     public final Set<Vector3> open, closed;
@@ -61,17 +61,17 @@ public class Pathfinder {
             for (ForgeDirection dir : ForgeDirection.VALID_DIRECTIONS) {
                 Vector3 neighbour = this.target.clone().step(dir);
 
-               // if (neighbour.toTile(world) instanceof IItemConnectable) {
-                    double tentativeTotalCost = this.bestCost.get(thisNode) + thisNode.distance(neighbour);
+                // if (neighbour.toTile(world) instanceof IItemConnectable) {
+                double tentativeTotalCost = this.bestCost.get(thisNode) + thisNode.distance(neighbour);
 
-                    if (!this.closed.contains(neighbour) || !this.open.contains(neighbour)
-                            || tentativeTotalCost < this.bestCost.get(neighbour)) {
-                        this.navMap.put(neighbour, thisNode);
-                        this.bestCost.put(neighbour, tentativeTotalCost);
-                        this.totalCost.put(neighbour, this.bestCost.get(neighbour) + neighbour.distance(this.target));
-                        this.open.add(neighbour);
-                    }
-               // }
+                if (!this.closed.contains(neighbour) || !this.open.contains(neighbour)
+                        || tentativeTotalCost < this.bestCost.get(neighbour)) {
+                    this.navMap.put(neighbour, thisNode);
+                    this.bestCost.put(neighbour, tentativeTotalCost);
+                    this.totalCost.put(neighbour, this.bestCost.get(neighbour) + neighbour.distance(this.target));
+                    this.open.add(neighbour);
+                }
+                // }
             }
         }
         return false;

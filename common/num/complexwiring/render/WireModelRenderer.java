@@ -1,5 +1,7 @@
 package num.complexwiring.render;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
@@ -9,11 +11,7 @@ import num.complexwiring.api.IItemConnectable;
 import num.complexwiring.block.TileItemWire;
 import num.complexwiring.core.Wrapper;
 import num.complexwiring.lib.Reference;
-
 import org.lwjgl.opengl.GL11;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class WireModelRenderer extends TileEntitySpecialRenderer {

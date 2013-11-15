@@ -1,9 +1,5 @@
 package num.complexwiring.core.pathfinding;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.PriorityQueue;
-
 import net.minecraft.inventory.IInventory;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -12,6 +8,10 @@ import num.complexwiring.api.IItemConnectable;
 import num.complexwiring.api.vec.Vector3;
 import num.complexwiring.core.Wrapper;
 import num.complexwiring.util.InventoryHelper;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.PriorityQueue;
 
 public class PathfinderItemWire {
     ForgeDirection initial = ForgeDirection.UNKNOWN;

@@ -13,7 +13,7 @@ public class Wrapper {
     private ForgeDirection direction = ForgeDirection.UNKNOWN;
     private float progress = 0F;
 
-    public Wrapper(ItemStack is, EnumColours col, ForgeDirection dir){
+    public Wrapper(ItemStack is, EnumColours col, ForgeDirection dir) {
         this.contents = is;
         this.colour = col;
         this.direction = dir;
@@ -85,8 +85,8 @@ public class Wrapper {
         direction = ForgeDirection.getOrientation(nbt.getInteger("DIRECTION"));
         colour = EnumColours.fromInt(nbt.getInteger("COLOUR"));
     }
-    
-    public static Wrapper getFromNBT(NBTTagCompound nbt){
+
+    public static Wrapper getFromNBT(NBTTagCompound nbt) {
         try {
             Wrapper wrapper = new Wrapper(new ItemStack(Block.sponge, 1), EnumColours.UNKNOWN, ForgeDirection.UNKNOWN);
             wrapper.loadNBT(nbt.getCompoundTag("WRAPPER"));
@@ -96,8 +96,8 @@ public class Wrapper {
             return null;
         }
     }
-    
-    public static NBTTagCompound getWrapperNBT(Wrapper wrapper){
+
+    public static NBTTagCompound getWrapperNBT(Wrapper wrapper) {
         NBTTagCompound nbt = new NBTTagCompound();
         nbt.setCompoundTag("WRAPPER", wrapper.getNBT());
         return nbt;

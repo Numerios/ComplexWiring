@@ -1,13 +1,13 @@
 package num.complexwiring.util;
 
-import java.util.ArrayList;
-
 import net.minecraft.inventory.IInventory;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 import num.complexwiring.api.IItemConnectable;
 import num.complexwiring.api.vec.Vector3;
+
+import java.util.ArrayList;
 
 public class WireHelper {
     public static boolean getConnection(ForgeDirection side, IItemConnectable connectable, World world) {

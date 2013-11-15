@@ -1,11 +1,10 @@
 package num.complexwiring.core;
 
-import java.util.logging.Level;
-
 import cpw.mods.fml.common.FMLLog;
-
 import num.complexwiring.ComplexWiring;
 import num.complexwiring.lib.Reference;
+
+import java.util.logging.Level;
 
 public class Logger {
     private static java.util.logging.Logger cwLogger = java.util.logging.Logger.getLogger(Reference.MOD_ID);

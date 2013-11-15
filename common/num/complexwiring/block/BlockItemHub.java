@@ -1,7 +1,5 @@
 package num.complexwiring.block;
 
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
@@ -12,6 +10,8 @@ import net.minecraft.world.World;
 import num.complexwiring.ComplexWiring;
 import num.complexwiring.api.vec.Vector3;
 import num.complexwiring.core.Wrapper;
+
+import java.util.Random;
 
 public class BlockItemHub extends Block implements ITileEntityProvider {
     private Random random = new Random();
