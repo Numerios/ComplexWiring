@@ -21,13 +21,13 @@ public class Pathfinder {
         this.world = world;
         this.target = target;
 
-        this.open = new HashSet<>();
-        this.closed = new HashSet<>();
-        this.results = new HashSet<>();
+        this.open = new HashSet<Vector3>();
+        this.closed = new HashSet<Vector3>();
+        this.results = new HashSet<Vector3>();
 
-        this.bestCost = new HashMap<>();
-        this.totalCost = new HashMap<>();
-        this.navMap = new HashMap<>();
+        this.bestCost = new HashMap<Vector3, Double>();
+        this.totalCost = new HashMap<Vector3, Double>();
+        this.navMap = new HashMap<Vector3, Vector3>();
     }
 
     public boolean find(Vector3 start) {
