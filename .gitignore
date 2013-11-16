@@ -1,0 +1,8 @@
+# To ignore Eclipse and/or IntelliJ mess #
+bin/
+.classpath
+.project
+.iml
+
+# To ignore APIs #
+lib/
