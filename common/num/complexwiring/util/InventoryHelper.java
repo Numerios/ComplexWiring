@@ -75,7 +75,7 @@ public class InventoryHelper {
     /**
      * Tests if the ItemStack can be inserted to a block
      *
-     * @param MCVector3 the block checked
+     * @param vec3     the block checked
      * @param is        the ItemStack checked
      * @return true if the ItemStack is insertable, false if not
      */
