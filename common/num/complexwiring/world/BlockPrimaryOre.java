@@ -7,6 +7,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraftforge.oredict.OreDictionary;
+import num.complexwiring.ComplexWiring;
 import num.complexwiring.lib.Reference;
 import num.complexwiring.lib.Strings;
 
@@ -18,6 +19,7 @@ public class BlockPrimaryOre extends Block {
         setUnlocalizedName("complexwiring.world.primaryore");
         setHardness(3.0F);
         setResistance(3.0F);
+        setCreativeTab(ComplexWiring.tabCW);
     }
 
     @Override
@@ -39,8 +41,8 @@ public class BlockPrimaryOre extends Block {
         }
     }
 
-    public void registerOre(){
-        for (EnumPrimaryOre primaryOre : EnumPrimaryOre.VALID){
+    public void registerOre() {
+        for (EnumPrimaryOre primaryOre : EnumPrimaryOre.VALID) {
             primaryOre.registerOre();
         }
     }
@@ -61,8 +63,8 @@ public class BlockPrimaryOre extends Block {
             this.name = name;
         }
 
-        public String getUnlocalizedName(){
-            return name.toLowerCase().substring(2);
+        public String getUnlocalizedName() {
+            return name.toLowerCase().substring(3);
         }
 
         public void registerIcon(IconRegister ir) {
