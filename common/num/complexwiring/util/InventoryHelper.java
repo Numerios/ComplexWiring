@@ -75,8 +75,8 @@ public class InventoryHelper {
     /**
      * Tests if the ItemStack can be inserted to a block
      *
-     * @param vec3     the block checked
-     * @param is        the ItemStack checked
+     * @param vec3 the block checked
+     * @param is   the ItemStack checked
      * @return true if the ItemStack is insertable, false if not
      */
     public static boolean canInsertToInventory(Vector3 vec3, ItemStack is, World world) {
