@@ -67,7 +67,7 @@ public class BlockOrePrimary extends Block {
         }
 
         public void registerIcon(IconRegister ir) {
-            icon = ir.registerIcon(Reference.TEXTURE_PATH + "block" + name);
+            icon = ir.registerIcon(Reference.TEXTURE_PATH + name);
         }
 
         public ItemStack getIS(int amount) {
