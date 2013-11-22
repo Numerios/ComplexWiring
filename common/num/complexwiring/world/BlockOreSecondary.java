@@ -10,6 +10,7 @@ import net.minecraftforge.oredict.OreDictionary;
 import num.complexwiring.ComplexWiring;
 import num.complexwiring.lib.Reference;
 import num.complexwiring.lib.Strings;
+import num.complexwiring.world.BlockOrePrimary.EnumOrePrimary;
 
 import java.util.List;
 
@@ -48,17 +49,17 @@ public class BlockOreSecondary extends Block {
     }
 
     public enum EnumOreSecondary {
-        CHALCOPYRITE(Strings.ORE_CHALCOPYRITE_NAME, BlockOrePrimary.EnumOrePrimary.COPPER),
-        CASSITERITE(Strings.ORE_CASSITERITE_NAME, BlockOrePrimary.EnumOrePrimary.TIN),
-        ARGENTITE(Strings.ORE_ARGENTITE_NAME, BlockOrePrimary.EnumOrePrimary.SILVER);
+        CHALCOPYRITE(Strings.ORE_CHALCOPYRITE_NAME, EnumOrePrimary.COPPER),
+        CASSITERITE(Strings.ORE_CASSITERITE_NAME, EnumOrePrimary.TIN),
+        ARGENTITE(Strings.ORE_ARGENTITE_NAME, EnumOrePrimary.SILVER);
 
         public static final EnumOreSecondary[] VALID = values();
         public final String name;
-        public final BlockOrePrimary.EnumOrePrimary origin;
+        public final EnumOrePrimary origin;
         public final int meta = this.ordinal();
         public Icon icon;
 
-        private EnumOreSecondary(String name, BlockOrePrimary.EnumOrePrimary origin) {
+        private EnumOreSecondary(String name, EnumOrePrimary origin) {
             this.name = name;
             this.origin = origin;
         }
