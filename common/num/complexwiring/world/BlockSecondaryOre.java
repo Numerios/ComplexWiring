@@ -13,10 +13,10 @@ import num.complexwiring.lib.Strings;
 
 import java.util.List;
 
-public class BlockPrimaryOre extends Block {
-    public BlockPrimaryOre(int ID) {
+public class BlockSecondaryOre extends Block {
+    public BlockSecondaryOre(int ID) {
         super(ID, Material.rock);
-        setUnlocalizedName("complexwiring.world.primaryore");
+        setUnlocalizedName("complexwiring.world.secondaryore");
         setHardness(3.0F);
         setResistance(3.0F);
         setCreativeTab(ComplexWiring.tabCW);
@@ -24,41 +24,43 @@ public class BlockPrimaryOre extends Block {
 
     @Override
     public Icon getIcon(int side, int meta) {
-        return EnumPrimaryOre.VALID[meta].icon;
+        return EnumSecondaryOre.VALID[meta].icon;
     }
 
     @Override
     public void registerIcons(IconRegister ir) {
-        for (EnumPrimaryOre primaryOre : EnumPrimaryOre.VALID) {
-            primaryOre.registerIcon(ir);
+        for (EnumSecondaryOre secondaryOre : EnumSecondaryOre.VALID) {
+            secondaryOre.registerIcon(ir);
         }
     }
 
     @Override
     public void getSubBlocks(int ID, CreativeTabs tab, List list) {
-        for (EnumPrimaryOre primaryOre : EnumPrimaryOre.VALID) {
-            list.add(primaryOre.getIS(1));
+        for (EnumSecondaryOre secondaryOre : EnumSecondaryOre.VALID) {
+            list.add(secondaryOre.getIS(1));
         }
     }
 
     public void registerOre() {
-        for (EnumPrimaryOre primaryOre : EnumPrimaryOre.VALID) {
-            primaryOre.registerOre();
+        for (EnumSecondaryOre secondaryOre : EnumSecondaryOre.VALID) {
+            secondaryOre.registerOre();
         }
     }
 
-    public enum EnumPrimaryOre {
-        COPPER(Strings.ORE_COPPER_NAME),
-        TIN(Strings.ORE_TIN_NAME),
-        SILVER(Strings.ORE_SILVER_NAME);
-        public static final EnumPrimaryOre[] VALID = values();
+    public enum EnumSecondaryOre {
+        CHALCOPYRITE(Strings.ORE_CHALCOPYRITE_NAME, BlockPrimaryOre.EnumPrimaryOre.COPPER),
+        CASSITERITE(Strings.ORE_CASSITERITE_NAME, BlockPrimaryOre.EnumPrimaryOre.TIN),
+        ARGENTITE(Strings.ORE_ARGENTITE_NAME, BlockPrimaryOre.EnumPrimaryOre.SILVER);
+
+        public static final EnumSecondaryOre[] VALID = values();
         public final String name;
+        public final BlockPrimaryOre.EnumPrimaryOre origin;
         public final int meta = this.ordinal();
         public Icon icon;
 
-
-        private EnumPrimaryOre(String name) {
+        private EnumSecondaryOre(String name, BlockPrimaryOre.EnumPrimaryOre origin) {
             this.name = name;
+            this.origin = origin;
         }
 
         public String getUnlocalizedName() {
@@ -71,7 +73,7 @@ public class BlockPrimaryOre extends Block {
         }
 
         public ItemStack getIS(int amount) {
-            return new ItemStack(ModuleWorld.primaryOre, amount, meta);
+            return new ItemStack(ModuleWorld.secondaryOre, amount, meta);
         }
 
         public void registerOre() {
