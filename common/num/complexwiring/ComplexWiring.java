@@ -7,7 +7,9 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.network.NetworkRegistry;
 import num.complexwiring.core.CreativeTabCW;
+import num.complexwiring.core.GuiHandler;
 import num.complexwiring.core.Logger;
 import num.complexwiring.core.ModuleManager;
 import num.complexwiring.core.proxy.CommonProxy;
@@ -34,6 +36,7 @@ public class ComplexWiring {
 
     @EventHandler
     public void init(FMLInitializationEvent event) {
+        NetworkRegistry.instance().registerGuiHandler(instance, new GuiHandler());
         ModuleManager.init();
     }
 
