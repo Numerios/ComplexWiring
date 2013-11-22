@@ -3,8 +3,8 @@ package num.complexwiring.world;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
-public class ItemBlockSecondaryOre extends ItemBlock {
-    public ItemBlockSecondaryOre(int ID) {
+public class ItemBlockOrePrimary extends ItemBlock {
+    public ItemBlockOrePrimary(int ID) {
         super(ID);
         setHasSubtypes(true);
         setMaxDamage(0);
@@ -17,6 +17,6 @@ public class ItemBlockSecondaryOre extends ItemBlock {
 
     @Override
     public String getUnlocalizedName(ItemStack is) {
-        return ModuleWorld.secondaryOre.getUnlocalizedName() + "." + BlockSecondaryOre.EnumSecondaryOre.VALID[is.getItemDamage()].getUnlocalizedName();
+        return ModuleWorld.orePrimary.getUnlocalizedName() + "." + BlockOrePrimary.EnumOrePrimary.VALID[is.getItemDamage()].getUnlocalizedName();
     }
 }

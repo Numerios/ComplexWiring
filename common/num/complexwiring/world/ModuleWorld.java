@@ -5,16 +5,16 @@ import net.minecraft.block.Block;
 import num.complexwiring.lib.ModuleBase;
 
 public class ModuleWorld extends ModuleBase {
-    public static Block primaryOre;
-    public static Block secondaryOre;
+    public static Block orePrimary;
+    public static Block oreSecondary;
 
     @Override
     public void init() {
         //TODO: CONFIGS!
-        primaryOre = new BlockPrimaryOre(666);
-        GameRegistry.registerBlock(primaryOre, ItemBlockPrimaryOre.class, primaryOre.getUnlocalizedName());
+        orePrimary = new BlockOrePrimary(666);
+        GameRegistry.registerBlock(orePrimary, ItemBlockOrePrimary.class, orePrimary.getUnlocalizedName());
 
-        secondaryOre = new BlockSecondaryOre(667);
-        GameRegistry.registerBlock(secondaryOre, ItemBlockSecondaryOre.class, secondaryOre.getUnlocalizedName());
+        oreSecondary = new BlockOreSecondary(667);
+        GameRegistry.registerBlock(oreSecondary, ItemBlockOreSecondary.class, oreSecondary.getUnlocalizedName());
     }
 }

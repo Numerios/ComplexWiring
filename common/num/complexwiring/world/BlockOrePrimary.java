@@ -13,10 +13,10 @@ import num.complexwiring.lib.Strings;
 
 import java.util.List;
 
-public class BlockPrimaryOre extends Block {
-    public BlockPrimaryOre(int ID) {
+public class BlockOrePrimary extends Block {
+    public BlockOrePrimary(int ID) {
         super(ID, Material.rock);
-        setUnlocalizedName("complexwiring.world.primaryore");
+        setUnlocalizedName("complexwiring.world.ore.primary");
         setHardness(3.0F);
         setResistance(3.0F);
         setCreativeTab(ComplexWiring.tabCW);
@@ -24,40 +24,40 @@ public class BlockPrimaryOre extends Block {
 
     @Override
     public Icon getIcon(int side, int meta) {
-        return EnumPrimaryOre.VALID[meta].icon;
+        return EnumOrePrimary.VALID[meta].icon;
     }
 
     @Override
     public void registerIcons(IconRegister ir) {
-        for (EnumPrimaryOre primaryOre : EnumPrimaryOre.VALID) {
-            primaryOre.registerIcon(ir);
+        for (EnumOrePrimary orePrimary : EnumOrePrimary.VALID) {
+            orePrimary.registerIcon(ir);
         }
     }
 
     @Override
     public void getSubBlocks(int ID, CreativeTabs tab, List list) {
-        for (EnumPrimaryOre primaryOre : EnumPrimaryOre.VALID) {
-            list.add(primaryOre.getIS(1));
+        for (EnumOrePrimary orePrimary : EnumOrePrimary.VALID) {
+            list.add(orePrimary.getIS(1));
         }
     }
 
     public void registerOre() {
-        for (EnumPrimaryOre primaryOre : EnumPrimaryOre.VALID) {
-            primaryOre.registerOre();
+        for (EnumOrePrimary orePrimary : EnumOrePrimary.VALID) {
+            orePrimary.registerOre();
         }
     }
 
-    public enum EnumPrimaryOre {
+    public enum EnumOrePrimary {
         COPPER(Strings.ORE_COPPER_NAME),
         TIN(Strings.ORE_TIN_NAME),
         SILVER(Strings.ORE_SILVER_NAME);
-        public static final EnumPrimaryOre[] VALID = values();
+        public static final EnumOrePrimary[] VALID = values();
         public final String name;
         public final int meta = this.ordinal();
         public Icon icon;
 
 
-        private EnumPrimaryOre(String name) {
+        private EnumOrePrimary(String name) {
             this.name = name;
         }
 
@@ -71,7 +71,7 @@ public class BlockPrimaryOre extends Block {
         }
 
         public ItemStack getIS(int amount) {
-            return new ItemStack(ModuleWorld.primaryOre, amount, meta);
+            return new ItemStack(ModuleWorld.orePrimary, amount, meta);
         }
 
         public void registerOre() {
