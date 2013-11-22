@@ -142,6 +142,10 @@ public class Vector3 implements Cloneable {
         return world.getBlockTileEntity(this.getX(), this.getY(), this.getZ());
     }
 
+    public boolean blockExists(World world){
+        return world.blockExists(this.getX(), this.getY(), this.getZ());
+    }
+
     public int getX() {
         return (int) Math.floor(this.x);
     }

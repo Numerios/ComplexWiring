@@ -16,7 +16,7 @@ import java.util.List;
 public class BlockOrePrimary extends Block {
     public BlockOrePrimary(int ID) {
         super(ID, Material.rock);
-        setUnlocalizedName("complexwiring.world.ore.primary");
+        setUnlocalizedName(Reference.MOD_ID.toLowerCase() + ".world.ore.primary");
         setHardness(3.0F);
         setResistance(3.0F);
         setCreativeTab(ComplexWiring.tabCW);
