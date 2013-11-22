@@ -29,11 +29,12 @@ public class ComplexWiring {
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         Logger.init();
-        ModuleManager.init();
+        ModuleManager.preInit();
     }
 
     @EventHandler
     public void init(FMLInitializationEvent event) {
+        ModuleManager.init();
     }
 
     @EventHandler
