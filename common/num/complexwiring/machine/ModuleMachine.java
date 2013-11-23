@@ -11,5 +11,6 @@ public class ModuleMachine extends ModuleBase {
         //TODO: IDs, srsly...
         machineBasic = new BlockMachineBasic(668);
         GameRegistry.registerBlock(machineBasic, machineBasic.getUnlocalizedName());
+        GameRegistry.registerTileEntity(TileEntityMachineBasic.class, machineBasic.getUnlocalizedName());
     }
 }
