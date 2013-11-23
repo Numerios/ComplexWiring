@@ -47,12 +47,12 @@ public class ContainerMachineBasic extends Container {
             ItemStack slotIS = slot.getStack();
             is = slotIS.copy();
 
-            if (slotID <= 1){
-                if (!mergeItemStack(slotIS, 2, inventorySlots.size(), true)){
+            if (slotID <= 1) {
+                if (!mergeItemStack(slotIS, 2, inventorySlots.size(), true)) {
                     return null;
                 }
             } else {
-                if (!mergeItemStack(slotIS, 0, 2, false)){
+                if (!mergeItemStack(slotIS, 0, 2, false)) {
                     return null;
                 }
             }

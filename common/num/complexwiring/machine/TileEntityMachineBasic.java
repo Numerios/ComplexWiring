@@ -5,8 +5,10 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.network.packet.Packet;
 import net.minecraft.tileentity.TileEntity;
 import num.complexwiring.api.vec.Vector3;
+import num.complexwiring.core.PacketHandler;
 
 public class TileEntityMachineBasic extends TileEntity implements IInventory {
 
@@ -23,6 +25,7 @@ public class TileEntityMachineBasic extends TileEntity implements IInventory {
         if (worldObj == null) {
             return;
         }
+        worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
     }
 
     @Override
@@ -138,5 +141,10 @@ public class TileEntityMachineBasic extends TileEntity implements IInventory {
                 setInventorySlotContents(slot, ItemStack.loadItemStackFromNBT(itemNBT));
             }
         }
+    }
+
+    @Override
+    public Packet getDescriptionPacket() {
+        return PacketHandler.getPacket(this);
     }
 }
