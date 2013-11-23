@@ -1,7 +1,6 @@
 package num.complexwiring.client;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import num.complexwiring.machine.ContainerMachineBasic;
@@ -29,9 +28,8 @@ public class GuiMachineBasic extends GuiContainer {
     }
 
     @Override
-    protected void drawGuiContainerForegroundLayer(int i, int j){
+    protected void drawGuiContainerForegroundLayer(int i, int j) {
         super.drawGuiContainerForegroundLayer(i, j);
-        //CODE FROM HOPPERS
-        this.fontRenderer.drawString(tile.isInvNameLocalized() ? tile.getInvName() : I18n.getString(tile.getInvName()), 8, 6, 4210752);
-        this.fontRenderer.drawString(player.isInvNameLocalized() ? player.getInvName() : I18n.getString(player.getInvName()), 8, this.ySize - 96 + 2, 4210752);    }
+        this.fontRenderer.drawString(tile.getInvName(), this.xSize / 2 - this.fontRenderer.getStringWidth(tile.getInvName()) / 2, 6, 0x404040);
+    }
 }

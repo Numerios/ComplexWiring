@@ -6,3 +6,5 @@ tile.complexwiring.world.ore.primary.silver.name=Silver Ore
 tile.complexwiring.world.ore.secondary.chalcopyrite.name=Chalcopyrite Ore
 tile.complexwiring.world.ore.secondary.cassiterite.name=Cassiterite Ore
 tile.complexwiring.world.ore.secondary.argentite.name=Argentite Ore
+
+tile.complexwiring.machine.basic.name=Basic Machine
