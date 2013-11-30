@@ -4,8 +4,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import num.complexwiring.client.SlotMachine;
+import num.complexwiring.client.SlotOutput;
+import num.complexwiring.world.ModuleWorld;
 
 public class ContainerMachineBasic extends Container {
     protected final TileEntityMachineBasic tile;
@@ -13,8 +16,9 @@ public class ContainerMachineBasic extends Container {
     public ContainerMachineBasic(InventoryPlayer playerInv, TileEntityMachineBasic tile) {
         this.tile = tile;
 
-        addSlotToContainer(new SlotMachine(tile, 0, 44, 28));
-        addSlotToContainer(new SlotMachine(tile, 1, 116, 28));
+        addSlotToContainer(new SlotMachine(tile, 0, 56, 17));   // ore input
+        addSlotToContainer(new SlotMachine(tile, 1, 56, 53));   // fuel input
+        addSlotToContainer(new SlotOutput(tile, 2, 116, 35));   // ore output
 
         addPlayerInventory(playerInv);
     }
@@ -47,14 +51,29 @@ public class ContainerMachineBasic extends Container {
             ItemStack slotIS = slot.getStack();
             is = slotIS.copy();
 
-            if (slotID <= 1) {
-                if (!mergeItemStack(slotIS, 2, inventorySlots.size(), true)) {
+            if (slotID == 2) {
+                if (!mergeItemStack(slotIS, 3, 39, true)) {
                     return null;
                 }
-            } else {
-                if (!mergeItemStack(slotIS, 0, 2, false)) {
+                slot.onSlotChange(slotIS, is);
+            } else if (slotID >= 2) {
+                if (slotIS.itemID == ModuleWorld.orePrimary.blockID) {
+                    if (!mergeItemStack(slotIS, 0, 1, false)) {
+                        return null;
+                    }
+                } else if (slotIS.itemID == Item.coal.itemID) {
+                    if (!mergeItemStack(slotIS, 1, 2, false)) {
+                        return null;
+                    }
+                } else if (slotID >= 3 && slotID < 30) {
+                    if (!mergeItemStack(slotIS, 30, 39, false)) {
+                        return null;
+                    }
+                } else if (slotID >= 30 && slotID < 39 && !mergeItemStack(slotIS, 3, 30, false)) {
                     return null;
                 }
+            } else if (!mergeItemStack(slotIS, 3, 39, false)) {
+                return null;
             }
 
             if (slotIS.stackSize == 0) {

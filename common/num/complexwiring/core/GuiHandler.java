@@ -25,16 +25,13 @@ public class GuiHandler implements IGuiHandler {
 
     @Override
     public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-        Logger.debug("NEW MACHINE GUI!");
         Vector3 vec3 = new Vector3(x, y, z);
         if (vec3.blockExists(world)) {
             switch (ID) {
                 case GUI_MACHINE_BASIC:
-                    Logger.debug("I SUCCEEDED!");
                     return new GuiMachineBasic(player.inventory, (TileEntityMachineBasic) vec3.toTile(world));
             }
         }
-        Logger.debug("I FAILED!");
         return null;
     }
 }

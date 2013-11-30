@@ -8,7 +8,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import num.complexwiring.ComplexWiring;
 import num.complexwiring.core.GuiHandler;
-import num.complexwiring.core.Logger;
 import num.complexwiring.lib.Reference;
 
 public class BlockMachineBasic extends Block implements ITileEntityProvider {
@@ -33,8 +32,8 @@ public class BlockMachineBasic extends Block implements ITileEntityProvider {
 
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9) {
-        if (!player.isSneaking()) {
-            Logger.debug("OPENING GUI");
+
+        if (!world.isRemote) {
             player.openGui(ComplexWiring.instance, GuiHandler.GUI_MACHINE_BASIC, world, x, y, z);
             return true;
         }

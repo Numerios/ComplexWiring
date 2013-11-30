@@ -2,6 +2,7 @@ package num.complexwiring.machine;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -10,10 +11,13 @@ import net.minecraft.tileentity.TileEntity;
 import num.complexwiring.api.vec.Vector3;
 import num.complexwiring.core.PacketHandler;
 
-public class TileEntityMachineBasic extends TileEntity implements IInventory {
+public class TileEntityMachineBasic extends TileEntity implements IInventory, ISidedInventory {
 
     public boolean hasWork = false;
     protected ItemStack[] inventory;
+    private static final int[] SLOTS_TOP = new int[] {0};
+    private static final int[] SLOTS_BOTTOM = new int[] {2, 1};
+    private static final int[] SLOTS_SIDE = new int[] {1};
 
     public TileEntityMachineBasic() {
         super();
@@ -30,7 +34,7 @@ public class TileEntityMachineBasic extends TileEntity implements IInventory {
 
     @Override
     public int getSizeInventory() {
-        return 2;
+        return 3;
     }
 
     @Override
@@ -146,5 +150,20 @@ public class TileEntityMachineBasic extends TileEntity implements IInventory {
     @Override
     public Packet getDescriptionPacket() {
         return PacketHandler.getPacket(this);
+    }
+
+    @Override
+    public int[] getAccessibleSlotsFromSide(int slot) {
+        return slot == 0 ? SLOTS_BOTTOM : (slot == 1 ? SLOTS_TOP : SLOTS_SIDE);
+    }
+
+    @Override
+    public boolean canInsertItem(int slot, ItemStack is, int side) {
+        return isItemValidForSlot(slot, is);
+    }
+
+    @Override
+    public boolean canExtractItem(int slot, ItemStack is, int side) {
+        return slot == 2;
     }
 }
