@@ -31,12 +31,14 @@ public class ComplexWiring {
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         Logger.init();
+
         ModuleManager.preInit();
     }
 
     @EventHandler
     public void init(FMLInitializationEvent event) {
         NetworkRegistry.instance().registerGuiHandler(instance, new GuiHandler());
+
         ModuleManager.init();
     }
 

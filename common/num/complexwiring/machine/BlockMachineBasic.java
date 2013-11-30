@@ -32,11 +32,7 @@ public class BlockMachineBasic extends Block implements ITileEntityProvider {
 
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9) {
-
-        if (!world.isRemote) {
-            player.openGui(ComplexWiring.instance, GuiHandler.GUI_MACHINE_BASIC, world, x, y, z);
-            return true;
-        }
-        return false;
+        player.openGui(ComplexWiring.instance, GuiHandler.GUI_MACHINE_BASIC, world, x, y, z);
+        return true;
     }
 }
