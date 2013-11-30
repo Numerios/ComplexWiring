@@ -30,6 +30,7 @@ public class TileEntityMachineBasic extends TileEntity implements IInventory, IS
             return;
         }
         worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+        onInventoryChanged();
     }
 
     @Override
@@ -99,7 +100,7 @@ public class TileEntityMachineBasic extends TileEntity implements IInventory, IS
 
     @Override
     public boolean isUseableByPlayer(EntityPlayer player) {
-        return Vector3.get(player).distance(Vector3.get(this)) <= 64 && Vector3.get(this).toTile(worldObj) != this;
+        return Vector3.get(player).distance(Vector3.get(this)) <= 64 && Vector3.get(this).toTile(worldObj) == this;
     }
 
     @Override

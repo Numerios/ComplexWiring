@@ -6,6 +6,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import num.complexwiring.api.vec.Vector3;
 import num.complexwiring.client.GuiMachineBasic;
+import num.complexwiring.machine.ContainerMachineBasic;
 import num.complexwiring.machine.TileEntityMachineBasic;
 
 public class GuiHandler implements IGuiHandler {
@@ -15,12 +16,9 @@ public class GuiHandler implements IGuiHandler {
     @Override
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
         Vector3 vec3 = new Vector3(x, y, z);
-        if (vec3.blockExists(world)) {
-            TileEntity tile = vec3.toTile(world);
-            if (tile instanceof TileEntityMachineBasic)
-                return new GuiMachineBasic(player.inventory, (TileEntityMachineBasic) tile);
-
-        }
+        TileEntity tile = vec3.toTile(world);
+        if (tile instanceof TileEntityMachineBasic && ID == GUI_MACHINE_BASIC)
+            return new ContainerMachineBasic(player.inventory, (TileEntityMachineBasic) tile);
         return null;
     }
 
@@ -29,7 +27,7 @@ public class GuiHandler implements IGuiHandler {
         Vector3 vec3 = new Vector3(x, y, z);
         if (vec3.blockExists(world)) {
             TileEntity tile = vec3.toTile(world);
-            if (tile instanceof TileEntityMachineBasic)
+            if (tile instanceof TileEntityMachineBasic && ID == GUI_MACHINE_BASIC)
                 return new GuiMachineBasic(player.inventory, (TileEntityMachineBasic) tile);
 
         }

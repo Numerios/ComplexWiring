@@ -11,11 +11,12 @@ import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import num.complexwiring.lib.Reference;
 
 import java.io.*;
 
 public class PacketHandler implements IPacketHandler {
-    public static final String CHANNEL = "CW";
+    public static final String CHANNEL = Reference.MOD_ID;
     public static PacketHandler instance;
 
     public PacketHandler() {

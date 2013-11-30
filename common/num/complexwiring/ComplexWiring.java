@@ -7,25 +7,22 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
-import num.complexwiring.core.CreativeTabCW;
-import num.complexwiring.core.GuiHandler;
-import num.complexwiring.core.Logger;
-import num.complexwiring.core.ModuleManager;
+import num.complexwiring.core.*;
 import num.complexwiring.core.proxy.CommonProxy;
 import num.complexwiring.lib.Reference;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION)
+@NetworkMod(clientSideRequired = true, serverSideRequired = true, channels = {Reference.MOD_VERSION}, packetHandler = PacketHandler.class)
+
 public class ComplexWiring {
 
     public static final boolean DEBUG = true;
-
     @Instance(Reference.MOD_ID)
     public static ComplexWiring instance;
-
     @SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.COMMON_PROXY_CLASS)
     public static CommonProxy proxy;
-
     public static CreativeTabCW tabCW = new CreativeTabCW("tabCW", null);
 
     @EventHandler
