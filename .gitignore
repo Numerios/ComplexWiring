@@ -2,7 +2,10 @@
 bin/
 .classpath
 .project
-.iml
+/*.iml
+/*.ipr
+/*.iws
+.idea/
 
 # To ignore APIs #
-lib/
+libs/

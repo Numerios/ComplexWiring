@@ -249,6 +249,10 @@ public class TileEntityMachineBasic extends TileEntity implements IInventory, IS
         return PacketHandler.getPacket(this);
     }
 
+    public void handlePacketData(){
+
+    }
+
     @Override
     public int[] getAccessibleSlotsFromSide(int slot) {
         return slot == 0 ? SLOTS_BOTTOM : (slot == 1 ? SLOTS_TOP : SLOTS_SIDE);
