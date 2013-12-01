@@ -95,7 +95,7 @@ public class ContainerMachineBasic extends Container {
     }
 
     @Override
-    public void onContainerClosed(EntityPlayer player){
+    public void onContainerClosed(EntityPlayer player) {
         super.onContainerClosed(player);
         tile.playersUsing.remove(player);
     }

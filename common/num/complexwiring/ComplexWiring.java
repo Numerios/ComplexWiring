@@ -14,7 +14,7 @@ import num.complexwiring.core.proxy.CommonProxy;
 import num.complexwiring.lib.Reference;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION)
-@NetworkMod(clientSideRequired = true, serverSideRequired = true, channels = {Reference.MOD_VERSION}, packetHandler = PacketHandler.class)
+@NetworkMod(clientSideRequired = true, serverSideRequired = true, channels = {PacketHandler.CHANNEL}, packetHandler = PacketHandler.class)
 
 public class ComplexWiring {
 

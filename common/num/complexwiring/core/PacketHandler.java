@@ -2,6 +2,7 @@ package num.complexwiring.core;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.IPacketHandler;
+import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.common.network.Player;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.CompressedStreamTools;
@@ -10,13 +11,14 @@ import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.tileentity.TileEntity;
-import num.complexwiring.lib.Reference;
+import net.minecraft.world.World;
+import num.complexwiring.api.vec.Vector3;
 import num.complexwiring.machine.TileEntityMachineBasic;
 
 import java.io.*;
 
 public class PacketHandler implements IPacketHandler {
-    public static final String CHANNEL = Reference.MOD_ID;
+    public static final String CHANNEL = "CW";
     public static PacketHandler instance;
 
     public PacketHandler() {
@@ -57,7 +59,7 @@ public class PacketHandler implements IPacketHandler {
                 return null;
             } else {
                 byte[] compressed = new byte[length];
-                in.readFully(compressed, 0, length);
+                in.readFully(compressed);
                 return CompressedStreamTools.decompress(compressed);
             }
         } catch (IOException e) {
@@ -80,8 +82,14 @@ public class PacketHandler implements IPacketHandler {
         }
     }
 
+    public static void sendPacket(Packet packet, World worldObj, Vector3 vec3) {
+        Logger.debug("SENDING A PACKET!");
+        PacketDispatcher.sendPacketToAllAround(vec3.x, vec3.y, vec3.z, 16, worldObj.provider.dimensionId, packet);
+    }
+
     @Override
     public void onPacketData(INetworkManager manager, Packet250CustomPayload packet, Player player) {
+        Logger.debug("RECIEVING A PACKET!");
         if (packet.data != null && packet.data.length <= 0) {
             Logger.debug("INVALID PACKET!");
             return;

@@ -1,7 +1,5 @@
 package num.complexwiring.machine;
 
-import cpw.mods.fml.common.network.PacketDispatcher;
-import cpw.mods.fml.common.network.Player;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
@@ -24,11 +22,11 @@ public class TileEntityMachineBasic extends TileEntity implements IInventory, IS
     private static final int[] SLOTS_TOP = new int[]{0};
     private static final int[] SLOTS_BOTTOM = new int[]{2, 1};
     private static final int[] SLOTS_SIDE = new int[]{1};
+    public final HashSet<EntityPlayer> playersUsing = new HashSet<EntityPlayer>();
     public int currentFuelBurnTime = 0;
     public int machineBurnTime = 0;
     public int machineProcessTime = 0;
     protected ItemStack[] inventory;
-    public final HashSet<EntityPlayer> playersUsing = new HashSet<EntityPlayer>();
 
     public TileEntityMachineBasic() {
         super();
@@ -44,8 +42,8 @@ public class TileEntityMachineBasic extends TileEntity implements IInventory, IS
         if (machineBurnTime > 0) {
             machineBurnTime--;
         }
-        if (worldObj.isRemote){
-            Logger.debug("CLIENT - COOK: " + + machineProcessTime + " | BURN " + machineBurnTime);
+        if (worldObj.isRemote) {
+            Logger.debug("CLIENT - COOK: " + +machineProcessTime + " | BURN " + machineBurnTime);
         }
 
         if (!worldObj.isRemote) {
@@ -70,9 +68,7 @@ public class TileEntityMachineBasic extends TileEntity implements IInventory, IS
             } else {
                 machineProcessTime = 0;
             }
-            for (EntityPlayer player : playersUsing){
-                PacketDispatcher.sendPacketToPlayer(getDescriptionPacket(), (Player) player);
-            }
+            PacketHandler.sendPacket(getDescriptionPacket(), worldObj, Vector3.get(this));
         }
 
         //TODO: DO NOT LOAD IT ALL THE TIME!
