@@ -14,9 +14,8 @@ public class RecipeOutput {
         this.chance = chance;
     }
 
-    public ItemStack outputs(Random rand) {
-        if (rand.nextFloat() <= chance) return output;
-        return null;
+    public boolean isOutputting(Random rand) {
+        return (rand.nextFloat() <= chance);
     }
 
     public ItemStack getOutput() {
