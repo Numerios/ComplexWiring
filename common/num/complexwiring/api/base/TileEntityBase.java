@@ -5,7 +5,7 @@ import net.minecraft.tileentity.TileEntity;
 /**
  * A basic TileEntity with tick counting and a setup method (first time the TE is updated)
  */
-public class TileEntityBase extends TileEntity {
+public abstract class TileEntityBase extends TileEntity {
     protected long ticks = 0;
 
     @Override

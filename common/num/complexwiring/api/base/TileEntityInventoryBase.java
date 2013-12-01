@@ -6,16 +6,20 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.packet.Packet;
+import net.minecraft.util.StatCollector;
 import num.complexwiring.api.vec.Vector3;
 import num.complexwiring.core.PacketHandler;
 
 import java.io.DataInputStream;
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A basic TileEntity with IInventory support!
  */
 public abstract class TileEntityInventoryBase extends TileEntityBase implements IInventory {
+    public final Set<EntityPlayer> playersUsing = new HashSet<EntityPlayer>();
     private static int inventorySize;
     protected ItemStack[] inventory;
     private String name;
@@ -82,11 +86,12 @@ public abstract class TileEntityInventoryBase extends TileEntityBase implements 
         inventory[slot] = is;
         if (is != null && is.stackSize > getInventoryStackLimit()) {
             is.stackSize = getInventoryStackLimit();
-        }    }
+        }
+    }
 
     @Override
     public String getInvName() {
-        return name;
+        return StatCollector.translateToLocal(name + ".name");
     }
 
     @Override

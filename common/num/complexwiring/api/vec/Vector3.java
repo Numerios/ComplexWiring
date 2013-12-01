@@ -150,6 +150,13 @@ public class Vector3 implements Cloneable {
         return world.isBlockIndirectlyGettingPowered(this.getX(), this.getY(), this.getZ());
     }
 
+    public int blockMetadata(World world){
+        if (blockExists(world)){
+            return world.getBlockMetadata(this.getX(), this.getY(), this.getZ());
+        }
+        return 0;
+    }
+
     public int getX() {
         return (int) Math.floor(this.x);
     }
