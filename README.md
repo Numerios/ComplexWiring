@@ -9,10 +9,12 @@ Complex Wiring is a brand new Minecraft technical mod that'll be adding whole lo
 None yet.
 
 ### License
-This mod is licensed under the MMPL - Minecraft Mod Public License version 1.0.1
-http://www.mod-buildcraft.com/MMPL-1.0.txt
+This mod - ComplexWiring is licensed under the LGPLv3.
+http://www.gnu.org/licenses/lgpl-3.0.txt
 
 ### Contributing
+
+When contributing, you automatically accept that all code written for this software is licensed under LGPLv3.
 
 #### Pull request
 If you find a bug and have a fix or want to implement a new feature:
