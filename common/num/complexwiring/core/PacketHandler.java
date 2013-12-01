@@ -25,12 +25,12 @@ public class PacketHandler implements IPacketHandler {
         instance = this;
     }
 
-    public static Packet getPacket(TileEntity tile, Object... data) {
+    public static Packet getPacket(TileEntity tile, int ID, Object... data) {
         ByteArrayOutputStream bos = new ByteArrayOutputStream(140);
         DataOutputStream dos = new DataOutputStream(bos);
 
         try {
-            //TODO ID!
+            dos.writeInt(ID);
             dos.writeInt(tile.xCoord);
             dos.writeInt(tile.yCoord);
             dos.writeInt(tile.zCoord);
@@ -95,8 +95,9 @@ public class PacketHandler implements IPacketHandler {
             return;
         }
         DataInputStream is = new DataInputStream(new ByteArrayInputStream(packet.data));
-        int x, y, z;
+        int ID, x, y, z;
         try {
+            ID = is.readInt();
             x = is.readInt();
             y = is.readInt();
             z = is.readInt();

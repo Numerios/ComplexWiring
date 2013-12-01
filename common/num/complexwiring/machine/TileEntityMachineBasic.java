@@ -27,6 +27,7 @@ public class TileEntityMachineBasic extends TileEntity implements IInventory, IS
     public int machineBurnTime = 0;
     public int machineProcessTime = 0;
     protected ItemStack[] inventory;
+    protected int ticks = 0;
 
     public TileEntityMachineBasic() {
         super();
@@ -35,6 +36,7 @@ public class TileEntityMachineBasic extends TileEntity implements IInventory, IS
 
     @Override
     public void updateEntity() {
+        ticks++;
         if (worldObj == null) {
             return;
         }
@@ -68,7 +70,9 @@ public class TileEntityMachineBasic extends TileEntity implements IInventory, IS
             } else {
                 machineProcessTime = 0;
             }
-            PacketHandler.sendPacket(getDescriptionPacket(), worldObj, Vector3.get(this));
+            if (ticks % 4 == 0) {
+                PacketHandler.sendPacket(getDescriptionPacket(), worldObj, Vector3.get(this));
+            }
         }
 
         //TODO: DO NOT LOAD IT ALL THE TIME!
@@ -208,9 +212,6 @@ public class TileEntityMachineBasic extends TileEntity implements IInventory, IS
     public void writeToNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);
 
-        nbt.setInteger("burnTime", machineBurnTime);
-        nbt.setInteger("processTime", machineProcessTime);
-
         NBTTagList inventoryNBT = new NBTTagList();
         for (int i = 0; i < getSizeInventory(); i++) {
             if (getStackInSlot(i) != null) {
@@ -221,14 +222,14 @@ public class TileEntityMachineBasic extends TileEntity implements IInventory, IS
             }
         }
         nbt.setTag("contents", inventoryNBT);
+
+        nbt.setShort("burnTime", (short) machineBurnTime);
+        nbt.setShort("processTime", (short) machineProcessTime);
     }
 
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);
-
-        machineBurnTime = nbt.getInteger("burnTime");
-        machineProcessTime = nbt.getInteger("processTime");
 
         NBTTagList inventoryNBT = nbt.getTagList("contents");
         inventory = new ItemStack[getSizeInventory()];
@@ -239,17 +240,18 @@ public class TileEntityMachineBasic extends TileEntity implements IInventory, IS
                 setInventorySlotContents(slot, ItemStack.loadItemStackFromNBT(itemNBT));
             }
         }
+
+        machineBurnTime = nbt.getShort("burnTime");
+        machineProcessTime = nbt.getShort("processTime");
     }
 
     @Override
     public Packet getDescriptionPacket() {
-        return PacketHandler.getPacket(this, machineBurnTime, machineProcessTime);
+        return PacketHandler.getPacket(this, 0);
     }
 
     public void handlePacket(DataInputStream is) throws IOException {
         Logger.debug("HANDLING PACKET!");
-        machineBurnTime = is.readInt();
-        machineProcessTime = is.readInt();
     }
 
     @Override
