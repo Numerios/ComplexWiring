@@ -2,7 +2,6 @@ package num.complexwiring.world;
 
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import num.complexwiring.world.BlockOrePrimary.EnumOrePrimary;
 
 public class ItemBlockOrePrimary extends ItemBlock {
     public ItemBlockOrePrimary(int ID) {
