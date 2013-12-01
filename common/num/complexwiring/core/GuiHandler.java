@@ -5,8 +5,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import num.complexwiring.api.vec.Vector3;
-import num.complexwiring.client.GuiMachineBasic;
 import num.complexwiring.machine.ContainerMachineBasic;
+import num.complexwiring.machine.GuiMachineBasic;
 import num.complexwiring.machine.TileEntityMachineBasic;
 
 public class GuiHandler implements IGuiHandler {

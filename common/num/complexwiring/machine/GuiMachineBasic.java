@@ -1,16 +1,14 @@
-package num.complexwiring.client;
+package num.complexwiring.machine;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
-import num.complexwiring.machine.ContainerMachineBasic;
-import num.complexwiring.machine.TileEntityMachineBasic;
 import org.lwjgl.opengl.GL11;
 
 public class GuiMachineBasic extends GuiContainer {
     public static final ResourceLocation texture = new ResourceLocation("complexwiring", "textures/gui/machine_basic.png");
-    protected final TileEntityMachineBasic tile;
-    protected final InventoryPlayer player;
+    private TileEntityMachineBasic tile;
+    private InventoryPlayer player;
 
     public GuiMachineBasic(InventoryPlayer player, TileEntityMachineBasic tile) {
         super(new ContainerMachineBasic(player, tile));
@@ -25,11 +23,20 @@ public class GuiMachineBasic extends GuiContainer {
         int cornerX = (width - xSize) / 2;
         int cornerY = (height - ySize) / 2;
         drawTexturedModalRect(cornerX, cornerY, 0, 0, xSize, ySize);
+
+        drawProgress(tile.getBurnTimeScaled(12), tile.getProcessedTimeScaled(24), cornerX, cornerY);
     }
 
     @Override
     protected void drawGuiContainerForegroundLayer(int i, int j) {
         super.drawGuiContainerForegroundLayer(i, j);
-        this.fontRenderer.drawString(tile.getInvName(), this.xSize / 2 - this.fontRenderer.getStringWidth(tile.getInvName()) / 2, 6, 0x404040);
+        fontRenderer.drawString(tile.getInvName(), this.xSize / 2 - this.fontRenderer.getStringWidth(tile.getInvName()) / 2, 6, 0x404040);
+    }
+
+    private void drawProgress(int burn, int cook, int cornerX, int cornerY) {
+        if (burn != 0) {
+            drawTexturedModalRect(cornerX + 56, cornerY + 36 + 12 - burn, 176, 12 - burn, 14, burn + 2);
+        }
+        drawTexturedModalRect(cornerX + 79, cornerY + 34, 176, 14, cook + 1, 16);
     }
 }

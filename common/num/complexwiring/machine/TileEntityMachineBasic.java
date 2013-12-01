@@ -1,23 +1,32 @@
 package num.complexwiring.machine;
 
+import cpw.mods.fml.common.network.PacketDispatcher;
+import cpw.mods.fml.common.network.Player;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.tileentity.TileEntity;
 import num.complexwiring.api.vec.Vector3;
+import num.complexwiring.core.Logger;
 import num.complexwiring.core.PacketHandler;
+
+import java.util.HashSet;
 
 public class TileEntityMachineBasic extends TileEntity implements IInventory, ISidedInventory {
 
-    public boolean hasWork = false;
+    private static final int[] SLOTS_TOP = new int[]{0};
+    private static final int[] SLOTS_BOTTOM = new int[]{2, 1};
+    private static final int[] SLOTS_SIDE = new int[]{1};
+    public int currentFuelBurnTime = 0;
+    public int machineBurnTime = 0;
+    public int machineProcessTime = 0;
     protected ItemStack[] inventory;
-    private static final int[] SLOTS_TOP = new int[] {0};
-    private static final int[] SLOTS_BOTTOM = new int[] {2, 1};
-    private static final int[] SLOTS_SIDE = new int[] {1};
+    public final HashSet<EntityPlayer> playersUsing = new HashSet<EntityPlayer>();
 
     public TileEntityMachineBasic() {
         super();
@@ -29,8 +38,90 @@ public class TileEntityMachineBasic extends TileEntity implements IInventory, IS
         if (worldObj == null) {
             return;
         }
+
+        if (machineBurnTime > 0) {
+            machineBurnTime--;
+        }
+        if (worldObj.isRemote){
+            Logger.debug("CLIENT - COOK: " + + machineProcessTime + " | BURN " + machineBurnTime);
+        }
+
+        if (!worldObj.isRemote) {
+            Logger.debug("COOK " + machineProcessTime + " | BURN " + machineBurnTime);
+            if (machineBurnTime == 0 && canProcess()) {
+                currentFuelBurnTime = machineBurnTime = getFuelBurnTime(getStackInSlot(1));
+                if (machineBurnTime > 0) {
+                    if (getStackInSlot(1) != null) {
+                        inventory[1].stackSize--;
+                        if (getStackInSlot(1).stackSize == 0) {
+                            inventory[1] = inventory[1].getItem().getContainerItemStack(inventory[1]);
+                        }
+                    }
+                }
+            }
+            if (isBurning() && canProcess()) {
+                machineProcessTime++;
+                if (machineProcessTime == 100) {
+                    machineProcessTime = 0;
+                    process();
+                }
+            } else {
+                machineProcessTime = 0;
+            }
+        }
+
+        //TODO: DO NOT LOAD IT ALL THE TIME!
+        for (EntityPlayer player : playersUsing){
+            PacketDispatcher.sendPacketToPlayer(getDescriptionPacket(), (Player) player);
+        }
+        PacketDispatcher.sendPacketToAllAround(xCoord, yCoord, zCoord, 30, worldObj.provider.dimensionId, getDescriptionPacket());
         worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
         onInventoryChanged();
+    }
+
+    private int getFuelBurnTime(ItemStack is) {
+        if (is != null) {
+            if (is.itemID == Item.coal.itemID) {
+                return 200;
+            }
+        }
+        return 0;
+    }
+
+    private boolean canProcess() {
+        if (getStackInSlot(0) == null) {
+            return false;
+        } else {
+            ItemStack result = MachineBasicRecipes.getOutput(getStackInSlot(0));
+            if (result == null) {
+                return false;
+            }
+            if (getStackInSlot(2) == null) {
+                return true;
+            }
+            if (!getStackInSlot(2).isItemEqual(result)) {
+                return false;
+            }
+            return getStackInSlot(2).stackSize + result.stackSize <= getInventoryStackLimit() && getStackInSlot(2).stackSize + result.stackSize <= result.getMaxStackSize();
+        }
+    }
+
+    public void process() {
+        if (canProcess()) {
+            ItemStack result = MachineBasicRecipes.getOutput(getStackInSlot(0));
+            if (getStackInSlot(2) == null) {
+                setInventorySlotContents(2, result.copy());
+            } else if (getStackInSlot(2).isItemEqual(result)) {
+                //TODO: REWRITE THIS
+                inventory[2].stackSize += result.stackSize;
+            }
+
+            inventory[0].stackSize--;
+
+            if (getStackInSlot(0).stackSize <= 0) {
+                setInventorySlotContents(0, null);
+            }
+        }
     }
 
     @Override
@@ -120,6 +211,9 @@ public class TileEntityMachineBasic extends TileEntity implements IInventory, IS
     public void writeToNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);
 
+        nbt.setInteger("burnTime", machineBurnTime);
+        nbt.setInteger("processTime", machineProcessTime);
+
         NBTTagList inventoryNBT = new NBTTagList();
         for (int i = 0; i < getSizeInventory(); i++) {
             if (getStackInSlot(i) != null) {
@@ -136,9 +230,11 @@ public class TileEntityMachineBasic extends TileEntity implements IInventory, IS
     public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);
 
+        machineBurnTime = nbt.getInteger("burnTime");
+        machineProcessTime = nbt.getInteger("processTime");
+
         NBTTagList inventoryNBT = nbt.getTagList("contents");
         inventory = new ItemStack[getSizeInventory()];
-
         for (int i = 0; i < inventoryNBT.tagCount(); i++) {
             NBTTagCompound itemNBT = (NBTTagCompound) inventoryNBT.tagAt(i);
             byte slot = itemNBT.getByte("slot");
@@ -166,5 +262,25 @@ public class TileEntityMachineBasic extends TileEntity implements IInventory, IS
     @Override
     public boolean canExtractItem(int slot, ItemStack is, int side) {
         return slot == 2;
+    }
+
+    public int getProcessedTimeScaled(int scale) {
+        if (machineProcessTime == 0) {
+            return 0;
+        }
+        Logger.debug("-::: PROCESS " + (machineProcessTime * scale / 100));
+        return machineProcessTime * scale / 100;
+    }
+
+    public int getBurnTimeScaled(int scale) {
+        if (currentFuelBurnTime == 0 || !isBurning()) {
+            return 0;
+        }
+        Logger.debug("-::: BURN " + (machineBurnTime * scale / currentFuelBurnTime));
+        return machineBurnTime * scale / currentFuelBurnTime;
+    }
+
+    public boolean isBurning() {
+        return machineBurnTime > 0;
     }
 }

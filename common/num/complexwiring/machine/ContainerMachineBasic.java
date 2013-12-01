@@ -21,6 +21,8 @@ public class ContainerMachineBasic extends Container {
         addSlotToContainer(new SlotOutput(tile, 2, 116, 35));   // ore output
 
         addPlayerInventory(playerInv);
+
+        tile.playersUsing.add(playerInv.player);
     }
 
     @Override
@@ -90,6 +92,12 @@ public class ContainerMachineBasic extends Container {
 
         }
         return is;
+    }
+
+    @Override
+    public void onContainerClosed(EntityPlayer player){
+        super.onContainerClosed(player);
+        tile.playersUsing.remove(player);
     }
 
 }

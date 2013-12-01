@@ -28,6 +28,7 @@ public class PacketHandler implements IPacketHandler {
         DataOutputStream dos = new DataOutputStream(bos);
 
         try {
+            //TODO ID!
             dos.writeInt(tile.xCoord);
             dos.writeInt(tile.yCoord);
             dos.writeInt(tile.zCoord);
@@ -74,7 +75,7 @@ public class PacketHandler implements IPacketHandler {
         }
     }
 
-    private static TileEntity handlePacket(World world, boolean isSomething, DataInputStream is) {
+    private static TileEntity handlePacket(World world, DataInputStream is) {
         int x, y, z;
         try {
             x = is.readInt();
@@ -106,7 +107,7 @@ public class PacketHandler implements IPacketHandler {
         }
         DataInputStream is = new DataInputStream(new ByteArrayInputStream(packet.data));
         try {
-            PacketHandler.handlePacket(((EntityPlayer) player).worldObj, false, is);
+            PacketHandler.handlePacket(((EntityPlayer) player).worldObj, is);
         } finally {
             try {
                 is.close();
