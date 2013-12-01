@@ -22,34 +22,31 @@ public class InventoryHelper {
                 for (int slot = 0; slot < inv.getSizeInventory(); slot++) {
                     ItemStack slotIS = inv.getStackInSlot(slot);
 
-                    if (slotIS == null) {
-                        return;
-                    }
+                    if (slotIS != null) {
+                        rand = new Random();
 
-                    rand = new Random();
+                        float offsetX = rand.nextFloat() + 0.2F;
+                        float offsetY = rand.nextFloat() + 0.2F;
+                        float offsetZ = rand.nextFloat() + 0.2F;
 
-                    float offsetX = rand.nextFloat() + 0.2F;
-                    float offsetY = rand.nextFloat() + 0.2F;
-                    float offsetZ = rand.nextFloat() + 0.2F;
+                        while (slotIS.stackSize > 0) {
+                            int amount = rand.nextInt(slotIS.stackSize + 1);
 
-                    while (slotIS.stackSize > 0) {
-                        int amount = rand.nextInt(slotIS.stackSize + 1);
+                            slotIS.stackSize -= amount;
 
-                        slotIS.stackSize -= amount;
+                            EntityItem item = new EntityItem(world, vec3.getX() + offsetX, vec3.getY() + offsetY, vec3.getZ() + offsetZ, new ItemStack(slotIS.itemID, amount, slotIS.getItemDamage()));
 
-                        EntityItem item = new EntityItem(world, vec3.getX() + offsetX, vec3.getY() + offsetY, vec3.getZ() + offsetZ, new ItemStack(slotIS.itemID, amount, slotIS.getItemDamage()));
+                            if (slotIS.hasTagCompound()) {
+                                item.getEntityItem().setTagCompound((NBTTagCompound) slotIS.getTagCompound().copy());
+                            }
 
-                        if (slotIS.hasTagCompound()) {
-                            item.getEntityItem().setTagCompound((NBTTagCompound) slotIS.getTagCompound().copy());
+                            float motion = 0.075F;
+                            item.motionX = ((float) rand.nextGaussian() * motion);
+                            item.motionY = ((float) rand.nextGaussian() * motion + 0.15F);
+                            item.motionZ = ((float) rand.nextGaussian() * motion);
+                            world.spawnEntityInWorld(item);
                         }
-
-                        float motion = 0.075F;
-                        item.motionX = ((float) rand.nextGaussian() * motion);
-                        item.motionY = ((float) rand.nextGaussian() * motion + 0.15F);
-                        item.motionZ = ((float) rand.nextGaussian() * motion);
-                        world.spawnEntityInWorld(item);
                     }
-
                 }
             }
         }
