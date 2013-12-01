@@ -157,10 +157,10 @@ public class TileEntityMachineOrealyzer extends TileEntityInventoryBase implemen
     }
 
     public int getBurnTimeScaled(int scale) {
-        if (currentFuelBurnTime == 0 || !isBurning()) {
+        if (machineBurnTime == 0 || !isBurning()) {
             return 0;
         }
-        return machineBurnTime * scale / currentFuelBurnTime;
+        return machineBurnTime * scale / 200;
     }
 
     public boolean isBurning() {

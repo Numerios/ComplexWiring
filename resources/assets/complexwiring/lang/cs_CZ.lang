@@ -1,0 +1,11 @@
+itemGroup.tabCW=Complex Wiring 
+
+tile.complexwiring.world.ore.primary.copper.name=Měděná ruda
+tile.complexwiring.world.ore.primary.tin.name=Cínová ruda
+tile.complexwiring.world.ore.primary.silver.name=Stříbrná ruda
+tile.complexwiring.world.ore.secondary.chalcopyrite.name=Chalkopyrit
+tile.complexwiring.world.ore.secondary.cassiterite.name=Kasiterit
+tile.complexwiring.world.ore.secondary.argentite.name=Argentit
+
+tile.complexwiring.machine.orealyzer.name=Analyzátor rud
+tile.complexwiring.machine.orealyzer.desc=Analyzuj své rudy!

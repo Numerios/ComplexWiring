@@ -36,8 +36,11 @@ public class GuiMachineOrealyzer extends GuiContainer {
         if (ComplexWiring.DEBUG) {
             fontRenderer.drawString("BURN:", 6, 20, 0x666666);
             fontRenderer.drawString(" " + tile.machineBurnTime, 6 + fontRenderer.getStringWidth("BURN:"), 20, 0x333333);
-            fontRenderer.drawString("COOK: ", 6, 30, 0x666666);
-            fontRenderer.drawString(" " + tile.machineProcessTime, 6 + fontRenderer.getStringWidth("COOK:"), 30, 0x333333);
+            fontRenderer.drawString(" " + tile.getBurnTimeScaled(100) + "%", 6 + fontRenderer.getStringWidth("BURN:"), 35, 0x333333);
+            fontRenderer.drawString("COOK: ", 6, 55, 0x666666);
+            fontRenderer.drawString(" " + tile.machineProcessTime, 6 + fontRenderer.getStringWidth("COOK:"), 55, 0x333333);
+            fontRenderer.drawString(" " + tile.getProcessedTimeScaled(100) + "%", 6 + fontRenderer.getStringWidth("COOK:"), 70, 0x333333);
+
         }
 
     }

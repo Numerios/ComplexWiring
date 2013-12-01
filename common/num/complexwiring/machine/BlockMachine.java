@@ -17,7 +17,6 @@ import num.complexwiring.lib.Reference;
 import java.util.List;
 
 public class BlockMachine extends Block implements ITileEntityProvider {
-
     public BlockMachine(int ID) {
         super(ID, Material.iron);
         setUnlocalizedName(Reference.MOD_ID.toLowerCase() + ".machine");

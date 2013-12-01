@@ -9,15 +9,16 @@ import num.complexwiring.lib.Reference;
 import num.complexwiring.lib.Strings;
 
 public enum EnumMachine {
-    OREALYZER(Strings.MACHINE_OREALYZER_NAME, TileEntityMachineOrealyzer.class);
+    OREALYZER(Strings.MACHINE_OREALYZER_NAME, Strings.MACHINE_OREALYZER_DESC, TileEntityMachineOrealyzer.class);
     public static final EnumMachine[] VALID = values();
-    public final String name;
+    public final String name, desc;
     public final Class<? extends TileEntityInventoryBase> tile;
     public final int meta = this.ordinal();
     public Icon icon;
 
-    EnumMachine(String name, Class<? extends  TileEntityInventoryBase> tile) {
+    EnumMachine(String name, String desc, Class<? extends TileEntityInventoryBase> tile) {
         this.name = name;
+        this.desc = desc;
         this.tile = tile;
     }
 
