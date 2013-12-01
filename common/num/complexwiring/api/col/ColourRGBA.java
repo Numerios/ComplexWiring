@@ -1,4 +1,4 @@
-package num.complexwiring.api;
+package num.complexwiring.api.col;
 
 /**
  * A basic format for storing of and manipulating with colours.
