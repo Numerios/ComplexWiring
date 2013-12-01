@@ -8,9 +8,14 @@ import net.minecraft.network.packet.Packet;
 import num.complexwiring.api.base.TileEntityInventoryBase;
 import num.complexwiring.api.vec.Vector3;
 import num.complexwiring.core.PacketHandler;
+import num.complexwiring.recipe.Recipe;
+import num.complexwiring.recipe.RecipeManager;
+import num.complexwiring.recipe.RecipeOutput;
 
 import java.io.DataInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Random;
 
 public class TileEntityMachineOrealyzer extends TileEntityInventoryBase implements ISidedInventory {
     private static final int[] SLOTS_TOP = new int[]{0};
@@ -19,9 +24,15 @@ public class TileEntityMachineOrealyzer extends TileEntityInventoryBase implemen
     public int currentFuelBurnTime = 0;
     public int machineBurnTime = 0;
     public int machineProcessTime = 0;
+    Random rand = new Random();
+    private Recipe currentRecipe;
+    private ArrayList<ItemStack> plannedOutput;
+    private ArrayList<ItemStack> remainingOutput;
 
     public TileEntityMachineOrealyzer() {
-        super(3, EnumMachine.OREALYZER.getFullUnlocalizedName());
+        super(4, EnumMachine.OREALYZER.getFullUnlocalizedName());
+        plannedOutput = new ArrayList<ItemStack>();
+        remainingOutput = new ArrayList<ItemStack>();
     }
 
     @Override
@@ -54,6 +65,7 @@ public class TileEntityMachineOrealyzer extends TileEntityInventoryBase implemen
             } else {
                 machineProcessTime = 0;
             }
+            handleOutput();
             if (ticks % 4 == 0) {
                 PacketHandler.sendPacket(getDescriptionPacket(), worldObj, Vector3.get(this));
             }
@@ -75,35 +87,73 @@ public class TileEntityMachineOrealyzer extends TileEntityInventoryBase implemen
     private boolean canProcess() {
         if (getStackInSlot(0) == null) {
             return false;
+        } else if (remainingOutput.size() > 0) {
+            return false;
         } else {
-            ItemStack result = MachineBasicRecipes.getOutput(getStackInSlot(0));
-            if (result == null) {
-                return false;
-            }
-            if (getStackInSlot(2) == null) {
+            currentRecipe = RecipeManager.get(getStackInSlot(0));
+            if (currentRecipe != null) {
+                for (RecipeOutput output : currentRecipe.getOutputs()) {
+                    plannedOutput.clear();
+                    if (output.isOutputting(rand)) {
+                        plannedOutput.add(output.getOutput());
+                    }
+                }
                 return true;
             }
-            if (!getStackInSlot(2).isItemEqual(result)) {
-                return false;
-            }
-            return getStackInSlot(2).stackSize + result.stackSize <= getInventoryStackLimit() && getStackInSlot(2).stackSize + result.stackSize <= result.getMaxStackSize();
+            return false;
         }
     }
 
     public void process() {
         if (canProcess()) {
-            ItemStack result = MachineBasicRecipes.getOutput(getStackInSlot(0));
-            if (getStackInSlot(2) == null) {
-                setInventorySlotContents(2, result.copy());
-            } else if (getStackInSlot(2).isItemEqual(result)) {
-                //TODO: REWRITE THIS
-                inventory[2].stackSize += result.stackSize;
-            }
+            remainingOutput = plannedOutput; /*
+            for (int i = 0; i < remainingOutput.size(); i++) {
+                ItemStack is = remainingOutput.get(i);
+                if (getStackInSlot(2) == null) {
+                    setInventorySlotContents(2, is);
+                    remainingOutput.remove(i);
+                } else if (getStackInSlot(3) == null) {
+                    setInventorySlotContents(3, is);
+                    remainingOutput.remove(i);
+                } else if (getStackInSlot(2).isItemEqual(is) && getStackInSlot(2).stackSize + is.stackSize <= getInventoryStackLimit()
+                        && getStackInSlot(2).stackSize + is.stackSize <= is.getMaxDamage()) {
+                    inventory[2].stackSize += is.stackSize;
+                    remainingOutput.remove(i);
+                } else if (getStackInSlot(3).isItemEqual(is) && getStackInSlot(3).stackSize + is.stackSize <= getInventoryStackLimit()
+                        && getStackInSlot(3).stackSize + is.stackSize <= is.getMaxDamage()) {
+                    inventory[3].stackSize += is.stackSize;
+                    remainingOutput.remove(i);
+                }
 
+            }    */
             inventory[0].stackSize--;
 
             if (getStackInSlot(0).stackSize <= 0) {
                 setInventorySlotContents(0, null);
+            }
+        }
+    }
+
+    private void handleOutput() {
+        if (remainingOutput.size() > 0) {
+            for (int i = 0; i < remainingOutput.size(); i++) {
+                ItemStack is = remainingOutput.get(i);
+                if (getStackInSlot(2) == null) {
+                    setInventorySlotContents(2, is);
+                    remainingOutput.remove(i);
+                } else if (getStackInSlot(3) == null) {
+                    setInventorySlotContents(3, is);
+                    remainingOutput.remove(i);
+                } else if (getStackInSlot(2).isItemEqual(is) && getStackInSlot(2).stackSize + is.stackSize <= getInventoryStackLimit()
+                        && getStackInSlot(2).stackSize + is.stackSize <= is.getMaxDamage()) {
+                    inventory[2].stackSize += is.stackSize;
+                    remainingOutput.remove(i);
+                } else if (getStackInSlot(3).isItemEqual(is) && getStackInSlot(3).stackSize + is.stackSize <= getInventoryStackLimit()
+                        && getStackInSlot(3).stackSize + is.stackSize <= is.getMaxDamage()) {
+                    inventory[3].stackSize += is.stackSize;
+                    remainingOutput.remove(i);
+                }
+
             }
         }
     }
@@ -146,7 +196,7 @@ public class TileEntityMachineOrealyzer extends TileEntityInventoryBase implemen
 
     @Override
     public boolean canExtractItem(int slot, ItemStack is, int side) {
-        return slot == 2;
+        return slot == 2 || slot == 3;
     }
 
     public int getProcessedTimeScaled(int scale) {

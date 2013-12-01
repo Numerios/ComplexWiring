@@ -20,6 +20,14 @@ public class Recipe {
         this.outputs = outputs;
     }
 
+    public ItemStack getInput(){
+        return input;
+    }
+
+    public RecipeOutput[] getOutputs(){
+        return outputs;
+    }
+
     @Override
     public String toString() {
         return "CW_Recipe: " + input.toString() + " >> " + outputs.toString();

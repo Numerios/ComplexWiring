@@ -19,6 +19,8 @@ public class ContainerMachineOrealyzer extends Container {
         addSlotToContainer(new SlotMachine(tile, 0, 56, 17));   // ore input
         addSlotToContainer(new SlotMachine(tile, 1, 56, 53));   // fuel input
         addSlotToContainer(new SlotOutput(tile, 2, 116, 35));   // ore output
+        addSlotToContainer(new SlotOutput(tile, 3, 134, 35));   // ore output 2
+
 
         addPlayerInventory(playerInv);
 
@@ -54,11 +56,11 @@ public class ContainerMachineOrealyzer extends Container {
             is = slotIS.copy();
 
             if (slotID == 2) {
-                if (!mergeItemStack(slotIS, 3, 39, true)) {
+                if (!mergeItemStack(slotIS, 4, 40, true)) {
                     return null;
                 }
                 slot.onSlotChange(slotIS, is);
-            } else if (slotID >= 2) {
+            } else if (slotID >= 3) {
                 if (slotIS.itemID == ModuleWorld.orePrimary.blockID) {
                     if (!mergeItemStack(slotIS, 0, 1, false)) {
                         return null;
@@ -67,14 +69,14 @@ public class ContainerMachineOrealyzer extends Container {
                     if (!mergeItemStack(slotIS, 1, 2, false)) {
                         return null;
                     }
-                } else if (slotID >= 3 && slotID < 30) {
-                    if (!mergeItemStack(slotIS, 30, 39, false)) {
+                } else if (slotID >= 4 && slotID < 31) {
+                    if (!mergeItemStack(slotIS, 31, 40, false)) {
                         return null;
                     }
-                } else if (slotID >= 30 && slotID < 39 && !mergeItemStack(slotIS, 3, 30, false)) {
+                } else if (slotID >= 31 && slotID < 40 && !mergeItemStack(slotIS, 4, 31, false)) {
                     return null;
                 }
-            } else if (!mergeItemStack(slotIS, 3, 39, false)) {
+            } else if (!mergeItemStack(slotIS, 4, 40, false)) {
                 return null;
             }
 
