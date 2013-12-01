@@ -15,6 +15,8 @@ import num.complexwiring.api.vec.Vector3;
 import num.complexwiring.core.Logger;
 import num.complexwiring.core.PacketHandler;
 
+import java.io.DataInputStream;
+import java.io.IOException;
 import java.util.HashSet;
 
 public class TileEntityMachineBasic extends TileEntity implements IInventory, ISidedInventory {
@@ -47,7 +49,7 @@ public class TileEntityMachineBasic extends TileEntity implements IInventory, IS
         }
 
         if (!worldObj.isRemote) {
-            Logger.debug("COOK " + machineProcessTime + " | BURN " + machineBurnTime);
+            Logger.debug("SERVER - COOK " + machineProcessTime + " | BURN " + machineBurnTime);
             if (machineBurnTime == 0 && canProcess()) {
                 currentFuelBurnTime = machineBurnTime = getFuelBurnTime(getStackInSlot(1));
                 if (machineBurnTime > 0) {
@@ -68,13 +70,12 @@ public class TileEntityMachineBasic extends TileEntity implements IInventory, IS
             } else {
                 machineProcessTime = 0;
             }
+            for (EntityPlayer player : playersUsing){
+                PacketDispatcher.sendPacketToPlayer(getDescriptionPacket(), (Player) player);
+            }
         }
 
         //TODO: DO NOT LOAD IT ALL THE TIME!
-        for (EntityPlayer player : playersUsing){
-            PacketDispatcher.sendPacketToPlayer(getDescriptionPacket(), (Player) player);
-        }
-        PacketDispatcher.sendPacketToAllAround(xCoord, yCoord, zCoord, 30, worldObj.provider.dimensionId, getDescriptionPacket());
         worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
         onInventoryChanged();
     }
@@ -246,11 +247,13 @@ public class TileEntityMachineBasic extends TileEntity implements IInventory, IS
 
     @Override
     public Packet getDescriptionPacket() {
-        return PacketHandler.getPacket(this);
+        return PacketHandler.getPacket(this, machineBurnTime, machineProcessTime);
     }
 
-    public void handlePacketData(){
-
+    public void handlePacket(DataInputStream is) throws IOException {
+        Logger.debug("HANDLING PACKET!");
+        machineBurnTime = is.readInt();
+        machineProcessTime = is.readInt();
     }
 
     @Override

@@ -10,8 +10,8 @@ import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
 import num.complexwiring.lib.Reference;
+import num.complexwiring.machine.TileEntityMachineBasic;
 
 import java.io.*;
 
@@ -23,7 +23,7 @@ public class PacketHandler implements IPacketHandler {
         instance = this;
     }
 
-    public static Packet getPacket(TileEntity tile) {
+    public static Packet getPacket(TileEntity tile, Object... data) {
         ByteArrayOutputStream bos = new ByteArrayOutputStream(140);
         DataOutputStream dos = new DataOutputStream(bos);
 
@@ -32,6 +32,11 @@ public class PacketHandler implements IPacketHandler {
             dos.writeInt(tile.xCoord);
             dos.writeInt(tile.yCoord);
             dos.writeInt(tile.zCoord);
+            for (Object obj : data) {
+                if (obj instanceof Integer) {
+                    dos.writeInt((Integer) obj);
+                }
+            }
             NBTTagCompound nbt = new NBTTagCompound();
             tile.writeToNBT(nbt);
             writeNBT(nbt, dos);
@@ -75,44 +80,45 @@ public class PacketHandler implements IPacketHandler {
         }
     }
 
-    private static TileEntity handlePacket(World world, DataInputStream is) {
+    @Override
+    public void onPacketData(INetworkManager manager, Packet250CustomPayload packet, Player player) {
+        if (packet.data != null && packet.data.length <= 0) {
+            Logger.debug("INVALID PACKET!");
+            return;
+        }
+        DataInputStream is = new DataInputStream(new ByteArrayInputStream(packet.data));
         int x, y, z;
         try {
             x = is.readInt();
             y = is.readInt();
             z = is.readInt();
+            Logger.debug("ASSIGNING XYZ COORDS!");
         } catch (IOException e) {
-            FMLCommonHandler.instance().raiseException(e, "PacketHandler.handlePacket", false);
-            return null;
-        }
-        NBTTagCompound nbt = readNBT(is);
-
-        if (world == null) {
-            Logger.warn("PacketHandler.handlePacket got a NULL world while processing a packet");
-            return null;
-        }
-        TileEntity tile = world.getBlockTileEntity(x, y, z);
-        if (tile == null) {
-            Logger.warn("PacketHandler.handlePacket got a NULL tile while processing a packet");
-            return null;
-        }
-        tile.readFromNBT(nbt);
-        return tile;
-    }
-
-    @Override
-    public void onPacketData(INetworkManager manager, Packet250CustomPayload packet, Player player) {
-        if (packet.data != null && packet.data.length <= 0) {
             return;
-        }
-        DataInputStream is = new DataInputStream(new ByteArrayInputStream(packet.data));
-        try {
-            PacketHandler.handlePacket(((EntityPlayer) player).worldObj, is);
         } finally {
             try {
                 is.close();
             } catch (IOException e) {
                 Logger.debug("Couldn't close the input! " + e.getMessage());
+            }
+        }
+        NBTTagCompound nbt = readNBT(is);
+
+        if (((EntityPlayer) player).worldObj == null) {
+            Logger.warn("PacketHandler got a NULL world while processing a packet");
+            return;
+        }
+        TileEntity tile = ((EntityPlayer) player).worldObj.getBlockTileEntity(x, y, z);
+        if (tile == null) {
+            Logger.warn("PacketHandler got a NULL tile while processing a packet");
+            return;
+        }
+        tile.readFromNBT(nbt);
+        if (tile instanceof TileEntityMachineBasic) {
+            try {
+                ((TileEntityMachineBasic) tile).handlePacket(is);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
     }
