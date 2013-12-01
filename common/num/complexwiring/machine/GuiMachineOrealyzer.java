@@ -6,13 +6,13 @@ import net.minecraft.util.ResourceLocation;
 import num.complexwiring.ComplexWiring;
 import org.lwjgl.opengl.GL11;
 
-public class GuiMachineBasic extends GuiContainer {
+public class GuiMachineOrealyzer extends GuiContainer {
     public static final ResourceLocation texture = new ResourceLocation("complexwiring", "textures/gui/machine_basic.png");
-    private TileEntityMachineBasic tile;
+    private TileEntityMachineOrealyzer tile;
     private InventoryPlayer player;
 
-    public GuiMachineBasic(InventoryPlayer player, TileEntityMachineBasic tile) {
-        super(new ContainerMachineBasic(player, tile));
+    public GuiMachineOrealyzer(InventoryPlayer player, TileEntityMachineOrealyzer tile) {
+        super(new ContainerMachineOrealyzer(player, tile));
         this.tile = tile;
         this.player = player;
     }

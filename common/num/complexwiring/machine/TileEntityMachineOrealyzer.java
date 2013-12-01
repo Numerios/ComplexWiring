@@ -1,55 +1,39 @@
 package num.complexwiring.machine;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.packet.Packet;
-import net.minecraft.tileentity.TileEntity;
+import num.complexwiring.api.base.TileEntityInventoryBase;
 import num.complexwiring.api.vec.Vector3;
-import num.complexwiring.core.Logger;
 import num.complexwiring.core.PacketHandler;
 
 import java.io.DataInputStream;
 import java.io.IOException;
-import java.util.HashSet;
 
-public class TileEntityMachineBasic extends TileEntity implements IInventory, ISidedInventory {
-
+public class TileEntityMachineOrealyzer extends TileEntityInventoryBase implements ISidedInventory {
     private static final int[] SLOTS_TOP = new int[]{0};
     private static final int[] SLOTS_BOTTOM = new int[]{2, 1};
     private static final int[] SLOTS_SIDE = new int[]{1};
-    public final HashSet<EntityPlayer> playersUsing = new HashSet<EntityPlayer>();
     public int currentFuelBurnTime = 0;
     public int machineBurnTime = 0;
     public int machineProcessTime = 0;
-    protected ItemStack[] inventory;
-    protected int ticks = 0;
 
-    public TileEntityMachineBasic() {
-        super();
-        inventory = new ItemStack[getSizeInventory()];
+    public TileEntityMachineOrealyzer() {
+        super(3, EnumMachine.OREALYZER.getFullUnlocalizedName());
     }
 
     @Override
-    public void updateEntity() {
-        ticks++;
-        if (worldObj == null) {
-            return;
-        }
+    public void update() {
+        super.update();
 
         if (machineBurnTime > 0) {
             machineBurnTime--;
         }
         if (worldObj.isRemote) {
-            Logger.debug("CLIENT - COOK: " + +machineProcessTime + " | BURN " + machineBurnTime);
         }
-
         if (!worldObj.isRemote) {
-            Logger.debug("SERVER - COOK " + machineProcessTime + " | BURN " + machineBurnTime);
             if (machineBurnTime == 0 && canProcess()) {
                 currentFuelBurnTime = machineBurnTime = getFuelBurnTime(getStackInSlot(1));
                 if (machineBurnTime > 0) {
@@ -74,7 +58,6 @@ public class TileEntityMachineBasic extends TileEntity implements IInventory, IS
                 PacketHandler.sendPacket(getDescriptionPacket(), worldObj, Vector3.get(this));
             }
         }
-
         //TODO: DO NOT LOAD IT ALL THE TIME!
         worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
         onInventoryChanged();
@@ -126,102 +109,8 @@ public class TileEntityMachineBasic extends TileEntity implements IInventory, IS
     }
 
     @Override
-    public int getSizeInventory() {
-        return 3;
-    }
-
-    @Override
-    public ItemStack getStackInSlot(int slot) {
-        return inventory[slot];
-    }
-
-    @Override
-    public ItemStack decrStackSize(int slot, int amount) {
-        if (getStackInSlot(slot) != null) {
-            ItemStack is;
-
-            if (getStackInSlot(slot).stackSize <= amount) {
-                is = getStackInSlot(slot);
-                setInventorySlotContents(slot, null);
-                return is;
-            } else {
-                is = getStackInSlot(slot).splitStack(amount);
-                if (getStackInSlot(slot).stackSize == 0) {
-                    setInventorySlotContents(slot, null);
-                }
-                return is;
-            }
-        } else {
-            return null;
-        }
-    }
-
-    @Override
-    public ItemStack getStackInSlotOnClosing(int slot) {
-        if (getStackInSlot(slot) != null) {
-            ItemStack is = getStackInSlot(slot);
-            setInventorySlotContents(slot, null);
-            return is;
-        } else {
-            return null;
-        }
-    }
-
-    @Override
-    public void setInventorySlotContents(int slot, ItemStack is) {
-        inventory[slot] = is;
-        if (is != null && is.stackSize > getInventoryStackLimit()) {
-            is.stackSize = getInventoryStackLimit();
-        }
-    }
-
-    @Override
-    public String getInvName() {
-        return ModuleMachine.machineBasic.getLocalizedName();
-    }
-
-    @Override
-    public boolean isInvNameLocalized() {
-        return true;
-    }
-
-    @Override
-    public int getInventoryStackLimit() {
-        return 64;
-    }
-
-    @Override
-    public boolean isUseableByPlayer(EntityPlayer player) {
-        return Vector3.get(player).distance(Vector3.get(this)) <= 64 && Vector3.get(this).toTile(worldObj) == this;
-    }
-
-    @Override
-    public void openChest() {
-    }
-
-    @Override
-    public void closeChest() {
-    }
-
-    @Override
-    public boolean isItemValidForSlot(int i, ItemStack is) {
-        return true;
-    }
-
-    @Override
     public void writeToNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);
-
-        NBTTagList inventoryNBT = new NBTTagList();
-        for (int i = 0; i < getSizeInventory(); i++) {
-            if (getStackInSlot(i) != null) {
-                NBTTagCompound itemNBT = new NBTTagCompound();
-                itemNBT.setByte("slot", (byte) i);
-                getStackInSlot(i).writeToNBT(itemNBT);
-                inventoryNBT.appendTag(itemNBT);
-            }
-        }
-        nbt.setTag("contents", inventoryNBT);
 
         nbt.setShort("burnTime", (short) machineBurnTime);
         nbt.setShort("processTime", (short) machineProcessTime);
@@ -231,16 +120,6 @@ public class TileEntityMachineBasic extends TileEntity implements IInventory, IS
     public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);
 
-        NBTTagList inventoryNBT = nbt.getTagList("contents");
-        inventory = new ItemStack[getSizeInventory()];
-        for (int i = 0; i < inventoryNBT.tagCount(); i++) {
-            NBTTagCompound itemNBT = (NBTTagCompound) inventoryNBT.tagAt(i);
-            byte slot = itemNBT.getByte("slot");
-            if (slot >= 0 && slot < getSizeInventory()) {
-                setInventorySlotContents(slot, ItemStack.loadItemStackFromNBT(itemNBT));
-            }
-        }
-
         machineBurnTime = nbt.getShort("burnTime");
         machineProcessTime = nbt.getShort("processTime");
         currentFuelBurnTime = getFuelBurnTime(getStackInSlot(1));
@@ -248,11 +127,11 @@ public class TileEntityMachineBasic extends TileEntity implements IInventory, IS
 
     @Override
     public Packet getDescriptionPacket() {
-        return PacketHandler.getPacket(this, 0);
+        return PacketHandler.getPacket(this, EnumMachine.OREALYZER.ordinal());
     }
 
+    @Override
     public void handlePacket(DataInputStream is) throws IOException {
-        Logger.debug("HANDLING PACKET!");
     }
 
     @Override
@@ -274,7 +153,6 @@ public class TileEntityMachineBasic extends TileEntity implements IInventory, IS
         if (machineProcessTime == 0) {
             return 0;
         }
-        Logger.debug("-::: PROCESS " + (machineProcessTime * scale / 100));
         return machineProcessTime * scale / 100;
     }
 
@@ -282,7 +160,6 @@ public class TileEntityMachineBasic extends TileEntity implements IInventory, IS
         if (currentFuelBurnTime == 0 || !isBurning()) {
             return 0;
         }
-        Logger.debug("-::: BURN " + (machineBurnTime * scale / currentFuelBurnTime));
         return machineBurnTime * scale / currentFuelBurnTime;
     }
 

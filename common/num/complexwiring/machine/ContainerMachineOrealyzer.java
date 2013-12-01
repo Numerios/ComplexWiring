@@ -10,10 +10,10 @@ import num.complexwiring.client.SlotMachine;
 import num.complexwiring.client.SlotOutput;
 import num.complexwiring.world.ModuleWorld;
 
-public class ContainerMachineBasic extends Container {
-    protected final TileEntityMachineBasic tile;
+public class ContainerMachineOrealyzer extends Container {
+    protected final TileEntityMachineOrealyzer tile;
 
-    public ContainerMachineBasic(InventoryPlayer playerInv, TileEntityMachineBasic tile) {
+    public ContainerMachineOrealyzer(InventoryPlayer playerInv, TileEntityMachineOrealyzer tile) {
         this.tile = tile;
 
         addSlotToContainer(new SlotMachine(tile, 0, 56, 17));   // ore input

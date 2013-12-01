@@ -2,12 +2,12 @@ package num.complexwiring.client;
 
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import num.complexwiring.machine.TileEntityMachineBasic;
+import num.complexwiring.api.base.TileEntityInventoryBase;
 
 public class SlotMachine extends Slot {
-    protected TileEntityMachineBasic machine;
+    protected TileEntityInventoryBase machine;
 
-    public SlotMachine(TileEntityMachineBasic machine, int ID, int x, int y) {
+    public SlotMachine(TileEntityInventoryBase machine, int ID, int x, int y) {
         super(machine, ID, x, y);
         this.machine = machine;
     }

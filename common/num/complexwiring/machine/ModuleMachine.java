@@ -7,18 +7,31 @@ import num.complexwiring.world.EnumOrePrimary;
 import num.complexwiring.world.EnumOreSecondary;
 
 public class ModuleMachine extends ModuleBase {
-    public static Block machineBasic;
+    public static Block machine;
 
+    @Override
     public void preInit() {
-        //TODO: IDs, srsly...
-        machineBasic = new BlockMachineBasic(668);
-        GameRegistry.registerBlock(machineBasic, machineBasic.getUnlocalizedName());
-        GameRegistry.registerTileEntity(TileEntityMachineBasic.class, machineBasic.getUnlocalizedName());
+        registerBlocks();
+        registerItems();
     }
 
+    @Override
     public void init() {
+        registerRecipes();
+    }
+
+    private void registerBlocks() {
+        machine = new BlockMachine(669);
+        GameRegistry.registerBlock(machine, ItemBlockMachine.class, machine.getUnlocalizedName());
+        ((BlockMachine) machine).registerTiles();
+    }
+
+    private void registerItems() {
+
+    }
+
+    private void registerRecipes() {
         MachineBasicRecipes.add(EnumOrePrimary.COPPER.getIS(1), EnumOreSecondary.CHALCOPYRITE.getIS(1));
         MachineBasicRecipes.add(EnumOrePrimary.TIN.getIS(1), EnumOreSecondary.CASSITERITE.getIS(1));
-
     }
 }

@@ -8,4 +8,6 @@ public class Strings {
     public static final String ORE_CHALCOPYRITE_NAME = "oreChalcopyrite";
     public static final String ORE_CASSITERITE_NAME = "oreCassiterite";
     public static final String ORE_ARGENTITE_NAME = "oreArgentite";
+
+    public static final String MACHINE_OREALYZER_NAME = "machineOrealyzer";
 }

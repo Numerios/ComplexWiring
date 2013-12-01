@@ -12,8 +12,8 @@ import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import num.complexwiring.api.base.TileEntityInventoryBase;
 import num.complexwiring.api.vec.Vector3;
-import num.complexwiring.machine.TileEntityMachineBasic;
 
 import java.io.*;
 
@@ -34,7 +34,7 @@ public class PacketHandler implements IPacketHandler {
             dos.writeInt(tile.xCoord);
             dos.writeInt(tile.yCoord);
             dos.writeInt(tile.zCoord);
-            for (Object obj : data) {
+            for (Object obj : data) { //TODO: REWRITE
                 if (obj instanceof Integer) {
                     dos.writeInt((Integer) obj);
                 }
@@ -83,15 +83,12 @@ public class PacketHandler implements IPacketHandler {
     }
 
     public static void sendPacket(Packet packet, World worldObj, Vector3 vec3) {
-        Logger.debug("SENDING A PACKET!");
         PacketDispatcher.sendPacketToAllAround(vec3.x, vec3.y, vec3.z, 16, worldObj.provider.dimensionId, packet);
     }
 
     @Override
     public void onPacketData(INetworkManager manager, Packet250CustomPayload packet, Player player) {
-        Logger.debug("RECIEVING A PACKET!");
         if (packet.data != null && packet.data.length <= 0) {
-            Logger.debug("INVALID PACKET!");
             return;
         }
         DataInputStream is = new DataInputStream(new ByteArrayInputStream(packet.data));
@@ -101,7 +98,6 @@ public class PacketHandler implements IPacketHandler {
             x = is.readInt();
             y = is.readInt();
             z = is.readInt();
-            Logger.debug("ASSIGNING XYZ COORDS!");
         } catch (IOException e) {
             return;
         } finally {
@@ -123,9 +119,9 @@ public class PacketHandler implements IPacketHandler {
             return;
         }
         tile.readFromNBT(nbt);
-        if (tile instanceof TileEntityMachineBasic) {
+        if (tile instanceof TileEntityInventoryBase) {
             try {
-                ((TileEntityMachineBasic) tile).handlePacket(is);
+                ((TileEntityInventoryBase) tile).handlePacket(is);
             } catch (IOException e) {
                 e.printStackTrace();
             }
