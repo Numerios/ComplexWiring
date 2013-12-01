@@ -243,6 +243,7 @@ public class TileEntityMachineBasic extends TileEntity implements IInventory, IS
 
         machineBurnTime = nbt.getShort("burnTime");
         machineProcessTime = nbt.getShort("processTime");
+        currentFuelBurnTime = getFuelBurnTime(getStackInSlot(1));
     }
 
     @Override

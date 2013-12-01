@@ -3,6 +3,7 @@ package num.complexwiring.machine;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
+import num.complexwiring.ComplexWiring;
 import org.lwjgl.opengl.GL11;
 
 public class GuiMachineBasic extends GuiContainer {
@@ -30,7 +31,15 @@ public class GuiMachineBasic extends GuiContainer {
     @Override
     protected void drawGuiContainerForegroundLayer(int i, int j) {
         super.drawGuiContainerForegroundLayer(i, j);
-        fontRenderer.drawString(tile.getInvName(), this.xSize / 2 - this.fontRenderer.getStringWidth(tile.getInvName()) / 2, 6, 0x404040);
+        fontRenderer.drawString(tile.getInvName(), this.xSize / 2 - fontRenderer.getStringWidth(tile.getInvName()) / 2, 6, 0x404040);
+
+        if (ComplexWiring.DEBUG) {
+            fontRenderer.drawString("BURN:", 6, 20, 0x666666);
+            fontRenderer.drawString(" " + tile.machineBurnTime, 6 + fontRenderer.getStringWidth("BURN:"), 20, 0x333333);
+            fontRenderer.drawString("COOK: ", 6, 30, 0x666666);
+            fontRenderer.drawString(" " + tile.machineProcessTime, 6 + fontRenderer.getStringWidth("COOK:"), 30, 0x333333);
+        }
+
     }
 
     private void drawProgress(int burn, int cook, int cornerX, int cornerY) {
