@@ -7,7 +7,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import num.complexwiring.ComplexWiring;
+import num.complexwiring.api.vec.Vector3;
 import num.complexwiring.core.GuiHandler;
+import num.complexwiring.core.InventoryHelper;
 import num.complexwiring.lib.Reference;
 
 public class BlockMachineBasic extends Block implements ITileEntityProvider {
@@ -18,6 +20,7 @@ public class BlockMachineBasic extends Block implements ITileEntityProvider {
         setHardness(3.0F);
         setResistance(3.0F);
         setCreativeTab(ComplexWiring.tabCW);
+        isBlockContainer = true;
     }
 
     @Override
@@ -35,5 +38,13 @@ public class BlockMachineBasic extends Block implements ITileEntityProvider {
         if (!world.isRemote)
             player.openGui(ComplexWiring.instance, GuiHandler.GUI_MACHINE_BASIC, world, x, y, z);
         return true;
+    }
+
+    @Override
+    public void breakBlock(World world, int x, int y, int z, int par5, int par6){
+        Vector3 vec3 = new Vector3(x, y, z);
+        InventoryHelper.dropInventory(world, vec3);
+        super.breakBlock(world, x, y, z, par5, par6);
+        world.removeBlockTileEntity(x, y, z);
     }
 }
