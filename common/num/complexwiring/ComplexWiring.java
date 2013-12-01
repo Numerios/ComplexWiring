@@ -9,9 +9,12 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import num.complexwiring.core.*;
 import num.complexwiring.core.proxy.CommonProxy;
 import num.complexwiring.lib.Reference;
+import num.complexwiring.recipe.RecipeManager;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION)
 @NetworkMod(clientSideRequired = true, serverSideRequired = true, channels = {PacketHandler.CHANNEL}, packetHandler = PacketHandler.class)
@@ -37,6 +40,8 @@ public class ComplexWiring {
         NetworkRegistry.instance().registerGuiHandler(instance, new GuiHandler());
 
         ModuleManager.init();
+
+        RecipeManager.addAllRecipes();
     }
 
     @EventHandler
