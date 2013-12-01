@@ -38,7 +38,7 @@ public class BlockOreSecondary extends Block {
         }
     }
 
-    public void registerOre() {
+    public void registerOres() {
         for (EnumOreSecondary oreSecondary : EnumOreSecondary.VALID) {
             oreSecondary.registerOre();
         }

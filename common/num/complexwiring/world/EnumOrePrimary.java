@@ -11,7 +11,7 @@ public enum EnumOrePrimary {
     COPPER(Strings.ORE_COPPER_NAME),
     TIN(Strings.ORE_TIN_NAME),
     SILVER(Strings.ORE_SILVER_NAME);
-    public static final num.complexwiring.world.EnumOrePrimary[] VALID = values();
+    public static final EnumOrePrimary[] VALID = values();
     public final String name;
     public final int meta = this.ordinal();
     public Icon icon;
