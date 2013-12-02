@@ -90,42 +90,45 @@ public class TileEntityOrelyzer extends TileEntityInventoryBase implements ISide
     }
 
     private boolean canProcess() {
-        if (getStackInSlot(0) == null) {
-            return false;
-        } else {
-            if (currentRecipe == null) {
-                currentRecipe = RecipeManager.get(getStackInSlot(0));
-            } else if (currentRecipe != null && currentRecipeOutput == null) {
-                currentRecipeOutput = currentRecipe.getCompleteOutput(rand);
+        if (currentRecipe == null) {
+            if (RecipeManager.get(getStackInSlot(0)) == null) {
+                return false;
             } else {
-                if (getStackInSlot(2) == null || getStackInSlot(3) == null) {
-                    return true;
-                }
-                ItemStack[] possibleOutput = new ItemStack[2];
-
-                if (getStackInSlot(2) != null) {
-                    possibleOutput[0] = getStackInSlot(2).copy();
-                }
-                if (getStackInSlot(3) != null) {
-                    possibleOutput[1] = getStackInSlot(3).copy();
-                }
-
-                for (ItemStack is : currentRecipeOutput) {
-                    if (is == null) {
-                        Logger.debug("NULL IS!");
-                    } else if (InventoryHelper.canMerge(possibleOutput[0], is) +
-                            InventoryHelper.canMerge(possibleOutput[1], is) < is.stackSize) {
-                        return false;
-                    }
-                }
-                return true;
+                currentRecipe = RecipeManager.get(getStackInSlot(0));
             }
-            return false;
+
+            currentRecipeOutput = currentRecipe.getCompleteOutput(rand);
+            if (currentRecipeOutput == null) {
+                return false;
+            }
+            Logger.debug("--------");
+            for (ItemStack is : currentRecipeOutput) {
+                Logger.debug("RecipeOutput: " + is.toString());
+            }
+            Logger.debug("--------");
         }
+        if (getStackInSlot(2) == null || getStackInSlot(3) == null) {
+            return true;
+        }
+        ItemStack[] possibleOutput = new ItemStack[2];
+
+        if (getStackInSlot(2) != null) {
+            possibleOutput[0] = getStackInSlot(2).copy();
+        }
+        if (getStackInSlot(3) != null) {
+            possibleOutput[1] = getStackInSlot(3).copy();
+        }
+
+        for (ItemStack is : currentRecipeOutput) {
+            if (InventoryHelper.canMerge(possibleOutput[0], is) + InventoryHelper.canMerge(possibleOutput[1], is) < is.stackSize) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public void startProcess() {
-        if (canProcess()) {
+        if (canProcess() && getStackInSlot(0) != null) {
             inventory[0].stackSize--;
 
             if (getStackInSlot(0).stackSize <= 0) {
@@ -137,19 +140,19 @@ public class TileEntityOrelyzer extends TileEntityInventoryBase implements ISide
     public void endProcess() {
         if (currentRecipeOutput != null && currentRecipeOutput.length > 0) {
             for (ItemStack output : currentRecipeOutput) {
-                if (output != null) {
+                if (output != null && output.stackSize != 0) {
                     for (int i : SLOTS_OUTPUT) {
                         if (getStackInSlot(i) == null) {
-                            setInventorySlotContents(i, output.copy());
+                            setInventorySlotContents(i, output);
+                            break;
                         } else {
-                            int finalStackSize = Math.min(getStackInSlot(i).stackSize +
-                                    InventoryHelper.canMerge(getStackInSlot(i), output),
-                                    getStackInSlot(i).getMaxStackSize());
-                            int merged = finalStackSize - getStackInSlot(i).stackSize;
-                            if (merged > 0) {
-                                setInventorySlotContents(i, output.copy());
-                                getStackInSlot(i).stackSize = finalStackSize;
+                            int adding = InventoryHelper.canMerge(getStackInSlot(i), output);
+                            if (adding > 0) {
+                                getStackInSlot(i).stackSize = getStackInSlot(i).stackSize + adding;
+                                output.splitStack(adding);
+                                if (output.stackSize == 0) break;
                             }
+
                         }
                     }
                 }
@@ -245,9 +248,5 @@ public class TileEntityOrelyzer extends TileEntityInventoryBase implements ISide
 
     public boolean isBurning() {
         return machineBurnTime > 0;
-    }
-
-    public ItemStack[] getCurrentRecipeOutput() {
-        return currentRecipeOutput;
     }
 }

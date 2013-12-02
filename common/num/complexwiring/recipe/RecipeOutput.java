@@ -1,6 +1,7 @@
 package num.complexwiring.recipe;
 
 import net.minecraft.item.ItemStack;
+import num.complexwiring.core.Logger;
 
 import java.util.Random;
 
@@ -15,7 +16,9 @@ public class RecipeOutput {
     }
 
     public boolean isOutputting(Random rand) {
-        return (rand.nextFloat() <= chance);
+        float f = rand.nextFloat();
+        Logger.debug("RAND: " + output.toString() + " rand: " + f + " |chance: " + chance);
+        return chance >= f;
     }
 
     public ItemStack getOutput() {
