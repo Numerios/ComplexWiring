@@ -51,4 +51,11 @@ public class InventoryHelper {
             }
         }
     }
+
+    public static int canMerge(ItemStack is1, ItemStack is2) {
+        if (!is1.isItemEqual(is2)) {
+            return 0;
+        }
+        return Math.min(is1.getMaxStackSize() - is1.stackSize, is2.stackSize);
+    }
 }

@@ -4,37 +4,36 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.packet.Packet;
 import num.complexwiring.api.base.TileEntityInventoryBase;
 import num.complexwiring.api.vec.Vector3;
+import num.complexwiring.core.InventoryHelper;
 import num.complexwiring.core.PacketHandler;
 import num.complexwiring.recipe.Recipe;
 import num.complexwiring.recipe.RecipeManager;
-import num.complexwiring.recipe.RecipeOutput;
 
 import java.io.DataInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Random;
 
 public class TileEntityMachineOrealyzer extends TileEntityInventoryBase implements ISidedInventory {
+    private static final int[] SLOTS_OUTPUT = new int[]{2, 3};
     private static final int[] SLOTS_TOP = new int[]{0};
-    private static final int[] SLOTS_BOTTOM = new int[]{2, 1};
+    private static final int[] SLOTS_BOTTOM = new int[]{2, 3, 1};
     private static final int[] SLOTS_SIDE = new int[]{1};
     public int currentFuelBurnTime = 0;
     public int machineBurnTime = 0;
     public int machineProcessTime = 0;
     Random rand = new Random();
     private Recipe currentRecipe;
-    private ArrayList<ItemStack> plannedOutput;
-    private ArrayList<ItemStack> remainingOutput;
+    private ItemStack[] currentRecipeOutput;
 
     public TileEntityMachineOrealyzer() {
         super(4, EnumMachine.OREALYZER.getFullUnlocalizedName());
-        plannedOutput = new ArrayList<ItemStack>();
-        remainingOutput = new ArrayList<ItemStack>();
     }
 
+    //FIXME PLZ! I OUTPUT TWICE THE SAME THINGY!
     @Override
     public void update() {
         super.update();
@@ -45,7 +44,8 @@ public class TileEntityMachineOrealyzer extends TileEntityInventoryBase implemen
         if (worldObj.isRemote) {
         }
         if (!worldObj.isRemote) {
-            if (machineBurnTime == 0 && canProcess()) {
+            boolean processable = canProcess();
+            if (machineBurnTime == 0 && processable) {
                 currentFuelBurnTime = machineBurnTime = getFuelBurnTime(getStackInSlot(1));
                 if (machineBurnTime > 0) {
                     if (getStackInSlot(1) != null) {
@@ -56,16 +56,20 @@ public class TileEntityMachineOrealyzer extends TileEntityInventoryBase implemen
                     }
                 }
             }
-            if (isBurning() && canProcess()) {
+            if (isBurning() && processable) {
+                if (machineProcessTime == 0) {
+                    startProcess();
+                }
                 machineProcessTime++;
                 if (machineProcessTime == 100) {
                     machineProcessTime = 0;
-                    process();
+                    endProcess();
                 }
             } else {
                 machineProcessTime = 0;
+                /*currentRecipe = null;           //TODO NULL WHEN POWER GOES OUT
+                currentRecipeOutput = null;*/
             }
-            handleOutput();
             if (ticks % 4 == 0) {
                 PacketHandler.sendPacket(getDescriptionPacket(), worldObj, Vector3.get(this));
             }
@@ -87,15 +91,28 @@ public class TileEntityMachineOrealyzer extends TileEntityInventoryBase implemen
     private boolean canProcess() {
         if (getStackInSlot(0) == null) {
             return false;
-        } else if (remainingOutput.size() > 0) {
-            return false;
         } else {
-            currentRecipe = RecipeManager.get(getStackInSlot(0));
-            if (currentRecipe != null) {
-                for (RecipeOutput output : currentRecipe.getOutputs()) {
-                    plannedOutput.clear();
-                    if (output.isOutputting(rand)) {
-                        plannedOutput.add(output.getOutput());
+            if (currentRecipe == null) {
+                currentRecipe = RecipeManager.get(getStackInSlot(0));
+            } else if (currentRecipe != null && currentRecipeOutput == null) {
+                currentRecipeOutput = currentRecipe.getCompleteOutput(rand);
+            } else {
+                if (getStackInSlot(2) == null || getStackInSlot(3) == null) {
+                    return true;
+                }
+                ItemStack[] possibleOutput = new ItemStack[2];
+
+                if (getStackInSlot(2) != null) {
+                    possibleOutput[0] = getStackInSlot(2).copy();
+                }
+                if (getStackInSlot(3) != null) {
+                    possibleOutput[1] = getStackInSlot(3).copy();
+                }
+
+                for (ItemStack is : currentRecipeOutput) {
+                    if (InventoryHelper.canMerge(possibleOutput[0], is) +
+                            InventoryHelper.canMerge(possibleOutput[1], is) < is.stackSize) {
+                        return false;
                     }
                 }
                 return true;
@@ -104,28 +121,8 @@ public class TileEntityMachineOrealyzer extends TileEntityInventoryBase implemen
         }
     }
 
-    public void process() {
+    public void startProcess() {
         if (canProcess()) {
-            remainingOutput = plannedOutput; /*
-            for (int i = 0; i < remainingOutput.size(); i++) {
-                ItemStack is = remainingOutput.get(i);
-                if (getStackInSlot(2) == null) {
-                    setInventorySlotContents(2, is);
-                    remainingOutput.remove(i);
-                } else if (getStackInSlot(3) == null) {
-                    setInventorySlotContents(3, is);
-                    remainingOutput.remove(i);
-                } else if (getStackInSlot(2).isItemEqual(is) && getStackInSlot(2).stackSize + is.stackSize <= getInventoryStackLimit()
-                        && getStackInSlot(2).stackSize + is.stackSize <= is.getMaxDamage()) {
-                    inventory[2].stackSize += is.stackSize;
-                    remainingOutput.remove(i);
-                } else if (getStackInSlot(3).isItemEqual(is) && getStackInSlot(3).stackSize + is.stackSize <= getInventoryStackLimit()
-                        && getStackInSlot(3).stackSize + is.stackSize <= is.getMaxDamage()) {
-                    inventory[3].stackSize += is.stackSize;
-                    remainingOutput.remove(i);
-                }
-
-            }    */
             inventory[0].stackSize--;
 
             if (getStackInSlot(0).stackSize <= 0) {
@@ -134,28 +131,30 @@ public class TileEntityMachineOrealyzer extends TileEntityInventoryBase implemen
         }
     }
 
-    private void handleOutput() {
-        if (remainingOutput.size() > 0) {
-            for (int i = 0; i < remainingOutput.size(); i++) {
-                ItemStack is = remainingOutput.get(i);
-                if (getStackInSlot(2) == null) {
-                    setInventorySlotContents(2, is);
-                    remainingOutput.remove(i);
-                } else if (getStackInSlot(3) == null) {
-                    setInventorySlotContents(3, is);
-                    remainingOutput.remove(i);
-                } else if (getStackInSlot(2).isItemEqual(is) && getStackInSlot(2).stackSize + is.stackSize <= getInventoryStackLimit()
-                        && getStackInSlot(2).stackSize + is.stackSize <= is.getMaxDamage()) {
-                    inventory[2].stackSize += is.stackSize;
-                    remainingOutput.remove(i);
-                } else if (getStackInSlot(3).isItemEqual(is) && getStackInSlot(3).stackSize + is.stackSize <= getInventoryStackLimit()
-                        && getStackInSlot(3).stackSize + is.stackSize <= is.getMaxDamage()) {
-                    inventory[3].stackSize += is.stackSize;
-                    remainingOutput.remove(i);
+    public void endProcess() {
+        if (currentRecipeOutput != null && currentRecipeOutput.length > 0) {
+            for (ItemStack output : currentRecipeOutput) {
+                if (output != null) {
+                    for (int i : SLOTS_OUTPUT) {
+                        if (getStackInSlot(i) == null) {
+                            setInventorySlotContents(i, output.copy());
+                        } else {
+                            int finalStackSize = Math.min(getStackInSlot(i).stackSize +
+                                    InventoryHelper.canMerge(getStackInSlot(i), output),
+                                    getStackInSlot(i).getMaxStackSize());
+                            int merged = finalStackSize - getStackInSlot(i).stackSize;
+                            if (merged > 0) {
+                                setInventorySlotContents(i, output.copy());
+                                getStackInSlot(i).stackSize = finalStackSize;
+                            }
+                        }
+                    }
                 }
-
             }
         }
+
+        currentRecipe = null;
+        currentRecipeOutput = null;
     }
 
     @Override
@@ -164,6 +163,22 @@ public class TileEntityMachineOrealyzer extends TileEntityInventoryBase implemen
 
         nbt.setShort("burnTime", (short) machineBurnTime);
         nbt.setShort("processTime", (short) machineProcessTime);
+        if (currentRecipe != null) {
+            nbt.setInteger("currentRecipe", RecipeManager.toRecipeID(currentRecipe));
+        }
+        if (currentRecipeOutput != null) {
+            nbt.setByte("currentOutputLength", (byte) currentRecipeOutput.length);
+            NBTTagList outputNBT = new NBTTagList();
+            for (int i : SLOTS_OUTPUT) {
+                if (getStackInSlot(i) != null) {
+                    NBTTagCompound itemNBT = new NBTTagCompound();
+                    itemNBT.setByte("currentOutputSlot", (byte) i);
+                    getStackInSlot(i).writeToNBT(itemNBT);
+                    outputNBT.appendTag(itemNBT);
+                }
+            }
+            nbt.setTag("currentOutput", outputNBT);
+        }
     }
 
     @Override
@@ -172,7 +187,19 @@ public class TileEntityMachineOrealyzer extends TileEntityInventoryBase implemen
 
         machineBurnTime = nbt.getShort("burnTime");
         machineProcessTime = nbt.getShort("processTime");
+        currentRecipe = RecipeManager.fromRecipeID(nbt.getInteger("currentRecipe"));
+
         currentFuelBurnTime = getFuelBurnTime(getStackInSlot(1));
+
+        currentRecipeOutput = new ItemStack[nbt.getByte("currentOutputLength")];
+        NBTTagList outputNBT = nbt.getTagList("currentOutput");
+        for (int i = 0; i < outputNBT.tagCount(); i++) {
+            NBTTagCompound itemNBT = (NBTTagCompound) outputNBT.tagAt(i);
+            byte slot = itemNBT.getByte("currentOutputSlot");
+            if (slot >= 0 && slot < getSizeInventory()) {
+                setInventorySlotContents(slot, ItemStack.loadItemStackFromNBT(itemNBT));
+            }
+        }
     }
 
     @Override
