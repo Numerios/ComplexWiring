@@ -6,16 +6,15 @@ import num.complexwiring.ComplexWiring;
 import num.complexwiring.api.base.GuiInventoryBase;
 
 public class GuiMachineOrealyzer extends GuiInventoryBase {
-    public static final ResourceLocation texture = new ResourceLocation("complexwiring", "textures/gui/machine_basic.png");
+
     private TileEntityMachineOrealyzer tile;
-    private InventoryPlayer player;
 
     public GuiMachineOrealyzer(InventoryPlayer player, TileEntityMachineOrealyzer tile) {
-        super(player, tile, texture);
+        super(player, tile, new ResourceLocation("complexwiring", "textures/gui/machine_basic.png"));
         this.tile = tile;
-        this.player = player;
     }
 
+    @Override
     protected void drawGuiContainerBackgroundLayer(float f, int i, int j) {
         super.drawGuiContainerBackgroundLayer(f,i,j);
         drawProgress(tile.getBurnTimeScaled(12), tile.getProcessedTimeScaled(24), guiLeft, guiTop);
