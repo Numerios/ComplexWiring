@@ -9,3 +9,5 @@ tile.complexwiring.world.ore.secondary.argentite.name=Argentit
 
 tile.complexwiring.machine.orelyzer.name=Rudolyzér
 tile.complexwiring.machine.orelyzer.desc=Analyzuj své rudy!
+
+item.complexwiring.tablet.name=Tablet

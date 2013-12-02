@@ -13,4 +13,6 @@ public class Strings {
 
     public static final String MACHINE_ORELYZER_NAME = "machineOrelyzer";
     public static final String MACHINE_ORELYZER_DESC = StatCollector.translateToLocal("tile.complexwiring.machine.orelyzer.desc");   //TODO MAKE THIS PRETTIER
+
+    public static final String TABLET_NAME = "tablet";
 }

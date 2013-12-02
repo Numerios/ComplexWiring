@@ -10,3 +10,6 @@ tile.complexwiring.world.ore.secondary.argentite.name=Argentite Ore
 tile.complexwiring.machine.orelyzer.name=Orelyzer
 tile.complexwiring.machine.orelyzer.desc=Analyze your ores!
 
+item.complexwiring.tablet.name=Tablet
+
+
