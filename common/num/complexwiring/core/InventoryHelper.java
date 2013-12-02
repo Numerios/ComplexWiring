@@ -53,6 +53,9 @@ public class InventoryHelper {
     }
 
     public static int canMerge(ItemStack is1, ItemStack is2) {
+        if (is1 == null || is2 == null) {
+            return 0;
+        }
         if (!is1.isItemEqual(is2)) {
             return 0;
         }

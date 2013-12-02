@@ -9,6 +9,7 @@ import net.minecraft.network.packet.Packet;
 import num.complexwiring.api.base.TileEntityInventoryBase;
 import num.complexwiring.api.vec.Vector3;
 import num.complexwiring.core.InventoryHelper;
+import num.complexwiring.core.Logger;
 import num.complexwiring.core.PacketHandler;
 import num.complexwiring.recipe.Recipe;
 import num.complexwiring.recipe.RecipeManager;
@@ -110,7 +111,9 @@ public class TileEntityOrelyzer extends TileEntityInventoryBase implements ISide
                 }
 
                 for (ItemStack is : currentRecipeOutput) {
-                    if (InventoryHelper.canMerge(possibleOutput[0], is) +
+                    if (is == null) {
+                        Logger.debug("NULL IS!");
+                    } else if (InventoryHelper.canMerge(possibleOutput[0], is) +
                             InventoryHelper.canMerge(possibleOutput[1], is) < is.stackSize) {
                         return false;
                     }
@@ -242,5 +245,9 @@ public class TileEntityOrelyzer extends TileEntityInventoryBase implements ISide
 
     public boolean isBurning() {
         return machineBurnTime > 0;
+    }
+
+    public ItemStack[] getCurrentRecipeOutput() {
+        return currentRecipeOutput;
     }
 }

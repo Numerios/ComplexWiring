@@ -31,7 +31,6 @@ public class GuiMachineOrelyzer extends GuiInventoryBase {
             fontRenderer.drawString("COOK: ", 6, 55, 0x666666);
             fontRenderer.drawString(" " + tile.machineProcessTime, 6 + fontRenderer.getStringWidth("COOK:"), 55, 0x333333);
             fontRenderer.drawString(" " + tile.getProcessedTimeScaled(100) + "%", 6 + fontRenderer.getStringWidth("COOK:"), 70, 0x333333);
-
         }
     }
 
