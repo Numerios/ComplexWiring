@@ -16,6 +16,7 @@ import num.complexwiring.recipe.RecipeManager;
 
 import java.io.DataInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class TileEntityOrelyzer extends TileEntityInventoryBase implements ISidedInventory {
@@ -28,10 +29,11 @@ public class TileEntityOrelyzer extends TileEntityInventoryBase implements ISide
     public int machineProcessTime = 0;
     Random rand = new Random();
     private Recipe currentRecipe;
-    private ItemStack[] currentRecipeOutput;
+    private ArrayList<ItemStack> currentRecipeOutput;
 
     public TileEntityOrelyzer() {
         super(4, EnumMachine.ORELYZER.getFullUnlocalizedName());
+        currentRecipeOutput = new ArrayList<ItemStack>();
     }
 
     //FIXME PLZ! I OUTPUT TWICE THE SAME THINGY!
@@ -98,7 +100,7 @@ public class TileEntityOrelyzer extends TileEntityInventoryBase implements ISide
             }
 
             currentRecipeOutput = currentRecipe.getCompleteOutput(rand);
-            if (currentRecipeOutput == null) {
+            if (currentRecipeOutput == null || currentRecipeOutput.size() < 1) {
                 return false;
             }
             Logger.debug("--------");
@@ -138,7 +140,7 @@ public class TileEntityOrelyzer extends TileEntityInventoryBase implements ISide
     }
 
     public void endProcess() {
-        if (currentRecipeOutput != null && currentRecipeOutput.length > 0) {
+        if (currentRecipeOutput != null && currentRecipeOutput.size() > 0) {
             for (ItemStack output : currentRecipeOutput) {
                 if (output != null && output.stackSize != 0) {
                     for (int i : SLOTS_OUTPUT) {
@@ -158,9 +160,8 @@ public class TileEntityOrelyzer extends TileEntityInventoryBase implements ISide
                 }
             }
         }
-
         currentRecipe = null;
-        currentRecipeOutput = null;
+        currentRecipeOutput.clear();
     }
 
     @Override
@@ -173,13 +174,11 @@ public class TileEntityOrelyzer extends TileEntityInventoryBase implements ISide
             nbt.setInteger("currentRecipe", RecipeManager.toRecipeID(currentRecipe));
         }
         if (currentRecipeOutput != null) {
-            nbt.setByte("currentOutputLength", (byte) currentRecipeOutput.length);
             NBTTagList outputNBT = new NBTTagList();
-            for (int i : SLOTS_OUTPUT) {
-                if (getStackInSlot(i) != null) {
+            for (ItemStack is : currentRecipeOutput) {
+                if (is != null) {
                     NBTTagCompound itemNBT = new NBTTagCompound();
-                    itemNBT.setByte("currentOutputSlot", (byte) i);
-                    getStackInSlot(i).writeToNBT(itemNBT);
+                    is.writeToNBT(itemNBT);
                     outputNBT.appendTag(itemNBT);
                 }
             }
@@ -197,14 +196,11 @@ public class TileEntityOrelyzer extends TileEntityInventoryBase implements ISide
 
         currentFuelBurnTime = getFuelBurnTime(getStackInSlot(1));
 
-        currentRecipeOutput = new ItemStack[nbt.getByte("currentOutputLength")];
+        currentRecipeOutput.clear();
         NBTTagList outputNBT = nbt.getTagList("currentOutput");
         for (int i = 0; i < outputNBT.tagCount(); i++) {
             NBTTagCompound itemNBT = (NBTTagCompound) outputNBT.tagAt(i);
-            byte slot = itemNBT.getByte("currentOutputSlot");
-            if (slot >= 0 && slot < getSizeInventory()) {
-                setInventorySlotContents(slot, ItemStack.loadItemStackFromNBT(itemNBT));
-            }
+            currentRecipeOutput.add(ItemStack.loadItemStackFromNBT(itemNBT));
         }
     }
 

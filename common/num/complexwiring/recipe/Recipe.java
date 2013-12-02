@@ -3,7 +3,6 @@ package num.complexwiring.recipe;
 import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class Recipe {
@@ -32,14 +31,18 @@ public class Recipe {
         this.outputs = outputs;
     }
 
-    public ItemStack[] getCompleteOutput(Random rand) {
-        List<ItemStack> completeOutput = new ArrayList<ItemStack>();
+    public ArrayList<ItemStack> getCompleteOutput(Random rand) {
+        ArrayList<ItemStack> completeOutput = new ArrayList<ItemStack>();
         for (RecipeOutput output : outputs) {
-            if (output.isOutputting(rand)) {
+            float f = rand.nextFloat();
+            if (output.getChance() >= f){
                 completeOutput.add(output.getOutput());
             }
+           /* if (output.isOutputting(rand)) {
+                completeOutput.add(output.getOutput());
+            } */
         }
-        return completeOutput.toArray(new ItemStack[completeOutput.size()]);
+        return completeOutput;
     }
 
     @Override
