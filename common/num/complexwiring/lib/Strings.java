@@ -11,6 +11,6 @@ public class Strings {
     public static final String ORE_CASSITERITE_NAME = "oreCassiterite";
     public static final String ORE_ARGENTITE_NAME = "oreArgentite";
 
-    public static final String MACHINE_OREALYZER_NAME = "machineOrealyzer";
-    public static final String MACHINE_OREALYZER_DESC = StatCollector.translateToLocal("tile.complexwiring.machine.orealyzer.desc");   //TODO MAKE THIS PRETTIER
+    public static final String MACHINE_ORELYZER_NAME = "machineOrelyzer";
+    public static final String MACHINE_ORELYZER_DESC = StatCollector.translateToLocal("tile.complexwiring.machine.orelyzer.desc");   //TODO MAKE THIS PRETTIER
 }

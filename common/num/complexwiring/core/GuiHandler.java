@@ -6,10 +6,10 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import num.complexwiring.api.base.TileEntityInventoryBase;
 import num.complexwiring.api.vec.Vector3;
-import num.complexwiring.machine.ContainerMachineOrealyzer;
+import num.complexwiring.machine.ContainerOrelyzer;
 import num.complexwiring.machine.EnumMachine;
-import num.complexwiring.machine.GuiMachineOrealyzer;
-import num.complexwiring.machine.TileEntityMachineOrealyzer;
+import num.complexwiring.machine.GuiMachineOrelyzer;
+import num.complexwiring.machine.TileEntityOrelyzer;
 
 public class GuiHandler implements IGuiHandler {
 
@@ -18,7 +18,7 @@ public class GuiHandler implements IGuiHandler {
         Vector3 vec3 = new Vector3(x, y, z);
         TileEntity tile = vec3.toTile(world);
         if (tile instanceof TileEntityInventoryBase && vec3.blockMetadata(world) == EnumMachine.VALID[0].ordinal()) {
-            return new ContainerMachineOrealyzer(player.inventory, (TileEntityMachineOrealyzer) tile);         // Ore-a-lyzer
+            return new ContainerOrelyzer(player.inventory, (TileEntityOrelyzer) tile);         // Ore-a-lyzer
         }
         return null;
     }
@@ -28,8 +28,9 @@ public class GuiHandler implements IGuiHandler {
         Vector3 vec3 = new Vector3(x, y, z);
         TileEntity tile = vec3.toTile(world);
         if (tile instanceof TileEntityInventoryBase && vec3.blockMetadata(world) == EnumMachine.VALID[0].ordinal()) {
-            return new GuiMachineOrealyzer(player.inventory, (TileEntityMachineOrealyzer) tile);              // Ore-a-lyzer
+            return new GuiMachineOrelyzer(player.inventory, (TileEntityOrelyzer) tile);              // Ore-a-lyzer
         }
         return null;
 
-    }}
+    }
+}

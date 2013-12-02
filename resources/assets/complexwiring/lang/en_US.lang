@@ -7,6 +7,6 @@ tile.complexwiring.world.ore.secondary.chalcopyrite.name=Chalcopyrite Ore
 tile.complexwiring.world.ore.secondary.cassiterite.name=Cassiterite Ore
 tile.complexwiring.world.ore.secondary.argentite.name=Argentite Ore
 
-tile.complexwiring.machine.orealyzer.name=Ore-a-lyzer
-tile.complexwiring.machine.orealyzer.desc=Analyze your ores!
+tile.complexwiring.machine.orelyzer.name=Orelyzer
+tile.complexwiring.machine.orelyzer.desc=Analyze your ores!
 

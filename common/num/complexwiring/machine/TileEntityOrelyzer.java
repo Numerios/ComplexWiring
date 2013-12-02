@@ -17,7 +17,7 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import java.util.Random;
 
-public class TileEntityMachineOrealyzer extends TileEntityInventoryBase implements ISidedInventory {
+public class TileEntityOrelyzer extends TileEntityInventoryBase implements ISidedInventory {
     private static final int[] SLOTS_OUTPUT = new int[]{2, 3};
     private static final int[] SLOTS_TOP = new int[]{0};
     private static final int[] SLOTS_BOTTOM = new int[]{2, 3, 1};
@@ -29,8 +29,8 @@ public class TileEntityMachineOrealyzer extends TileEntityInventoryBase implemen
     private Recipe currentRecipe;
     private ItemStack[] currentRecipeOutput;
 
-    public TileEntityMachineOrealyzer() {
-        super(4, EnumMachine.OREALYZER.getFullUnlocalizedName());
+    public TileEntityOrelyzer() {
+        super(4, EnumMachine.ORELYZER.getFullUnlocalizedName());
     }
 
     //FIXME PLZ! I OUTPUT TWICE THE SAME THINGY!
@@ -204,7 +204,7 @@ public class TileEntityMachineOrealyzer extends TileEntityInventoryBase implemen
 
     @Override
     public Packet getDescriptionPacket() {
-        return PacketHandler.getPacket(this, EnumMachine.OREALYZER.ordinal());
+        return PacketHandler.getPacket(this, EnumMachine.ORELYZER.ordinal());
     }
 
     @Override

@@ -5,18 +5,18 @@ import net.minecraft.util.ResourceLocation;
 import num.complexwiring.ComplexWiring;
 import num.complexwiring.api.base.GuiInventoryBase;
 
-public class GuiMachineOrealyzer extends GuiInventoryBase {
+public class GuiMachineOrelyzer extends GuiInventoryBase {
 
-    private TileEntityMachineOrealyzer tile;
+    private TileEntityOrelyzer tile;
 
-    public GuiMachineOrealyzer(InventoryPlayer player, TileEntityMachineOrealyzer tile) {
-        super(player, tile, new ResourceLocation("complexwiring", "textures/gui/machine_basic.png"));
+    public GuiMachineOrelyzer(InventoryPlayer player, TileEntityOrelyzer tile) {
+        super(player, tile, new ResourceLocation("complexwiring", "textures/gui/" + EnumMachine.ORELYZER.getUnlocalizedName() + ".png"));
         this.tile = tile;
     }
 
     @Override
     protected void drawGuiContainerBackgroundLayer(float f, int i, int j) {
-        super.drawGuiContainerBackgroundLayer(f,i,j);
+        super.drawGuiContainerBackgroundLayer(f, i, j);
         drawProgress(tile.getBurnTimeScaled(12), tile.getProcessedTimeScaled(24), guiLeft, guiTop);
     }
 

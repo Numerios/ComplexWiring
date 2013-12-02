@@ -9,7 +9,7 @@ import num.complexwiring.lib.Reference;
 import num.complexwiring.lib.Strings;
 
 public enum EnumMachine {
-    OREALYZER(Strings.MACHINE_OREALYZER_NAME, Strings.MACHINE_OREALYZER_DESC, TileEntityMachineOrealyzer.class);
+    ORELYZER(Strings.MACHINE_ORELYZER_NAME, Strings.MACHINE_ORELYZER_DESC, TileEntityOrelyzer.class);
     public static final EnumMachine[] VALID = values();
     public final String name, desc;
     public final Class<? extends TileEntityInventoryBase> tile;
@@ -35,11 +35,11 @@ public enum EnumMachine {
         return new ItemStack(ModuleMachine.machine, amount, meta);
     }
 
-    public void registerTile(){
+    public void registerTile() {
         GameRegistry.registerTileEntity(this.tile, this.getUnlocalizedName());
     }
 
-    public String getFullUnlocalizedName(){
+    public String getFullUnlocalizedName() {
         return ModuleMachine.machine.getUnlocalizedName() + "." + this.getUnlocalizedName();
     }
 }

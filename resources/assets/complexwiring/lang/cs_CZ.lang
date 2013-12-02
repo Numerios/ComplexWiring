@@ -7,5 +7,5 @@ tile.complexwiring.world.ore.secondary.chalcopyrite.name=Chalkopyrit
 tile.complexwiring.world.ore.secondary.cassiterite.name=Kasiterit
 tile.complexwiring.world.ore.secondary.argentite.name=Argentit
 
-tile.complexwiring.machine.orealyzer.name=Analyzátor rud
-tile.complexwiring.machine.orealyzer.desc=Analyzuj své rudy!
+tile.complexwiring.machine.orelyzer.name=Rudolyzér
+tile.complexwiring.machine.orelyzer.desc=Analyzuj své rudy!

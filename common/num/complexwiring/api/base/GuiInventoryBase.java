@@ -3,8 +3,8 @@ package num.complexwiring.api.base;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
-import num.complexwiring.machine.ContainerMachineOrealyzer;
-import num.complexwiring.machine.TileEntityMachineOrealyzer;
+import num.complexwiring.machine.ContainerOrelyzer;
+import num.complexwiring.machine.TileEntityOrelyzer;
 import org.lwjgl.opengl.GL11;
 
 public abstract class GuiInventoryBase extends GuiContainer {
@@ -14,7 +14,7 @@ public abstract class GuiInventoryBase extends GuiContainer {
     protected TileEntityInventoryBase tile;
 
     public GuiInventoryBase(InventoryPlayer player, TileEntityInventoryBase tile, ResourceLocation texture) {
-        super(new ContainerMachineOrealyzer(player, (TileEntityMachineOrealyzer) tile)); //TODO: mby some BaseContainer?
+        super(new ContainerOrelyzer(player, (TileEntityOrelyzer) tile)); //TODO: mby some BaseContainer?
         playerInv = player;
         this.tile = tile;
         this.texture = texture;

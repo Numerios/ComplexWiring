@@ -35,7 +35,7 @@ public class BlockMachine extends Block implements ITileEntityProvider {
     public TileEntity createTileEntity(World world, int meta) {
         switch (meta) {
             case 0: {    //TODO: Make it a little more flexible
-                return new TileEntityMachineOrealyzer();
+                return new TileEntityOrelyzer();
             }
         }
         return null;

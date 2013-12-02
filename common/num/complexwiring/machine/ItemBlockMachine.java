@@ -27,7 +27,7 @@ public class ItemBlockMachine extends ItemBlock {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack is, EntityPlayer player, List list, boolean bool){
+    public void addInformation(ItemStack is, EntityPlayer player, List list, boolean bool) {
         list.add(EnumMachine.VALID[is.getItemDamage()].desc);
     }
 }

@@ -79,7 +79,8 @@ public abstract class TileEntityInventoryBase extends TileEntityBase implements 
             return is;
         } else {
             return null;
-        }    }
+        }
+    }
 
     @Override
     public void setInventorySlotContents(int slot, ItemStack is) {
@@ -110,10 +111,12 @@ public abstract class TileEntityInventoryBase extends TileEntityBase implements 
     }
 
     @Override
-    public void openChest() {}
+    public void openChest() {
+    }
 
     @Override
-    public void closeChest() {}
+    public void closeChest() {
+    }
 
     @Override
     public boolean isItemValidForSlot(int slot, ItemStack is) {
@@ -156,5 +159,6 @@ public abstract class TileEntityInventoryBase extends TileEntityBase implements 
         return PacketHandler.getPacket(this, -1);
     }
 
-    public void handlePacket(DataInputStream is) throws IOException {}
+    public void handlePacket(DataInputStream is) throws IOException {
+    }
 }
