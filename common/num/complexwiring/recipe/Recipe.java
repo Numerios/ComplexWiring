@@ -1,22 +1,26 @@
 package num.complexwiring.recipe;
 
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Recipe {
 
+    private final String oreDictionary;
     private ItemStack input;
     private RecipeOutput[] outputs;
 
     public Recipe(ItemStack input, RecipeOutput... outputs) {
         this.input = input;
         this.outputs = outputs;
+
+        oreDictionary = OreDictionary.getOreName(input.itemID);
     }
 
     public boolean matches(ItemStack is) {
-        return input.isItemEqual(is);
+        return (input.isItemEqual(is) || OreDictionary.getOreName(is.itemID) == oreDictionary);
     }
 
     public ItemStack getInput() {
