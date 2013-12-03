@@ -19,7 +19,7 @@ public class ContainerOrelyzer extends Container {
         addSlotToContainer(new SlotMachine(tile, 0, 56, 17));   // ore input
         addSlotToContainer(new SlotMachine(tile, 1, 56, 53));   // fuel input
         addSlotToContainer(new SlotOutput(tile, 2, 116, 35));   // ore output
-        addSlotToContainer(new SlotOutput(tile, 3, 134, 35));   // ore output 2
+        addSlotToContainer(new SlotOutput(tile, 3, 136, 35));   // ore output 2
 
 
         addPlayerInventory(playerInv);
