@@ -40,11 +40,8 @@ public class Recipe {
         for (RecipeOutput output : outputs) {
             float f = rand.nextFloat();
             if (output.getChance() >= f){
-                completeOutput.add(output.getOutput());
+                completeOutput.add(output.getOutput().copy());
             }
-           /* if (output.isOutputting(rand)) {
-                completeOutput.add(output.getOutput());
-            } */
         }
         return completeOutput;
     }
