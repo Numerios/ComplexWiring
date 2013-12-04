@@ -1,15 +1,14 @@
 package num.complexwiring.machine;
 
 import net.minecraft.inventory.ISidedInventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.packet.Packet;
+import net.minecraft.tileentity.TileEntityFurnace;
 import num.complexwiring.api.base.TileEntityInventoryBase;
 import num.complexwiring.api.vec.Vector3;
 import num.complexwiring.core.InventoryHelper;
-import num.complexwiring.core.Logger;
 import num.complexwiring.core.PacketHandler;
 import num.complexwiring.recipe.Recipe;
 import num.complexwiring.recipe.RecipeManager;
@@ -36,7 +35,6 @@ public class TileEntityOrelyzer extends TileEntityInventoryBase implements ISide
         currentRecipeOutput = new ArrayList<ItemStack>();
     }
 
-    //FIXME PLZ! I OUTPUT TWICE THE SAME THINGY!
     @Override
     public void update() {
         super.update();
@@ -84,9 +82,7 @@ public class TileEntityOrelyzer extends TileEntityInventoryBase implements ISide
 
     private int getFuelBurnTime(ItemStack is) {
         if (is != null) {
-            if (is.itemID == Item.coal.itemID) {
-                return 200;
-            }
+            return TileEntityFurnace.getItemBurnTime(is)/4;
         }
         return 0;
     }
@@ -103,11 +99,6 @@ public class TileEntityOrelyzer extends TileEntityInventoryBase implements ISide
             if (currentRecipeOutput == null || currentRecipeOutput.size() < 1) {
                 return false;
             }
-            Logger.debug("--------");
-            for (ItemStack is : currentRecipeOutput) {
-                Logger.debug("RecipeOutput: " + is.toString());
-            }
-            Logger.debug("--------");
         }
         if (getStackInSlot(2) == null || getStackInSlot(3) == null) {
             return true;

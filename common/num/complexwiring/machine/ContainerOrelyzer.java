@@ -4,12 +4,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntityFurnace;
 import num.complexwiring.client.SlotMachine;
 import num.complexwiring.client.SlotOutput;
 import num.complexwiring.recipe.RecipeManager;
-import num.complexwiring.world.ModuleWorld;
 
 public class ContainerOrelyzer extends Container {
     protected final TileEntityOrelyzer tile;
@@ -66,7 +65,7 @@ public class ContainerOrelyzer extends Container {
                     if (!mergeItemStack(slotIS, 0, 1, false)) {
                         return null;
                     }
-                } else if (slotIS.itemID == Item.coal.itemID) {
+                } else if (TileEntityFurnace.getItemBurnTime(slotIS) > 0) {
                     if (!mergeItemStack(slotIS, 1, 2, false)) {
                         return null;
                     }
