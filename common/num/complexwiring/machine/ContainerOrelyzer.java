@@ -55,15 +55,19 @@ public class ContainerOrelyzer extends Container {
             ItemStack slotIS = slot.getStack();
             is = slotIS.copy();
 
-            if (slotID == 2) {
+            if (slotID == 2 || slotID == 3) {
                 if (!mergeItemStack(slotIS, 4, 40, true)) {
                     return null;
                 }
                 slot.onSlotChange(slotIS, is);
-            } else if (slotID >= 3) {
+            } else if (slotID > 3) {
                 if (RecipeManager.get(slotIS) != null) {
                     if (!mergeItemStack(slotIS, 0, 1, false)) {
-                        return null;
+                        if (TileEntityFurnace.getItemBurnTime(slotIS) > 0) {
+                            if (!mergeItemStack(slotIS, 1, 2, false)) {
+                                return null;
+                            }
+                        }
                     }
                 } else if (TileEntityFurnace.getItemBurnTime(slotIS) > 0) {
                     if (!mergeItemStack(slotIS, 1, 2, false)) {

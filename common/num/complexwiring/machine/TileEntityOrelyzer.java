@@ -227,10 +227,11 @@ public class TileEntityOrelyzer extends TileEntityInventoryBase implements ISide
     }
 
     public int getBurnTimeScaled(int scale) {
-        if (machineBurnTime == 0 || !isBurning()) {
+        if (machineBurnTime == 0 || !isBurning() || currentFuelBurnTime == 0) {
             return 0;
         }
-        return machineBurnTime * scale / 200;
+        //FIXME: Rename fields & get somehow max fuelBurnTime
+        return (machineBurnTime * scale) / currentFuelBurnTime;
     }
 
     public boolean isBurning() {
