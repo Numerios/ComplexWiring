@@ -8,6 +8,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import num.complexwiring.client.SlotMachine;
 import num.complexwiring.client.SlotOutput;
+import num.complexwiring.recipe.RecipeManager;
 import num.complexwiring.world.ModuleWorld;
 
 public class ContainerOrelyzer extends Container {
@@ -61,7 +62,7 @@ public class ContainerOrelyzer extends Container {
                 }
                 slot.onSlotChange(slotIS, is);
             } else if (slotID >= 3) {
-                if (slotIS.itemID == ModuleWorld.orePrimary.blockID) {
+                if (RecipeManager.get(slotIS) != null) {
                     if (!mergeItemStack(slotIS, 0, 1, false)) {
                         return null;
                     }
