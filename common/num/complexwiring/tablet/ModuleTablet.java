@@ -2,10 +2,10 @@ package num.complexwiring.tablet;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.item.Item;
-import num.complexwiring.lib.ModuleBase;
+import num.complexwiring.lib.Module;
 import num.complexwiring.lib.Strings;
 
-public class ModuleTablet extends ModuleBase {
+public class ModuleTablet extends Module {
     public static Item itemTablet;
 
     @Override

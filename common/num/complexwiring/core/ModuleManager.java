@@ -1,6 +1,6 @@
 package num.complexwiring.core;
 
-import num.complexwiring.lib.ModuleBase;
+import num.complexwiring.lib.Module;
 import num.complexwiring.machine.ModuleMachine;
 import num.complexwiring.tablet.ModuleTablet;
 import num.complexwiring.world.ModuleWorld;
@@ -8,20 +8,20 @@ import num.complexwiring.world.ModuleWorld;
 import java.util.ArrayList;
 
 public class ModuleManager {
-    private static ArrayList<ModuleBase> modules = new ArrayList<ModuleBase>();
+    private static ArrayList<Module> modules = new ArrayList<Module>();
 
     public static void preInit() {
         modules.add(new ModuleTablet());
         modules.add(new ModuleWorld());
         modules.add(new ModuleMachine());
 
-        for (ModuleBase module : modules) {
+        for (Module module : modules) {
             module.preInit();
         }
     }
 
     public static void init() {
-        for (ModuleBase module : modules) {
+        for (Module module : modules) {
             module.init();
         }
     }

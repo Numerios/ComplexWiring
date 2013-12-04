@@ -1,6 +1,6 @@
 package num.complexwiring.lib;
 
-public abstract class ModuleBase {
+public abstract class Module {
     public void preInit() {
     }
 

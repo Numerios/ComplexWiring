@@ -4,12 +4,12 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import num.complexwiring.lib.ModuleBase;
+import num.complexwiring.lib.Module;
 import num.complexwiring.recipe.Recipe;
 import num.complexwiring.recipe.RecipeManager;
 import num.complexwiring.recipe.RecipeOutput;
 
-public class ModuleMachine extends ModuleBase {
+public class ModuleMachine extends Module {
     public static Block machine;
 
     @Override
