@@ -8,19 +8,24 @@ import num.complexwiring.lib.Reference;
 import num.complexwiring.lib.Strings;
 
 public enum EnumOreSecondary {
-    CHALCOPYRITE(Strings.ORE_CHALCOPYRITE_NAME, EnumOrePrimary.COPPER),
-    CASSITERITE(Strings.ORE_CASSITERITE_NAME, EnumOrePrimary.TIN),
-    ARGENTITE(Strings.ORE_ARGENTITE_NAME, EnumOrePrimary.SILVER);
+    CHALCOPYRITE(Strings.ORE_CHALCOPYRITE_NAME, "oreCopper"),
+    CASSITERITE(Strings.ORE_CASSITERITE_NAME, "oreTin"),
+    ARGENTITE(Strings.ORE_ARGENTITE_NAME, "oreSilver"),
+    GALENA(Strings.ORE_GALENA_NAME, "oreLead"),
+    LIGNITE(Strings.ORE_LIGNITE_NAME, "oreCoal"),
+    SUBBITUMINOUS(Strings.ORE_SUBBITUMINOUS_NAME, "oreCoal"),
+    BITUMINOUS(Strings.ORE_BITUMINOUS_NAME, "oreCoal"),
+    ANTHRACITE(Strings.ORE_ANTHRACITE_NAME, "oreCoal");
 
     public static final EnumOreSecondary[] VALID = values();
     public final String name;
-    public final EnumOrePrimary origin;
+    public final String origin;
     public final int meta = this.ordinal();
     public Icon icon;
 
-    EnumOreSecondary(String name, EnumOrePrimary origin) {
+    EnumOreSecondary(String name, String oreDictOrigin) {
         this.name = name;
-        this.origin = origin;
+        this.origin = oreDictOrigin;
     }
 
     public String getUnlocalizedName() {

@@ -2,7 +2,12 @@ package num.complexwiring.world;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import num.complexwiring.lib.Module;
+import num.complexwiring.recipe.Recipe;
+import num.complexwiring.recipe.RecipeManager;
+import num.complexwiring.recipe.RecipeOutput;
 
 public class ModuleWorld extends Module {
     public static Block orePrimary, oreSecondary;
@@ -34,6 +39,11 @@ public class ModuleWorld extends Module {
     }
 
     private void registerRecipes() {
-
+        RecipeManager.add(new Recipe(new ItemStack(Block.oreCoal),
+                new RecipeOutput(EnumOreSecondary.ANTHRACITE.getIS(1), 0.1F),
+                new RecipeOutput(EnumOreSecondary.BITUMINOUS.getIS(1), 0.45F),
+                new RecipeOutput(EnumOreSecondary.SUBBITUMINOUS.getIS(1), 0.75F),
+                new RecipeOutput(EnumOreSecondary.LIGNITE.getIS(1), 0.15F),
+                new RecipeOutput(new ItemStack(Item.coal, 1), 0.2F)));
     }
 }

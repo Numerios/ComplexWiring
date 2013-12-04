@@ -3,9 +3,16 @@ itemGroup.tabCW=Complex Wiring
 tile.complexwiring.world.ore.primary.copper.name=Měděná ruda
 tile.complexwiring.world.ore.primary.tin.name=Cínová ruda
 tile.complexwiring.world.ore.primary.silver.name=Stříbrná ruda
+tile.complexwiring.world.ore.primary.lead.name=Olověná ruda
+
 tile.complexwiring.world.ore.secondary.chalcopyrite.name=Chalkopyrit
 tile.complexwiring.world.ore.secondary.cassiterite.name=Kasiterit
 tile.complexwiring.world.ore.secondary.argentite.name=Argentit
+tile.complexwiring.world.ore.secondary.galena.name=Galenit
+tile.complexwiring.world.ore.secondary.lignite.name=Ruda lignitu
+tile.complexwiring.world.ore.secondary.subbituminous.name=Ruda hnědého uhlí
+tile.complexwiring.world.ore.secondary.bituminous.name=Ruda černého uhlí
+tile.complexwiring.world.ore.secondary.anthracite.name=Ruda antracitu
 
 tile.complexwiring.machine.orelyzer.name=Rudolyzér
 tile.complexwiring.machine.orelyzer.desc=Analyzuj své rudy!

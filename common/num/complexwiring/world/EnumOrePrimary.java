@@ -10,7 +10,9 @@ import num.complexwiring.lib.Strings;
 public enum EnumOrePrimary {
     COPPER(Strings.ORE_COPPER_NAME),
     TIN(Strings.ORE_TIN_NAME),
-    SILVER(Strings.ORE_SILVER_NAME);
+    SILVER(Strings.ORE_SILVER_NAME),
+    LEAD(Strings.ORE_LEAD_NAME);
+
     public static final EnumOrePrimary[] VALID = values();
     public final String name;
     public final int meta = this.ordinal();
