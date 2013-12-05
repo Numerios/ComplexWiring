@@ -5,9 +5,9 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import num.complexwiring.lib.Module;
-import num.complexwiring.recipe.Recipe;
+import num.complexwiring.api.recipe.OrelyzerRecipe;
 import num.complexwiring.recipe.RecipeManager;
-import num.complexwiring.recipe.RecipeOutput;
+import num.complexwiring.api.recipe.RecipeRandomOutput;
 
 public class ModuleWorld extends Module {
     public static Block orePrimary, oreSecondary;
@@ -39,11 +39,11 @@ public class ModuleWorld extends Module {
     }
 
     private void registerRecipes() {
-        RecipeManager.add(new Recipe(new ItemStack(Block.oreCoal), 150,
-                new RecipeOutput(EnumOreSecondary.ANTHRACITE.getIS(1), 0.1F),
-                new RecipeOutput(EnumOreSecondary.BITUMINOUS.getIS(1), 0.45F),
-                new RecipeOutput(EnumOreSecondary.SUBBITUMINOUS.getIS(1), 0.75F),
-                new RecipeOutput(EnumOreSecondary.LIGNITE.getIS(1), 0.15F),
-                new RecipeOutput(new ItemStack(Item.coal, 1), 0.2F)));
+        RecipeManager.add(new OrelyzerRecipe(new ItemStack(Block.oreCoal), 150,
+                new RecipeRandomOutput(EnumOreSecondary.ANTHRACITE.getIS(1), 0.1F),
+                new RecipeRandomOutput(EnumOreSecondary.BITUMINOUS.getIS(1), 0.45F),
+                new RecipeRandomOutput(EnumOreSecondary.SUBBITUMINOUS.getIS(1), 0.75F),
+                new RecipeRandomOutput(EnumOreSecondary.LIGNITE.getIS(1), 0.15F),
+                new RecipeRandomOutput(new ItemStack(Item.coal, 1), 0.2F)));
     }
 }

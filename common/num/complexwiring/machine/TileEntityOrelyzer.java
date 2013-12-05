@@ -10,7 +10,7 @@ import num.complexwiring.api.base.TileEntityInventoryBase;
 import num.complexwiring.api.vec.Vector3;
 import num.complexwiring.core.InventoryHelper;
 import num.complexwiring.core.PacketHandler;
-import num.complexwiring.recipe.Recipe;
+import num.complexwiring.api.recipe.OrelyzerRecipe;
 import num.complexwiring.recipe.RecipeManager;
 
 import java.io.DataInputStream;
@@ -28,7 +28,7 @@ public class TileEntityOrelyzer extends TileEntityInventoryBase implements ISide
     public int machineProcessTime = 0;
     Random rand = new Random();
     private int machineNeededProcessTime = 0;
-    private Recipe currentRecipe;
+    private OrelyzerRecipe currentRecipe;
     private ArrayList<ItemStack> currentRecipeOutput;
 
     public TileEntityOrelyzer() {

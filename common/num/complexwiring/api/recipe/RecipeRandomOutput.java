@@ -1,23 +1,24 @@
-package num.complexwiring.recipe;
+package num.complexwiring.api.recipe;
 
 import net.minecraft.item.ItemStack;
-import num.complexwiring.core.Logger;
 
 import java.util.Random;
 
-public class RecipeOutput {
+/**
+ * A base class for randomized output
+ */
+public class RecipeRandomOutput {
 
     private ItemStack output;
     private float chance;
 
-    public RecipeOutput(ItemStack output, float chance) {
+    public RecipeRandomOutput(ItemStack output, float chance) {
         this.output = output;
         this.chance = chance;
     }
 
     public boolean isOutputting(Random rand) {
         float f = rand.nextFloat();
-        Logger.debug("RAND: " + output.toString() + " rand: " + f + " |chance: " + chance);
         return chance >= f;
     }
 

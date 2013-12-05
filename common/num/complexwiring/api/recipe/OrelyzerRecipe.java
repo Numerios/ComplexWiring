@@ -1,4 +1,4 @@
-package num.complexwiring.recipe;
+package num.complexwiring.api.recipe;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
@@ -7,14 +7,14 @@ import num.complexwiring.core.Logger;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Recipe {
+public class OrelyzerRecipe {
 
     private final String oreDictionary;
     private ItemStack input;
-    private RecipeOutput[] outputs;
+    private RecipeRandomOutput[] outputs;
     private int neededPower;
 
-    public Recipe(ItemStack input, int neededPower, RecipeOutput... outputs) {
+    public OrelyzerRecipe(ItemStack input, int neededPower, RecipeRandomOutput... outputs) {
         this.input = input;
         this.outputs = outputs;
         this.neededPower = neededPower;
@@ -30,24 +30,24 @@ public class Recipe {
         return input;
     }
 
-    public int getNeededPower(){
+    public int getNeededPower() {
         Logger.debug("NEEDED POWER: " + neededPower);
         return neededPower;
     }
 
-    public RecipeOutput[] getOutputs() {
+    public RecipeRandomOutput[] getOutputs() {
         return outputs;
     }
 
-    public void setOutputs(RecipeOutput... outputs) {
+    public void setOutputs(RecipeRandomOutput... outputs) {
         this.outputs = outputs;
     }
 
     public ArrayList<ItemStack> getCompleteOutput(Random rand) {
         ArrayList<ItemStack> completeOutput = new ArrayList<ItemStack>();
-        for (RecipeOutput output : outputs) {
+        for (RecipeRandomOutput output : outputs) {
             float f = rand.nextFloat();
-            if (output.getChance() >= f){
+            if (output.getChance() >= f) {
                 completeOutput.add(output.getOutput().copy());
             }
         }

@@ -1,39 +1,40 @@
 package num.complexwiring.recipe;
 
 import net.minecraft.item.ItemStack;
+import num.complexwiring.api.recipe.OrelyzerRecipe;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class RecipeManager {
 
-    private static List<Recipe> recipes = new ArrayList<Recipe>();
+    private static List<OrelyzerRecipe> orelyzerRecipes = new ArrayList<OrelyzerRecipe>();
 
-    public static void add(Recipe recipe) {
-        recipes.add(recipe);
+    public static void add(OrelyzerRecipe orelyzerRecipe) {
+        orelyzerRecipes.add(orelyzerRecipe);
     }
 
-    public static Recipe get(ItemStack is) {
+    public static OrelyzerRecipe get(ItemStack is) {
         if (is != null) {
-            for (Recipe recipe : recipes) {
-                if (recipe.matches(is)) {
-                    return recipe;
+            for (OrelyzerRecipe orelyzerRecipe : orelyzerRecipes) {
+                if (orelyzerRecipe.matches(is)) {
+                    return orelyzerRecipe;
                 }
             }
         }
         return null;
     }
 
-    public static int toRecipeID(Recipe recipe) {
-        if (recipes.contains(recipe)) {
-            return recipes.indexOf(recipe);
+    public static int toRecipeID(OrelyzerRecipe recipe) {
+        if (orelyzerRecipes.contains(recipe)) {
+            return orelyzerRecipes.indexOf(recipe);
         }
         return -1;
     }
 
-    public static Recipe fromRecipeID(int ID) {
-        if (recipes.size() < ID) {
-            return recipes.get(ID);
+    public static OrelyzerRecipe fromRecipeID(int ID) {
+        if (orelyzerRecipes.size() < ID) {
+            return orelyzerRecipes.get(ID);
         }
         return null;
     }

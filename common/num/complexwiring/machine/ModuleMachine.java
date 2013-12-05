@@ -5,9 +5,9 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import num.complexwiring.lib.Module;
-import num.complexwiring.recipe.Recipe;
+import num.complexwiring.api.recipe.OrelyzerRecipe;
 import num.complexwiring.recipe.RecipeManager;
-import num.complexwiring.recipe.RecipeOutput;
+import num.complexwiring.api.recipe.RecipeRandomOutput;
 
 public class ModuleMachine extends Module {
     public static Block machine;
@@ -34,9 +34,9 @@ public class ModuleMachine extends Module {
     }
 
     private void registerRecipes() {
-        RecipeManager.add(new Recipe(new ItemStack(Block.wood, 1), 120,
-                new RecipeOutput(new ItemStack(Item.diamond, 1), 0.1F),
-                new RecipeOutput(new ItemStack(Item.stick, 2), 0.8F),
-                new RecipeOutput(new ItemStack(Item.stick, 1), 1F)));
+        RecipeManager.add(new OrelyzerRecipe(new ItemStack(Block.wood, 1), 120,
+                new RecipeRandomOutput(new ItemStack(Item.diamond, 1), 0.1F),
+                new RecipeRandomOutput(new ItemStack(Item.stick, 2), 0.8F),
+                new RecipeRandomOutput(new ItemStack(Item.stick, 1), 1F)));
     }
 }
