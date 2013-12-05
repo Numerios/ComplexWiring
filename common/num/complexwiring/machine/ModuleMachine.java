@@ -34,7 +34,7 @@ public class ModuleMachine extends Module {
     }
 
     private void registerRecipes() {
-        RecipeManager.add(new Recipe(new ItemStack(Block.wood, 1),
+        RecipeManager.add(new Recipe(new ItemStack(Block.wood, 1), 120,
                 new RecipeOutput(new ItemStack(Item.diamond, 1), 0.1F),
                 new RecipeOutput(new ItemStack(Item.stick, 2), 0.8F),
                 new RecipeOutput(new ItemStack(Item.stick, 1), 1F)));

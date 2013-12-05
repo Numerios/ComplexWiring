@@ -27,6 +27,7 @@ public class TileEntityOrelyzer extends TileEntityInventoryBase implements ISide
     public int machineBurnTime = 0;
     public int machineProcessTime = 0;
     Random rand = new Random();
+    private int machineNeededProcessTime = 0;
     private Recipe currentRecipe;
     private ArrayList<ItemStack> currentRecipeOutput;
 
@@ -59,12 +60,13 @@ public class TileEntityOrelyzer extends TileEntityInventoryBase implements ISide
             }
             if (isBurning() && processable) {
                 if (machineProcessTime == 0) {
-                    startProcess();
+                    initProcessing();
                 }
                 machineProcessTime++;
-                if (machineProcessTime == 100) {
+                machineNeededProcessTime = currentRecipe.getNeededPower();
+                if (machineProcessTime == machineNeededProcessTime) {
                     machineProcessTime = 0;
-                    endProcess();
+                    endProcessing();
                 }
             } else {
                 machineProcessTime = 0;
@@ -82,7 +84,7 @@ public class TileEntityOrelyzer extends TileEntityInventoryBase implements ISide
 
     private int getFuelBurnTime(ItemStack is) {
         if (is != null) {
-            return TileEntityFurnace.getItemBurnTime(is)/4;
+            return TileEntityFurnace.getItemBurnTime(is) / 4;
         }
         return 0;
     }
@@ -120,7 +122,7 @@ public class TileEntityOrelyzer extends TileEntityInventoryBase implements ISide
         return true;
     }
 
-    public void startProcess() {
+    public void initProcessing() {
         if (canProcess() && getStackInSlot(0) != null) {
             inventory[0].stackSize--;
 
@@ -130,7 +132,7 @@ public class TileEntityOrelyzer extends TileEntityInventoryBase implements ISide
         }
     }
 
-    public void endProcess() {
+    public void endProcessing() {
         if (currentRecipeOutput != null && currentRecipeOutput.size() > 0) {
             for (ItemStack output : currentRecipeOutput) {
                 if (output != null && output.stackSize != 0) {
@@ -220,10 +222,10 @@ public class TileEntityOrelyzer extends TileEntityInventoryBase implements ISide
     }
 
     public int getProcessedTimeScaled(int scale) {
-        if (machineProcessTime == 0) {
+        if (machineProcessTime == 0 || machineNeededProcessTime == 0) {
             return 0;
         }
-        return machineProcessTime * scale / 100;
+        return machineProcessTime * scale / machineNeededProcessTime;
     }
 
     public int getBurnTimeScaled(int scale) {
