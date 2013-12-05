@@ -1,16 +1,16 @@
-package num.complexwiring.machine;
+package num.complexwiring.machine.basic;
 
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import num.complexwiring.ComplexWiring;
 import num.complexwiring.api.base.GuiInventoryBase;
 
-public class GuiMachineOrelyzer extends GuiInventoryBase {
+public class GuiBasicMachineOrelyzer extends GuiInventoryBase {
 
-    private TileEntityOrelyzer tile;
+    private TileEntityBasicOrelyzer tile;
 
-    public GuiMachineOrelyzer(InventoryPlayer player, TileEntityOrelyzer tile) {
-        super(player, tile, new ResourceLocation("complexwiring", "textures/gui/" + EnumMachine.ORELYZER.getUnlocalizedName() + ".png"));
+    public GuiBasicMachineOrelyzer(InventoryPlayer player, TileEntityBasicOrelyzer tile) {
+        super(player, tile, new ResourceLocation("complexwiring", "textures/gui/" + EnumBasicMachine.ORELYZER.getUnlocalizedName() + ".png"));
         this.tile = tile;
     }
 

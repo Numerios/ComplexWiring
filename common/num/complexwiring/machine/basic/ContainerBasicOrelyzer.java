@@ -1,4 +1,4 @@
-package num.complexwiring.machine;
+package num.complexwiring.machine.basic;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -10,10 +10,10 @@ import num.complexwiring.client.SlotMachine;
 import num.complexwiring.client.SlotOutput;
 import num.complexwiring.recipe.RecipeManager;
 
-public class ContainerOrelyzer extends Container {
-    protected final TileEntityOrelyzer tile;
+public class ContainerBasicOrelyzer extends Container {
+    protected final TileEntityBasicOrelyzer tile;
 
-    public ContainerOrelyzer(InventoryPlayer playerInv, TileEntityOrelyzer tile) {
+    public ContainerBasicOrelyzer(InventoryPlayer playerInv, TileEntityBasicOrelyzer tile) {
         this.tile = tile;
 
         addSlotToContainer(new SlotMachine(tile, 0, 56, 17));   // ore input

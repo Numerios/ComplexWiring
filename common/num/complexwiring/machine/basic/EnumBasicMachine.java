@@ -1,4 +1,4 @@
-package num.complexwiring.machine;
+package num.complexwiring.machine.basic;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -7,24 +7,25 @@ import net.minecraft.util.Icon;
 import num.complexwiring.api.base.TileEntityInventoryBase;
 import num.complexwiring.lib.Reference;
 import num.complexwiring.lib.Strings;
+import num.complexwiring.machine.ModuleMachine;
 
-public enum EnumMachine {
-    ORELYZER(Strings.MACHINE_ORELYZER_NAME, Strings.MACHINE_ORELYZER_DESC, TileEntityOrelyzer.class);
-    public static final EnumMachine[] VALID = values();
+public enum EnumBasicMachine {
+    ORELYZER(Strings.MACHINE_BASIC_ORELYZER_NAME, Strings.MACHINE_BASIC_ORELYZER_DESC, TileEntityBasicOrelyzer.class);
+    public static final EnumBasicMachine[] VALID = values();
     public final String name, desc;
     public final Class<? extends TileEntityInventoryBase> tile;
     public final int meta = this.ordinal();
     public Icon icon;
 
-    EnumMachine(String name, String desc, Class<? extends TileEntityInventoryBase> tile) {
+    EnumBasicMachine(String name, String desc, Class<? extends TileEntityInventoryBase> tile) {
         this.name = name;
         this.desc = desc;
         this.tile = tile;
     }
 
     public String getUnlocalizedName() {
-        // removes the "machine" from the name and makes it lowercase (ex. machineBasic -> machine)
-        return name.toLowerCase().substring(7);
+        // removes the "machine" and "Basic" from the name and makes it lowercase (ex. machineBasic -> machine)
+        return name.toLowerCase().substring(7+5);
     }
 
     public void registerIcon(IconRegister ir) {
@@ -32,14 +33,14 @@ public enum EnumMachine {
     }
 
     public ItemStack getIS(int amount) {
-        return new ItemStack(ModuleMachine.machine, amount, meta);
+        return new ItemStack(ModuleMachine.machineBasic, amount, meta);
     }
 
     public void registerTile() {
-        GameRegistry.registerTileEntity(this.tile, this.getUnlocalizedName());
+        GameRegistry.registerTileEntity(this.tile, "basic." + this.getUnlocalizedName());
     }
 
     public String getFullUnlocalizedName() {
-        return ModuleMachine.machine.getUnlocalizedName() + "." + this.getUnlocalizedName();
+        return ModuleMachine.machineBasic.getUnlocalizedName() + "." + this.getUnlocalizedName();
     }
 }

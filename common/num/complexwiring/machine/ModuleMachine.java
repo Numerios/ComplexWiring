@@ -5,12 +5,16 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import num.complexwiring.lib.Module;
+import num.complexwiring.machine.basic.BlockBasicMachine;
+import num.complexwiring.machine.basic.ItemBlockBasicMachine;
+import num.complexwiring.machine.powered.BlockPoweredMachine;
+import num.complexwiring.machine.powered.ItemBlockPoweredMachine;
 import num.complexwiring.recipe.OrelyzerRecipe;
 import num.complexwiring.recipe.RecipeManager;
 import num.complexwiring.api.recipe.RecipeRandomOutput;
 
 public class ModuleMachine extends Module {
-    public static Block machine;
+    public static Block machineBasic, machinePowered;
 
     @Override
     public void preInit() {
@@ -24,9 +28,13 @@ public class ModuleMachine extends Module {
     }
 
     private void registerBlocks() {
-        machine = new BlockMachine(669);
-        GameRegistry.registerBlock(machine, ItemBlockMachine.class, machine.getUnlocalizedName());
-        ((BlockMachine) machine).registerTiles();
+        machineBasic = new BlockBasicMachine(669);
+        GameRegistry.registerBlock(machineBasic, ItemBlockBasicMachine.class, machineBasic.getUnlocalizedName());
+        ((BlockBasicMachine) machineBasic).registerTiles();
+
+        machinePowered = new BlockPoweredMachine(670);
+        GameRegistry.registerBlock(machinePowered, ItemBlockPoweredMachine.class, machinePowered.getUnlocalizedName());
+        ((BlockPoweredMachine) machinePowered).registerTiles();
     }
 
     private void registerItems() {

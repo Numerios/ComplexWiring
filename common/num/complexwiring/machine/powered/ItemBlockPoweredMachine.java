@@ -1,15 +1,16 @@
-package num.complexwiring.machine;
+package num.complexwiring.machine.powered;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import num.complexwiring.machine.ModuleMachine;
 
 import java.util.List;
 
-public class ItemBlockMachine extends ItemBlock {
-    public ItemBlockMachine(int ID) {
+public class ItemBlockPoweredMachine extends ItemBlock {
+    public ItemBlockPoweredMachine(int ID) {
         super(ID);
         setHasSubtypes(true);
         setMaxDamage(0);
@@ -22,12 +23,13 @@ public class ItemBlockMachine extends ItemBlock {
 
     @Override
     public String getUnlocalizedName(ItemStack is) {
-        return ModuleMachine.machine.getUnlocalizedName() + "." + EnumMachine.VALID[is.getItemDamage()].getUnlocalizedName();
+        return ModuleMachine.machinePowered.getUnlocalizedName() + "." + EnumPoweredMachine.VALID[is.getItemDamage()].getUnlocalizedName();
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack is, EntityPlayer player, List list, boolean bool) {
-        list.add(EnumMachine.VALID[is.getItemDamage()].desc);
+        list.add(EnumPoweredMachine.VALID[is.getItemDamage()].desc);
     }
+
 }

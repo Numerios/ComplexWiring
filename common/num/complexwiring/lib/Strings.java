@@ -17,8 +17,11 @@ public class Strings {
     public static final String ORE_BITUMINOUS_NAME = "oreBituminous";
     public static final String ORE_ANTHRACITE_NAME = "oreAnthracite";
 
-    public static final String MACHINE_ORELYZER_NAME = "machineOrelyzer";
-    public static final String MACHINE_ORELYZER_DESC = StatCollector.translateToLocal("tile.complexwiring.machine.orelyzer.desc");   //TODO MAKE THIS PRETTIER
+    public static final String MACHINE_BASIC_ORELYZER_NAME = "machineBasicOrelyzer";
+    public static final String MACHINE_BASIC_ORELYZER_DESC = StatCollector.translateToLocal("tile.complexwiring.machine.basic.orelyzer.desc");   //TODO MAKE THIS PRETTIER
+
+    public static final String MACHINE_POWERED_ORELYZER_NAME = "machinePoweredOrelyzer";
+    public static final String MACHINE_POWERED_ORELYZER_DESC = StatCollector.translateToLocal("tile.complexwiring.machine.powered.orelyzer.desc");   //TODO MAKE THIS PRETTIER
 
     public static final String TABLET_NAME = "tablet";
 }

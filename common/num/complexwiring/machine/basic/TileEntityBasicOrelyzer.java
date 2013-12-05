@@ -1,4 +1,4 @@
-package num.complexwiring.machine;
+package num.complexwiring.machine.basic;
 
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class TileEntityOrelyzer extends TileEntityInventoryBase implements ISidedInventory {
+public class TileEntityBasicOrelyzer extends TileEntityInventoryBase implements ISidedInventory {
     private static final int[] SLOTS_OUTPUT = new int[]{2, 3};
     private static final int[] SLOTS_TOP = new int[]{0};
     private static final int[] SLOTS_BOTTOM = new int[]{2, 3, 1};
@@ -31,8 +31,8 @@ public class TileEntityOrelyzer extends TileEntityInventoryBase implements ISide
     private OrelyzerRecipe currentRecipe;
     private ArrayList<ItemStack> currentRecipeOutput;
 
-    public TileEntityOrelyzer() {
-        super(4, EnumMachine.ORELYZER.getFullUnlocalizedName());
+    public TileEntityBasicOrelyzer() {
+        super(4, EnumBasicMachine.ORELYZER.getFullUnlocalizedName());
         currentRecipeOutput = new ArrayList<ItemStack>();
     }
 
@@ -199,7 +199,7 @@ public class TileEntityOrelyzer extends TileEntityInventoryBase implements ISide
 
     @Override
     public Packet getDescriptionPacket() {
-        return PacketHandler.getPacket(this, EnumMachine.ORELYZER.ordinal());
+        return PacketHandler.getPacket(this, EnumBasicMachine.ORELYZER.ordinal());
     }
 
     @Override

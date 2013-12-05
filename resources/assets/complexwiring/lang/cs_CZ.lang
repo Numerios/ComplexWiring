@@ -14,7 +14,10 @@ tile.complexwiring.world.ore.secondary.subbituminous.name=Ruda hnědého uhlí
 tile.complexwiring.world.ore.secondary.bituminous.name=Ruda černého uhlí
 tile.complexwiring.world.ore.secondary.anthracite.name=Ruda antracitu
 
-tile.complexwiring.machine.orelyzer.name=Rudolyzér
-tile.complexwiring.machine.orelyzer.desc=Analyzuj své rudy!
+tile.complexwiring.machine.basic.orelyzer.name=Základní rudolyzér
+tile.complexwiring.machine.basic.orelyzer.desc=Analyzuj své rudy!
+
+tile.complexwiring.machine.powered.orelyzer.name=Napájený rudolyzér
+tile.complexwiring.machine.powered.orelyzer.desc=Analyzuj své rudy s MJ!
 
 item.complexwiring.tablet.name=Tablet
