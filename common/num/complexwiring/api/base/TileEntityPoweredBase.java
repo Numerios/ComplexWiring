@@ -2,17 +2,18 @@ package num.complexwiring.api.base;
 
 import buildcraft.api.power.IPowerReceptor;
 import buildcraft.api.power.PowerHandler;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 
-public class TileEntityPoweredBase extends TileEntityInventoryBase implements IPowerReceptor {
-    protected PowerHandler powerHandler;
+public abstract class TileEntityPoweredBase extends TileEntityInventoryBase implements IPowerReceptor {
     protected static final int MIN_ENERGY = 0;
     protected static final int MAX_ENERGY = 2;
     protected static final int MIN_ACTIVATION_ENERGY = 0;
     protected static final int MAX_STORED_ENERGY = 2000;
-    protected float storedEnergy;
     protected static final PowerHandler.Type type = PowerHandler.Type.MACHINE;
+    protected PowerHandler powerHandler;
+    protected float storedEnergy;
 
     public TileEntityPoweredBase(int inventorySize, String name) {
         super(inventorySize, name);
@@ -46,11 +47,24 @@ public class TileEntityPoweredBase extends TileEntityInventoryBase implements IP
         return worldObj;
     }
 
-    protected PowerHandler createPowerHandler(PowerHandler.Type type){
+    protected PowerHandler createPowerHandler(PowerHandler.Type type) {
         PowerHandler powerHandler = new PowerHandler(this, type);
         powerHandler.configure(MIN_ENERGY, MAX_ENERGY, MIN_ACTIVATION_ENERGY, MAX_STORED_ENERGY);
-        powerHandler.configurePowerPerdition(0,0);
+        powerHandler.configurePowerPerdition(0, 0);
         powerHandler.setPerdition(new PowerHandler.PerditionCalculator(0F));
         return powerHandler;
+    }
+
+    @Override
+    public void writeToNBT(NBTTagCompound nbt) {
+        super.writeToNBT(nbt);
+        nbt.setFloat("storedEnergy", powerHandler.getEnergyStored());
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound nbt) {
+        super.readFromNBT(nbt);
+        powerHandler.setEnergy(nbt.getFloat("storedEnergy"));
+        storedEnergy = nbt.getFloat("storedEnergy");
     }
 }

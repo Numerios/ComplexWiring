@@ -1,12 +1,14 @@
 package num.complexwiring.machine.powered;
 
+import net.minecraft.block.Block;
 import net.minecraft.inventory.ISidedInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.packet.Packet;
-import net.minecraft.tileentity.TileEntityFurnace;
-import num.complexwiring.api.base.TileEntityInventoryBase;
+import num.complexwiring.api.base.TileEntityPoweredBase;
+import num.complexwiring.api.recipe.RecipeRandomOutput;
 import num.complexwiring.api.vec.Vector3;
 import num.complexwiring.core.InventoryHelper;
 import num.complexwiring.core.PacketHandler;
@@ -18,13 +20,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class TileEntityPoweredOrelyzer extends TileEntityInventoryBase implements ISidedInventory {
+public class TileEntityPoweredOrelyzer extends TileEntityPoweredBase implements ISidedInventory {
     private static final int[] SLOTS_OUTPUT = new int[]{2, 3};
     private static final int[] SLOTS_TOP = new int[]{0};
     private static final int[] SLOTS_BOTTOM = new int[]{2, 3, 1};
     private static final int[] SLOTS_SIDE = new int[]{1};
-    public int currentFuelBurnTime = 0;
-    public int machineBurnTime = 0;
     public int machineProcessTime = 0;
     Random rand = new Random();
     private int machineNeededProcessTime = 0;
@@ -33,35 +33,31 @@ public class TileEntityPoweredOrelyzer extends TileEntityInventoryBase implement
 
     public TileEntityPoweredOrelyzer() {
         super(4, EnumPoweredMachine.ORELYZER.getFullUnlocalizedName());
+    }
+
+    @Override
+    public void setup() {
+        super.setup();
         currentRecipeOutput = new ArrayList<ItemStack>();
+        currentRecipe = new OrelyzerRecipe(new ItemStack(Block.wood, 1), 120,
+                new RecipeRandomOutput(new ItemStack(Item.diamond, 1), 0.1F),
+                new RecipeRandomOutput(new ItemStack(Item.stick, 2), 0.8F),
+                new RecipeRandomOutput(new ItemStack(Item.stick, 1), 1F));
     }
 
     @Override
     public void update() {
         super.update();
 
-        if (machineBurnTime > 0) {
-            machineBurnTime--;
-        }
         if (worldObj.isRemote) {
         }
         if (!worldObj.isRemote) {
             boolean processable = canProcess();
-            if (machineBurnTime == 0 && processable) {
-                currentFuelBurnTime = machineBurnTime = getFuelBurnTime(getStackInSlot(1));
-                if (machineBurnTime > 0) {
-                    if (getStackInSlot(1) != null) {
-                        inventory[1].stackSize--;
-                        if (getStackInSlot(1).stackSize == 0) {
-                            inventory[1] = inventory[1].getItem().getContainerItemStack(inventory[1]);
-                        }
-                    }
-                }
-            }
-            if (isBurning() && processable) {
+            if (isPowered() && processable) {
                 if (machineProcessTime == 0) {
                     initProcessing();
                 }
+                powerHandler.useEnergy(0, MIN_ENERGY, true);
                 machineProcessTime++;
                 machineNeededProcessTime = currentRecipe.getNeededPower();
                 if (machineProcessTime == machineNeededProcessTime) {
@@ -80,13 +76,6 @@ public class TileEntityPoweredOrelyzer extends TileEntityInventoryBase implement
         //TODO: DO NOT LOAD IT ALL THE TIME!
         worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
         onInventoryChanged();
-    }
-
-    private int getFuelBurnTime(ItemStack is) {
-        if (is != null) {
-            return TileEntityFurnace.getItemBurnTime(is) / 4;
-        }
-        return 0;
     }
 
     private boolean canProcess() {
@@ -161,7 +150,6 @@ public class TileEntityPoweredOrelyzer extends TileEntityInventoryBase implement
     public void writeToNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);
 
-        nbt.setShort("burnTime", (short) machineBurnTime);
         nbt.setShort("processTime", (short) machineProcessTime);
         if (currentRecipe != null) {
             nbt.setInteger("currentRecipe", RecipeManager.toRecipeID(currentRecipe));
@@ -183,11 +171,8 @@ public class TileEntityPoweredOrelyzer extends TileEntityInventoryBase implement
     public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);
 
-        machineBurnTime = nbt.getShort("burnTime");
         machineProcessTime = nbt.getShort("processTime");
         currentRecipe = RecipeManager.fromRecipeID(nbt.getInteger("currentRecipe"));
-
-        currentFuelBurnTime = getFuelBurnTime(getStackInSlot(1));
 
         currentRecipeOutput.clear();
         NBTTagList outputNBT = nbt.getTagList("currentOutput");
@@ -228,15 +213,17 @@ public class TileEntityPoweredOrelyzer extends TileEntityInventoryBase implement
         return machineProcessTime * scale / machineNeededProcessTime;
     }
 
-    public int getBurnTimeScaled(int scale) {
-        if (machineBurnTime == 0 || !isBurning() || currentFuelBurnTime == 0) {
+    public int getEnergyScaled(int scale) {
+        if (storedEnergy == 0 || !isPowered()) {
             return 0;
         }
-        //FIXME: Rename fields & get somehow max fuelBurnTime
-        return (machineBurnTime * scale) / currentFuelBurnTime;
+        return (int) storedEnergy * scale / MAX_ENERGY;
     }
 
-    public boolean isBurning() {
-        return machineBurnTime > 0;
+    public boolean isPowered() {
+        if (currentRecipe.getNeededPower() == 0){
+            return false;
+        }
+        return MIN_ENERGY * currentRecipe.getNeededPower() >= storedEnergy;
     }
 }

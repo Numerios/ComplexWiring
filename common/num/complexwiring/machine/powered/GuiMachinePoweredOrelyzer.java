@@ -1,23 +1,22 @@
-package num.complexwiring.api.base;
+package num.complexwiring.machine.powered;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
-import num.complexwiring.machine.basic.ContainerMachineBasicOrelyzer;
-import num.complexwiring.machine.basic.TileEntityBasicOrelyzer;
+import num.complexwiring.api.base.TileEntityInventoryBase;
+import num.complexwiring.machine.basic.EnumBasicMachine;
 import org.lwjgl.opengl.GL11;
 
-public abstract class GuiInventoryBase extends GuiContainer {
-
+public class GuiMachinePoweredOrelyzer extends GuiContainer{
+    //FIXME: EXTEND ME ON GUIINVBASE
     protected InventoryPlayer playerInv;
-    protected final ResourceLocation texture;
+    protected final ResourceLocation texture = new ResourceLocation("complexwiring", "textures/gui/" + EnumBasicMachine.ORELYZER.getUnlocalizedName() + ".png");
     protected TileEntityInventoryBase tile;
 
-    public GuiInventoryBase(InventoryPlayer player, TileEntityInventoryBase tile, ResourceLocation texture) {
-        super(new ContainerMachineBasicOrelyzer(player, (TileEntityBasicOrelyzer) tile)); //TODO: mby some BaseContainer?
+    public GuiMachinePoweredOrelyzer(InventoryPlayer player, TileEntityInventoryBase tile) {
+        super(new ContainerMachinePoweredOrelyzer(player, (TileEntityPoweredOrelyzer) tile));
         playerInv = player;
         this.tile = tile;
-        this.texture = texture;
     }
 
 
