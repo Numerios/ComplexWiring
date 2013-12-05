@@ -1,7 +1,6 @@
 package num.complexwiring.recipe;
 
 import net.minecraft.item.ItemStack;
-import num.complexwiring.api.recipe.OrelyzerRecipe;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -5,7 +5,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import num.complexwiring.lib.Module;
-import num.complexwiring.api.recipe.OrelyzerRecipe;
+import num.complexwiring.recipe.OrelyzerRecipe;
 import num.complexwiring.recipe.RecipeManager;
 import num.complexwiring.api.recipe.RecipeRandomOutput;
 
