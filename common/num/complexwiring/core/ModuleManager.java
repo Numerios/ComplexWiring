@@ -1,5 +1,6 @@
 package num.complexwiring.core;
 
+import num.complexwiring.base.ModuleIngot;
 import num.complexwiring.lib.Module;
 import num.complexwiring.machine.ModuleMachine;
 import num.complexwiring.tablet.ModuleTablet;
@@ -11,6 +12,7 @@ public class ModuleManager {
     private static ArrayList<Module> modules = new ArrayList<Module>();
 
     public static void preInit() {
+        modules.add(new ModuleIngot());
         modules.add(new ModuleTablet());
         modules.add(new ModuleWorld());
         modules.add(new ModuleMachine());

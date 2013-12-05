@@ -17,6 +17,11 @@ public class Strings {
     public static final String ORE_BITUMINOUS_NAME = "oreBituminous";
     public static final String ORE_ANTHRACITE_NAME = "oreAnthracite";
 
+    public static final String INGOT_COPPER_NAME = "ingotCopper";
+    public static final String INGOT_TIN_NAME = "ingotTin";
+    public static final String INGOT_SILVER_NAME = "ingotSilver";
+    public static final String INGOT_LEAD_NAME = "ingotLead";
+
     public static final String MACHINE_ORELYZER_NAME = "machineOrelyzer";
     public static final String MACHINE_ORELYZER_DESC = StatCollector.translateToLocal("tile.complexwiring.machine.orelyzer.desc");   //TODO MAKE THIS PRETTIER
 
