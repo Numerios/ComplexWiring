@@ -14,8 +14,11 @@ tile.complexwiring.world.ore.secondary.subbituminous.name=Sub-Bituminous Ore
 tile.complexwiring.world.ore.secondary.bituminous.name=Bituminous Ore
 tile.complexwiring.world.ore.secondary.anthracite.name=Anthracite Ore
 
-tile.complexwiring.machine.orelyzer.name=Orelyzer
-tile.complexwiring.machine.orelyzer.desc=Analyze your ores!
+tile.complexwiring.machine.basic.orelyzer.name=Basic Orelyzer
+tile.complexwiring.machine.basic.orelyzer.desc=Analyze your ores!
+
+tile.complexwiring.machine.powered.orelyzer.name=Powered Orelyzer
+tile.complexwiring.machine.powered.orelyzer.desc=Analyze your with MJ!
 
 item.complexwiring.base.ingot.copper.name=Copper Ingot
 item.complexwiring.base.ingot.tin.name=Tin Ingot

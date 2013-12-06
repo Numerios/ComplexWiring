@@ -17,6 +17,7 @@ public class Strings {
     public static final String ORE_BITUMINOUS_NAME = "oreBituminous";
     public static final String ORE_ANTHRACITE_NAME = "oreAnthracite";
 
+<<<<<<< HEAD
     public static final String INGOT_COPPER_NAME = "ingotCopper";
     public static final String INGOT_TIN_NAME = "ingotTin";
     public static final String INGOT_SILVER_NAME = "ingotSilver";
@@ -24,6 +25,13 @@ public class Strings {
 
     public static final String MACHINE_ORELYZER_NAME = "machineOrelyzer";
     public static final String MACHINE_ORELYZER_DESC = StatCollector.translateToLocal("tile.complexwiring.machine.orelyzer.desc");   //TODO MAKE THIS PRETTIER
+=======
+    public static final String MACHINE_BASIC_ORELYZER_NAME = "machineBasicOrelyzer";
+    public static final String MACHINE_BASIC_ORELYZER_DESC = StatCollector.translateToLocal("tile.complexwiring.machine.basic.orelyzer.desc");   //TODO MAKE THIS PRETTIER
+
+    public static final String MACHINE_POWERED_ORELYZER_NAME = "machinePoweredOrelyzer";
+    public static final String MACHINE_POWERED_ORELYZER_DESC = StatCollector.translateToLocal("tile.complexwiring.machine.powered.orelyzer.desc");   //TODO MAKE THIS PRETTIER
+>>>>>>> powered
 
     public static final String TABLET_NAME = "tablet";
 }

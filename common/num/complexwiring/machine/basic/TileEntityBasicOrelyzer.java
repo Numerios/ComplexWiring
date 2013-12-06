@@ -1,4 +1,4 @@
-package num.complexwiring.machine;
+package num.complexwiring.machine.basic;
 
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class TileEntityOrelyzer extends TileEntityInventoryBase implements ISidedInventory {
+public class TileEntityBasicOrelyzer extends TileEntityInventoryBase implements ISidedInventory {
     private static final int[] SLOTS_OUTPUT = new int[]{2, 3};
     private static final int[] SLOTS_TOP = new int[]{0};
     private static final int[] SLOTS_BOTTOM = new int[]{2, 3, 1};
@@ -31,8 +31,8 @@ public class TileEntityOrelyzer extends TileEntityInventoryBase implements ISide
     private OrelyzerRecipe currentRecipe;
     private ArrayList<ItemStack> currentRecipeOutput;
 
-    public TileEntityOrelyzer() {
-        super(4, EnumMachine.ORELYZER.getFullUnlocalizedName());
+    public TileEntityBasicOrelyzer() {
+        super(4, EnumBasicMachine.ORELYZER.getFullUnlocalizedName());
         currentRecipeOutput = new ArrayList<ItemStack>();
     }
 
@@ -63,13 +63,13 @@ public class TileEntityOrelyzer extends TileEntityInventoryBase implements ISide
                     initProcessing();
                 }
                 machineProcessTime++;
-                machineNeededProcessTime = currentRecipe.getNeededPower();
                 if (machineProcessTime == machineNeededProcessTime) {
                     machineProcessTime = 0;
                     endProcessing();
                 }
             } else {
                 machineProcessTime = 0;
+                machineNeededProcessTime = 0;
                 /*currentRecipe = null;           //TODO NULL WHEN POWER GOES OUT
                 currentRecipeOutput = null;*/
             }
@@ -84,7 +84,7 @@ public class TileEntityOrelyzer extends TileEntityInventoryBase implements ISide
 
     private int getFuelBurnTime(ItemStack is) {
         if (is != null) {
-            return TileEntityFurnace.getItemBurnTime(is) / 4;
+            return TileEntityFurnace.getItemBurnTime(is) / 8;
         }
         return 0;
     }
@@ -97,6 +97,7 @@ public class TileEntityOrelyzer extends TileEntityInventoryBase implements ISide
                 currentRecipe = RecipeManager.get(getStackInSlot(0));
             }
 
+            machineNeededProcessTime = currentRecipe.getNeededPower();
             currentRecipeOutput = currentRecipe.getCompleteOutput(rand);
             if (currentRecipeOutput == null || currentRecipeOutput.size() < 1) {
                 return false;
@@ -155,6 +156,7 @@ public class TileEntityOrelyzer extends TileEntityInventoryBase implements ISide
         }
         currentRecipe = null;
         currentRecipeOutput.clear();
+        machineNeededProcessTime = 0;
     }
 
     @Override
@@ -163,6 +165,8 @@ public class TileEntityOrelyzer extends TileEntityInventoryBase implements ISide
 
         nbt.setShort("burnTime", (short) machineBurnTime);
         nbt.setShort("processTime", (short) machineProcessTime);
+        nbt.setShort("machineNeededProcessTime", (short) machineNeededProcessTime);
+
         if (currentRecipe != null) {
             nbt.setInteger("currentRecipe", RecipeManager.toRecipeID(currentRecipe));
         }
@@ -185,6 +189,8 @@ public class TileEntityOrelyzer extends TileEntityInventoryBase implements ISide
 
         machineBurnTime = nbt.getShort("burnTime");
         machineProcessTime = nbt.getShort("processTime");
+        machineNeededProcessTime = nbt.getShort("machineNeededProcessTime");
+
         currentRecipe = RecipeManager.fromRecipeID(nbt.getInteger("currentRecipe"));
 
         currentFuelBurnTime = getFuelBurnTime(getStackInSlot(1));
@@ -199,7 +205,7 @@ public class TileEntityOrelyzer extends TileEntityInventoryBase implements ISide
 
     @Override
     public Packet getDescriptionPacket() {
-        return PacketHandler.getPacket(this, EnumMachine.ORELYZER.ordinal());
+        return PacketHandler.getPacket(this, EnumBasicMachine.ORELYZER.ordinal());
     }
 
     @Override

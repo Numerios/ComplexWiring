@@ -1,4 +1,4 @@
-package num.complexwiring.machine;
+package num.complexwiring.machine.basic;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
@@ -16,10 +16,10 @@ import num.complexwiring.lib.Reference;
 
 import java.util.List;
 
-public class BlockMachine extends Block implements ITileEntityProvider {
-    public BlockMachine(int ID) {
+public class BlockBasicMachine extends Block implements ITileEntityProvider {
+    public BlockBasicMachine(int ID) {
         super(ID, Material.iron);
-        setUnlocalizedName(Reference.MOD_ID.toLowerCase() + ".machine");
+        setUnlocalizedName(Reference.MOD_ID.toLowerCase() + ".machine.basic");
         setHardness(3.0F);
         setResistance(3.0F);
         setCreativeTab(ComplexWiring.tabCW);
@@ -35,7 +35,7 @@ public class BlockMachine extends Block implements ITileEntityProvider {
     public TileEntity createTileEntity(World world, int meta) {
         switch (meta) {
             case 0: {    //TODO: Make it a little more flexible
-                return new TileEntityOrelyzer();
+                return new TileEntityBasicOrelyzer();
             }
         }
         return null;
@@ -65,25 +65,25 @@ public class BlockMachine extends Block implements ITileEntityProvider {
 
     @Override
     public Icon getIcon(int side, int meta) {
-        return EnumMachine.VALID[meta].icon;
+        return EnumBasicMachine.VALID[meta].icon;
     }
 
     @Override
     public void registerIcons(IconRegister ir) {
-        for (EnumMachine machine : EnumMachine.VALID) {
+        for (EnumBasicMachine machine : EnumBasicMachine.VALID) {
             machine.registerIcon(ir);
         }
     }
 
     @Override
     public void getSubBlocks(int ID, CreativeTabs tab, List list) {
-        for (EnumMachine machine : EnumMachine.VALID) {
+        for (EnumBasicMachine machine : EnumBasicMachine.VALID) {
             list.add(machine.getIS(1));
         }
     }
 
     public void registerTiles() {
-        for (EnumMachine machine : EnumMachine.VALID) {
+        for (EnumBasicMachine machine : EnumBasicMachine.VALID) {
             machine.registerTile();
         }
     }
