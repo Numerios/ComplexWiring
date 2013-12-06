@@ -17,6 +17,11 @@ tile.complexwiring.world.ore.secondary.anthracite.name=Anthracite Ore
 tile.complexwiring.machine.orelyzer.name=Orelyzer
 tile.complexwiring.machine.orelyzer.desc=Analyze your ores!
 
+item.complexwiring.base.ingot.copper.name=Copper Ingot
+item.complexwiring.base.ingot.tin.name=Tin Ingot
+item.complexwiring.base.ingot.silver.name=Silver Ingot
+item.complexwiring.base.ingot.lead.name=Lead Ingot
+
 item.complexwiring.tablet.name=Tablet
 
 

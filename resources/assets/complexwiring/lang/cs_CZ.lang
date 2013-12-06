@@ -17,4 +17,9 @@ tile.complexwiring.world.ore.secondary.anthracite.name=Ruda antracitu
 tile.complexwiring.machine.orelyzer.name=Rudolyzér
 tile.complexwiring.machine.orelyzer.desc=Analyzuj své rudy!
 
+item.complexwiring.base.ingot.copper.name=Měděný ingot
+item.complexwiring.base.ingot.tin.name=Cínový ingot
+item.complexwiring.base.ingot.silver.name=Stříbrný ingot
+item.complexwiring.base.ingot.lead.name=Olověný ingot
+
 item.complexwiring.tablet.name=Tablet
