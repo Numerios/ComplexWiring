@@ -17,11 +17,12 @@ public abstract class TileEntityPoweredBase extends TileEntityInventoryBase impl
 
     public TileEntityPoweredBase(int inventorySize, String name) {
         super(inventorySize, name);
+        powerHandler = createPowerHandler(type);
     }
 
     @Override
     public void setup() {
-        powerHandler = createPowerHandler(type);
+        super.setup();
     }
 
     @Override
@@ -58,13 +59,13 @@ public abstract class TileEntityPoweredBase extends TileEntityInventoryBase impl
     @Override
     public void writeToNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);
-        nbt.setFloat("storedEnergy", powerHandler.getEnergyStored());
+        powerHandler.writeToNBT(nbt);
     }
 
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);
-        powerHandler.setEnergy(nbt.getFloat("storedEnergy"));
-        storedEnergy = nbt.getFloat("storedEnergy");
+        powerHandler.readFromNBT(nbt);
+        storedEnergy = powerHandler.getEnergyStored();
     }
 }

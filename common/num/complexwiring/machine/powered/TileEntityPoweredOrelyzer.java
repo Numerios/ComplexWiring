@@ -174,7 +174,7 @@ public class TileEntityPoweredOrelyzer extends TileEntityPoweredBase implements 
         machineProcessTime = nbt.getShort("processTime");
         currentRecipe = RecipeManager.fromRecipeID(nbt.getInteger("currentRecipe"));
 
-        currentRecipeOutput.clear();
+        currentRecipeOutput = new ArrayList<ItemStack>();
         NBTTagList outputNBT = nbt.getTagList("currentOutput");
         for (int i = 0; i < outputNBT.tagCount(); i++) {
             NBTTagCompound itemNBT = (NBTTagCompound) outputNBT.tagAt(i);

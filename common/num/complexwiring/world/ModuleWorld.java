@@ -39,7 +39,7 @@ public class ModuleWorld extends Module {
     }
 
     private void registerRecipes() {
-        RecipeManager.add(new OrelyzerRecipe(new ItemStack(Block.oreCoal), 150,
+        RecipeManager.add(new OrelyzerRecipe(new ItemStack(Block.oreCoal), 320,
                 new RecipeRandomOutput(EnumOreSecondary.ANTHRACITE.getIS(1), 0.1F),
                 new RecipeRandomOutput(EnumOreSecondary.BITUMINOUS.getIS(1), 0.45F),
                 new RecipeRandomOutput(EnumOreSecondary.SUBBITUMINOUS.getIS(1), 0.75F),
