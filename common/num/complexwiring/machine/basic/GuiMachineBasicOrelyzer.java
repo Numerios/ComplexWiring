@@ -10,7 +10,7 @@ public class GuiMachineBasicOrelyzer extends GuiInventoryBase {
     private TileEntityBasicOrelyzer tile;
 
     public GuiMachineBasicOrelyzer(InventoryPlayer player, TileEntityBasicOrelyzer tile) {
-        super(player, tile, new ResourceLocation("complexwiring", "textures/gui/" + EnumBasicMachine.ORELYZER.getUnlocalizedName() + ".png"));
+        super(player, tile, new ResourceLocation("complexwiring", "textures/gui/machine/basic/" + EnumBasicMachine.ORELYZER.getUnlocalizedName() + ".png"));
         this.tile = tile;
     }
 

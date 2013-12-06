@@ -5,7 +5,6 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntityFurnace;
 import num.complexwiring.client.SlotMachine;
 import num.complexwiring.client.SlotOutput;
 import num.complexwiring.recipe.RecipeManager;
@@ -63,13 +62,13 @@ public class ContainerMachineBasicOrelyzer extends Container {
             } else if (slotID > 3) {
                 if (RecipeManager.get(slotIS) != null) {
                     if (!mergeItemStack(slotIS, 0, 1, false)) {
-                        if (TileEntityFurnace.getItemBurnTime(slotIS) > 0) {
+                        if (tile.getFuelBurnTime(slotIS) > 0) {
                             if (!mergeItemStack(slotIS, 1, 2, false)) {
                                 return null;
                             }
                         }
                     }
-                } else if (TileEntityFurnace.getItemBurnTime(slotIS) > 0) {
+                } else if (tile.getFuelBurnTime(slotIS) > 0) {
                     if (!mergeItemStack(slotIS, 1, 2, false)) {
                         return null;
                     }

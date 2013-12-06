@@ -4,13 +4,12 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import num.complexwiring.ComplexWiring;
-import num.complexwiring.machine.basic.EnumBasicMachine;
 import org.lwjgl.opengl.GL11;
 
 public class GuiMachinePoweredOrelyzer extends GuiContainer {
     //FIXME: EXTEND ME ON GUIINVBASE
     protected InventoryPlayer playerInv;
-    protected final ResourceLocation texture = new ResourceLocation("complexwiring", "textures/gui/" + EnumBasicMachine.ORELYZER.getUnlocalizedName() + ".png");
+    protected final ResourceLocation texture = new ResourceLocation("complexwiring", "textures/gui/machine/powered/" + EnumPoweredMachine.ORELYZER.getUnlocalizedName() + ".png");
     protected TileEntityPoweredOrelyzer tile;
 
     public GuiMachinePoweredOrelyzer(InventoryPlayer player, TileEntityPoweredOrelyzer tile) {
@@ -25,7 +24,7 @@ public class GuiMachinePoweredOrelyzer extends GuiContainer {
         GL11.glColor4f(1F, 1F, 1F, 1F);
         mc.getTextureManager().bindTexture(texture);
         drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
-        drawProgress(tile.getEnergyScaled(12), tile.getProcessedTimeScaled(24), guiLeft, guiTop);
+        drawProgress(tile.getEnergyScaled(40), tile.getProcessedTimeScaled(24), guiLeft, guiTop);
     }
 
     @Override
@@ -46,9 +45,13 @@ public class GuiMachinePoweredOrelyzer extends GuiContainer {
         }
     }
 
-    private void drawProgress(int burn, int cook, int cornerX, int cornerY) {
-        if (burn != 0) {
-            drawTexturedModalRect(cornerX + 56, cornerY + 36 + 12 - burn, 176, 12 - burn, 14, burn + 2);
+    private void drawProgress(int energy, int cook, int cornerX, int cornerY) {
+      /*  if(tile.isPowered()){
+            drawTexturedModalRect(cornerX + 58, cornerY + 46 + 12, 176, 13, 14, 14);
+        }*/
+        if (energy != 0) {  //x, y, u, v, w, h
+           // drawTexturedModalRect(cornerX + 56, cornerY + 36 + 12 - energy, 176, 12 - energy, 14, energy + 2);
+            drawTexturedModalRect(cornerX + 11, cornerY + 12 + 42 - 2 - energy, 176, 31 + 42 - energy, 18, energy);
         }
         drawTexturedModalRect(cornerX + 79, cornerY + 34, 176, 14, cook + 1, 16);
     }

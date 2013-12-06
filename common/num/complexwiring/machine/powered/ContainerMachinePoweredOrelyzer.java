@@ -5,10 +5,8 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntityFurnace;
 import num.complexwiring.client.SlotMachine;
 import num.complexwiring.client.SlotOutput;
-import num.complexwiring.recipe.RecipeManager;
 
 public class ContainerMachinePoweredOrelyzer extends Container {
     protected final TileEntityPoweredOrelyzer tile;
@@ -16,11 +14,10 @@ public class ContainerMachinePoweredOrelyzer extends Container {
     public ContainerMachinePoweredOrelyzer(InventoryPlayer playerInv, TileEntityPoweredOrelyzer tile) {
         this.tile = tile;
 
-        addSlotToContainer(new SlotMachine(tile, 0, 56, 17));   // ore input
-        addSlotToContainer(new SlotMachine(tile, 1, 56, 53));   // fuel input
+        addSlotToContainer(new SlotMachine(tile, 0, 56, 35));   // ore input
+        addSlotToContainer(new SlotMachine(tile, 1, 12, 57));   // energy input (battery and similar)
         addSlotToContainer(new SlotOutput(tile, 2, 116, 35));   // ore output
         addSlotToContainer(new SlotOutput(tile, 3, 136, 35));   // ore output 2
-
 
         addPlayerInventory(playerInv);
 
@@ -61,7 +58,7 @@ public class ContainerMachinePoweredOrelyzer extends Container {
                 }
                 slot.onSlotChange(slotIS, is);
             } else if (slotID > 3) {
-                if (RecipeManager.get(slotIS) != null) {
+                /*if (RecipeManager.get(slotIS) != null) {
                     if (!mergeItemStack(slotIS, 0, 1, false)) {
                         if (TileEntityFurnace.getItemBurnTime(slotIS) > 0) {
                             if (!mergeItemStack(slotIS, 1, 2, false)) {
@@ -73,7 +70,8 @@ public class ContainerMachinePoweredOrelyzer extends Container {
                     if (!mergeItemStack(slotIS, 1, 2, false)) {
                         return null;
                     }
-                } else if (slotID >= 4 && slotID < 31) {
+                } else*/
+                if (slotID >= 4 && slotID < 31) {
                     if (!mergeItemStack(slotIS, 31, 40, false)) {
                         return null;
                     }
