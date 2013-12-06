@@ -3,7 +3,6 @@ package num.complexwiring.recipe;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 import num.complexwiring.api.recipe.RecipeRandomOutput;
-import num.complexwiring.core.Logger;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -32,7 +31,6 @@ public class OrelyzerRecipe {
     }
 
     public int getNeededPower() {
-        Logger.debug("NEEDED POWER: " + neededPower);
         return neededPower;
     }
 

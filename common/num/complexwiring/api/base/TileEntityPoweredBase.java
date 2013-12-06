@@ -7,10 +7,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 
 public abstract class TileEntityPoweredBase extends TileEntityInventoryBase implements IPowerReceptor {
-    protected static final int MIN_ENERGY = 0;
-    protected static final int MAX_ENERGY = 2;
+    protected static final int USED_ENERGY = 2;
     protected static final int MIN_ACTIVATION_ENERGY = 0;
-    protected static final int MAX_STORED_ENERGY = 2000;
+    protected static final int MAX_STORED_ENERGY = 4000;
     protected static final PowerHandler.Type type = PowerHandler.Type.MACHINE;
     protected PowerHandler powerHandler;
     protected float storedEnergy;
@@ -50,7 +49,7 @@ public abstract class TileEntityPoweredBase extends TileEntityInventoryBase impl
 
     protected PowerHandler createPowerHandler(PowerHandler.Type type) {
         PowerHandler powerHandler = new PowerHandler(this, type);
-        powerHandler.configure(MIN_ENERGY, MAX_ENERGY, MIN_ACTIVATION_ENERGY, MAX_STORED_ENERGY);
+        powerHandler.configure(USED_ENERGY, USED_ENERGY, MIN_ACTIVATION_ENERGY, MAX_STORED_ENERGY);
         powerHandler.configurePowerPerdition(0, 0);
         powerHandler.setPerdition(new PowerHandler.PerditionCalculator(0F));
         return powerHandler;

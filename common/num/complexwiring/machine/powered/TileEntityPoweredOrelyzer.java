@@ -1,14 +1,11 @@
 package num.complexwiring.machine.powered;
 
-import net.minecraft.block.Block;
 import net.minecraft.inventory.ISidedInventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.packet.Packet;
 import num.complexwiring.api.base.TileEntityPoweredBase;
-import num.complexwiring.api.recipe.RecipeRandomOutput;
 import num.complexwiring.api.vec.Vector3;
 import num.complexwiring.core.InventoryHelper;
 import num.complexwiring.core.PacketHandler;
@@ -33,16 +30,12 @@ public class TileEntityPoweredOrelyzer extends TileEntityPoweredBase implements 
 
     public TileEntityPoweredOrelyzer() {
         super(4, EnumPoweredMachine.ORELYZER.getFullUnlocalizedName());
+        currentRecipeOutput = new ArrayList<ItemStack>();
     }
 
     @Override
     public void setup() {
         super.setup();
-        currentRecipeOutput = new ArrayList<ItemStack>();
-        currentRecipe = new OrelyzerRecipe(new ItemStack(Block.wood, 1), 120,
-                new RecipeRandomOutput(new ItemStack(Item.diamond, 1), 0.1F),
-                new RecipeRandomOutput(new ItemStack(Item.stick, 2), 0.8F),
-                new RecipeRandomOutput(new ItemStack(Item.stick, 1), 1F));
     }
 
     @Override
@@ -57,15 +50,17 @@ public class TileEntityPoweredOrelyzer extends TileEntityPoweredBase implements 
                 if (machineProcessTime == 0) {
                     initProcessing();
                 }
-                powerHandler.useEnergy(0, MIN_ENERGY, true);
+                powerHandler.useEnergy(USED_ENERGY, USED_ENERGY, true);
+                storedEnergy = powerHandler.getEnergyStored();
                 machineProcessTime++;
-                machineNeededProcessTime = currentRecipe.getNeededPower();
                 if (machineProcessTime == machineNeededProcessTime) {
                     machineProcessTime = 0;
+                    machineNeededProcessTime = 0;
                     endProcessing();
                 }
             } else {
                 machineProcessTime = 0;
+                machineNeededProcessTime = 0;
                 /*currentRecipe = null;           //TODO NULL WHEN POWER GOES OUT
                 currentRecipeOutput = null;*/
             }
@@ -87,10 +82,12 @@ public class TileEntityPoweredOrelyzer extends TileEntityPoweredBase implements 
             }
 
             currentRecipeOutput = currentRecipe.getCompleteOutput(rand);
+            machineNeededProcessTime = (currentRecipe.getNeededPower() / 2);
             if (currentRecipeOutput == null || currentRecipeOutput.size() < 1) {
                 return false;
             }
         }
+
         if (getStackInSlot(2) == null || getStackInSlot(3) == null) {
             return true;
         }
@@ -144,6 +141,7 @@ public class TileEntityPoweredOrelyzer extends TileEntityPoweredBase implements 
         }
         currentRecipe = null;
         currentRecipeOutput.clear();
+        machineNeededProcessTime = 0;
     }
 
     @Override
@@ -151,6 +149,8 @@ public class TileEntityPoweredOrelyzer extends TileEntityPoweredBase implements 
         super.writeToNBT(nbt);
 
         nbt.setShort("processTime", (short) machineProcessTime);
+        nbt.setShort("machineNeededProcessTime", (short) machineNeededProcessTime);
+
         if (currentRecipe != null) {
             nbt.setInteger("currentRecipe", RecipeManager.toRecipeID(currentRecipe));
         }
@@ -173,8 +173,9 @@ public class TileEntityPoweredOrelyzer extends TileEntityPoweredBase implements 
 
         machineProcessTime = nbt.getShort("processTime");
         currentRecipe = RecipeManager.fromRecipeID(nbt.getInteger("currentRecipe"));
+        machineNeededProcessTime = nbt.getShort("machineNeededProcessTime");
 
-        currentRecipeOutput = new ArrayList<ItemStack>();
+        currentRecipeOutput.clear();
         NBTTagList outputNBT = nbt.getTagList("currentOutput");
         for (int i = 0; i < outputNBT.tagCount(); i++) {
             NBTTagCompound itemNBT = (NBTTagCompound) outputNBT.tagAt(i);
@@ -214,16 +215,17 @@ public class TileEntityPoweredOrelyzer extends TileEntityPoweredBase implements 
     }
 
     public int getEnergyScaled(int scale) {
-        if (storedEnergy == 0 || !isPowered()) {
+        if (storedEnergy == 0) {
             return 0;
         }
-        return (int) storedEnergy * scale / MAX_ENERGY;
+        return ((int) storedEnergy) * scale / MAX_STORED_ENERGY;
+    }
+
+    public int getStoredEnergy(){
+        return (int) storedEnergy;
     }
 
     public boolean isPowered() {
-        if (currentRecipe.getNeededPower() == 0){
-            return false;
-        }
-        return MIN_ENERGY * currentRecipe.getNeededPower() >= storedEnergy;
+        return machineNeededProcessTime != 0 && USED_ENERGY * (machineNeededProcessTime - machineProcessTime) <= storedEnergy;
     }
 }

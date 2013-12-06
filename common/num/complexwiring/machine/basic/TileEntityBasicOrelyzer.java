@@ -63,13 +63,13 @@ public class TileEntityBasicOrelyzer extends TileEntityInventoryBase implements 
                     initProcessing();
                 }
                 machineProcessTime++;
-                machineNeededProcessTime = currentRecipe.getNeededPower();
                 if (machineProcessTime == machineNeededProcessTime) {
                     machineProcessTime = 0;
                     endProcessing();
                 }
             } else {
                 machineProcessTime = 0;
+                machineNeededProcessTime = 0;
                 /*currentRecipe = null;           //TODO NULL WHEN POWER GOES OUT
                 currentRecipeOutput = null;*/
             }
@@ -97,6 +97,7 @@ public class TileEntityBasicOrelyzer extends TileEntityInventoryBase implements 
                 currentRecipe = RecipeManager.get(getStackInSlot(0));
             }
 
+            machineNeededProcessTime = currentRecipe.getNeededPower();
             currentRecipeOutput = currentRecipe.getCompleteOutput(rand);
             if (currentRecipeOutput == null || currentRecipeOutput.size() < 1) {
                 return false;
@@ -155,6 +156,7 @@ public class TileEntityBasicOrelyzer extends TileEntityInventoryBase implements 
         }
         currentRecipe = null;
         currentRecipeOutput.clear();
+        machineNeededProcessTime = 0;
     }
 
     @Override
@@ -163,6 +165,8 @@ public class TileEntityBasicOrelyzer extends TileEntityInventoryBase implements 
 
         nbt.setShort("burnTime", (short) machineBurnTime);
         nbt.setShort("processTime", (short) machineProcessTime);
+        nbt.setShort("machineNeededProcessTime", (short) machineNeededProcessTime);
+
         if (currentRecipe != null) {
             nbt.setInteger("currentRecipe", RecipeManager.toRecipeID(currentRecipe));
         }
@@ -185,6 +189,8 @@ public class TileEntityBasicOrelyzer extends TileEntityInventoryBase implements 
 
         machineBurnTime = nbt.getShort("burnTime");
         machineProcessTime = nbt.getShort("processTime");
+        machineNeededProcessTime = nbt.getShort("machineNeededProcessTime");
+
         currentRecipe = RecipeManager.fromRecipeID(nbt.getInteger("currentRecipe"));
 
         currentFuelBurnTime = getFuelBurnTime(getStackInSlot(1));
