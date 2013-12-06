@@ -221,7 +221,7 @@ public class TileEntityPoweredOrelyzer extends TileEntityPoweredBase implements 
         return ((int) storedEnergy) * scale / MAX_STORED_ENERGY;
     }
 
-    public int getStoredEnergy(){
+    public int getStoredEnergy() {
         return (int) storedEnergy;
     }
 

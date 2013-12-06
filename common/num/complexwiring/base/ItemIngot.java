@@ -7,15 +7,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import num.complexwiring.ComplexWiring;
 import num.complexwiring.lib.Reference;
-import num.complexwiring.world.EnumOrePrimary;
 
 import java.util.List;
 
-public class ItemIngot extends Item{
-
+public class ItemIngot extends Item {
     public ItemIngot(int itemId) {
         super(itemId);
-        setUnlocalizedName(Reference.MOD_ID.toLowerCase() + ".base.item");
+        setUnlocalizedName(Reference.MOD_ID.toLowerCase() + ".base.ingot");
         setCreativeTab(ComplexWiring.tabCW);
     }
 
@@ -34,24 +32,22 @@ public class ItemIngot extends Item{
     @Override
     public Icon getIconFromDamage(int meta) {
         return EnumIngot.VALID[meta].icon;
-
     }
 
     @Override
     public String getUnlocalizedName(ItemStack is) {
-        int meta = is.getItemDamage();
-        return EnumIngot.VALID[meta].getUnlocalizedName();
+        return EnumIngot.VALID[is.getItemDamage()].getUnlocalizedName();
     }
 
     @Override
     public void getSubItems(int id, CreativeTabs tab, List list) {
-        for (int i = 0; i < EnumIngot.values().length; i++) {
-            list.add(new ItemStack(id, 1, i));
+        for (int i = 0; i < EnumIngot.VALID.length; i++) {
+            list.add(EnumIngot.VALID[i].getIS(1));
         }
     }
 
     public void registerOres() {
-        for (EnumIngot ingot: EnumIngot.VALID) {
+        for (EnumIngot ingot : EnumIngot.VALID) {
             ingot.registerOre();
         }
     }

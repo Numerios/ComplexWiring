@@ -7,7 +7,7 @@ import num.complexwiring.ComplexWiring;
 import num.complexwiring.machine.basic.EnumBasicMachine;
 import org.lwjgl.opengl.GL11;
 
-public class GuiMachinePoweredOrelyzer extends GuiContainer{
+public class GuiMachinePoweredOrelyzer extends GuiContainer {
     //FIXME: EXTEND ME ON GUIINVBASE
     protected InventoryPlayer playerInv;
     protected final ResourceLocation texture = new ResourceLocation("complexwiring", "textures/gui/" + EnumBasicMachine.ORELYZER.getUnlocalizedName() + ".png");

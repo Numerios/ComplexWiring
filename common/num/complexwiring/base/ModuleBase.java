@@ -1,10 +1,11 @@
 package num.complexwiring.base;
 
+import net.minecraft.item.Item;
 import num.complexwiring.lib.Module;
 
-public class ModuleIngot extends Module{
+public class ModuleBase extends Module {
 
-    public static ItemIngot itemIngot;
+    public static Item itemIngot;
 
     @Override
     public void preInit() {
@@ -18,7 +19,7 @@ public class ModuleIngot extends Module{
 
     private void registerItems() {
         itemIngot = new ItemIngot(1025);
-        itemIngot.registerOres();
+        ((ItemIngot) itemIngot).registerOres();
     }
 
     private void registerRecipes() {

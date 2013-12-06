@@ -25,7 +25,7 @@ public enum EnumBasicMachine {
 
     public String getUnlocalizedName() {
         // removes the "machine" and "Basic" from the name and makes it lowercase (ex. machineBasic -> machine)
-        return name.toLowerCase().substring(7+5);
+        return name.toLowerCase().substring(7 + 5);
     }
 
     public void registerIcon(IconRegister ir) {

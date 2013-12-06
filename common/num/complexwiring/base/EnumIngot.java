@@ -24,7 +24,8 @@ public enum EnumIngot {
     }
 
     public String getUnlocalizedName() {
-        return "item." + Reference.MOD_ID.toLowerCase() + ".base.ingot." + name.toLowerCase().substring(5);
+        // removes the "ingot" from the name and makes it lowercase (ex. ingotCopper -> copper)
+        return ModuleBase.itemIngot.getUnlocalizedName() + "." + name.toLowerCase().substring(5);
     }
 
     public void registerIcon(IconRegister ir) {
@@ -32,7 +33,7 @@ public enum EnumIngot {
     }
 
     public ItemStack getIS(int amount) {
-        return new ItemStack(ModuleIngot.itemIngot, amount, meta);
+        return new ItemStack(ModuleBase.itemIngot, amount, meta);
     }
 
     public void registerOre() {

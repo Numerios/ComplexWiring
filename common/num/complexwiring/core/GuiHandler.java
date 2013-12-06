@@ -22,7 +22,7 @@ public class GuiHandler implements IGuiHandler {
         TileEntity tile = vec3.toTile(world);
         if (tile instanceof TileEntityBasicOrelyzer && vec3.blockMetadata(world) == EnumBasicMachine.VALID[0].ordinal()) {
             return new ContainerMachineBasicOrelyzer(player.inventory, (TileEntityBasicOrelyzer) tile);         // Basic Orelyzer
-        } else if (tile instanceof TileEntityPoweredOrelyzer && vec3.blockMetadata(world) == EnumPoweredMachine.VALID[0].ordinal()){
+        } else if (tile instanceof TileEntityPoweredOrelyzer && vec3.blockMetadata(world) == EnumPoweredMachine.VALID[0].ordinal()) {
             return new ContainerMachinePoweredOrelyzer(player.inventory, (TileEntityPoweredOrelyzer) tile);     // Powered Orelyzer
         }
         return null;
@@ -34,7 +34,7 @@ public class GuiHandler implements IGuiHandler {
         TileEntity tile = vec3.toTile(world);
         if (tile instanceof TileEntityBasicOrelyzer && vec3.blockMetadata(world) == EnumBasicMachine.VALID[0].ordinal()) {
             return new GuiMachineBasicOrelyzer(player.inventory, (TileEntityBasicOrelyzer) tile);              // Basic Orelyzer
-        } else if (tile instanceof TileEntityPoweredOrelyzer && vec3.blockMetadata(world) == EnumPoweredMachine.VALID[0].ordinal()){
+        } else if (tile instanceof TileEntityPoweredOrelyzer && vec3.blockMetadata(world) == EnumPoweredMachine.VALID[0].ordinal()) {
             return new GuiMachinePoweredOrelyzer(player.inventory, (TileEntityPoweredOrelyzer) tile);          // Powered Orelyzer
         }
         return null;
