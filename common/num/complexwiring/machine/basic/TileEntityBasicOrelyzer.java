@@ -129,6 +129,7 @@ public class TileEntityBasicOrelyzer extends TileEntityInventoryBase implements 
             if (getStackInSlot(0).stackSize <= 0) {
                 setInventorySlotContents(0, null);
             }
+            recipeProcessTime = currentRecipe.getNeededPower();
         }
     }
 

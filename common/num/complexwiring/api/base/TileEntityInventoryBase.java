@@ -25,7 +25,6 @@ public abstract class TileEntityInventoryBase extends TileEntityBase implements 
     private String name;
 
     public TileEntityInventoryBase(int inventorySize, String name) {
-        super();
         this.inventorySize = inventorySize;
         this.name = name;
         inventory = new ItemStack[getSizeInventory()];
