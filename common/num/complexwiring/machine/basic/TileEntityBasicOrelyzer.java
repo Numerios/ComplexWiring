@@ -27,7 +27,7 @@ public class TileEntityBasicOrelyzer extends TileEntityInventoryBase implements 
     public int machineBurnTime = 0;
     public int machineProcessTime = 0;
     Random rand = new Random();
-    private int machineNeededProcessTime = 0;
+    private int recipeProcessTime = 0;
     private OrelyzerRecipe currentRecipe;
     private ArrayList<ItemStack> currentRecipeOutput;
 
@@ -63,15 +63,14 @@ public class TileEntityBasicOrelyzer extends TileEntityInventoryBase implements 
                     initProcessing();
                 }
                 machineProcessTime++;
-                if (machineProcessTime == machineNeededProcessTime) {
+                if (machineProcessTime == recipeProcessTime) {
                     machineProcessTime = 0;
+                    recipeProcessTime = 0;
                     endProcessing();
                 }
             } else {
                 machineProcessTime = 0;
-                machineNeededProcessTime = 0;
-                /*currentRecipe = null;           //TODO NULL WHEN POWER GOES OUT
-                currentRecipeOutput = null;*/
+                recipeProcessTime = 0;
             }
             if (ticks % 4 == 0) {
                 PacketHandler.sendPacket(getDescriptionPacket(), worldObj, Vector3.get(this));
@@ -97,8 +96,8 @@ public class TileEntityBasicOrelyzer extends TileEntityInventoryBase implements 
                 currentRecipe = RecipeManager.get(getStackInSlot(0));
             }
 
-            machineNeededProcessTime = currentRecipe.getNeededPower();
             currentRecipeOutput = currentRecipe.getCompleteOutput(rand);
+            recipeProcessTime = currentRecipe.getNeededPower();       //THIS IS THE REASON STUFF DOESN'T WORK!
             if (currentRecipeOutput == null || currentRecipeOutput.size() < 1) {
                 return false;
             }
@@ -156,7 +155,7 @@ public class TileEntityBasicOrelyzer extends TileEntityInventoryBase implements 
         }
         currentRecipe = null;
         currentRecipeOutput.clear();
-        machineNeededProcessTime = 0;
+        recipeProcessTime = 0;
     }
 
     @Override
@@ -165,7 +164,8 @@ public class TileEntityBasicOrelyzer extends TileEntityInventoryBase implements 
 
         nbt.setShort("burnTime", (short) machineBurnTime);
         nbt.setShort("processTime", (short) machineProcessTime);
-        nbt.setShort("machineNeededProcessTime", (short) machineNeededProcessTime);
+        nbt.setShort("recipeProcessTime", (short) recipeProcessTime);
+        nbt.setShort("currentFuelBurnTime", (short) currentFuelBurnTime);
 
         if (currentRecipe != null) {
             nbt.setInteger("currentRecipe", RecipeManager.toRecipeID(currentRecipe));
@@ -189,11 +189,10 @@ public class TileEntityBasicOrelyzer extends TileEntityInventoryBase implements 
 
         machineBurnTime = nbt.getShort("burnTime");
         machineProcessTime = nbt.getShort("processTime");
-        machineNeededProcessTime = nbt.getShort("machineNeededProcessTime");
+        recipeProcessTime = nbt.getShort("recipeProcessTime");
+        currentFuelBurnTime = nbt.getShort("currentFuelBurnTime");
 
         currentRecipe = RecipeManager.fromRecipeID(nbt.getInteger("currentRecipe"));
-
-        currentFuelBurnTime = getFuelBurnTime(getStackInSlot(1));
 
         currentRecipeOutput.clear();
         NBTTagList outputNBT = nbt.getTagList("currentOutput");
@@ -228,18 +227,17 @@ public class TileEntityBasicOrelyzer extends TileEntityInventoryBase implements 
     }
 
     public int getProcessedTimeScaled(int scale) {
-        if (machineProcessTime == 0 || machineNeededProcessTime == 0) {
+        if (machineProcessTime == 0 || recipeProcessTime == 0) {
             return 0;
         }
-        return machineProcessTime * scale / machineNeededProcessTime;
+        return machineProcessTime * scale / recipeProcessTime;
     }
 
     public int getBurnTimeScaled(int scale) {
-        if (machineBurnTime == 0 || !isBurning() || currentFuelBurnTime == 0) {
+        if (machineBurnTime == 0 || currentFuelBurnTime == 0) {
             return 0;
         }
-        //FIXME: Rename fields & get somehow max fuelBurnTime
-        return (machineBurnTime * scale) / currentFuelBurnTime;
+        return machineBurnTime * scale / currentFuelBurnTime;
     }
 
     public boolean isBurning() {

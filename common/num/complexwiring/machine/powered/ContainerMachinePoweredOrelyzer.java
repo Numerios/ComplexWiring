@@ -2,16 +2,17 @@ package num.complexwiring.machine.powered;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import num.complexwiring.api.base.ContainerBase;
 import num.complexwiring.client.SlotMachine;
 import num.complexwiring.client.SlotOutput;
 
-public class ContainerMachinePoweredOrelyzer extends Container {
+public class ContainerMachinePoweredOrelyzer extends ContainerBase {
     protected final TileEntityPoweredOrelyzer tile;
 
     public ContainerMachinePoweredOrelyzer(InventoryPlayer playerInv, TileEntityPoweredOrelyzer tile) {
+        super(playerInv, tile);
         this.tile = tile;
 
         addSlotToContainer(new SlotMachine(tile, 0, 56, 35));   // ore input

@@ -24,7 +24,7 @@ public class TileEntityPoweredOrelyzer extends TileEntityPoweredBase implements 
     private static final int[] SLOTS_SIDE = new int[]{1};
     public int machineProcessTime = 0;
     Random rand = new Random();
-    private int machineNeededProcessTime = 0;
+    private int recipeProcessTime = 0;
     private OrelyzerRecipe currentRecipe;
     private ArrayList<ItemStack> currentRecipeOutput;
 
@@ -53,14 +53,14 @@ public class TileEntityPoweredOrelyzer extends TileEntityPoweredBase implements 
                 powerHandler.useEnergy(USED_ENERGY, USED_ENERGY, true);
                 storedEnergy = powerHandler.getEnergyStored();
                 machineProcessTime++;
-                if (machineProcessTime == machineNeededProcessTime) {
+                if (machineProcessTime == recipeProcessTime) {
                     machineProcessTime = 0;
-                    machineNeededProcessTime = 0;
+                    recipeProcessTime = 0;
                     endProcessing();
                 }
             } else {
                 machineProcessTime = 0;
-                machineNeededProcessTime = 0;
+                recipeProcessTime = 0;
                 /*currentRecipe = null;           //TODO NULL WHEN POWER GOES OUT
                 currentRecipeOutput = null;*/
             }
@@ -82,7 +82,7 @@ public class TileEntityPoweredOrelyzer extends TileEntityPoweredBase implements 
             }
 
             currentRecipeOutput = currentRecipe.getCompleteOutput(rand);
-            machineNeededProcessTime = (currentRecipe.getNeededPower() / 2);
+            recipeProcessTime = (currentRecipe.getNeededPower() / 2);
             if (currentRecipeOutput == null || currentRecipeOutput.size() < 1) {
                 return false;
             }
@@ -141,7 +141,7 @@ public class TileEntityPoweredOrelyzer extends TileEntityPoweredBase implements 
         }
         currentRecipe = null;
         currentRecipeOutput.clear();
-        machineNeededProcessTime = 0;
+        recipeProcessTime = 0;
     }
 
     @Override
@@ -149,7 +149,7 @@ public class TileEntityPoweredOrelyzer extends TileEntityPoweredBase implements 
         super.writeToNBT(nbt);
 
         nbt.setShort("processTime", (short) machineProcessTime);
-        nbt.setShort("machineNeededProcessTime", (short) machineNeededProcessTime);
+        nbt.setShort("recipeProcessTime", (short) recipeProcessTime);
 
         if (currentRecipe != null) {
             nbt.setInteger("currentRecipe", RecipeManager.toRecipeID(currentRecipe));
@@ -173,7 +173,7 @@ public class TileEntityPoweredOrelyzer extends TileEntityPoweredBase implements 
 
         machineProcessTime = nbt.getShort("processTime");
         currentRecipe = RecipeManager.fromRecipeID(nbt.getInteger("currentRecipe"));
-        machineNeededProcessTime = nbt.getShort("machineNeededProcessTime");
+        recipeProcessTime = nbt.getShort("recipeProcessTime");
 
         currentRecipeOutput.clear();
         NBTTagList outputNBT = nbt.getTagList("currentOutput");
@@ -208,10 +208,10 @@ public class TileEntityPoweredOrelyzer extends TileEntityPoweredBase implements 
     }
 
     public int getProcessedTimeScaled(int scale) {
-        if (machineProcessTime == 0 || machineNeededProcessTime == 0) {
+        if (machineProcessTime == 0 || recipeProcessTime == 0) {
             return 0;
         }
-        return machineProcessTime * scale / machineNeededProcessTime;
+        return machineProcessTime * scale / recipeProcessTime;
     }
 
     public int getEnergyScaled(int scale) {
@@ -226,6 +226,6 @@ public class TileEntityPoweredOrelyzer extends TileEntityPoweredBase implements 
     }
 
     public boolean isPowered() {
-        return machineNeededProcessTime != 0 && USED_ENERGY * (machineNeededProcessTime - machineProcessTime) <= storedEnergy;
+        return recipeProcessTime != 0 && USED_ENERGY * (recipeProcessTime - machineProcessTime) <= storedEnergy;
     }
 }
