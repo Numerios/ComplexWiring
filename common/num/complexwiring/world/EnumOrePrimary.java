@@ -11,13 +11,16 @@ public enum EnumOrePrimary {
     COPPER(Strings.ORE_COPPER_NAME),
     TIN(Strings.ORE_TIN_NAME),
     SILVER(Strings.ORE_SILVER_NAME),
-    LEAD(Strings.ORE_LEAD_NAME);
+    LEAD(Strings.ORE_LEAD_NAME),
+    ALUMINIUM(Strings.ORE_ALUMINIUM_NAME),
+    URANIUM(Strings.ORE_URANIUM_NAME),
+    TUNGSTEN(Strings.ORE_TUNGSTEN_NAME),
+    TITANIUM(Strings.ORE_TITANIUM_NAME);
 
     public static final EnumOrePrimary[] VALID = values();
     public final String name;
     public final int meta = this.ordinal();
     public Icon icon;
-
 
     private EnumOrePrimary(String name) {
         this.name = name;

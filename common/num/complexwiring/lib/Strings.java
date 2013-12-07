@@ -7,6 +7,10 @@ public class Strings {
     public static final String ORE_TIN_NAME = "oreTin";
     public static final String ORE_SILVER_NAME = "oreSilver";
     public static final String ORE_LEAD_NAME = "oreLead";
+    public static final String ORE_ALUMINIUM_NAME = "oreAluminium";
+    public static final String ORE_URANIUM_NAME = "oreUranium";
+    public static final String ORE_TUNGSTEN_NAME = "oreTungsten";
+    public static final String ORE_TITANIUM_NAME = "oreTitanium";
 
     public static final String ORE_CHALCOPYRITE_NAME = "oreChalcopyrite";
     public static final String ORE_CASSITERITE_NAME = "oreCassiterite";
