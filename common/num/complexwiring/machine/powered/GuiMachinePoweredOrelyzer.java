@@ -1,30 +1,23 @@
 package num.complexwiring.machine.powered;
 
-import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import num.complexwiring.ComplexWiring;
+import num.complexwiring.api.base.GuiInventoryBase;
 import num.complexwiring.machine.basic.EnumBasicMachine;
-import org.lwjgl.opengl.GL11;
 
-public class GuiMachinePoweredOrelyzer extends GuiContainer {
-    //FIXME: EXTEND ME ON GUIINVBASE
-    protected InventoryPlayer playerInv;
-    protected final ResourceLocation texture = new ResourceLocation("complexwiring", "textures/gui/" + EnumBasicMachine.ORELYZER.getUnlocalizedName() + ".png");
+public class GuiMachinePoweredOrelyzer extends GuiInventoryBase {
     protected TileEntityPoweredOrelyzer tile;
 
     public GuiMachinePoweredOrelyzer(InventoryPlayer player, TileEntityPoweredOrelyzer tile) {
-        super(new ContainerMachinePoweredOrelyzer(player, tile));
-        playerInv = player;
+        super(new ContainerMachinePoweredOrelyzer(player, tile), new ResourceLocation("complexwiring", "textures/gui/" + EnumBasicMachine.ORELYZER.getUnlocalizedName() + ".png"));
         this.tile = tile;
     }
 
 
     @Override
     protected void drawGuiContainerBackgroundLayer(float f, int i, int j) {
-        GL11.glColor4f(1F, 1F, 1F, 1F);
-        mc.getTextureManager().bindTexture(texture);
-        drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
+        super.drawGuiContainerBackgroundLayer(f,i,j);
         drawProgress(tile.getEnergyScaled(12), tile.getProcessedTimeScaled(24), guiLeft, guiTop);
     }
 

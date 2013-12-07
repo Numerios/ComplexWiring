@@ -6,16 +6,20 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-public abstract class ContainerBase extends Container{
+public class ContainerBase extends Container{
 
-    protected final TileEntityBase tile;
+    protected final TileEntityInventoryBase tile;
 
-    public ContainerBase(InventoryPlayer playerInv, TileEntityBase tile) {
+    public ContainerBase(InventoryPlayer playerInv, TileEntityInventoryBase tile) {
         this.tile = tile;
     }
 
     public ItemStack transferStackInSlot(EntityPlayer player, int slotID) {
         return null;
+    }
+
+    public boolean canInteractWith(EntityPlayer player) {
+        return tile.isUseableByPlayer(player);
     }
 
     public void addPlayerInventory(InventoryPlayer inv) {
@@ -27,6 +31,10 @@ public abstract class ContainerBase extends Container{
         for (int col = 0; col < 9; col++) {
             addSlotToContainer(new Slot(inv, col, 8 + col * 18, 142));
         }
+    }
+
+    public TileEntityInventoryBase getTile(){
+        return tile;
     }
 
 }

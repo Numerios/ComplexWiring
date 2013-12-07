@@ -1,22 +1,17 @@
 package num.complexwiring.api.base;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
-import num.complexwiring.machine.basic.ContainerMachineBasicOrelyzer;
-import num.complexwiring.machine.basic.TileEntityBasicOrelyzer;
 import org.lwjgl.opengl.GL11;
 
 public abstract class GuiInventoryBase extends GuiContainer {
 
-    protected InventoryPlayer playerInv;
+    protected final ContainerBase container;
     protected final ResourceLocation texture;
-    protected TileEntityInventoryBase tile;
 
-    public GuiInventoryBase(InventoryPlayer player, TileEntityInventoryBase tile, ResourceLocation texture) {
-        super(new ContainerMachineBasicOrelyzer(player, (TileEntityBasicOrelyzer) tile)); //TODO: mby some BaseContainer?
-        playerInv = player;
-        this.tile = tile;
+    public GuiInventoryBase(ContainerBase container, ResourceLocation texture) {
+        super(container);
+        this.container = container;
         this.texture = texture;
     }
 
@@ -32,7 +27,7 @@ public abstract class GuiInventoryBase extends GuiContainer {
     protected void drawGuiContainerForegroundLayer(int par1, int par2) {
         super.drawGuiContainerForegroundLayer(par1, par2);
 
-        String invName = tile.getInvName();
+        String invName = container.getTile().getInvName();
         fontRenderer.drawString(invName, xSize / 2 - fontRenderer.getStringWidth(invName) / 2, 6, 0x404040);
     }
 }
