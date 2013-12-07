@@ -9,21 +9,29 @@ import num.complexwiring.client.gui.GuiTooltip;
 import java.awt.*;
 
 public class GuiMachinePoweredOrelyzer extends GuiInventoryBase {
-    protected GuiTooltip energyTooltip;
+    protected GuiTooltip energyTooltip, progressTooltip;
     protected TileEntityPoweredOrelyzer tile;
 
     public GuiMachinePoweredOrelyzer(InventoryPlayer player, TileEntityPoweredOrelyzer tile) {
         super(new ContainerMachinePoweredOrelyzer(player, tile), new ResourceLocation("complexwiring", "textures/gui/machine/powered/" + EnumPoweredMachine.ORELYZER.getUnlocalizedName() + ".png"));
         this.tile = tile;
+    }
 
-        energyTooltip = new GuiTooltip(new Rectangle(12, 11, 15, 40));
-        energyTooltip.addText("{Stored energy}");
-        tooltips.add(energyTooltip);
+    @Override
+    protected void initTooltips() {
+        energyTooltip = new GuiTooltip(new Rectangle(12, 11, 16, 41));
+        energyTooltip.addText("{Stored energy}", "  out of  ", "{Max energy}");
+        progressTooltip = new GuiTooltip(new Rectangle(78, 34, 26, 17));
+        progressTooltip.addText("{Progress in %}");
+
+        addTooltip(energyTooltip, progressTooltip);
     }
 
     @Override
     protected void updateTooltips() {
         energyTooltip.setText(0, tile.getStoredEnergy() + " MJ");
+        energyTooltip.setText(2, tile.getMaxStoredEnergy() + " MJ");
+        progressTooltip.setText(0, tile.getProcessedTimeScaled(100) + "%");
     }
 
     @Override

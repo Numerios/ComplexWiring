@@ -69,4 +69,8 @@ public abstract class TileEntityPoweredBase extends TileEntityInventoryBase impl
         powerHandler.readFromNBT(nbt);
         storedEnergy = powerHandler.getEnergyStored();
     }
+
+    public int getMaxStoredEnergy() {
+        return MAX_STORED_ENERGY;
+    }
 }

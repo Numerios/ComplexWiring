@@ -10,9 +10,9 @@ tile.complexwiring.world.ore.secondary.cassiterite.name=Kasiterit
 tile.complexwiring.world.ore.secondary.argentite.name=Argentit
 tile.complexwiring.world.ore.secondary.galena.name=Galenit
 tile.complexwiring.world.ore.secondary.lignite.name=Ruda lignitu
-tile.complexwiring.world.ore.secondary.subbituminous.name=Ruda hnědého uhlí
-tile.complexwiring.world.ore.secondary.bituminous.name=Ruda černého uhlí
-tile.complexwiring.world.ore.secondary.anthracite.name=Ruda antracitu
+tile.complexwiring.world.ore.secondary.subbituminous.name=Ložisko hnědého uhlí
+tile.complexwiring.world.ore.secondary.bituminous.name=Ložisko černého uhlí
+tile.complexwiring.world.ore.secondary.anthracite.name=Ložisko antracitu
 
 tile.complexwiring.machine.basic.orelyzer.name=Základní rudolyzér
 tile.complexwiring.machine.basic.orelyzer.desc=Analyzuj své rudy!

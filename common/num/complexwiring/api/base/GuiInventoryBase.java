@@ -19,6 +19,7 @@ public abstract class GuiInventoryBase extends GuiContainer {
         this.container = container;
         this.texture = texture;
         tooltips = new ArrayList<GuiTooltip>();
+        initTooltips();
     }
 
     @Override
@@ -43,13 +44,21 @@ public abstract class GuiInventoryBase extends GuiContainer {
         fontRenderer.drawString(invName, xSize / 2 - fontRenderer.getStringWidth(invName) / 2, 6, 0x404040);
     }
 
-    protected void updateTooltips(){
+    protected void updateTooltips() {
+    }
 
+    protected void initTooltips() {
+    }
+
+    protected void addTooltip(GuiTooltip... tooltip) {
+        for (GuiTooltip g : tooltip) {
+            tooltips.add(g);
+        }
     }
 
     protected void drawTooltips(int mouseX, int mouseY) {
         for (GuiTooltip tooltip : tooltips) {
-            if(tooltip.isHover(mouseX - guiLeft, mouseY - guiTop)){
+            if (tooltip.isHover(mouseX - guiLeft, mouseY - guiTop)) {
                 drawHoveringText(tooltip.getTexts(), mouseX, mouseY, fontRenderer);
             }
         }

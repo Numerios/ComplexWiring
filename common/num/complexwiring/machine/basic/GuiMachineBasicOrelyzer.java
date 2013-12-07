@@ -4,14 +4,33 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import num.complexwiring.ComplexWiring;
 import num.complexwiring.api.base.GuiInventoryBase;
+import num.complexwiring.client.gui.GuiTooltip;
+
+import java.awt.*;
 
 public class GuiMachineBasicOrelyzer extends GuiInventoryBase {
-
-    private TileEntityBasicOrelyzer tile;
+    protected GuiTooltip fuelTooltip, progressTooltip;
+    protected TileEntityBasicOrelyzer tile;
 
     public GuiMachineBasicOrelyzer(InventoryPlayer player, TileEntityBasicOrelyzer tile) {
         super(new ContainerMachineBasicOrelyzer(player, tile), new ResourceLocation("complexwiring", "textures/gui/machine/basic/" + EnumBasicMachine.ORELYZER.getUnlocalizedName() + ".png"));
         this.tile = tile;
+    }
+
+    @Override
+    protected void initTooltips() {
+        fuelTooltip = new GuiTooltip(new Rectangle(60, 35, 8, 16));
+        fuelTooltip.addText("{Fuel remaining in ticks}");
+        progressTooltip = new GuiTooltip(new Rectangle(78, 34, 26, 17));
+        progressTooltip.addText("{Progress in %}");
+
+        addTooltip(fuelTooltip, progressTooltip);
+    }
+
+    @Override
+    protected void updateTooltips() {
+        fuelTooltip.setText(0, tile.machineBurnTime + " ticks left");
+        progressTooltip.setText(0, tile.getProcessedTimeScaled(100) + "%");
     }
 
     @Override
