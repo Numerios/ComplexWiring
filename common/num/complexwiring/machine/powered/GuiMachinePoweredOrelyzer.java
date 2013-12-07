@@ -4,15 +4,27 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import num.complexwiring.ComplexWiring;
 import num.complexwiring.api.base.GuiInventoryBase;
+import num.complexwiring.client.gui.GuiTooltip;
+
+import java.awt.*;
 
 public class GuiMachinePoweredOrelyzer extends GuiInventoryBase {
+    protected GuiTooltip energyTooltip;
     protected TileEntityPoweredOrelyzer tile;
 
     public GuiMachinePoweredOrelyzer(InventoryPlayer player, TileEntityPoweredOrelyzer tile) {
         super(new ContainerMachinePoweredOrelyzer(player, tile), new ResourceLocation("complexwiring", "textures/gui/machine/powered/" + EnumPoweredMachine.ORELYZER.getUnlocalizedName() + ".png"));
         this.tile = tile;
+
+        energyTooltip = new GuiTooltip(new Rectangle(11, 12, 18, 176));
+        energyTooltip.addText("{Stored energy}");
+        tooltips.add(energyTooltip);
     }
 
+    @Override
+    protected void updateTooltips() {
+        energyTooltip.getText(0).setText(tile.getStoredEnergy() + " MJ");
+    }
 
     @Override
     protected void drawGuiContainerBackgroundLayer(float f, int i, int j) {
