@@ -38,10 +38,14 @@ public class BlockOreSecondary extends Block {
         }
     }
 
+    @Override
+    public int damageDropped(int meta) {
+        return meta;
+    }
+
     public void registerOres() {
         for (EnumOreSecondary oreSecondary : EnumOreSecondary.VALID) {
             oreSecondary.registerOre();
         }
     }
-
 }

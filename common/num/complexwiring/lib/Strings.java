@@ -12,6 +12,7 @@ public class Strings {
     public static final String ORE_CASSITERITE_NAME = "oreCassiterite";
     public static final String ORE_ARGENTITE_NAME = "oreArgentite";
     public static final String ORE_GALENA_NAME = "oreGalena";
+
     public static final String ORE_LIGNITE_NAME = "oreLignite";
     public static final String ORE_SUBBITUMINOUS_NAME = "oreSubBituminous";
     public static final String ORE_BITUMINOUS_NAME = "oreBituminous";
