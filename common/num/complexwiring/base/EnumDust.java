@@ -7,25 +7,24 @@ import net.minecraftforge.oredict.OreDictionary;
 import num.complexwiring.lib.Reference;
 import num.complexwiring.lib.Strings;
 
-public enum EnumIngot {
-    COPPER(Strings.INGOT_COPPER_NAME),
-    TIN(Strings.INGOT_TIN_NAME),
-    SILVER(Strings.INGOT_SILVER_NAME),
-    LEAD(Strings.INGOT_LEAD_NAME);
+public enum EnumDust {
+    COPPER(Strings.DUST_COPPER_NAME),
+    TIN(Strings.DUST_TIN_NAME),
+    SILVER(Strings.DUST_SILVER_NAME),
+    LEAD(Strings.DUST_LEAD_NAME);
 
-    public static final EnumIngot[] VALID = values();
+    public static final EnumDust[] VALID = values();
     public final String name;
     public final int meta = this.ordinal();
     public Icon icon;
 
-
-    private EnumIngot(String name) {
+    private EnumDust(String name) {
         this.name = name;
     }
 
     public String getUnlocalizedName() {
-        // removes the "ingot" from the name and makes it lowercase (ex. ingotCopper -> copper)
-        return ModuleBase.ingot.getUnlocalizedName() + "." + name.toLowerCase().substring(5);
+        // removes the "dust" from the name and makes it lowercase (ex. dustCopper -> copper)
+        return ModuleBase.dust.getUnlocalizedName() + "." + name.toLowerCase().substring(4);
     }
 
     public void registerIcon(IconRegister ir) {
@@ -33,7 +32,7 @@ public enum EnumIngot {
     }
 
     public ItemStack getIS(int amount) {
-        return new ItemStack(ModuleBase.ingot, amount, meta);
+        return new ItemStack(ModuleBase.dust, amount, meta);
     }
 
     public void registerOre() {

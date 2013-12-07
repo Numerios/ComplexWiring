@@ -5,7 +5,7 @@ import num.complexwiring.lib.Module;
 
 public class ModuleBase extends Module {
 
-    public static Item itemIngot;
+    public static Item ingot, dust;
 
     @Override
     public void preInit() {
@@ -18,8 +18,11 @@ public class ModuleBase extends Module {
     }
 
     private void registerItems() {
-        itemIngot = new ItemIngot(1025);
-        ((ItemIngot) itemIngot).registerOres();
+        ingot = new ItemIngot(1025);
+        ((ItemIngot) ingot).registerOres();
+
+        dust = new ItemDust(1026);
+        ((ItemDust) dust).registerOres();
     }
 
     private void registerRecipes() {

@@ -22,6 +22,11 @@ public class Strings {
     public static final String INGOT_SILVER_NAME = "ingotSilver";
     public static final String INGOT_LEAD_NAME = "ingotLead";
 
+    public static final String DUST_COPPER_NAME = "dustCopper";
+    public static final String DUST_TIN_NAME = "dustTin";
+    public static final String DUST_SILVER_NAME = "dustSilver";
+    public static final String DUST_LEAD_NAME = "dustLead";
+
     public static final String MACHINE_BASIC_ORELYZER_NAME = "machineBasicOrelyzer";
     public static final String MACHINE_BASIC_ORELYZER_DESC = StatCollector.translateToLocal("tile.complexwiring.machine.basic.orelyzer.desc");   //TODO MAKE THIS PRETTIER
 

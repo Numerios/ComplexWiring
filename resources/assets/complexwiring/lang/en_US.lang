@@ -25,6 +25,11 @@ item.complexwiring.base.ingot.tin.name=Tin Ingot
 item.complexwiring.base.ingot.silver.name=Silver Ingot
 item.complexwiring.base.ingot.lead.name=Lead Ingot
 
+item.complexwiring.base.dust.copper.name=Copper Dust
+item.complexwiring.base.dust.tin.name=Tin Dust
+item.complexwiring.base.dust.silver.name=Silver Dust
+item.complexwiring.base.dust.lead.name=Leaden Dust
+
 item.complexwiring.tablet.name=Tablet
 
 
