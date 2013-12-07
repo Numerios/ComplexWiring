@@ -50,7 +50,7 @@ public abstract class GuiInventoryBase extends GuiContainer {
     protected void drawTooltips(int mouseX, int mouseY) {
         for (GuiTooltip tooltip : tooltips) {
             if(tooltip.isHover(mouseX - guiLeft, mouseY - guiTop)){
-                drawHoveringText(tooltip.getTexts(isShiftKeyDown()), mouseX, mouseY, fontRenderer);
+                drawHoveringText(tooltip.getTexts(), mouseX, mouseY, fontRenderer);
             }
         }
     }

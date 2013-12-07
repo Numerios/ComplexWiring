@@ -9,34 +9,27 @@ import java.util.List;
 public class GuiTooltip {
 
     protected Rectangle location;
-    protected List<GuiTooltipText> texts;
+    protected List<String> texts;
 
     public GuiTooltip(Rectangle location){
         this.location = location;
-        texts = new ArrayList<GuiTooltipText>();
+        texts = new ArrayList<String>();
     }
 
     public void addText(String text){
-        texts.add(new GuiTooltipText(text));
-    }
-
-    public void addText(GuiTooltipText text){
         texts.add(text);
     }
 
-    public GuiTooltipText getText(int line){
-        return texts.get(line);
+    public String getText(int i){
+        return texts.get(i);
     }
 
-    public List<String> getTexts(boolean shift){
-        Logger.debug("Shift key > " + shift);
-        List<String> list = new ArrayList<String>();
-        for(GuiTooltipText tooltip : texts){
-            if(tooltip.getText(shift) != null){
-                list.add(tooltip.getText(shift));
-            }
-        }
-        return list;
+    public String setText(int i, String text){
+        return texts.set(i, text);
+    }
+
+    public List<String> getTexts(){
+        return texts;
     }
 
     public boolean isHover(int mouseX, int mouseY){

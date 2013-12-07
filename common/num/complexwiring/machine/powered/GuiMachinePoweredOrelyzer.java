@@ -16,14 +16,14 @@ public class GuiMachinePoweredOrelyzer extends GuiInventoryBase {
         super(new ContainerMachinePoweredOrelyzer(player, tile), new ResourceLocation("complexwiring", "textures/gui/machine/powered/" + EnumPoweredMachine.ORELYZER.getUnlocalizedName() + ".png"));
         this.tile = tile;
 
-        energyTooltip = new GuiTooltip(new Rectangle(11, 12, 18, 176));
+        energyTooltip = new GuiTooltip(new Rectangle(12, 11, 15, 40));
         energyTooltip.addText("{Stored energy}");
         tooltips.add(energyTooltip);
     }
 
     @Override
     protected void updateTooltips() {
-        energyTooltip.getText(0).setText(tile.getStoredEnergy() + " MJ");
+        energyTooltip.setText(0, tile.getStoredEnergy() + " MJ");
     }
 
     @Override
