@@ -8,15 +8,14 @@ import net.minecraft.item.ItemStack;
 
 public abstract class ContainerBase extends Container{
 
-    public ContainerBase(InventoryPlayer playerInv) {
+    protected final TileEntityBase tile;
+
+    public ContainerBase(InventoryPlayer playerInv, TileEntityBase tile) {
+        this.tile = tile;
     }
 
     public ItemStack transferStackInSlot(EntityPlayer player, int slotID) {
         return null;
-    }
-
-    public void onContainerClosed(EntityPlayer player) {
-        super.onContainerClosed(player);
     }
 
     public void addPlayerInventory(InventoryPlayer inv) {

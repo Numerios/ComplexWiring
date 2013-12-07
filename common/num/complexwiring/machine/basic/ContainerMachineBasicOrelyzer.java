@@ -18,7 +18,7 @@ public class ContainerMachineBasicOrelyzer extends ContainerBase {
     protected final TileEntityBasicOrelyzer tile;
 
     public ContainerMachineBasicOrelyzer(InventoryPlayer playerInv, TileEntityBasicOrelyzer tile) {
-        super(playerInv);
+        super(playerInv, tile);
         this.tile = tile;
 
         addSlotToContainer(new SlotMachine(tile, 0, 56, 17));   // ore input
@@ -28,6 +28,7 @@ public class ContainerMachineBasicOrelyzer extends ContainerBase {
 
 
         addPlayerInventory(playerInv);
+        tile.playersUsing.add(playerInv.player);
     }
 
     @Override
@@ -87,12 +88,6 @@ public class ContainerMachineBasicOrelyzer extends ContainerBase {
 
         }
         return is;
-    }
-
-    @Override
-    public void addPlayerInventory(InventoryPlayer playerInv) {
-        super.addPlayerInventory(playerInv);
-        tile.playersUsing.add(playerInv.player);
     }
 
     @Override
