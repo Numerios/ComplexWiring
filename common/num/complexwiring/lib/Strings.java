@@ -24,10 +24,10 @@ public class Strings {
 
     // SILVER Secondary
     public static final String ORE_ARGENTITE_NAME = "oreArgentite";
-    public static final String ORE_CHLORARGYTE_NAME = "oreChlorargyte";
+    public static final String ORE_CHLORARGYRITE_NAME = "oreChlorargyrite";
 
     // LEAD Secondary
-    public static final String ORE_GALENITE_NAME = "oreGalenite";
+    public static final String ORE_GALENA_NAME = "oreGalena";
     public static final String ORE_CERUSSITE_NAME = "oreCerussite";
     public static final String ORE_ANGLESITE_NAME = "oreAnglesite";
 
