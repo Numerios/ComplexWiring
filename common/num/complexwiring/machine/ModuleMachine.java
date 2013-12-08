@@ -32,11 +32,11 @@ public class ModuleMachine extends Module {
     }
 
     private void registerBlocks() {
-        machineBasic = new BlockBasicMachine(669);
+        machineBasic = new BlockBasicMachine(670);
         GameRegistry.registerBlock(machineBasic, ItemBlockBasicMachine.class, machineBasic.getUnlocalizedName());
         ((BlockBasicMachine) machineBasic).registerTiles();
 
-        machinePowered = new BlockPoweredMachine(670);
+        machinePowered = new BlockPoweredMachine(671);
         GameRegistry.registerBlock(machinePowered, ItemBlockPoweredMachine.class, machinePowered.getUnlocalizedName());
         ((BlockPoweredMachine) machinePowered).registerTiles();
     }

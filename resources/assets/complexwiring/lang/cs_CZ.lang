@@ -11,61 +11,61 @@ tile.complexwiring.world.ore.primary.uranium.name=Uranová ruda
 tile.complexwiring.world.ore.primary.tungsten.name=Wolframová ruda
 tile.complexwiring.world.ore.primary.titanium.name=Titanová ruda
 
-tile.complexwiring.world.ore.secondary.chalcocite.name=Chalcozín
-tile.complexwiring.world.ore.secondary.bornite.name=Bornit
-tile.complexwiring.world.ore.secondary.chalcopyrite.name=Chalkopyrit
-tile.complexwiring.world.ore.secondary.malachite.name=Malachit
+tile.complexwiring.world.ore.secondary.classic.chalcocite.name=Chalcozín
+tile.complexwiring.world.ore.secondary.classic.bornite.name=Bornit
+tile.complexwiring.world.ore.secondary.classic.chalcopyrite.name=Chalkopyrit
+tile.complexwiring.world.ore.secondary.classic.malachite.name=Malachit
 
-tile.complexwiring.world.ore.secondary.cassiterite.name=Kasiterit
-tile.complexwiring.world.ore.secondary.stannite.name=Stannin
+tile.complexwiring.world.ore.secondary.classic.cassiterite.name=Kasiterit
+tile.complexwiring.world.ore.secondary.classic.stannite.name=Stannin
 
-tile.complexwiring.world.ore.secondary.argentite.name=Argentit
-tile.complexwiring.world.ore.secondary.chlorargyrite.name=Chlorargyrit
+tile.complexwiring.world.ore.secondary.classic.argentite.name=Argentit
+tile.complexwiring.world.ore.secondary.classic.chlorargyrite.name=Chlorargyrit
 
-tile.complexwiring.world.ore.secondary.galena.name=Galenit
-tile.complexwiring.world.ore.secondary.cerussite.name=Cerusit
-tile.complexwiring.world.ore.secondary.anglesite.name=Anglesit
+tile.complexwiring.world.ore.secondary.classic.galena.name=Galenit
+tile.complexwiring.world.ore.secondary.classic.cerussite.name=Cerusit
+tile.complexwiring.world.ore.secondary.classic.anglesite.name=Anglesit
 
-tile.complexwiring.world.ore.secondary.bauxite.name=Bauxit
-tile.complexwiring.world.ore.secondary.cryolite.name=Kryolit
+tile.complexwiring.world.ore.secondary.rare.bauxite.name=Bauxit
+tile.complexwiring.world.ore.secondary.rare.cryolite.name=Kryolit
 
-tile.complexwiring.world.ore.secondary.uraninite.name=Uraninit
-tile.complexwiring.world.ore.secondary.autunite.name=Autunit
+tile.complexwiring.world.ore.secondary.rare.uraninite.name=Uraninit
+tile.complexwiring.world.ore.secondary.rare.autunite.name=Autunit
 
-tile.complexwiring.world.ore.secondary.wolframite.name=Wolframit
-tile.complexwiring.world.ore.secondary.scheelite.name=Scheelit
+tile.complexwiring.world.ore.secondary.rare.wolframite.name=Wolframit
+tile.complexwiring.world.ore.secondary.rare.scheelite.name=Scheelit
 
-tile.complexwiring.world.ore.secondary.ilmenite.name=Ilmenit
-tile.complexwiring.world.ore.secondary.rutile.name=Rutil
+tile.complexwiring.world.ore.secondary.rare.ilmenite.name=Ilmenit
+tile.complexwiring.world.ore.secondary.rare.rutile.name=Rutil
 
-tile.complexwiring.world.ore.secondary.calaverite.name=Calaverit
-tile.complexwiring.world.ore.secondary.sylvanite.name=Sylvanit
-tile.complexwiring.world.ore.secondary.puregold.name=Ruda čistého zlata
+tile.complexwiring.world.ore.secondary.rare.calaverite.name=Calaverit
+tile.complexwiring.world.ore.secondary.rare.sylvanite.name=Sylvanit
+tile.complexwiring.world.ore.secondary.rare.puregold.name=Ruda čistého zlata
 
-tile.complexwiring.world.ore.secondary.magnetite.name=Magnetit
-tile.complexwiring.world.ore.secondary.hematite.name=Hematit
-tile.complexwiring.world.ore.secondary.siderite.name=Siderit
-tile.complexwiring.world.ore.secondary.chromite.name=Chromit
-tile.complexwiring.world.ore.secondary.pentlandite.name=Pentlandit
+tile.complexwiring.world.ore.secondary.vanilla.magnetite.name=Magnetit
+tile.complexwiring.world.ore.secondary.vanilla.hematite.name=Hematit
+tile.complexwiring.world.ore.secondary.vanilla.siderite.name=Siderit
+tile.complexwiring.world.ore.secondary.vanilla.chromite.name=Chromit
+tile.complexwiring.world.ore.secondary.vanilla.pentlandite.name=Pentlandit
 
-tile.complexwiring.world.ore.secondary.pyrolusite.name=Burel
-tile.complexwiring.world.ore.secondary.cinnabar.name=Rumělka
-tile.complexwiring.world.ore.secondary.dolomite.name=Dolomit
-tile.complexwiring.world.ore.secondary.sphalerite.name=Sfalerit
-tile.complexwiring.world.ore.secondary.limestone.name=Vápenec
-tile.complexwiring.world.ore.secondary.lime.name=Vápno
-tile.complexwiring.world.ore.secondary.cobaltite.name=Kobaltin
+tile.complexwiring.world.ore.secondary.vanilla.pyrolusite.name=Burel
+tile.complexwiring.world.ore.secondary.vanilla.cinnabar.name=Rumělka
+tile.complexwiring.world.ore.secondary.vanilla.dolomite.name=Dolomit
+tile.complexwiring.world.ore.secondary.vanilla.sphalerite.name=Sfalerit
+tile.complexwiring.world.ore.secondary.vanilla.limestone.name=Vápenec
+tile.complexwiring.world.ore.secondary.vanilla.lime.name=Vápno
+tile.complexwiring.world.ore.secondary.vanilla.cobaltite.name=Kobaltin
 
-tile.complexwiring.world.ore.secondary.lithium.name=Ložisko lithia
+tile.complexwiring.world.ore.secondary.rare.lithium.name=Ložisko lithia
 
-tile.complexwiring.world.ore.secondary.lazurite.name=Lazurit
+tile.complexwiring.world.ore.secondary.rare.lazurite.name=Lazurit
 
-tile.complexwiring.world.ore.secondary.beryl.name=Beryl
+tile.complexwiring.world.ore.secondary.rare.beryl.name=Beryl
 
-tile.complexwiring.world.ore.secondary.lignite.name=Ložisko lignitu
-tile.complexwiring.world.ore.secondary.subbituminous.name=Ložisko hnědého uhlí
-tile.complexwiring.world.ore.secondary.bituminous.name=Ložisko černého uhlí
-tile.complexwiring.world.ore.secondary.anthracite.name=Ložisko antracitu
+tile.complexwiring.world.ore.secondary.vanilla.lignite.name=Ložisko lignitu
+tile.complexwiring.world.ore.secondary.vanilla.subbituminous.name=Ložisko hnědého uhlí
+tile.complexwiring.world.ore.secondary.vanilla.bituminous.name=Ložisko černého uhlí
+tile.complexwiring.world.ore.secondary.vanilla.anthracite.name=Ložisko antracitu
 
 tile.complexwiring.machine.basic.orelyzer.name=Základní rudolyzér
 tile.complexwiring.machine.basic.orelyzer.desc=Analyzuj své rudy!

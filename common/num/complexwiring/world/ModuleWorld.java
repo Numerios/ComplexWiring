@@ -9,12 +9,28 @@ import num.complexwiring.core.CreativeTabCW;
 import num.complexwiring.lib.Module;
 import num.complexwiring.recipe.OrelyzerRecipe;
 import num.complexwiring.recipe.RecipeManager;
-import num.complexwiring.world.ore.*;
+import num.complexwiring.world.ore.primary.BlockOrePrimary;
+import num.complexwiring.world.ore.primary.EnumOrePrimary;
+import num.complexwiring.world.ore.primary.ItemBlockOrePrimary;
+import num.complexwiring.world.ore.secondary.BlockOreSecondary;
+import num.complexwiring.world.ore.secondary.classic.BlockOreSecondaryClassic;
+import num.complexwiring.world.ore.secondary.classic.EnumOreSecondaryClassic;
+import num.complexwiring.world.ore.secondary.classic.ItemBlockOreSecondaryClassic;
+import num.complexwiring.world.ore.secondary.rare.BlockOreSecondaryRare;
+import num.complexwiring.world.ore.secondary.rare.EnumOreSecondaryRare;
+import num.complexwiring.world.ore.secondary.rare.ItemBlockOreSecondaryRare;
+import num.complexwiring.world.ore.secondary.vanilla.BlockOreSecondaryVanilla;
+import num.complexwiring.world.ore.secondary.vanilla.EnumOreSecondaryVanilla;
+import num.complexwiring.world.ore.secondary.vanilla.ItemBlockOreSecondaryVanilla;
 
 public class ModuleWorld extends Module {
 
-    public static Block orePrimary, oreSecondary;
+    public static Block orePrimary, oreSecondaryClassic, oreSecondaryRare, oreSecondaryVanilla;
     public static CreativeTabCW tabCWWorld = new CreativeTabCW("tabCWWorld", null);
+    public static final int ORE_SECONDARY_CLASSIC_ID = 667;
+    public static final int ORE_SECONDARY_RARE_ID = 668;
+    public static final int ORE_SECONDARY_VANILLA_ID = 669;
+
 
     @Override
     public void preInit() {
@@ -34,9 +50,17 @@ public class ModuleWorld extends Module {
         ((BlockOrePrimary) orePrimary).registerOres();
         GameRegistry.registerBlock(orePrimary, ItemBlockOrePrimary.class, orePrimary.getUnlocalizedName());
 
-        oreSecondary = new BlockOreSecondary(667);
-        ((BlockOreSecondary) oreSecondary).registerOres();
-        GameRegistry.registerBlock(oreSecondary, ItemBlockOreSecondary.class, oreSecondary.getUnlocalizedName());
+        oreSecondaryClassic = new BlockOreSecondaryClassic(ORE_SECONDARY_CLASSIC_ID);
+        ((BlockOreSecondary) oreSecondaryClassic).registerOres();
+        GameRegistry.registerBlock(oreSecondaryClassic, ItemBlockOreSecondaryClassic.class, oreSecondaryClassic.getUnlocalizedName());
+
+        oreSecondaryRare = new BlockOreSecondaryRare(ORE_SECONDARY_RARE_ID);
+        ((BlockOreSecondary) oreSecondaryRare).registerOres();
+        GameRegistry.registerBlock(oreSecondaryRare, ItemBlockOreSecondaryRare.class, oreSecondaryRare.getUnlocalizedName());
+
+        oreSecondaryVanilla = new BlockOreSecondaryVanilla(ORE_SECONDARY_VANILLA_ID);
+        ((BlockOreSecondary) oreSecondaryVanilla).registerOres();
+        GameRegistry.registerBlock(oreSecondaryVanilla, ItemBlockOreSecondaryVanilla.class, oreSecondaryVanilla.getUnlocalizedName());
     }
 
     private void registerItems() {
@@ -45,78 +69,78 @@ public class ModuleWorld extends Module {
 
     private void registerRecipes() {
         RecipeManager.add(new OrelyzerRecipe(EnumOrePrimary.COPPER.getIS(1), 240,
-               new RecipeRandomOutput(EnumOreSecondary.CHALCOCITE.getIS(1), 0.65F),
-               new RecipeRandomOutput(EnumOreSecondary.CHALCOPYRITE.getIS(1), 0.35F),
-               new RecipeRandomOutput(EnumOreSecondary.BORNITE.getIS(1), 0.25F),
-               new RecipeRandomOutput(EnumOreSecondary.MALACHITE.getIS(1), 0.10F)));
+               new RecipeRandomOutput(EnumOreSecondaryClassic.CHALCOCITE.getIS(1), 0.65F),
+               new RecipeRandomOutput(EnumOreSecondaryClassic.CHALCOPYRITE.getIS(1), 0.35F),
+               new RecipeRandomOutput(EnumOreSecondaryClassic.BORNITE.getIS(1), 0.25F),
+               new RecipeRandomOutput(EnumOreSecondaryClassic.MALACHITE.getIS(1), 0.10F)));
 
         RecipeManager.add(new OrelyzerRecipe(EnumOrePrimary.TIN.getIS(1), 240,
-                new RecipeRandomOutput(EnumOreSecondary.CASSITERITE.getIS(1), 0.75F),
-                new RecipeRandomOutput(EnumOreSecondary.STANNITE.getIS(1), 0.40F)));
+                new RecipeRandomOutput(EnumOreSecondaryClassic.CASSITERITE.getIS(1), 0.75F),
+                new RecipeRandomOutput(EnumOreSecondaryClassic.STANNITE.getIS(1), 0.40F)));
 
         RecipeManager.add(new OrelyzerRecipe(EnumOrePrimary.SILVER.getIS(1), 360,
-                new RecipeRandomOutput(EnumOreSecondary.ARGENTITE.getIS(1), 0.80F),
-                new RecipeRandomOutput(EnumOreSecondary.CHLORARGYRITE.getIS(1), 0.35F)));
+                new RecipeRandomOutput(EnumOreSecondaryClassic.ARGENTITE.getIS(1), 0.80F),
+                new RecipeRandomOutput(EnumOreSecondaryClassic.CHLORARGYRITE.getIS(1), 0.35F)));
 
         RecipeManager.add(new OrelyzerRecipe(EnumOrePrimary.LEAD.getIS(1), 360,
-                new RecipeRandomOutput(EnumOreSecondary.GALENA.getIS(1), 0.75F),
-                new RecipeRandomOutput(EnumOreSecondary.CERUSSITE.getIS(1), 0.25F),
-                new RecipeRandomOutput(EnumOreSecondary.ANGLESITE.getIS(1), 0.20F)));
+                new RecipeRandomOutput(EnumOreSecondaryClassic.GALENA.getIS(1), 0.75F),
+                new RecipeRandomOutput(EnumOreSecondaryClassic.CERUSSITE.getIS(1), 0.25F),
+                new RecipeRandomOutput(EnumOreSecondaryClassic.ANGLESITE.getIS(1), 0.20F)));
 
         RecipeManager.add(new OrelyzerRecipe(EnumOrePrimary.ALUMINIUM.getIS(1), 480,
-                new RecipeRandomOutput(EnumOreSecondary.BAUXITE.getIS(1), 0.75F),
-                new RecipeRandomOutput(EnumOreSecondary.CRYOLITE.getIS(1), 0.375F)));
+                new RecipeRandomOutput(EnumOreSecondaryRare.BAUXITE.getIS(1), 0.75F),
+                new RecipeRandomOutput(EnumOreSecondaryRare.CRYOLITE.getIS(1), 0.375F)));
 
         RecipeManager.add(new OrelyzerRecipe(EnumOrePrimary.URANIUM.getIS(1), 640,
-                new RecipeRandomOutput(EnumOreSecondary.URANINITE.getIS(1), 0.75F),
-                new RecipeRandomOutput(EnumOreSecondary.AUTUNITE.getIS(1), 0.15F)));
+                new RecipeRandomOutput(EnumOreSecondaryRare.URANINITE.getIS(1), 0.75F),
+                new RecipeRandomOutput(EnumOreSecondaryRare.AUTUNITE.getIS(1), 0.15F)));
 
         RecipeManager.add(new OrelyzerRecipe(EnumOrePrimary.TUNGSTEN.getIS(1), 720,
-                new RecipeRandomOutput(EnumOreSecondary.WOLFRAMITE.getIS(1), 0.65F),
-                new RecipeRandomOutput(EnumOreSecondary.SCHEELITE.getIS(1), 0.45F)));
+                new RecipeRandomOutput(EnumOreSecondaryRare.WOLFRAMITE.getIS(1), 0.65F),
+                new RecipeRandomOutput(EnumOreSecondaryRare.SCHEELITE.getIS(1), 0.45F)));
 
         RecipeManager.add(new OrelyzerRecipe(EnumOrePrimary.TITANIUM.getIS(1), 720,
-                new RecipeRandomOutput(EnumOreSecondary.ILMENITE.getIS(1), 0.60F),
-                new RecipeRandomOutput(EnumOreSecondary.RUTILE.getIS(1), 0.50F)));
+                new RecipeRandomOutput(EnumOreSecondaryRare.ILMENITE.getIS(1), 0.60F),
+                new RecipeRandomOutput(EnumOreSecondaryRare.RUTILE.getIS(1), 0.50F)));
 
         RecipeManager.add(new OrelyzerRecipe(new ItemStack(Block.oreGold), 360,
-                new RecipeRandomOutput(EnumOreSecondary.CALAVERITE.getIS(1), 0.35F),
-                new RecipeRandomOutput(EnumOreSecondary.SYLVANITE.getIS(1), 0.35F),
-                new RecipeRandomOutput(EnumOreSecondary.PUREGOLD.getIS(1), 0.55F)));
+                new RecipeRandomOutput(EnumOreSecondaryRare.CALAVERITE.getIS(1), 0.35F),
+                new RecipeRandomOutput(EnumOreSecondaryRare.SYLVANITE.getIS(1), 0.35F),
+                new RecipeRandomOutput(EnumOreSecondaryRare.PUREGOLD.getIS(1), 0.55F)));
 
         RecipeManager.add(new OrelyzerRecipe(new ItemStack(Block.oreIron), 240,
-                new RecipeRandomOutput(EnumOreSecondary.MAGNETITE.getIS(1), 0.50F),
-                new RecipeRandomOutput(EnumOreSecondary.HEMATITE.getIS(1), 0.70F),
-                new RecipeRandomOutput(EnumOreSecondary.SIDERITE.getIS(1), 0.40F),
-                new RecipeRandomOutput(EnumOreSecondary.CHROMITE.getIS(1), 0.20F),
-                new RecipeRandomOutput(EnumOreSecondary.PENTLADITE.getIS(1), 0.20F)));
+                new RecipeRandomOutput(EnumOreSecondaryVanilla.MAGNETITE.getIS(1), 0.50F),
+                new RecipeRandomOutput(EnumOreSecondaryVanilla.HEMATITE.getIS(1), 0.70F),
+                new RecipeRandomOutput(EnumOreSecondaryVanilla.SIDERITE.getIS(1), 0.40F),
+                new RecipeRandomOutput(EnumOreSecondaryVanilla.CHROMITE.getIS(1), 0.20F),
+                new RecipeRandomOutput(EnumOreSecondaryVanilla.PENTLADITE.getIS(1), 0.20F)));
 
         RecipeManager.add(new OrelyzerRecipe(new ItemStack(Block.oreCoal), 320,
-                new RecipeRandomOutput(EnumOreSecondary.ANTHRACITE.getIS(1), 0.10F),
-                new RecipeRandomOutput(EnumOreSecondary.BITUMINOUS.getIS(1), 0.50F),
-                new RecipeRandomOutput(EnumOreSecondary.SUBBITUMINOUS.getIS(1), 0.75F),
-                new RecipeRandomOutput(EnumOreSecondary.LIGNITE.getIS(1), 0.15F),
+                new RecipeRandomOutput(EnumOreSecondaryVanilla.ANTHRACITE.getIS(1), 0.10F),
+                new RecipeRandomOutput(EnumOreSecondaryVanilla.BITUMINOUS.getIS(1), 0.50F),
+                new RecipeRandomOutput(EnumOreSecondaryVanilla.SUBBITUMINOUS.getIS(1), 0.75F),
+                new RecipeRandomOutput(EnumOreSecondaryVanilla.LIGNITE.getIS(1), 0.15F),
                 new RecipeRandomOutput(new ItemStack(Item.coal, 1), 0.15F)));
 
         RecipeManager.add(new OrelyzerRecipe(new ItemStack(Block.stone), 640,
-                new RecipeRandomOutput(EnumOreSecondary.PYROLUSITE.getIS(1), 0.05F),
-                new RecipeRandomOutput(EnumOreSecondary.CINNABAR.getIS(1), 0.05F),
-                new RecipeRandomOutput(EnumOreSecondary.DOLOMITE.getIS(1), 0.30F),
-                new RecipeRandomOutput(EnumOreSecondary.SPHALERITE.getIS(1), 0.05F),
-                new RecipeRandomOutput(EnumOreSecondary.LIMESTONE.getIS(1), 0.30F),
-                new RecipeRandomOutput(EnumOreSecondary.LIME.getIS(1), 0.10F),
-                new RecipeRandomOutput(EnumOreSecondary.COBALTITE.getIS(1), 0.05F)));
+                new RecipeRandomOutput(EnumOreSecondaryVanilla.PYROLUSITE.getIS(1), 0.05F),
+                new RecipeRandomOutput(EnumOreSecondaryVanilla.CINNABAR.getIS(1), 0.05F),
+                new RecipeRandomOutput(EnumOreSecondaryVanilla.DOLOMITE.getIS(1), 0.30F),
+                new RecipeRandomOutput(EnumOreSecondaryVanilla.SPHALERITE.getIS(1), 0.05F),
+                new RecipeRandomOutput(EnumOreSecondaryVanilla.LIMESTONE.getIS(1), 0.30F),
+                new RecipeRandomOutput(EnumOreSecondaryVanilla.LIME.getIS(1), 0.10F),
+                new RecipeRandomOutput(EnumOreSecondaryVanilla.COBALTITE.getIS(1), 0.05F)));
 
         RecipeManager.add(new OrelyzerRecipe(new ItemStack(Block.blockClay), 720,
-                new RecipeRandomOutput(EnumOreSecondary.LITHIUM.getIS(1), 0.005F)));
+                new RecipeRandomOutput(EnumOreSecondaryRare.LITHIUM.getIS(1), 0.005F)));
 
         RecipeManager.add(new OrelyzerRecipe(new ItemStack(Block.oreLapis), 640,
-                new RecipeRandomOutput(EnumOreSecondary.LAZURITE.getIS(1), 0.95F),
+                new RecipeRandomOutput(EnumOreSecondaryRare.LAZURITE.getIS(1), 0.95F),
                 new RecipeRandomOutput(new ItemStack(Item.dyePowder, 1, 4), 0.80F),  // lapis lazuli
                 new RecipeRandomOutput(new ItemStack(Item.dyePowder, 1, 4), 0.20F)));
 
         RecipeManager.add(new OrelyzerRecipe(new ItemStack(Block.oreLapis), 640,
-                new RecipeRandomOutput(EnumOreSecondary.BERYL.getIS(1), 0.85F),
+                new RecipeRandomOutput(EnumOreSecondaryRare.BERYL.getIS(1), 0.85F),
                 new RecipeRandomOutput(new ItemStack(Item.emerald), 0.10F)));
     }
 }

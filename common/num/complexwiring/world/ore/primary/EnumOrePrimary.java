@@ -1,4 +1,4 @@
-package num.complexwiring.world.ore;
+package num.complexwiring.world.ore.primary;
 
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.item.ItemStack;
