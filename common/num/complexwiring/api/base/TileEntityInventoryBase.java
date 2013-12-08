@@ -106,7 +106,7 @@ public abstract class TileEntityInventoryBase extends TileEntityBase implements 
 
     @Override
     public boolean isUseableByPlayer(EntityPlayer player) {
-        return Vector3.get(player).distance(Vector3.get(this)) <= 64 && Vector3.get(this).toTile(worldObj) == this;
+        return Vector3.get(player).distance(this.pos) <= 64 && this.pos.toTile(worldObj) == this;
     }
 
     @Override
