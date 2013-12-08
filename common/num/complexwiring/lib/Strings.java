@@ -23,7 +23,7 @@ public class Strings {
     public static final String ORE_STANNITE_NAME = "oreStannite";
 
     // SILVER Secondary
-    public static final String ORE_ARGENTINE_NAME = "oreArgentine";
+    public static final String ORE_ARGENTITE_NAME = "oreArgentite";
     public static final String ORE_CHLORARGYTE_NAME = "oreChlorargyte";
 
     // LEAD Secondary

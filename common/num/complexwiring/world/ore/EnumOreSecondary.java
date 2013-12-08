@@ -18,7 +18,7 @@ public enum EnumOreSecondary {
     CASSITERITE(Strings.ORE_CASSITERITE_NAME, "oreTin"),
     STANNITE(Strings.ORE_STANNITE_NAME, "oreTin"),
 
-    ARGENTINE(Strings.ORE_ARGENTINE_NAME, "oreSilver"),
+    ARGENTITE(Strings.ORE_ARGENTITE_NAME, "oreSilver"),
     CHLORARGYTE(Strings.ORE_CHLORARGYTE_NAME, "oreSilver"),
 
     GALENITE(Strings.ORE_GALENITE_NAME, "oreLead"),
