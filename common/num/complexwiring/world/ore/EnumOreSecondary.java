@@ -28,7 +28,7 @@ public enum EnumOreSecondary {
     BAUXITE(Strings.ORE_BAUXITE_NAME, "oreAluminium"),
     CRYOLITE(Strings.ORE_CRYOLITE_NAME, "oreAluminium"),
 
-    URANITE(Strings.ORE_URANINITE_NAME, "oreUranium"),
+    URANINITE(Strings.ORE_URANINITE_NAME, "oreUranium"),
     AUTUNITE(Strings.ORE_AUTUNITE_NAME, "oreUranium"),
 
     WOLFRAMITE(Strings.ORE_WOLFRAMITE_NAME, "oreTungsten"),
