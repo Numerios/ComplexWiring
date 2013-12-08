@@ -53,7 +53,7 @@ public class TileEntityPoweredOrelyzer extends TileEntityPoweredBase implements 
                 powerHandler.useEnergy(USED_ENERGY, USED_ENERGY, true);
                 storedEnergy = powerHandler.getEnergyStored();
                 machineProcessTime++;
-                if (machineProcessTime == recipeProcessTime) {
+                if (machineProcessTime >= recipeProcessTime) {
                     machineProcessTime = 0;
                     recipeProcessTime = 0;
                     endProcessing();
@@ -116,6 +116,7 @@ public class TileEntityPoweredOrelyzer extends TileEntityPoweredBase implements 
                 setInventorySlotContents(0, null);
             }
         }
+        recipeProcessTime = currentRecipe.getNeededPower();
     }
 
     public void endProcessing() {

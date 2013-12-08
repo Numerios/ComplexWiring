@@ -63,7 +63,7 @@ public class TileEntityBasicOrelyzer extends TileEntityInventoryBase implements 
                     initProcessing();
                 }
                 machineProcessTime++;
-                if (machineProcessTime == recipeProcessTime) {
+                if (machineProcessTime >= recipeProcessTime) {
                     machineProcessTime = 0;
                     recipeProcessTime = 0;
                     endProcessing();
