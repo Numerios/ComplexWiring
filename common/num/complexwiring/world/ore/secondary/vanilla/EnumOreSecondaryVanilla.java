@@ -9,7 +9,6 @@ import num.complexwiring.lib.Strings;
 import num.complexwiring.world.ModuleWorld;
 
 public enum EnumOreSecondaryVanilla {
-
     MAGNETITE(Strings.ORE_MAGNETITE_NAME, "oreIron"),
     HEMATITE(Strings.ORE_HEMATITE_NAME, "oreIron"),
     SIDERITE(Strings.ORE_SIDERITE_NAME, "oreIron"),
@@ -18,9 +17,7 @@ public enum EnumOreSecondaryVanilla {
 
     PYROLUSITE(Strings.ORE_PYROLUSITE_NAME, "stone"),
     CINNABAR(Strings.ORE_CINNABAR_NAME, "stone"),
-    DOLOMITE(Strings.ORE_DOLOMITE_NAME, "stone"),
     SPHALERITE(Strings.ORE_SPHALERITE_NAME, "stone"),
-    LIMESTONE(Strings.ORE_LIMESTONE_NAME, "stone"),
     LIME(Strings.ORE_LIME_NAME, "stone"),
     COBALTITE(Strings.ORE_COBALTITE_NAME, "stone"),
 

@@ -43,6 +43,5 @@ public enum EnumOrePrimary {
     public void registerOre() {
         OreDictionary.registerOre(this.name, this.getIS(1));
     }
-
 }
 

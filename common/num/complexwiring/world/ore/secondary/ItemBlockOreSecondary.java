@@ -3,7 +3,6 @@ package num.complexwiring.world.ore.secondary;
 import net.minecraft.item.ItemBlock;
 
 public abstract class ItemBlockOreSecondary extends ItemBlock {
-
     public ItemBlockOreSecondary(int ID) {
         super(ID);
         setHasSubtypes(true);

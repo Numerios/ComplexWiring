@@ -9,7 +9,6 @@ import num.complexwiring.lib.Strings;
 import num.complexwiring.world.ModuleWorld;
 
 public enum EnumOreSecondaryRare {
-    
     BAUXITE(Strings.ORE_BAUXITE_NAME, "oreAluminium"),
     CRYOLITE(Strings.ORE_CRYOLITE_NAME, "oreAluminium"),
 

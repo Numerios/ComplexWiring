@@ -83,6 +83,10 @@ public class Strings {
     public static final String ORE_BITUMINOUS_NAME = "oreBituminous";
     public static final String ORE_ANTHRACITE_NAME = "oreAnthracite";
 
+    public static final String DECOR_DOLOMITE_NAME = "decorDolomite";
+    public static final String DECOR_LIMESTONE_NAME = "decorLimestone";
+    public static final String DECOR_ARENITE_NAME = "decorArenite";
+
     public static final String INGOT_COPPER_NAME = "ingotCopper";
     public static final String INGOT_TIN_NAME = "ingotTin";
     public static final String INGOT_SILVER_NAME = "ingotSilver";

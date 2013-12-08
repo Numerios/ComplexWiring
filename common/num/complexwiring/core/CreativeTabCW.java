@@ -20,7 +20,7 @@ public class CreativeTabCW extends CreativeTabs {
         return icon;
     }
 
-    public void setIcon(ItemStack is){
+    public void setIcon(ItemStack is) {
         icon = is;
     }
 }

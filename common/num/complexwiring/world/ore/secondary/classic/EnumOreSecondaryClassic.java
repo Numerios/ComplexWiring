@@ -9,7 +9,6 @@ import num.complexwiring.lib.Strings;
 import num.complexwiring.world.ModuleWorld;
 
 public enum EnumOreSecondaryClassic {
-
     CHALCOCITE(Strings.ORE_CHALCOCITE_NAME, "oreCopper"),
     BORNITE(Strings.ORE_BORNITE_NAME, "oreCopper"),
     CHALCOPYRITE(Strings.ORE_CHALCOPYRITE_NAME, "oreCopper"),

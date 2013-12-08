@@ -1,4 +1,4 @@
-package num.complexwiring.world.ore.secondary;
+package num.complexwiring.world.ore.decor;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -7,14 +7,13 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.util.Icon;
 import num.complexwiring.lib.Reference;
 import num.complexwiring.world.ModuleWorld;
-import num.complexwiring.world.ore.secondary.classic.EnumOreSecondaryClassic;
 
 import java.util.List;
 
-public abstract class BlockOreSecondary extends Block {
-    public BlockOreSecondary(int ID) {
+public class BlockOreDecor extends Block {
+    public BlockOreDecor(int ID) {
         super(ID, Material.rock);
-        setUnlocalizedName(Reference.MOD_ID.toLowerCase() + ".world.ore.secondary");
+        setUnlocalizedName(Reference.MOD_ID.toLowerCase() + ".world.ore.decor");
         setHardness(3.0F);
         setResistance(3.0F);
         setCreativeTab(ModuleWorld.tabCWWorld);
@@ -22,20 +21,20 @@ public abstract class BlockOreSecondary extends Block {
 
     @Override
     public Icon getIcon(int side, int meta) {
-        return EnumOreSecondaryClassic.VALID[meta].icon;
+        return EnumOreDecor.VALID[meta].icon;
     }
 
     @Override
     public void registerIcons(IconRegister ir) {
-        for (EnumOreSecondaryClassic oreSecondary : EnumOreSecondaryClassic.VALID) {
-            oreSecondary.registerIcon(ir);
+        for (EnumOreDecor orePrimary : EnumOreDecor.VALID) {
+            orePrimary.registerIcon(ir);
         }
     }
 
     @Override
     public void getSubBlocks(int ID, CreativeTabs tab, List list) {
-        for (EnumOreSecondaryClassic oreSecondary : EnumOreSecondaryClassic.VALID) {
-            list.add(oreSecondary.getIS(1));
+        for (EnumOreDecor orePrimary : EnumOreDecor.VALID) {
+            list.add(orePrimary.getIS(1));
         }
     }
 
@@ -45,9 +44,8 @@ public abstract class BlockOreSecondary extends Block {
     }
 
     public void registerOres() {
-        for (EnumOreSecondaryClassic oreSecondary : EnumOreSecondaryClassic.VALID) {
-            oreSecondary.registerOre();
+        for (EnumOreDecor orePrimary : EnumOreDecor.VALID) {
+            orePrimary.registerOre();
         }
     }
-
 }

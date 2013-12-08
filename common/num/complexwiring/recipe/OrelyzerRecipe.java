@@ -7,7 +7,7 @@ import num.complexwiring.api.recipe.RecipeRandomOutput;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class OrelyzerRecipe implements ICWRecipe{
+public class OrelyzerRecipe implements ICWRecipe {
 
     private final String oreDictionary;
     private ItemStack input;
