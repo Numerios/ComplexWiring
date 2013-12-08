@@ -83,7 +83,7 @@ public enum EnumOreSecondary {
     }
 
     public void registerIcon(IconRegister ir) {
-        icon = ir.registerIcon(Reference.TEXTURE_PATH + name);
+        icon = ir.registerIcon(Reference.TEXTURE_PATH + "world/ore/secondary/" + name);
     }
 
     public ItemStack getIS(int amount) {
