@@ -1,5 +1,6 @@
 package num.complexwiring.base;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.item.Item;
 import num.complexwiring.core.CreativeTabCW;
 import num.complexwiring.lib.Module;
@@ -22,9 +23,11 @@ public class ModuleBase extends Module {
     private void registerItems() {
         ingot = new ItemIngot(1025);
         ((ItemIngot) ingot).registerOres();
+        GameRegistry.registerItem(ingot, ingot.getUnlocalizedName());
 
         dust = new ItemDust(1026);
         ((ItemDust) dust).registerOres();
+        GameRegistry.registerItem(dust, dust.getUnlocalizedName());
     }
 
     private void registerRecipes() {

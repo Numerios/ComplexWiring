@@ -50,9 +50,7 @@ tile.complexwiring.world.ore.secondary.vanilla.pentlandite.name=Pentlandite Ore
 
 tile.complexwiring.world.ore.secondary.vanilla.pyrolusite.name=Pyrolusite Ore
 tile.complexwiring.world.ore.secondary.vanilla.cinnabar.name=Cinnabar Ore
-tile.complexwiring.world.ore.secondary.vanilla.dolomite.name=Dolomite Ore
 tile.complexwiring.world.ore.secondary.vanilla.sphalerite.name=Sphalerite Ore
-tile.complexwiring.world.ore.secondary.vanilla.limestone.name=Limestone Ore
 tile.complexwiring.world.ore.secondary.vanilla.lime.name=Lime Ore
 tile.complexwiring.world.ore.secondary.vanilla.cobaltite.name=Cobaltite Ore
 
@@ -66,6 +64,9 @@ tile.complexwiring.world.ore.secondary.vanilla.lignite.name=Lignite Ore
 tile.complexwiring.world.ore.secondary.vanilla.subbituminous.name=Sub-Bituminous Ore
 tile.complexwiring.world.ore.secondary.vanilla.bituminous.name=Bituminous Ore
 tile.complexwiring.world.ore.secondary.vanilla.anthracite.name=Anthracite Ore
+
+tile.complexwiring.world.ore.decor.dolomite.name=Dolomite
+tile.complexwiring.world.ore.decor.limestone.name=Limestone
 
 tile.complexwiring.machine.basic.orelyzer.name=Basic Orelyzer
 tile.complexwiring.machine.basic.orelyzer.desc=Analyze your ores!

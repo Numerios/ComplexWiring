@@ -50,9 +50,7 @@ tile.complexwiring.world.ore.secondary.vanilla.pentlandite.name=Pentlandit
 
 tile.complexwiring.world.ore.secondary.vanilla.pyrolusite.name=Burel
 tile.complexwiring.world.ore.secondary.vanilla.cinnabar.name=Rumělka
-tile.complexwiring.world.ore.secondary.vanilla.dolomite.name=Dolomit
 tile.complexwiring.world.ore.secondary.vanilla.sphalerite.name=Sfalerit
-tile.complexwiring.world.ore.secondary.vanilla.limestone.name=Vápenec
 tile.complexwiring.world.ore.secondary.vanilla.lime.name=Vápno
 tile.complexwiring.world.ore.secondary.vanilla.cobaltite.name=Kobaltin
 
@@ -66,6 +64,9 @@ tile.complexwiring.world.ore.secondary.vanilla.lignite.name=Ložisko lignitu
 tile.complexwiring.world.ore.secondary.vanilla.subbituminous.name=Ložisko hnědého uhlí
 tile.complexwiring.world.ore.secondary.vanilla.bituminous.name=Ložisko černého uhlí
 tile.complexwiring.world.ore.secondary.vanilla.anthracite.name=Ložisko antracitu
+
+tile.complexwiring.world.ore.decor.dolomite.name=Dolomit
+tile.complexwiring.world.ore.decor.limestone.name=Vápenec
 
 tile.complexwiring.machine.basic.orelyzer.name=Základní rudolyzér
 tile.complexwiring.machine.basic.orelyzer.desc=Analyzuj své rudy!

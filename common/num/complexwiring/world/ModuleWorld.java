@@ -26,10 +26,8 @@ import num.complexwiring.world.ore.secondary.vanilla.EnumOreSecondaryVanilla;
 import num.complexwiring.world.ore.secondary.vanilla.ItemBlockOreSecondaryVanilla;
 
 public class ModuleWorld extends Module {
-
     public static Block orePrimary, oreSecondaryClassic, oreSecondaryRare, oreSecondaryVanilla, oreDecor;
     public static CreativeTabCW tabCWWorld = new CreativeTabCW("tabCWWorld", null);
-
 
     @Override
     public void preInit() {
