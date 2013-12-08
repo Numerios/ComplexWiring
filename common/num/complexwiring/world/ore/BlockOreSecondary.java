@@ -5,8 +5,8 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.util.Icon;
-import num.complexwiring.ComplexWiring;
 import num.complexwiring.lib.Reference;
+import num.complexwiring.world.ModuleWorld;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ public class BlockOreSecondary extends Block {
         setUnlocalizedName(Reference.MOD_ID.toLowerCase() + ".world.ore.secondary");
         setHardness(3.0F);
         setResistance(3.0F);
-        setCreativeTab(ComplexWiring.tabCW);
+        setCreativeTab(ModuleWorld.tabCWWorld);
     }
 
     @Override

@@ -23,7 +23,6 @@ public class ComplexWiring {
     public static ComplexWiring instance;
     @SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.COMMON_PROXY_CLASS)
     public static CommonProxy proxy;
-    public static CreativeTabCW tabCW = new CreativeTabCW("tabCW", null);
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {

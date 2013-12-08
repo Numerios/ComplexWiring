@@ -5,6 +5,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import num.complexwiring.api.recipe.RecipeRandomOutput;
+import num.complexwiring.core.CreativeTabCW;
 import num.complexwiring.lib.Module;
 import num.complexwiring.machine.basic.BlockBasicMachine;
 import num.complexwiring.machine.basic.ItemBlockBasicMachine;
@@ -14,12 +15,15 @@ import num.complexwiring.recipe.OrelyzerRecipe;
 import num.complexwiring.recipe.RecipeManager;
 
 public class ModuleMachine extends Module {
+
     public static Block machineBasic, machinePowered;
+    public static CreativeTabCW tabCWMachine = new CreativeTabCW("tabCWMachine", null);
 
     @Override
     public void preInit() {
         registerBlocks();
         registerItems();
+        tabCWMachine.setIcon(new ItemStack(machineBasic));
     }
 
     @Override

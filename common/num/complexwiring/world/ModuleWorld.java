@@ -5,18 +5,22 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import num.complexwiring.api.recipe.RecipeRandomOutput;
+import num.complexwiring.core.CreativeTabCW;
 import num.complexwiring.lib.Module;
 import num.complexwiring.recipe.OrelyzerRecipe;
 import num.complexwiring.recipe.RecipeManager;
 import num.complexwiring.world.ore.*;
 
 public class ModuleWorld extends Module {
+
     public static Block orePrimary, oreSecondary;
+    public static CreativeTabCW tabCWWorld = new CreativeTabCW("tabCWWorld", null);
 
     @Override
     public void preInit() {
         registerBlocks();
         registerItems();
+        tabCWWorld.setIcon(new ItemStack(orePrimary, 1, 3));
     }
 
     @Override

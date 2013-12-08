@@ -5,7 +5,6 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
-import num.complexwiring.ComplexWiring;
 import num.complexwiring.lib.Reference;
 
 import java.util.List;
@@ -14,7 +13,7 @@ public class ItemDust extends Item {
     public ItemDust(int itemId) {
         super(itemId);
         setUnlocalizedName(Reference.MOD_ID.toLowerCase() + ".base.dust");
-        setCreativeTab(ComplexWiring.tabCW);
+        setCreativeTab(ModuleBase.tabCWBase);
     }
 
     @Override

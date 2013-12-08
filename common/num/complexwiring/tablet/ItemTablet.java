@@ -7,7 +7,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
-import num.complexwiring.ComplexWiring;
+import num.complexwiring.base.ModuleBase;
 import num.complexwiring.lib.Reference;
 
 import java.util.List;
@@ -18,7 +18,7 @@ public class ItemTablet extends Item {
     public ItemTablet(int ID) {
         super(ID);
         setUnlocalizedName(Reference.MOD_ID.toLowerCase() + ".tablet");
-        setCreativeTab(ComplexWiring.tabCW);
+        setCreativeTab(ModuleBase.tabCWBase);
         setMaxDamage(1024);
         setMaxStackSize(1);
     }

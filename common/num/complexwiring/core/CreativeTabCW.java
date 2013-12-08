@@ -11,12 +11,16 @@ public class CreativeTabCW extends CreativeTabs {
     public CreativeTabCW(String name, ItemStack is) {
         super(name);
         if (is != null) {
-            this.icon = is;
+            icon = is;
         }
     }
 
     @Override
     public ItemStack getIconItemStack() {
-        return this.icon;
+        return icon;
+    }
+
+    public void setIcon(ItemStack is){
+        icon = is;
     }
 }

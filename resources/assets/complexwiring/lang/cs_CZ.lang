@@ -1,4 +1,6 @@
-itemGroup.tabCW=Complex Wiring 
+itemGroup.tabCWBase=Complex Wiring - Base
+itemGroup.tabCWWorld=Complex Wiring - World
+itemGroup.tabCWMachine=Complex Wiring - Machine
 
 tile.complexwiring.world.ore.primary.copper.name=Měděná ruda
 tile.complexwiring.world.ore.primary.tin.name=Cínová ruda

@@ -13,16 +13,18 @@ import num.complexwiring.ComplexWiring;
 import num.complexwiring.api.vec.Vector3;
 import num.complexwiring.core.InventoryHelper;
 import num.complexwiring.lib.Reference;
+import num.complexwiring.machine.ModuleMachine;
 
 import java.util.List;
 
 public class BlockBasicMachine extends Block implements ITileEntityProvider {
+
     public BlockBasicMachine(int ID) {
         super(ID, Material.iron);
         setUnlocalizedName(Reference.MOD_ID.toLowerCase() + ".machine.basic");
         setHardness(3.0F);
         setResistance(3.0F);
-        setCreativeTab(ComplexWiring.tabCW);
+        setCreativeTab(ModuleMachine.tabCWMachine);
         isBlockContainer = true;
     }
 

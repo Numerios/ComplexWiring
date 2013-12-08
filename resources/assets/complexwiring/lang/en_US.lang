@@ -1,4 +1,6 @@
-itemGroup.tabCW=Complex Wiring 
+itemGroup.tabCWBase=Complex Wiring - Base
+itemGroup.tabCWWorld=Complex Wiring - World
+itemGroup.tabCWMachine=Complex Wiring - Machine
 
 tile.complexwiring.world.ore.primary.copper.name=Copper Ore
 tile.complexwiring.world.ore.primary.tin.name=Tin Ore
@@ -82,5 +84,3 @@ item.complexwiring.base.dust.silver.name=Silver Dust
 item.complexwiring.base.dust.lead.name=Leaden Dust
 
 item.complexwiring.tablet.name=Tablet
-
-
