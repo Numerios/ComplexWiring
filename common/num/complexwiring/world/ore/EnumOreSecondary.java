@@ -1,4 +1,4 @@
-package num.complexwiring.world;
+package num.complexwiring.world.ore;
 
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.item.ItemStack;
@@ -6,6 +6,7 @@ import net.minecraft.util.Icon;
 import net.minecraftforge.oredict.OreDictionary;
 import num.complexwiring.lib.Reference;
 import num.complexwiring.lib.Strings;
+import num.complexwiring.world.ModuleWorld;
 
 public enum EnumOreSecondary {
     CHALCOPYRITE(Strings.ORE_CHALCOPYRITE_NAME, "oreCopper"),

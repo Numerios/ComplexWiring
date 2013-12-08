@@ -1,4 +1,4 @@
-package num.complexwiring.world;
+package num.complexwiring.world.ore;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;

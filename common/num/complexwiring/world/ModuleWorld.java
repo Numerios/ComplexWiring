@@ -8,6 +8,7 @@ import num.complexwiring.api.recipe.RecipeRandomOutput;
 import num.complexwiring.lib.Module;
 import num.complexwiring.recipe.OrelyzerRecipe;
 import num.complexwiring.recipe.RecipeManager;
+import num.complexwiring.world.ore.*;
 
 public class ModuleWorld extends Module {
     public static Block orePrimary, oreSecondary;

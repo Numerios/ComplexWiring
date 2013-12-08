@@ -1,7 +1,8 @@
-package num.complexwiring.world;
+package num.complexwiring.world.ore;
 
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import num.complexwiring.world.ModuleWorld;
 
 public class ItemBlockOreSecondary extends ItemBlock {
     public ItemBlockOreSecondary(int ID) {

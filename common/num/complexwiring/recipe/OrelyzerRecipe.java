@@ -7,7 +7,7 @@ import num.complexwiring.api.recipe.RecipeRandomOutput;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class OrelyzerRecipe {
+public class OrelyzerRecipe implements ICWRecipe{
 
     private final String oreDictionary;
     private ItemStack input;
@@ -23,7 +23,7 @@ public class OrelyzerRecipe {
     }
 
     public boolean matches(ItemStack is) {
-        return (input.isItemEqual(is) || OreDictionary.getOreName(is.itemID) == oreDictionary);
+        return (input.isItemEqual(is) || OreDictionary.getOreName(is.itemID).equals(oreDictionary));
     }
 
     public ItemStack getInput() {
@@ -36,10 +36,6 @@ public class OrelyzerRecipe {
 
     public RecipeRandomOutput[] getOutputs() {
         return outputs;
-    }
-
-    public void setOutputs(RecipeRandomOutput... outputs) {
-        this.outputs = outputs;
     }
 
     public ArrayList<ItemStack> getCompleteOutput(Random rand) {
