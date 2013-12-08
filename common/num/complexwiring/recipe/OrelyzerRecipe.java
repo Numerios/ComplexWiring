@@ -23,7 +23,8 @@ public class OrelyzerRecipe implements ICWRecipe {
     }
 
     public boolean matches(ItemStack is) {
-        return (input.isItemEqual(is) || OreDictionary.getOreName(is.itemID).equals(oreDictionary));
+        //TODO: Working OreDictionary support
+        return input.isItemEqual(is);
     }
 
     public ItemStack getInput() {
