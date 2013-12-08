@@ -86,6 +86,12 @@ public class Strings {
     public static final String DECOR_DOLOMITE_NAME = "decorDolomite";
     public static final String DECOR_LIMESTONE_NAME = "decorLimestone";
     public static final String DECOR_ARENITE_NAME = "decorArenite";
+    public static final String DECOR_DOLOMITE_BRICK_NAME = "decorDolomiteBrick";
+    public static final String DECOR_LIMESTONE_BRICK_NAME = "decorLimestoneBrick";
+    public static final String DECOR_ARENITE_BRICK_NAME = "decorAreniteBrick";
+    public static final String DECOR_DOLOMITE_PAVER_NAME = "decorDolomitePaver";
+    public static final String DECOR_LIMESTONE_PAVER_NAME = "decorLimestonePaver";
+    public static final String DECOR_ARENITE_PAVER_NAME = "decorArenitePaver";
 
     public static final String INGOT_COPPER_NAME = "ingotCopper";
     public static final String INGOT_TIN_NAME = "ingotTin";

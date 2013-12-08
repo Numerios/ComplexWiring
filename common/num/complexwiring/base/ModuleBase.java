@@ -6,7 +6,6 @@ import num.complexwiring.core.CreativeTabCW;
 import num.complexwiring.lib.Module;
 
 public class ModuleBase extends Module {
-
     public static Item ingot, dust;
     public static CreativeTabCW tabCWBase = new CreativeTabCW("tabCWBase", null);
 

@@ -67,6 +67,13 @@ tile.complexwiring.world.ore.secondary.vanilla.anthracite.name=Anthracite Ore
 
 tile.complexwiring.world.ore.decor.dolomite.name=Dolomite
 tile.complexwiring.world.ore.decor.limestone.name=Limestone
+tile.complexwiring.world.ore.decor.arenite.name=Arenite
+tile.complexwiring.world.ore.decor.dolomitebrick.name=Dolomite Brick
+tile.complexwiring.world.ore.decor.limestonebrick.name=Limestone Brick
+tile.complexwiring.world.ore.decor.arenitebrick.name=Arenite Brick
+tile.complexwiring.world.ore.decor.dolomitepaver.name=Dolomite Paver
+tile.complexwiring.world.ore.decor.limestonepaver.name=Limestone Paver
+tile.complexwiring.world.ore.decor.arenitepaver.name=Arenite Paver
 
 tile.complexwiring.machine.basic.orelyzer.name=Basic Orelyzer
 tile.complexwiring.machine.basic.orelyzer.desc=Analyze your ores!

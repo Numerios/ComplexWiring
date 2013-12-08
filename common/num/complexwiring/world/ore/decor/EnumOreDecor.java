@@ -11,7 +11,13 @@ import num.complexwiring.world.ModuleWorld;
 public enum EnumOreDecor {
     LIMESTONE(Strings.DECOR_LIMESTONE_NAME, Type.STONE),
     DOLOMITE(Strings.DECOR_DOLOMITE_NAME, Type.STONE),
-    ARENITE(Strings.DECOR_ARENITE_NAME, Type.STONE);
+    ARENITE(Strings.DECOR_ARENITE_NAME, Type.STONE),
+    LIMESTONE_BRICK(Strings.DECOR_LIMESTONE_BRICK_NAME, Type.BRICK),
+    DOLOMITE_BRICK(Strings.DECOR_DOLOMITE_BRICK_NAME, Type.BRICK),
+    ARENITE_BRICK(Strings.DECOR_ARENITE_BRICK_NAME, Type.BRICK),
+    LIMESTONE_PAVER(Strings.DECOR_LIMESTONE_PAVER_NAME, Type.PAVER),
+    DOLOMITE_PAVER(Strings.DECOR_DOLOMITE_PAVER_NAME, Type.PAVER),
+    ARENITE_PAVER(Strings.DECOR_ARENITE_PAVER_NAME, Type.PAVER);
 
     public static final EnumOreDecor[] VALID = values();
     public final String name;
