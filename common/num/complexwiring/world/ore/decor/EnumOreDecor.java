@@ -40,7 +40,7 @@ public enum EnumOreDecor {
     }
 
     public ItemStack getIS(int amount) {
-        return new ItemStack(ModuleWorld.orePrimary, amount, meta);
+        return new ItemStack(ModuleWorld.oreDecor, amount, meta);
     }
 
     public void registerOre() {
