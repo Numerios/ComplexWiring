@@ -13,8 +13,10 @@ import num.complexwiring.machine.powered.ContainerMachinePoweredOrelyzer;
 import num.complexwiring.machine.powered.EnumPoweredMachine;
 import num.complexwiring.machine.powered.GuiMachinePoweredOrelyzer;
 import num.complexwiring.machine.powered.TileEntityPoweredOrelyzer;
+import num.complexwiring.tablet.GuiTablet;
 
 public class GuiHandler implements IGuiHandler {
+    public static final int TABLET_BASIC_ID = 42;
 
     @Override
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
@@ -36,6 +38,8 @@ public class GuiHandler implements IGuiHandler {
             return new GuiMachineBasicOrelyzer(player.inventory, (TileEntityBasicOrelyzer) tile);              // Basic Orelyzer
         } else if (tile instanceof TileEntityPoweredOrelyzer && vec3.blockMetadata(world) == EnumPoweredMachine.VALID[0].ordinal()) {
             return new GuiMachinePoweredOrelyzer(player.inventory, (TileEntityPoweredOrelyzer) tile);          // Powered Orelyzer
+        } else if (ID == TABLET_BASIC_ID){
+            return new GuiTablet(player);       // The Tablet!
         }
         return null;
 

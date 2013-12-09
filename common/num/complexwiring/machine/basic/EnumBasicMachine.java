@@ -19,7 +19,7 @@ public enum EnumBasicMachine {
 
     EnumBasicMachine(String name, String desc, Class<? extends TileEntityInventoryBase> tile) {
         this.name = name;
-        this.desc = desc;
+        this.desc = "§o" + desc;
         this.tile = tile;
     }
 

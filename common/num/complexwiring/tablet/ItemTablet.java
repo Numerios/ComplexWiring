@@ -7,7 +7,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
+import num.complexwiring.ComplexWiring;
 import num.complexwiring.base.ModuleBase;
+import num.complexwiring.core.GuiHandler;
 import num.complexwiring.lib.Reference;
 
 import java.util.List;
@@ -35,11 +37,7 @@ public class ItemTablet extends Item {
 
     @Override
     public ItemStack onItemRightClick(ItemStack is, World world, EntityPlayer player) {
-       /* if (!world.isRemote) {
-            if (!player.isSneaking()) {
-                player.openGui(ComplexWiring.instance, 42, world, (int) player.posX, (int) player.posY, (int) player.posZ);
-            }
-        }                 */
+        player.openGui(ComplexWiring.instance, GuiHandler.TABLET_BASIC_ID, world, 0, 0, 0);
         return is;
     }
 }
