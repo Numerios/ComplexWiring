@@ -46,13 +46,12 @@ public enum EnumOreDecor {
     public void registerOre() {
         if (this.type.equals(Type.STONE)) {
             OreDictionary.registerOre("stone", this.getIS(1));
-        } else if (this.type.equals(Type.COBBLESTONE)) {
-            OreDictionary.registerOre("cobblestone", this.getIS(1));
         }
+        OreDictionary.registerOre(getUnlocalizedName(), this.getIS(1));
     }
 
     private enum Type {
-        STONE, COBBLESTONE, BRICK, SMALLBRICK, PAVER;
+        STONE, BRICK, PAVER;
 
         private Type() {
         }
