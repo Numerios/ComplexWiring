@@ -74,6 +74,9 @@ tile.complexwiring.world.ore.decor.arenitebrick.name=Arenitová cihla
 tile.complexwiring.world.ore.decor.dolomitepaver.name=Dolomitová dlažba
 tile.complexwiring.world.ore.decor.limestonepaver.name=Vápencová dlažba
 tile.complexwiring.world.ore.decor.arenitepaver.name=Arenitová dlažba
+tile.complexwiring.world.ore.decor.dolomiterough.name=Hrubý dolomit
+tile.complexwiring.world.ore.decor.limestonerough.name=Hrubý vápenec
+tile.complexwiring.world.ore.decor.areniterough.name=Hrubý arenit
 
 tile.complexwiring.machine.basic.orelyzer.name=Základní rudolyzér
 tile.complexwiring.machine.basic.orelyzer.desc=Analyzuj své rudy!

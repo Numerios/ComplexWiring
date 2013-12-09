@@ -74,6 +74,9 @@ tile.complexwiring.world.ore.decor.arenitebrick.name=Arenite Brick
 tile.complexwiring.world.ore.decor.dolomitepaver.name=Dolomite Paver
 tile.complexwiring.world.ore.decor.limestonepaver.name=Limestone Paver
 tile.complexwiring.world.ore.decor.arenitepaver.name=Arenite Paver
+tile.complexwiring.world.ore.decor.dolomiterough.name=Rough Dolomite
+tile.complexwiring.world.ore.decor.limestonerough.name=Rough Limestone
+tile.complexwiring.world.ore.decor.areniterough.name=Rough Arenite
 
 tile.complexwiring.machine.basic.orelyzer.name=Basic Orelyzer
 tile.complexwiring.machine.basic.orelyzer.desc=Analyze your ores!

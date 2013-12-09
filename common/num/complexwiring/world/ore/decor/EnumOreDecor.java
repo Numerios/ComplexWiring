@@ -17,7 +17,10 @@ public enum EnumOreDecor {
     ARENITE_BRICK(Strings.DECOR_ARENITE_BRICK_NAME, Type.BRICK),
     LIMESTONE_PAVER(Strings.DECOR_LIMESTONE_PAVER_NAME, Type.PAVER),
     DOLOMITE_PAVER(Strings.DECOR_DOLOMITE_PAVER_NAME, Type.PAVER),
-    ARENITE_PAVER(Strings.DECOR_ARENITE_PAVER_NAME, Type.PAVER);
+    ARENITE_PAVER(Strings.DECOR_ARENITE_PAVER_NAME, Type.PAVER),
+    LIMESTONE_ROUGH(Strings.DECOR_LIMESTONE_ROUGH_NAME, Type.ROUGH),
+    DOLOMITE_ROUGH(Strings.DECOR_DOLOMITE_ROUGH_NAME, Type.ROUGH),
+    ARENITE_ROUGH(Strings.DECOR_ARENITE_ROUGH_NAME, Type.ROUGH);
 
     public static final EnumOreDecor[] VALID = values();
     public final String name;
@@ -51,7 +54,7 @@ public enum EnumOreDecor {
     }
 
     private enum Type {
-        STONE, BRICK, PAVER;
+        STONE, BRICK, PAVER, ROUGH, ROUGHBRICK;
 
         private Type() {
         }

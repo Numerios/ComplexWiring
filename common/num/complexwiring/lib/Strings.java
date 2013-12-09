@@ -92,6 +92,9 @@ public class Strings {
     public static final String DECOR_DOLOMITE_PAVER_NAME = "decorDolomitePaver";
     public static final String DECOR_LIMESTONE_PAVER_NAME = "decorLimestonePaver";
     public static final String DECOR_ARENITE_PAVER_NAME = "decorArenitePaver";
+    public static final String DECOR_DOLOMITE_ROUGH_NAME = "decorDolomiteRough";
+    public static final String DECOR_LIMESTONE_ROUGH_NAME = "decorLimestoneRough";
+    public static final String DECOR_ARENITE_ROUGH_NAME = "decorAreniteRough";
 
     public static final String INGOT_COPPER_NAME = "ingotCopper";
     public static final String INGOT_TIN_NAME = "ingotTin";
