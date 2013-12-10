@@ -9,6 +9,7 @@
     <target name="clean">
         <delete file="${build.dir.dev}\forge\mcp\src\minecraft\mcmod.info"/>
         <delete dir="${build.dir.dev}\forge\mcp\src\minecraft\num"/>
+        <delete dir="${build.dir.dev}\forge\mcp\src\minecraft\buildcraft"/>
         <delete dir="${build.dir.dev}\eclipse\Minecraft\bin\num"/>
         <delete dir="${build.dir.dev}\forge\mcp\reobf\minecraft"/>
     </target>
@@ -16,6 +17,7 @@
     <target name="prep">
         <copy todir="${build.dir.dev}\forge\mcp\src\minecraft">
             <fileset dir="${build.dir.dev}\ComplexWiring\common"/>
+            <fileset dir="${build.dir.dev}\ComplexWiring\libs"/>
         </copy>
     </target>
 
