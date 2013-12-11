@@ -30,12 +30,21 @@ public class GuiTablet extends GuiScreen{
 
     @Override
     public void drawScreen(int par1, int par2, float par3){
-        this.mc.getTextureManager().bindTexture(texture);
-        this.drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
-
+        drawBackground();
+        super.drawScreen(par1, par2, par3);
+        GL11.glPushMatrix();
         GL11.glTranslatef((float) guiLeft, (float) guiTop, 0.0F);
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+        drawForeground();
+        GL11.glPopMatrix();
+    }
 
+    protected void drawBackground(){
+        this.mc.getTextureManager().bindTexture(texture);
+        this.drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
+    }
+
+    protected void drawForeground(){
         fontRenderer.drawString("§l The Tablet!", xSize / 2 - fontRenderer.getStringWidth("§l The Tablet!") / 2, 6, 0x404040);
 
         fontRenderer.drawString("Welcome to the magical", xSize / 2 - fontRenderer.getStringWidth("Welcome to the magical") / 2, 44, 0x404040);

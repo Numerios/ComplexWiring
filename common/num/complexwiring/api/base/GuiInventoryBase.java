@@ -6,6 +6,7 @@ import num.complexwiring.client.gui.GuiTooltip;
 import org.lwjgl.opengl.GL11;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public abstract class GuiInventoryBase extends GuiContainer {
@@ -51,9 +52,7 @@ public abstract class GuiInventoryBase extends GuiContainer {
     }
 
     protected void addTooltip(GuiTooltip... tooltip) {
-        for (GuiTooltip g : tooltip) {
-            tooltips.add(g);
-        }
+        Collections.addAll(tooltips, tooltip);
     }
 
     protected void drawTooltips(int mouseX, int mouseY) {

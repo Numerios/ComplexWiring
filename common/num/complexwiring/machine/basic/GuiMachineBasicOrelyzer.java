@@ -38,6 +38,7 @@ public class GuiMachineBasicOrelyzer extends GuiInventoryBase {
     @Override
     protected void drawGuiContainerBackgroundLayer(float f, int i, int j) {
         super.drawGuiContainerBackgroundLayer(f, i, j);
+        Logger.debug("Drawing stuff!");
         drawProgress(tile.getBurnTimeScaled(12), tile.getProcessedTimeScaled(24), guiLeft, guiTop);
     }
 
