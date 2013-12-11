@@ -34,6 +34,7 @@ public class GuiHandler implements IGuiHandler {
     public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
         Vector3 vec3 = new Vector3(x, y, z);
         TileEntity tile = vec3.toTile(world);
+        Logger.debug(" " + vec3.toString());
         if (tile instanceof TileEntityBasicOrelyzer && vec3.blockMetadata(world) == EnumBasicMachine.VALID[0].ordinal()) {
             return new GuiMachineBasicOrelyzer(player.inventory, (TileEntityBasicOrelyzer) tile);              // Basic Orelyzer
         } else if (tile instanceof TileEntityPoweredOrelyzer && vec3.blockMetadata(world) == EnumPoweredMachine.VALID[0].ordinal()) {
@@ -41,6 +42,7 @@ public class GuiHandler implements IGuiHandler {
         } else if (ID == TABLET_BASIC_ID){
             return new GuiTablet(player);       // The Tablet!
         }
+        Logger.debug("Couldn't open a GUI!");
         return null;
 
     }
