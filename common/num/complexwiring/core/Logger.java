@@ -31,6 +31,6 @@ public class Logger {
 
     public static void debug(String message) {
         if (ComplexWiring.DEBUG)
-            log(Level.WARNING, "[DEBUG] " + message);
+            log(Level.FINE, "[DEBUG] " + message);
     }
 }

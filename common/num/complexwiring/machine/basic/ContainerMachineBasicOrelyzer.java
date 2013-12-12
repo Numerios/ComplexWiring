@@ -7,7 +7,6 @@ import net.minecraft.item.ItemStack;
 import num.complexwiring.api.base.ContainerBase;
 import num.complexwiring.client.SlotMachine;
 import num.complexwiring.client.SlotOutput;
-import num.complexwiring.core.Logger;
 import num.complexwiring.recipe.RecipeManager;
 
 public class ContainerMachineBasicOrelyzer extends ContainerBase {
@@ -16,7 +15,6 @@ public class ContainerMachineBasicOrelyzer extends ContainerBase {
 
     public ContainerMachineBasicOrelyzer(InventoryPlayer playerInv, TileEntityBasicOrelyzer tile) {
         super(playerInv, tile);
-        Logger.debug("Creating a container");
         this.tile = tile;
 
         addSlotToContainer(new SlotMachine(tile, 0, 56, 17));   // ore input
