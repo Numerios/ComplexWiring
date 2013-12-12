@@ -9,7 +9,7 @@ import net.minecraftforge.common.ForgeDirection;
 public abstract class TileEntityPoweredBase extends TileEntityInventoryBase implements IPowerReceptor {
     protected static final int USED_ENERGY = 2;
     protected static final int MIN_RECIEVED_ENERGY = 1;
-    protected static final int MAX_RECIEVED_ENERGY = 4;
+    protected static final int MAX_RECIEVED_ENERGY = 5;
     protected static final int ACTIVATION_ENERGY = 0;
     protected static final int MAX_STORED_ENERGY = 4000;
     protected static final PowerHandler.Type type = PowerHandler.Type.MACHINE;

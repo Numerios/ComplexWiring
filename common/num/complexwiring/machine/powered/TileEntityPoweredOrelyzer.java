@@ -42,11 +42,8 @@ public class TileEntityPoweredOrelyzer extends TileEntityPoweredBase implements 
     public void update() {
         super.update();
 
-        if (worldObj.isRemote) {
-        }
         if (!worldObj.isRemote) {
-            boolean processable = canProcess();
-            if (isPowered() && processable) {
+            if (canProcess()) {
                 if (machineProcessTime == 0) {
                     initProcessing();
                 }
@@ -61,8 +58,6 @@ public class TileEntityPoweredOrelyzer extends TileEntityPoweredBase implements 
             } else {
                 machineProcessTime = 0;
                 recipeProcessTime = 0;
-                /*currentRecipe = null;           //TODO NULL WHEN POWER GOES OUT
-                currentRecipeOutput = null;*/
             }
             if (ticks % 4 == 0) {
                 PacketHandler.sendPacket(getDescriptionPacket(), worldObj, Vector3.get(this));
@@ -86,6 +81,11 @@ public class TileEntityPoweredOrelyzer extends TileEntityPoweredBase implements 
             if (currentRecipeOutput == null || currentRecipeOutput.size() < 1) {
                 return false;
             }
+        }
+
+        int recipeEnergyCost = USED_ENERGY * (recipeProcessTime - machineProcessTime);
+        if (recipeEnergyCost > storedEnergy) {
+            return false;                          //FIXME
         }
 
         if (getStackInSlot(2) == null || getStackInSlot(3) == null) {
@@ -116,7 +116,6 @@ public class TileEntityPoweredOrelyzer extends TileEntityPoweredBase implements 
                 setInventorySlotContents(0, null);
             }
         }
-        recipeProcessTime = currentRecipe.getNeededPower();
     }
 
     public void endProcessing() {
@@ -141,7 +140,7 @@ public class TileEntityPoweredOrelyzer extends TileEntityPoweredBase implements 
             }
         }
         currentRecipe = null;
-        currentRecipeOutput.clear();
+        currentRecipeOutput = null;
         recipeProcessTime = 0;
     }
 
@@ -224,9 +223,5 @@ public class TileEntityPoweredOrelyzer extends TileEntityPoweredBase implements 
 
     public int getStoredEnergy() {
         return (int) storedEnergy;
-    }
-
-    public boolean isPowered() {
-        return recipeProcessTime != 0 && USED_ENERGY * (recipeProcessTime - machineProcessTime) <= storedEnergy;
     }
 }
