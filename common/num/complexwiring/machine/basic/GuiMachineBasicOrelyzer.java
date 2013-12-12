@@ -5,7 +5,6 @@ import net.minecraft.util.ResourceLocation;
 import num.complexwiring.ComplexWiring;
 import num.complexwiring.api.base.GuiInventoryBase;
 import num.complexwiring.client.gui.GuiTooltip;
-import num.complexwiring.core.Logger;
 
 import java.awt.*;
 
@@ -15,7 +14,6 @@ public class GuiMachineBasicOrelyzer extends GuiInventoryBase {
 
     public GuiMachineBasicOrelyzer(InventoryPlayer player, TileEntityBasicOrelyzer tile) {
         super(new ContainerMachineBasicOrelyzer(player, tile), new ResourceLocation("complexwiring", "textures/gui/machine/basic/" + EnumBasicMachine.ORELYZER.getUnlocalizedName() + ".png"));
-        Logger.debug("Creating a GUI");
         this.tile = tile;
     }
 
@@ -38,7 +36,6 @@ public class GuiMachineBasicOrelyzer extends GuiInventoryBase {
     @Override
     protected void drawGuiContainerBackgroundLayer(float f, int i, int j) {
         super.drawGuiContainerBackgroundLayer(f, i, j);
-        Logger.debug("Drawing stuff!");
         drawProgress(tile.getBurnTimeScaled(12), tile.getProcessedTimeScaled(24), guiLeft, guiTop);
     }
 

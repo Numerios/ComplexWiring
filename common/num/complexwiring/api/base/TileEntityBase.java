@@ -7,7 +7,6 @@ import num.complexwiring.api.vec.Vector3;
  * A basic TileEntity with tick counting and a setup method (first time the TE is updated)
  */
 public abstract class TileEntityBase extends TileEntity {
-    public final Vector3 pos = Vector3.get(this);
     protected long ticks = 0;
 
     @Override
@@ -34,5 +33,9 @@ public abstract class TileEntityBase extends TileEntity {
      * This method is called every tick, please use this instead of updateEntity()
      */
     public void update() {
+    }
+
+    protected Vector3 getPosition(){
+        return Vector3.get(this);
     }
 }

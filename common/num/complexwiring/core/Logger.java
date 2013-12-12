@@ -8,6 +8,7 @@ import java.util.logging.Level;
 
 public class Logger {
     private static java.util.logging.Logger cwLogger = java.util.logging.Logger.getLogger(Reference.MOD_ID);
+    public static final Level FINE = new Level("FINE", 500, defaultBundle);
 
     public static void init() {
         cwLogger.setParent(FMLLog.getLogger());
@@ -31,6 +32,6 @@ public class Logger {
 
     public static void debug(String message) {
         if (ComplexWiring.DEBUG)
-            log(Level.WARNING, "[DEBUG] " + message);
+            log(Level.FINE, "[DEBUG] " + message);
     }
 }
