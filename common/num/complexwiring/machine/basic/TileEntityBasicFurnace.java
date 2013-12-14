@@ -17,7 +17,7 @@ public class TileEntityBasicFurnace extends TileEntityInventoryBase implements I
     private static final int[] SLOTS_BOTTOM = new int[]{2, 3, 1};
 
     private ItemStack recipe;
-    private int recipeNeedTime = 166;
+    private int recipeNeededTime = 160;
     public int processTime = 0;
     public int burnTime = 0;
     private int fuelBurnTime = 0;
@@ -51,7 +51,7 @@ public class TileEntityBasicFurnace extends TileEntityInventoryBase implements I
                     burnTime--;
                     processTime++;
 
-                    if(processTime >= recipeNeedTime) {
+                    if(processTime >= recipeNeededTime) {
                         endProcessing();
                     }
                 }
@@ -126,7 +126,7 @@ public class TileEntityBasicFurnace extends TileEntityInventoryBase implements I
         recipe = ItemStack.loadItemStackFromNBT(nbt.getCompoundTag("recipe"));
         burnTime = nbt.getShort("burnTime");
         processTime = nbt.getShort("processTime");
-        recipeNeedTime = 166;
+        recipeNeededTime = 160;
         fuelBurnTime = nbt.getShort("fuelBurnTime");
     }
 
@@ -137,9 +137,7 @@ public class TileEntityBasicFurnace extends TileEntityInventoryBase implements I
 
     @Override
     public boolean canInsertItem(int slot, ItemStack is, int side) {
-        if(slot == 2 || slot == 3) return false;
-
-        return isItemValidForSlot(slot, is);
+        return !(slot == 2 || slot == 3) || isItemValidForSlot(slot, is);
     }
 
     @Override
@@ -148,10 +146,10 @@ public class TileEntityBasicFurnace extends TileEntityInventoryBase implements I
     }
 
     public int getProcessedTimeScaled(int scale) {
-        if (processTime == 0 || recipeNeedTime == 0) {
+        if (processTime == 0 || recipeNeededTime == 0) {
             return 0;
         }
-        return processTime * scale / recipeNeedTime;
+        return processTime * scale / recipeNeededTime;
     }
 
     public int getBurnTimeScaled(int scale) {
@@ -163,7 +161,7 @@ public class TileEntityBasicFurnace extends TileEntityInventoryBase implements I
 
     public int getFuelBurnTime(ItemStack is) {
         if (is != null) {
-            return TileEntityFurnace.getItemBurnTime(is) + TileEntityFurnace.getItemBurnTime(is)/4;
+            return TileEntityFurnace.getItemBurnTime(is);
         }
         return 0;
     }
