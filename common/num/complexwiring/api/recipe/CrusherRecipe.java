@@ -1,20 +1,20 @@
-package num.complexwiring.recipe;
+package num.complexwiring.api.recipe;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
-import num.complexwiring.api.recipe.RecipeRandomOutput;
+import num.complexwiring.recipe.RecipeManager;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-public class OrelyzerRecipe implements ICWRecipe {
+public class CrusherRecipe implements ICWRecipe {
 
     private final String oreDictionary;
     private ItemStack input;
     private RecipeRandomOutput[] outputs;
     private int neededPower;
 
-    public OrelyzerRecipe(ItemStack input, int neededPower, RecipeRandomOutput... outputs) {
+    public CrusherRecipe(ItemStack input, int neededPower, RecipeRandomOutput... outputs) {
         this.input = input;
         this.outputs = outputs;
         this.neededPower = neededPower;
@@ -52,7 +52,7 @@ public class OrelyzerRecipe implements ICWRecipe {
 
     @Override
     public RecipeManager.Type getType() {
-        return RecipeManager.Type.ORELYZER;
+        return RecipeManager.Type.CRUSHER;
     }
 
     @Override

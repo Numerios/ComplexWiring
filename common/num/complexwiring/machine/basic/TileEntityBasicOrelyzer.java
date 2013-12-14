@@ -10,7 +10,7 @@ import num.complexwiring.api.base.TileEntityInventoryBase;
 import num.complexwiring.api.vec.Vector3;
 import num.complexwiring.core.InventoryHelper;
 import num.complexwiring.core.PacketHandler;
-import num.complexwiring.recipe.OrelyzerRecipe;
+import num.complexwiring.api.recipe.OrelyzerRecipe;
 import num.complexwiring.recipe.RecipeManager;
 
 import java.io.DataInputStream;

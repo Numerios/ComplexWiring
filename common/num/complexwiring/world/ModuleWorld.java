@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack;
 import num.complexwiring.api.recipe.RecipeRandomOutput;
 import num.complexwiring.core.CreativeTabCW;
 import num.complexwiring.lib.Module;
-import num.complexwiring.recipe.OrelyzerRecipe;
+import num.complexwiring.api.recipe.OrelyzerRecipe;
 import num.complexwiring.recipe.RecipeManager;
 import num.complexwiring.world.decor.BlockDecor;
 import num.complexwiring.world.decor.EnumDecor;

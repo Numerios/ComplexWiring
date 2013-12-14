@@ -9,7 +9,7 @@ import num.complexwiring.api.base.TileEntityPoweredBase;
 import num.complexwiring.api.vec.Vector3;
 import num.complexwiring.core.InventoryHelper;
 import num.complexwiring.core.PacketHandler;
-import num.complexwiring.recipe.CrusherRecipe;
+import num.complexwiring.api.recipe.CrusherRecipe;
 import num.complexwiring.recipe.RecipeManager;
 
 import java.io.DataInputStream;
