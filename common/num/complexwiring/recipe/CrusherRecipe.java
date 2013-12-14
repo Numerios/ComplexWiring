@@ -7,14 +7,14 @@ import num.complexwiring.api.recipe.RecipeRandomOutput;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class OrelyzerRecipe implements ICWRecipe {
+public class CrusherRecipe implements ICWRecipe {
 
     private final String oreDictionary;
     private ItemStack input;
     private RecipeRandomOutput[] outputs;
     private int neededPower;
 
-    public OrelyzerRecipe(ItemStack input, int neededPower, RecipeRandomOutput... outputs) {
+    public CrusherRecipe(ItemStack input, int neededPower, RecipeRandomOutput... outputs) {
         this.input = input;
         this.outputs = outputs;
         this.neededPower = neededPower;
@@ -52,7 +52,7 @@ public class OrelyzerRecipe implements ICWRecipe {
 
     @Override
     public RecipeManager.Type getType() {
-        return RecipeManager.Type.ORELYZER;
+        return RecipeManager.Type.CRUSHER;
     }
 
     @Override

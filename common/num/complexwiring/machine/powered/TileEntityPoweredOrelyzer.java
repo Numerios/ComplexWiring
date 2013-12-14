@@ -48,8 +48,8 @@ public class TileEntityPoweredOrelyzer extends TileEntityPoweredBase implements 
             storedEnergy = powerHandler.getEnergyStored();
 
             if(recipe == null) {
-                if(RecipeManager.get(getStackInSlot(0)) != null) {
-                    recipe = RecipeManager.get(getStackInSlot(0));
+                if(RecipeManager.get(RecipeManager.Type.ORELYZER, getStackInSlot(0)) != null) {
+                    recipe = (OrelyzerRecipe) RecipeManager.get(RecipeManager.Type.ORELYZER, getStackInSlot(0));
                     if(recipe.getNeededPower() <= ((int) storedEnergy)){
                         recipeNeededPower = recipe.getNeededPower();
                         recipeOutput = recipe.getCompleteOutput(random);
@@ -148,7 +148,7 @@ public class TileEntityPoweredOrelyzer extends TileEntityPoweredBase implements 
         super.writeToNBT(nbt);
 
         nbt.setShort("processTime", (short) processTime);
-        nbt.setShort("recipe", (short) RecipeManager.toRecipeID(recipe));
+        nbt.setShort("recipe", (short) RecipeManager.toRecipeID(RecipeManager.Type.ORELYZER, recipe));
         nbt.setShort("recipePower", (short) recipeNeededPower);
 
         if (recipeOutput != null) {
@@ -169,7 +169,7 @@ public class TileEntityPoweredOrelyzer extends TileEntityPoweredBase implements 
         super.readFromNBT(nbt);
 
         processTime = nbt.getShort("processTime");
-        recipe = RecipeManager.fromRecipeID(nbt.getShort("recipe"));
+        recipe = (OrelyzerRecipe) RecipeManager.fromRecipeID(RecipeManager.Type.ORELYZER, nbt.getShort("recipe"));
         recipeNeededPower = nbt.getShort("recipePower");
 
         recipeOutput.clear();

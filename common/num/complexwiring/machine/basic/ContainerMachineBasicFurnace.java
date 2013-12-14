@@ -4,6 +4,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.FurnaceRecipes;
 import num.complexwiring.api.base.ContainerBase;
 import num.complexwiring.client.SlotMachine;
 import num.complexwiring.client.SlotOutput;
@@ -47,7 +48,7 @@ public class ContainerMachineBasicFurnace extends ContainerBase {
                 }
                 slot.onSlotChange(slotIS, is);
             } else if (slotID > 3) {
-                if (RecipeManager.get(slotIS) != null) {
+                if (FurnaceRecipes.smelting().getSmeltingResult(getSlot(slotID).getStack()) != null) {
                     if (!mergeItemStack(slotIS, 0, 1, false)) {
                         if (tile.getFuelBurnTime(slotIS) > 0) {
                             if (!mergeItemStack(slotIS, 1, 2, false)) {
