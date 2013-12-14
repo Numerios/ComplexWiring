@@ -18,19 +18,21 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class TileEntityPoweredOrelyzer extends TileEntityPoweredBase implements ISidedInventory {
+
     private static final int[] SLOTS_OUTPUT = new int[]{2, 3};
     private static final int[] SLOTS_TOP = new int[]{0};
     private static final int[] SLOTS_BOTTOM = new int[]{2, 3, 1};
-    private static final int[] SLOTS_SIDE = new int[]{1};
-    public int machineProcessTime = 0;
-    Random rand = new Random();
-    private int recipeProcessTime = 0;
-    private OrelyzerRecipe currentRecipe;
-    private ArrayList<ItemStack> currentRecipeOutput;
+
+    private Random random = new Random();
+
+    private OrelyzerRecipe recipe;
+    private ArrayList<ItemStack> recipeOutput;
+    private int processTime = 0;
+    private int recipeNeededPower = 0;
 
     public TileEntityPoweredOrelyzer() {
         super(4, EnumPoweredMachine.ORELYZER.getFullUnlocalizedName());
-        currentRecipeOutput = new ArrayList<ItemStack>();
+        recipeOutput = new ArrayList<ItemStack>();
     }
 
     @Override
@@ -43,21 +45,41 @@ public class TileEntityPoweredOrelyzer extends TileEntityPoweredBase implements 
         super.update();
 
         if (!worldObj.isRemote) {
-            if (canProcess()) {
-                if (machineProcessTime == 0) {
-                    initProcessing();
+            storedEnergy = powerHandler.getEnergyStored();
+
+            if(recipe == null) {
+                if(RecipeManager.get(getStackInSlot(0)) != null) {
+                    recipe = RecipeManager.get(getStackInSlot(0));
+                    if(recipe.getNeededPower() <= ((int) storedEnergy)){
+                        recipeNeededPower = recipe.getNeededPower();
+                        recipeOutput = recipe.getCompleteOutput(random);
+                        processTime = 0;
+
+                        inventory[0].stackSize--;
+
+                        if (getStackInSlot(0).stackSize <= 0) {
+                            setInventorySlotContents(0, null);
+                        }
+                    } else {
+                        recipe = null;
+                    }
                 }
-                powerHandler.useEnergy(USED_ENERGY, USED_ENERGY, true);
-                storedEnergy = powerHandler.getEnergyStored();
-                machineProcessTime++;
-                if (machineProcessTime >= recipeProcessTime) {
-                    machineProcessTime = 0;
-                    recipeProcessTime = 0;
-                    endProcessing();
+            }
+            if(recipe != null) {
+                if(storedEnergy > 0){
+                    powerHandler.useEnergy(1, USED_ENERGY, true);
+                    storedEnergy = powerHandler.getEnergyStored();
+                    processTime = processTime + 2;
+
+                    if(processTime >= recipeNeededPower) {
+                        endProcessing();
+                    }
+                } else {
+                    recipe = null;
+                    recipeOutput.clear();
+                    recipeNeededPower = 0;
+                    processTime = 0;
                 }
-            } else {
-                machineProcessTime = 0;
-                recipeProcessTime = 0;
             }
             if (ticks % 4 == 0) {
                 PacketHandler.sendPacket(getDescriptionPacket(), worldObj, Vector3.get(this));
@@ -68,59 +90,9 @@ public class TileEntityPoweredOrelyzer extends TileEntityPoweredBase implements 
         onInventoryChanged();
     }
 
-    private boolean canProcess() {
-        if (currentRecipe == null) {
-            if (RecipeManager.get(getStackInSlot(0)) == null) {
-                return false;
-            } else {
-                currentRecipe = RecipeManager.get(getStackInSlot(0));
-            }
-
-            currentRecipeOutput = currentRecipe.getCompleteOutput(rand);
-            recipeProcessTime = (currentRecipe.getNeededPower() / 2);
-            if (currentRecipeOutput == null || currentRecipeOutput.size() < 1) {
-                return false;
-            }
-        }
-
-        int recipeEnergyCost = USED_ENERGY * (recipeProcessTime - machineProcessTime);
-        if (recipeEnergyCost > storedEnergy) {
-            return false;                          //FIXME
-        }
-
-        if (getStackInSlot(2) == null || getStackInSlot(3) == null) {
-            return true;
-        }
-        ItemStack[] possibleOutput = new ItemStack[2];
-
-        if (getStackInSlot(2) != null) {
-            possibleOutput[0] = getStackInSlot(2).copy();
-        }
-        if (getStackInSlot(3) != null) {
-            possibleOutput[1] = getStackInSlot(3).copy();
-        }
-
-        for (ItemStack is : currentRecipeOutput) {
-            if (InventoryHelper.canMerge(possibleOutput[0], is) + InventoryHelper.canMerge(possibleOutput[1], is) < is.stackSize) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public void initProcessing() {
-        if (canProcess() && getStackInSlot(0) != null) {
-            inventory[0].stackSize--;
-
-            if (getStackInSlot(0).stackSize <= 0) {
-                setInventorySlotContents(0, null);
-            }
-        }
-    }
-
-    public void endProcessing() {
-        if (currentRecipeOutput != null && currentRecipeOutput.size() > 0) {
-            for (ItemStack output : currentRecipeOutput) {
+    public void endProcessing(){
+        if (recipeOutput != null && recipeOutput.size() > 0) {
+            for (ItemStack output : recipeOutput) {
                 if (output != null && output.stackSize != 0) {
                     for (int i : SLOTS_OUTPUT) {
                         if (getStackInSlot(i) == null) {
@@ -139,48 +111,25 @@ public class TileEntityPoweredOrelyzer extends TileEntityPoweredBase implements 
                 }
             }
         }
-        currentRecipe = null;
-        currentRecipeOutput = null;
-        recipeProcessTime = 0;
+        recipe = null;
+        recipeOutput.clear();
+        recipeNeededPower = 0;
+        processTime = 0;
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound nbt) {
-        super.writeToNBT(nbt);
-
-        nbt.setShort("processTime", (short) machineProcessTime);
-        nbt.setShort("recipeProcessTime", (short) recipeProcessTime);
-
-        if (currentRecipe != null) {
-            nbt.setInteger("currentRecipe", RecipeManager.toRecipeID(currentRecipe));
-        }
-        if (currentRecipeOutput != null) {
-            NBTTagList outputNBT = new NBTTagList();
-            for (ItemStack is : currentRecipeOutput) {
-                if (is != null) {
-                    NBTTagCompound itemNBT = new NBTTagCompound();
-                    is.writeToNBT(itemNBT);
-                    outputNBT.appendTag(itemNBT);
-                }
-            }
-            nbt.setTag("currentOutput", outputNBT);
-        }
+    public int[] getAccessibleSlotsFromSide(int slot) {
+        return slot == 0 ? SLOTS_BOTTOM : (slot == 1 ? SLOTS_TOP : SLOTS_OUTPUT);
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound nbt) {
-        super.readFromNBT(nbt);
+    public boolean canInsertItem(int slot, ItemStack is, int side) {
+        return isItemValidForSlot(slot, is);
+    }
 
-        machineProcessTime = nbt.getShort("processTime");
-        currentRecipe = RecipeManager.fromRecipeID(nbt.getInteger("currentRecipe"));
-        recipeProcessTime = nbt.getShort("recipeProcessTime");
-
-        currentRecipeOutput.clear();
-        NBTTagList outputNBT = nbt.getTagList("currentOutput");
-        for (int i = 0; i < outputNBT.tagCount(); i++) {
-            NBTTagCompound itemNBT = (NBTTagCompound) outputNBT.tagAt(i);
-            currentRecipeOutput.add(ItemStack.loadItemStackFromNBT(itemNBT));
-        }
+    @Override
+    public boolean canExtractItem(int slot, ItemStack is, int side) {
+        return (slot == 2 || slot == 3);
     }
 
     @Override
@@ -193,25 +142,45 @@ public class TileEntityPoweredOrelyzer extends TileEntityPoweredBase implements 
     }
 
     @Override
-    public int[] getAccessibleSlotsFromSide(int slot) {
-        return slot == 0 ? SLOTS_BOTTOM : (slot == 1 ? SLOTS_TOP : SLOTS_SIDE);
+    public void writeToNBT(NBTTagCompound nbt) {
+        super.writeToNBT(nbt);
+
+        nbt.setShort("processTime", (short) processTime);
+        nbt.setShort("recipePower", (short) recipeNeededPower);
+
+        if (recipeOutput != null) {
+            NBTTagList outputNBT = new NBTTagList();
+            for (ItemStack is : recipeOutput) {
+                if (is != null) {
+                    NBTTagCompound itemNBT = new NBTTagCompound();
+                    is.writeToNBT(itemNBT);
+                    outputNBT.appendTag(itemNBT);
+                }
+            }
+            nbt.setTag("recipeOutput", outputNBT);
+        }
     }
 
     @Override
-    public boolean canInsertItem(int slot, ItemStack is, int side) {
-        return isItemValidForSlot(slot, is);
-    }
+    public void readFromNBT(NBTTagCompound nbt) {
+        super.readFromNBT(nbt);
 
-    @Override
-    public boolean canExtractItem(int slot, ItemStack is, int side) {
-        return slot == 2 || slot == 3;
+        processTime = nbt.getShort("processTime");
+        recipeNeededPower = nbt.getShort("recipePower");
+
+        recipeOutput.clear();
+        NBTTagList outputNBT = nbt.getTagList("currentOutput");
+        for (int i = 0; i < outputNBT.tagCount(); i++) {
+            NBTTagCompound itemNBT = (NBTTagCompound) outputNBT.tagAt(i);
+            recipeOutput.add(ItemStack.loadItemStackFromNBT(itemNBT));
+        }
     }
 
     public int getProcessedTimeScaled(int scale) {
-        if (machineProcessTime == 0 || recipeProcessTime == 0) {
+        if (processTime == 0 || recipeNeededPower == 0) {
             return 0;
         }
-        return machineProcessTime * scale / recipeProcessTime;
+        return processTime * scale / recipeNeededPower;
     }
 
     public int getEnergyScaled(int scale) {

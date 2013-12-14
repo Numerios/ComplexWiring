@@ -2,7 +2,6 @@ package num.complexwiring.machine.powered;
 
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
-import num.complexwiring.ComplexWiring;
 import num.complexwiring.api.base.GuiInventoryBase;
 import num.complexwiring.client.gui.GuiTooltip;
 
@@ -46,16 +45,6 @@ public class GuiMachinePoweredOrelyzer extends GuiInventoryBase {
 
         String invName = tile.getInvName();
         fontRenderer.drawString(invName, xSize / 2 - fontRenderer.getStringWidth(invName) / 2, 6, 0x404040);
-
-
-        if (ComplexWiring.DEBUG) {
-            fontRenderer.drawString("BURN:", 6, 20, 0x666666);
-            fontRenderer.drawString(" " + tile.getStoredEnergy(), 6 + fontRenderer.getStringWidth("BURN:"), 20, 0x333333);
-            fontRenderer.drawString(" " + tile.getEnergyScaled(100) + "%", 6 + fontRenderer.getStringWidth("BURN:"), 35, 0x333333);
-            fontRenderer.drawString("COOK: ", 6, 55, 0x666666);
-            fontRenderer.drawString(" " + tile.machineProcessTime, 6 + fontRenderer.getStringWidth("COOK:"), 55, 0x333333);
-            fontRenderer.drawString(" " + tile.getProcessedTimeScaled(100) + "%", 6 + fontRenderer.getStringWidth("COOK:"), 70, 0x333333);
-        }
     }
 
     private void drawProgress(int energy, int cook, int cornerX, int cornerY) {

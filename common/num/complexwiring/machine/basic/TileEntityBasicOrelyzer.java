@@ -104,7 +104,6 @@ public class TileEntityBasicOrelyzer extends TileEntityInventoryBase implements 
             recipeNeedTime = recipe.getNeededPower();
             recipeOutput = recipe.getCompleteOutput(random);
 
-            //TODO: Removing item from slot at the end of process to prevent lost when burnTime reaches 0 and no more fuel
             inventory[0].stackSize--;
 
             if (getStackInSlot(0).stackSize <= 0) {
@@ -114,7 +113,6 @@ public class TileEntityBasicOrelyzer extends TileEntityInventoryBase implements 
     }
 
     public void endProcessing(){
-
         if (recipeOutput != null && recipeOutput.size() > 0) {
             for (ItemStack output : recipeOutput) {
                 if (output != null && output.stackSize != 0) {
@@ -139,7 +137,6 @@ public class TileEntityBasicOrelyzer extends TileEntityInventoryBase implements 
         recipeOutput.clear();
         recipeNeedTime = 0;
         processTime = 0;
-
     }
 
     public int getProcessedTimeScaled(int scale) {
