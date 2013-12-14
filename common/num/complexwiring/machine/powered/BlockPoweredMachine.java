@@ -40,6 +40,8 @@ public class BlockPoweredMachine extends Block implements ITileEntityProvider {
                 return new TileEntityPoweredOrelyzer();
             case 1:
                 return new TileEntityPoweredFurnace();
+            case 2:
+                return new TileEntityPoweredCrusher();
         }
         return null;
     }

@@ -26,6 +26,8 @@ public class GuiHandler implements IGuiHandler {
             return new ContainerMachinePoweredOrelyzer(player.inventory, (TileEntityPoweredOrelyzer) tile);     // Powered Orelyzer
         } else if (tile instanceof TileEntityPoweredFurnace && vec3.blockMetadata(world) == EnumPoweredMachine.VALID[1].ordinal()) {
             return new ContainerMachinePoweredFurnace(player.inventory, (TileEntityPoweredFurnace) tile);     // Powered Furnace
+        } else if (tile instanceof TileEntityPoweredCrusher && vec3.blockMetadata(world) == EnumPoweredMachine.VALID[2].ordinal()) {
+            return new ContainerMachinePoweredCrusher(player.inventory, (TileEntityPoweredCrusher) tile);     // Powered Crusher
         }
         return null;
     }
@@ -44,6 +46,8 @@ public class GuiHandler implements IGuiHandler {
             return new GuiMachinePoweredOrelyzer(player.inventory, (TileEntityPoweredOrelyzer) tile);          // Powered Orelyzer
         } else if (tile instanceof TileEntityPoweredFurnace && vec3.blockMetadata(world) == EnumPoweredMachine.VALID[1].ordinal()) {
             return new GuiMachinePoweredFurnace(player.inventory, (TileEntityPoweredFurnace) tile);          // Powered Furnace
+        } else if (tile instanceof TileEntityPoweredCrusher && vec3.blockMetadata(world) == EnumPoweredMachine.VALID[2].ordinal()) {
+            return new GuiMachinePoweredCrusher(player.inventory, (TileEntityPoweredCrusher) tile);          // Powered Crusher
         } else if (ID == TABLET_BASIC_ID){
             return new GuiTablet(player);       // The Tablet!
         }

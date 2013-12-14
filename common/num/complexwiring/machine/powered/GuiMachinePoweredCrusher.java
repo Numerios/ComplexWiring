@@ -7,12 +7,12 @@ import num.complexwiring.client.gui.GuiTooltip;
 
 import java.awt.*;
 
-public class GuiMachinePoweredFurnace extends GuiInventoryBase {
+public class GuiMachinePoweredCrusher extends GuiInventoryBase {
     protected GuiTooltip energyTooltip, progressTooltip;
-    protected TileEntityPoweredFurnace tile;
+    protected TileEntityPoweredCrusher tile;
 
-    public GuiMachinePoweredFurnace(InventoryPlayer player, TileEntityPoweredFurnace tile) {
-        super(new ContainerMachinePoweredFurnace(player, tile), new ResourceLocation("complexwiring", "textures/gui/machine/powered/" + EnumPoweredMachine.FURNACE.getUnlocalizedName() + ".png"));
+    public GuiMachinePoweredCrusher(InventoryPlayer player, TileEntityPoweredCrusher tile) {
+        super(new ContainerMachinePoweredCrusher(player, tile), new ResourceLocation("complexwiring", "textures/gui/machine/powered/" + EnumPoweredMachine.CRUSHER.getUnlocalizedName() + ".png"));
         this.tile = tile;
     }
 
