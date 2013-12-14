@@ -12,7 +12,8 @@ import num.complexwiring.machine.ModuleMachine;
 public enum EnumBasicMachine {
 
     ORELYZER(Strings.MACHINE_BASIC_ORELYZER_NAME, Strings.MACHINE_BASIC_ORELYZER_DESC, TileEntityBasicOrelyzer.class),
-    FURNACE(Strings.MACHINE_BASIC_FURNACE_NAME, Strings.MACHINE_BASIC_FURNACE_DESC, TileEntityBasicFurnace.class);
+    FURNACE(Strings.MACHINE_BASIC_FURNACE_NAME, Strings.MACHINE_BASIC_FURNACE_DESC, TileEntityBasicFurnace.class),
+    CRUSHER(Strings.MACHINE_BASIC_CRUSHER_NAME, Strings.MACHINE_BASIC_CRUSHER_DESC, TileEntityBasicCrusher.class);
 
     public static final EnumBasicMachine[] VALID = values();
     public final String name, desc;

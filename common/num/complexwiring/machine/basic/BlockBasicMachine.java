@@ -14,6 +14,7 @@ import num.complexwiring.api.vec.Vector3;
 import num.complexwiring.core.InventoryHelper;
 import num.complexwiring.lib.Reference;
 import num.complexwiring.machine.ModuleMachine;
+import num.complexwiring.machine.powered.TileEntityPoweredOrelyzer;
 
 import java.util.List;
 
@@ -40,6 +41,8 @@ public class BlockBasicMachine extends Block implements ITileEntityProvider {
                 return new TileEntityBasicOrelyzer();
             case 1:
                 return new TileEntityBasicFurnace();
+            case 2:
+                return new TileEntityBasicCrusher();
         }
         return null;
     }

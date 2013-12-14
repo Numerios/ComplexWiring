@@ -20,10 +20,12 @@ public class GuiHandler implements IGuiHandler {
             return new ContainerMachineBasicOrelyzer(player.inventory, (TileEntityBasicOrelyzer) tile);         // Basic Orelyzer
         } else if (tile instanceof TileEntityBasicFurnace && vec3.blockMetadata(world) == EnumBasicMachine.VALID[1].ordinal()) {
             return new ContainerMachineBasicFurnace(player.inventory, (TileEntityBasicFurnace) tile);     // Basic Furnace
+        } else if (tile instanceof TileEntityBasicCrusher && vec3.blockMetadata(world) == EnumBasicMachine.VALID[2].ordinal()) {
+            return new ContainerMachineBasicCrusher(player.inventory, (TileEntityBasicCrusher) tile);     // Basic Crusher
         } else if (tile instanceof TileEntityPoweredOrelyzer && vec3.blockMetadata(world) == EnumPoweredMachine.VALID[0].ordinal()) {
             return new ContainerMachinePoweredOrelyzer(player.inventory, (TileEntityPoweredOrelyzer) tile);     // Powered Orelyzer
         } else if (tile instanceof TileEntityPoweredFurnace && vec3.blockMetadata(world) == EnumPoweredMachine.VALID[1].ordinal()) {
-            return new ContainerMachinePoweredFurnace(player.inventory, (TileEntityPoweredFurnace) tile);     // Powered Orelyzer
+            return new ContainerMachinePoweredFurnace(player.inventory, (TileEntityPoweredFurnace) tile);     // Powered Furnace
         }
         return null;
     }
@@ -36,6 +38,8 @@ public class GuiHandler implements IGuiHandler {
             return new GuiMachineBasicOrelyzer(player.inventory, (TileEntityBasicOrelyzer) tile);              // Basic Orelyzer
         } else if (tile instanceof TileEntityBasicFurnace && vec3.blockMetadata(world) == EnumBasicMachine.VALID[1].ordinal()) {
             return new GuiMachineBasicFurnace(player.inventory, (TileEntityBasicFurnace) tile);          // Basic Furnace
+        } else if (tile instanceof TileEntityBasicCrusher && vec3.blockMetadata(world) == EnumBasicMachine.VALID[2].ordinal()) {
+            return new GuiMachineBasicCrusher(player.inventory, (TileEntityBasicCrusher) tile);          // Basic Crusher
         } else if (tile instanceof TileEntityPoweredOrelyzer && vec3.blockMetadata(world) == EnumPoweredMachine.VALID[0].ordinal()) {
             return new GuiMachinePoweredOrelyzer(player.inventory, (TileEntityPoweredOrelyzer) tile);          // Powered Orelyzer
         } else if (tile instanceof TileEntityPoweredFurnace && vec3.blockMetadata(world) == EnumPoweredMachine.VALID[1].ordinal()) {

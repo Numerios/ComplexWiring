@@ -116,12 +116,16 @@ public class Strings {
     public static final String MACHINE_BASIC_ORELYZER_NAME = "machineBasicOrelyzer";
     public static final String MACHINE_BASIC_ORELYZER_DESC = StatCollector.translateToLocal("tile.complexwiring.machine.basic.orelyzer.desc");
     public static final String MACHINE_BASIC_FURNACE_NAME = "machineBasicFurnace";
-    public static final String MACHINE_BASIC_FURNACE_DESC = StatCollector.translateToLocal("tile.complexwiring.machine.basic.furnace.desc");   //TODO MAKE THIS PRETTIER
+    public static final String MACHINE_BASIC_FURNACE_DESC = StatCollector.translateToLocal("tile.complexwiring.machine.basic.furnace.desc");
+    public static final String MACHINE_BASIC_CRUSHER_NAME = "machineBasicCrusher";
+    public static final String MACHINE_BASIC_CRUSHER_DESC = StatCollector.translateToLocal("tile.complexwiring.machine.basic.crusher.desc");   //TODO MAKE THIS PRETTIER
 
     public static final String MACHINE_POWERED_ORELYZER_NAME = "machinePoweredOrelyzer";
     public static final String MACHINE_POWERED_ORELYZER_DESC = StatCollector.translateToLocal("tile.complexwiring.machine.powered.orelyzer.desc");
     public static final String MACHINE_POWERED_FURNACE_NAME = "machinePoweredFurnace";
-    public static final String MACHINE_POWERED_FURNACE_DESC = StatCollector.translateToLocal("tile.complexwiring.machine.powered.furnace.desc");   //TODO MAKE THIS PRETTIER
+    public static final String MACHINE_POWERED_FURNACE_DESC = StatCollector.translateToLocal("tile.complexwiring.machine.powered.furnace.desc");
+    public static final String MACHINE_POWERED_CRUSHER_NAME = "machinePoweredCrusher";
+    public static final String MACHINE_POWERED_CRUSHER_DESC = StatCollector.translateToLocal("tile.complexwiring.machine.powered.crusher.desc");   //TODO MAKE THIS PRETTIER
 
     public static final String TABLET_NAME = "tablet";
 }
