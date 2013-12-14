@@ -80,6 +80,8 @@ tile.complexwiring.world.ore.decor.areniterough.name=Hrubý arenit
 
 tile.complexwiring.machine.basic.orelyzer.name=Základní rudolyzér
 tile.complexwiring.machine.basic.orelyzer.desc=Analyzuj své rudy!
+tile.complexwiring.machine.basic.furnace.name=Základní pec
+tile.complexwiring.machine.basic.furnace.desc=Vypeč své rudy!
 
 tile.complexwiring.machine.powered.orelyzer.name=Napájený rudolyzér
 tile.complexwiring.machine.powered.orelyzer.desc=Analyzuj své rudy s MJ!

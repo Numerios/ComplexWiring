@@ -107,7 +107,9 @@ public class Strings {
     public static final String DUST_LEAD_NAME = "dustLead";
 
     public static final String MACHINE_BASIC_ORELYZER_NAME = "machineBasicOrelyzer";
-    public static final String MACHINE_BASIC_ORELYZER_DESC = StatCollector.translateToLocal("tile.complexwiring.machine.basic.orelyzer.desc");   //TODO MAKE THIS PRETTIER
+    public static final String MACHINE_BASIC_ORELYZER_DESC = StatCollector.translateToLocal("tile.complexwiring.machine.basic.orelyzer.desc");
+    public static final String MACHINE_BASIC_FURNACE_NAME = "machineBasicFurnace";
+    public static final String MACHINE_BASIC_FURNACE_DESC = StatCollector.translateToLocal("tile.complexwiring.machine.basic.furnace.desc");   //TODO MAKE THIS PRETTIER
 
     public static final String MACHINE_POWERED_ORELYZER_NAME = "machinePoweredOrelyzer";
     public static final String MACHINE_POWERED_ORELYZER_DESC = StatCollector.translateToLocal("tile.complexwiring.machine.powered.orelyzer.desc");   //TODO MAKE THIS PRETTIER

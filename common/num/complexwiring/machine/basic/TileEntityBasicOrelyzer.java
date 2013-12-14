@@ -155,7 +155,7 @@ public class TileEntityBasicOrelyzer extends TileEntityInventoryBase implements 
 
     public int getFuelBurnTime(ItemStack is) {
         if (is != null) {
-            return TileEntityFurnace.getItemBurnTime(is) / 8;
+            return TileEntityFurnace.getItemBurnTime(is) / 4;
         }
         return 0;
     }

@@ -10,7 +10,10 @@ import num.complexwiring.lib.Strings;
 import num.complexwiring.machine.ModuleMachine;
 
 public enum EnumBasicMachine {
-    ORELYZER(Strings.MACHINE_BASIC_ORELYZER_NAME, Strings.MACHINE_BASIC_ORELYZER_DESC, TileEntityBasicOrelyzer.class);
+
+    ORELYZER(Strings.MACHINE_BASIC_ORELYZER_NAME, Strings.MACHINE_BASIC_ORELYZER_DESC, TileEntityBasicOrelyzer.class),
+    FURNACE(Strings.MACHINE_BASIC_FURNACE_NAME, Strings.MACHINE_BASIC_FURNACE_DESC, TileEntityBasicFurnace.class);
+
     public static final EnumBasicMachine[] VALID = values();
     public final String name, desc;
     public final Class<? extends TileEntityInventoryBase> tile;

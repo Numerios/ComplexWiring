@@ -36,9 +36,10 @@ public class BlockBasicMachine extends Block implements ITileEntityProvider {
     @Override
     public TileEntity createTileEntity(World world, int meta) {
         switch (meta) {
-            case 0: {    //TODO: Make it a little more flexible
+            case 0:     //TODO: Make it a little more flexible
                 return new TileEntityBasicOrelyzer();
-            }
+            case 1:
+                return new TileEntityBasicFurnace();
         }
         return null;
     }
@@ -58,6 +59,11 @@ public class BlockBasicMachine extends Block implements ITileEntityProvider {
         InventoryHelper.dropInventory(world, vec3);
         super.breakBlock(world, x, y, z, par5, par6);
         world.removeBlockTileEntity(x, y, z);
+    }
+
+    @Override
+    public int damageDropped(int meta) {
+        return meta;
     }
 
     @Override
