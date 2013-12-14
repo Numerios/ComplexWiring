@@ -11,5 +11,5 @@ bin/
 libs/
 
 # To ignore other potentially unwanted files #
-/*.psd
+*.psd
 

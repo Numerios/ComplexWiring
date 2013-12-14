@@ -4,6 +4,7 @@ import cpw.mods.fml.common.IWorldGenerator;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
+import num.complexwiring.world.decor.EnumDecor;
 import num.complexwiring.world.ore.primary.EnumOrePrimary;
 
 import java.util.Random;
@@ -24,6 +25,9 @@ public class WorldGenerator implements IWorldGenerator {
             for (EnumOrePrimary primaryOre : EnumOrePrimary.VALID) {
                 new OreGenerator(primaryOre).generate(world, chunkX, chunkZ, rand);
             }
+            new DecorGenerator(EnumDecor.DOLOMITE);
+            new DecorGenerator(EnumDecor.DOLOMITE);
+            new DecorGenerator(EnumDecor.ARENITE);
         }
     }
 

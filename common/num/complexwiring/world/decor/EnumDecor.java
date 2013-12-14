@@ -47,7 +47,7 @@ public enum EnumDecor {
     }
 
     public ItemStack getIS(int amount) {
-        return new ItemStack(ModuleWorld.oreDecor, amount, meta);
+        return new ItemStack(ModuleWorld.decor, amount, meta);
     }
 
     public void registerOre() {
@@ -57,10 +57,7 @@ public enum EnumDecor {
         OreDictionary.registerOre(getUnlocalizedName(), this.getIS(1));
     }
 
-    private enum Type {
-        ROUGH, SMOOTH, BRICK, SMALLBRICK, MIX;
-
-        private Type() {
-        }
+    public enum Type {
+        ROUGH, SMOOTH, BRICK, SMALLBRICK, MIX
     }
 }

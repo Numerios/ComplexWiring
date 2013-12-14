@@ -27,7 +27,7 @@ import num.complexwiring.world.ore.secondary.vanilla.EnumOreSecondaryVanilla;
 import num.complexwiring.world.ore.secondary.vanilla.ItemBlockOreSecondaryVanilla;
 
 public class ModuleWorld extends Module {
-    public static Block orePrimary, oreSecondaryClassic, oreSecondaryRare, oreSecondaryVanilla, oreDecor;
+    public static Block orePrimary, oreSecondaryClassic, oreSecondaryRare, oreSecondaryVanilla, decor;
     public static CreativeTabCW tabCWWorld = new CreativeTabCW("tabCWWorld", null);
 
     @Override
@@ -61,9 +61,9 @@ public class ModuleWorld extends Module {
         ((BlockOreSecondaryVanilla) oreSecondaryVanilla).registerOres();
         GameRegistry.registerBlock(oreSecondaryVanilla, ItemBlockOreSecondaryVanilla.class, oreSecondaryVanilla.getUnlocalizedName());
 
-        oreDecor = new BlockDecor(672);
-        ((BlockDecor) oreDecor).registerOres();
-        GameRegistry.registerBlock(oreDecor, ItemBlockDecor.class, oreDecor.getUnlocalizedName());
+        decor = new BlockDecor(672);
+        ((BlockDecor) decor).registerOres();
+        GameRegistry.registerBlock(decor, ItemBlockDecor.class, decor.getUnlocalizedName());
     }
 
     private void registerItems() {

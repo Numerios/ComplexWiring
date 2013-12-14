@@ -18,6 +18,6 @@ public class ItemBlockDecor extends ItemBlock {
 
     @Override
     public String getUnlocalizedName(ItemStack is) {
-        return ModuleWorld.oreDecor.getUnlocalizedName() + "." + EnumDecor.VALID[is.getItemDamage()].getUnlocalizedName();
+        return ModuleWorld.decor.getUnlocalizedName() + "." + EnumDecor.VALID[is.getItemDamage()].getUnlocalizedName();
     }
 }
