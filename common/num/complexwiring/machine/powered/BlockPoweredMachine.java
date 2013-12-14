@@ -36,9 +36,10 @@ public class BlockPoweredMachine extends Block implements ITileEntityProvider {
     @Override
     public TileEntity createTileEntity(World world, int meta) {
         switch (meta) {
-            case 0: {    //TODO: Make it a little more flexible
+            case 0:     //TODO: Make it a little more flexible
                 return new TileEntityPoweredOrelyzer();
-            }
+            case 1:
+                return new TileEntityPoweredFurnace();
         }
         return null;
     }
@@ -59,6 +60,12 @@ public class BlockPoweredMachine extends Block implements ITileEntityProvider {
         super.breakBlock(world, x, y, z, par5, par6);
         world.removeBlockTileEntity(x, y, z);
     }
+
+    @Override
+    public int damageDropped(int meta) {
+        return meta;
+    }
+
 
     @Override
     public TileEntity createNewTileEntity(World world) {

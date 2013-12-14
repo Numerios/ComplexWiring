@@ -92,6 +92,8 @@ tile.complexwiring.machine.basic.furnace.desc=Vypeč své rudy!
 
 tile.complexwiring.machine.powered.orelyzer.name=Napájený rudolyzér
 tile.complexwiring.machine.powered.orelyzer.desc=Analyzuj své rudy s MJ!
+tile.complexwiring.machine.powered.furnace.name=Napájená pec
+tile.complexwiring.machine.powered.furnace.desc=Vypeč své rudy s MJ!
 
 item.complexwiring.base.ingot.copper.name=Měděný ingot
 item.complexwiring.base.ingot.tin.name=Cínový ingot

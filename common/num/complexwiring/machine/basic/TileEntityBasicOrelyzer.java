@@ -220,7 +220,7 @@ public class TileEntityBasicOrelyzer extends TileEntityInventoryBase implements 
 
     @Override
     public Packet getDescriptionPacket() {
-        return PacketHandler.getPacket(this, EnumBasicMachine.ORELYZER.ordinal());
+        return PacketHandler.getPacket(this, EnumBasicMachine.FURNACE.ordinal());
     }
 
     @Override
