@@ -65,18 +65,25 @@ tile.complexwiring.world.ore.secondary.vanilla.subbituminous.name=Ložisko hněd
 tile.complexwiring.world.ore.secondary.vanilla.bituminous.name=Ložisko černého uhlí
 tile.complexwiring.world.ore.secondary.vanilla.anthracite.name=Ložisko antracitu
 
-tile.complexwiring.world.ore.decor.dolomite.name=Dolomit
 tile.complexwiring.world.ore.decor.limestone.name=Vápenec
+tile.complexwiring.world.ore.decor.dolomite.name=Dolomit
 tile.complexwiring.world.ore.decor.arenite.name=Arenit
-tile.complexwiring.world.ore.decor.dolomitebrick.name=Dolomitová cihla
-tile.complexwiring.world.ore.decor.limestonebrick.name=Vápencová cihla
-tile.complexwiring.world.ore.decor.arenitebrick.name=Arenitová cihla
-tile.complexwiring.world.ore.decor.dolomitepaver.name=Dolomitová dlažba
-tile.complexwiring.world.ore.decor.limestonepaver.name=Vápencová dlažba
-tile.complexwiring.world.ore.decor.arenitepaver.name=Arenitová dlažba
-tile.complexwiring.world.ore.decor.dolomiterough.name=Hrubý dolomit
+
 tile.complexwiring.world.ore.decor.limestonerough.name=Hrubý vápenec
+tile.complexwiring.world.ore.decor.dolomiterough.name=Hrubý dolomit
 tile.complexwiring.world.ore.decor.areniterough.name=Hrubý arenit
+
+tile.complexwiring.world.ore.decor.limestonebrick.name=Vápencová cihla
+tile.complexwiring.world.ore.decor.dolomitebrick.name=Dolomitová cihla
+tile.complexwiring.world.ore.decor.arenitebrick.name=Arenitová cihla
+
+tile.complexwiring.world.ore.decor.limestonesmallbrick.name=Vápencové cihličky
+tile.complexwiring.world.ore.decor.dolomitesmallbrick.name=Dolomitové cihličky
+tile.complexwiring.world.ore.decor.arenitesmallbrick.name=Arenitové cihličky
+
+tile.complexwiring.world.ore.decor.limestonedolomitemix.name=Mix vápence a dolomitu
+tile.complexwiring.world.ore.decor.dolomitearenitebrick.name=Mix dolomitu a arenitu
+tile.complexwiring.world.ore.decor.arenitelimestonemix.name=Mix arenitu a vápence
 
 tile.complexwiring.machine.basic.orelyzer.name=Základní rudolyzér
 tile.complexwiring.machine.basic.orelyzer.desc=Analyzuj své rudy!
