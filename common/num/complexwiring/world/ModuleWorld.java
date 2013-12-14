@@ -9,6 +9,7 @@ import num.complexwiring.core.CreativeTabCW;
 import num.complexwiring.lib.Module;
 import num.complexwiring.recipe.OrelyzerRecipe;
 import num.complexwiring.recipe.RecipeManager;
+import num.complexwiring.world.gen.WorldGenerator;
 import num.complexwiring.world.ore.decor.BlockOreDecor;
 import num.complexwiring.world.ore.decor.EnumOreDecor;
 import num.complexwiring.world.ore.decor.ItemBlockOreDecor;
@@ -39,6 +40,7 @@ public class ModuleWorld extends Module {
     @Override
     public void init() {
         registerRecipes();
+        registerWorldGen();
     }
 
     private void registerBlocks() {
@@ -66,6 +68,10 @@ public class ModuleWorld extends Module {
 
     private void registerItems() {
 
+    }
+
+    private void registerWorldGen() {
+        new WorldGenerator();
     }
 
     private void registerRecipes() {
