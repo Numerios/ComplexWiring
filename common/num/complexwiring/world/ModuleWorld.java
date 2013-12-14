@@ -40,7 +40,7 @@ public class ModuleWorld extends Module {
     @Override
     public void init() {
         registerRecipes();
-        registerWorldGen();
+        new WorldGenerator();
     }
 
     private void registerBlocks() {
@@ -68,10 +68,6 @@ public class ModuleWorld extends Module {
 
     private void registerItems() {
 
-    }
-
-    private void registerWorldGen() {
-        new WorldGenerator();
     }
 
     private void registerRecipes() {
