@@ -9,18 +9,22 @@ import num.complexwiring.lib.Strings;
 import num.complexwiring.world.ModuleWorld;
 
 public enum EnumOreDecor {
-    LIMESTONE(Strings.DECOR_LIMESTONE_NAME, Type.STONE),
-    DOLOMITE(Strings.DECOR_DOLOMITE_NAME, Type.STONE),
-    ARENITE(Strings.DECOR_ARENITE_NAME, Type.STONE),
+    LIMESTONE_ROUGH(Strings.DECOR_LIMESTONE_ROUGH_NAME, Type.ROUGH),
+    DOLOMITE_ROUGH(Strings.DECOR_DOLOMITE_ROUGH_NAME, Type.ROUGH),
+    ARENITE_ROUGH(Strings.DECOR_ARENITE_ROUGH_NAME, Type.ROUGH),
+    LIMESTONE(Strings.DECOR_LIMESTONE_SMOOTH_NAME, Type.SMOOTH),
+    DOLOMITE(Strings.DECOR_DOLOMITE_SMOOTH_NAME, Type.SMOOTH),
+    ARENITE(Strings.DECOR_ARENITE_SMOOTH_NAME, Type.SMOOTH),
     LIMESTONE_BRICK(Strings.DECOR_LIMESTONE_BRICK_NAME, Type.BRICK),
     DOLOMITE_BRICK(Strings.DECOR_DOLOMITE_BRICK_NAME, Type.BRICK),
     ARENITE_BRICK(Strings.DECOR_ARENITE_BRICK_NAME, Type.BRICK),
-    LIMESTONE_PAVER(Strings.DECOR_LIMESTONE_PAVER_NAME, Type.PAVER),
-    DOLOMITE_PAVER(Strings.DECOR_DOLOMITE_PAVER_NAME, Type.PAVER),
-    ARENITE_PAVER(Strings.DECOR_ARENITE_PAVER_NAME, Type.PAVER),
-    LIMESTONE_ROUGH(Strings.DECOR_LIMESTONE_ROUGH_NAME, Type.ROUGH),
-    DOLOMITE_ROUGH(Strings.DECOR_DOLOMITE_ROUGH_NAME, Type.ROUGH),
-    ARENITE_ROUGH(Strings.DECOR_ARENITE_ROUGH_NAME, Type.ROUGH);
+    LIMESTONE_SMALLBRICK(Strings.DECOR_LIMESTONE_SMALLBRICK_NAME, Type.SMALLBRICK),
+    DOLOMITE_SMALLBRICK(Strings.DECOR_DOLOMITE_SMALLBRICK_NAME, Type.SMALLBRICK),
+    ARENITE_SMALLBRICK(Strings.DECOR_ARENITE_SMALLBRICK_NAME, Type.SMALLBRICK),
+    LIMESTONE_DOLOMITE_MIX(Strings.DECOR_LIMESTONE_DOLOMITE_MIX_NAME, Type.MIX),
+    DOLOMITE_ARENITE_MIX(Strings.DECOR_DOLOMITE_ARENITE_MIX_NAME, Type.MIX),
+    ARENITE_LIMESTONE_MIX(Strings.DECOR_ARENITE_LIMESTONE_MIX_NAME, Type.MIX),
+    ;
 
     public static final EnumOreDecor[] VALID = values();
     public final String name;
@@ -47,14 +51,14 @@ public enum EnumOreDecor {
     }
 
     public void registerOre() {
-        if (this.type.equals(Type.STONE)) {
+        if (this.type.equals(Type.SMOOTH) || this.type.equals(Type.ROUGH)) {
             OreDictionary.registerOre("stone", this.getIS(1));
         }
         OreDictionary.registerOre(getUnlocalizedName(), this.getIS(1));
     }
 
     private enum Type {
-        STONE, BRICK, PAVER, ROUGH, ROUGHBRICK;
+        ROUGH, SMOOTH, BRICK, SMALLBRICK, MIX;
 
         private Type() {
         }

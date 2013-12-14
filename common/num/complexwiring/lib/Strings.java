@@ -83,18 +83,25 @@ public class Strings {
     public static final String ORE_BITUMINOUS_NAME = "oreBituminous";
     public static final String ORE_ANTHRACITE_NAME = "oreAnthracite";
 
-    public static final String DECOR_DOLOMITE_NAME = "decorDolomite";
-    public static final String DECOR_LIMESTONE_NAME = "decorLimestone";
-    public static final String DECOR_ARENITE_NAME = "decorArenite";
-    public static final String DECOR_DOLOMITE_BRICK_NAME = "decorDolomiteBrick";
-    public static final String DECOR_LIMESTONE_BRICK_NAME = "decorLimestoneBrick";
-    public static final String DECOR_ARENITE_BRICK_NAME = "decorAreniteBrick";
-    public static final String DECOR_DOLOMITE_PAVER_NAME = "decorDolomitePaver";
-    public static final String DECOR_LIMESTONE_PAVER_NAME = "decorLimestonePaver";
-    public static final String DECOR_ARENITE_PAVER_NAME = "decorArenitePaver";
-    public static final String DECOR_DOLOMITE_ROUGH_NAME = "decorDolomiteRough";
     public static final String DECOR_LIMESTONE_ROUGH_NAME = "decorLimestoneRough";
+    public static final String DECOR_DOLOMITE_ROUGH_NAME = "decorDolomiteRough";
     public static final String DECOR_ARENITE_ROUGH_NAME = "decorAreniteRough";
+
+    public static final String DECOR_LIMESTONE_SMOOTH_NAME = "decorLimestone";
+    public static final String DECOR_DOLOMITE_SMOOTH_NAME = "decorDolomite";
+    public static final String DECOR_ARENITE_SMOOTH_NAME = "decorArenite";
+
+    public static final String DECOR_LIMESTONE_BRICK_NAME = "decorLimestoneBrick";
+    public static final String DECOR_DOLOMITE_BRICK_NAME = "decorDolomiteBrick";
+    public static final String DECOR_ARENITE_BRICK_NAME = "decorAreniteBrick";
+
+    public static final String DECOR_LIMESTONE_SMALLBRICK_NAME = "decorLimestoneSmallbrick";
+    public static final String DECOR_DOLOMITE_SMALLBRICK_NAME = "decorDolomiteSmallbrick";
+    public static final String DECOR_ARENITE_SMALLBRICK_NAME = "decorAreniteSmallbrick";
+
+    public static final String DECOR_LIMESTONE_DOLOMITE_MIX_NAME = "decorLimestoneDolomiteMix";
+    public static final String DECOR_DOLOMITE_ARENITE_MIX_NAME = "decorDolomiteAreniteMix";
+    public static final String DECOR_ARENITE_LIMESTONE_MIX_NAME = "decorAreniteLimestoneMix";
 
     public static final String INGOT_COPPER_NAME = "ingotCopper";
     public static final String INGOT_TIN_NAME = "ingotTin";
