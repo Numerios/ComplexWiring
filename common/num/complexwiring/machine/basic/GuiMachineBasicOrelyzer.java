@@ -2,7 +2,6 @@ package num.complexwiring.machine.basic;
 
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
-import num.complexwiring.ComplexWiring;
 import num.complexwiring.api.base.GuiInventoryBase;
 import num.complexwiring.client.gui.GuiTooltip;
 
@@ -29,7 +28,7 @@ public class GuiMachineBasicOrelyzer extends GuiInventoryBase {
 
     @Override
     protected void updateTooltips() {
-        fuelTooltip.setText(0, tile.machineBurnTime + " ticks left");
+        fuelTooltip.setText(0, tile.burnTime + " ticks left");
         progressTooltip.setText(0, tile.getProcessedTimeScaled(100) + "%");
     }
 
@@ -43,14 +42,14 @@ public class GuiMachineBasicOrelyzer extends GuiInventoryBase {
     protected void drawGuiContainerForegroundLayer(int i, int j) {
         super.drawGuiContainerForegroundLayer(i, j);
 
-        if (ComplexWiring.DEBUG) {
+        /*if (ComplexWiring.DEBUG) {
             fontRenderer.drawString("BURN:", 6, 20, 0x666666);
-            fontRenderer.drawString(" " + tile.machineBurnTime, 6 + fontRenderer.getStringWidth("BURN:"), 20, 0x333333);
+            fontRenderer.drawString(" " + tile.burnTime, 6 + fontRenderer.getStringWidth("BURN:"), 20, 0x333333);
             fontRenderer.drawString(" " + tile.getBurnTimeScaled(100) + "%", 6 + fontRenderer.getStringWidth("BURN:"), 35, 0x333333);
             fontRenderer.drawString("COOK: ", 6, 55, 0x666666);
-            fontRenderer.drawString(" " + tile.machineProcessTime, 6 + fontRenderer.getStringWidth("COOK:"), 55, 0x333333);
+            fontRenderer.drawString(" " + tile.processTime, 6 + fontRenderer.getStringWidth("COOK:"), 55, 0x333333);
             fontRenderer.drawString(" " + tile.getProcessedTimeScaled(100) + "%", 6 + fontRenderer.getStringWidth("COOK:"), 70, 0x333333);
-        }
+        }*/
     }
 
     private void drawProgress(int burn, int cook, int cornerX, int cornerY) {
