@@ -157,6 +157,17 @@ public class Vector3 implements Cloneable {
         return 0;
     }
 
+    public int blockID(World world) {
+        if (blockExists(world)) {
+            return world.getBlockId(this.getX(), this.getY(), this.getZ());
+        }
+        return 0;
+    }
+
+    public boolean isAir(World world) {
+        return world.isAirBlock(this.getX(), this.getY(), this.getZ());
+    }
+
     public int getX() {
         return (int) Math.floor(this.x);
     }
