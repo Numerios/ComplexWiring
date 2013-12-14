@@ -9,3 +9,7 @@ bin/
 
 # To ignore APIs #
 libs/
+
+# To ignore other potentially unwanted files #
+/*.psd
+

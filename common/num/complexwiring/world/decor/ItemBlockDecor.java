@@ -1,11 +1,11 @@
-package num.complexwiring.world.ore.decor;
+package num.complexwiring.world.decor;
 
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import num.complexwiring.world.ModuleWorld;
 
-public class ItemBlockOreDecor extends ItemBlock {
-    public ItemBlockOreDecor(int ID) {
+public class ItemBlockDecor extends ItemBlock {
+    public ItemBlockDecor(int ID) {
         super(ID);
         setHasSubtypes(true);
         setMaxDamage(0);
@@ -18,6 +18,6 @@ public class ItemBlockOreDecor extends ItemBlock {
 
     @Override
     public String getUnlocalizedName(ItemStack is) {
-        return ModuleWorld.oreDecor.getUnlocalizedName() + "." + EnumOreDecor.VALID[is.getItemDamage()].getUnlocalizedName();
+        return ModuleWorld.oreDecor.getUnlocalizedName() + "." + EnumDecor.VALID[is.getItemDamage()].getUnlocalizedName();
     }
 }

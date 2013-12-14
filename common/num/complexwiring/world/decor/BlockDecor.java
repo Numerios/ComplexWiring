@@ -1,4 +1,4 @@
-package num.complexwiring.world.ore.decor;
+package num.complexwiring.world.decor;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -10,10 +10,10 @@ import num.complexwiring.world.ModuleWorld;
 
 import java.util.List;
 
-public class BlockOreDecor extends Block {
-    public BlockOreDecor(int ID) {
+public class BlockDecor extends Block {
+    public BlockDecor(int ID) {
         super(ID, Material.rock);
-        setUnlocalizedName(Reference.MOD_ID.toLowerCase() + ".world.ore.decor");
+        setUnlocalizedName(Reference.MOD_ID.toLowerCase() + ".world.decor");
         setHardness(2.0F);
         setResistance(3.0F);
         setCreativeTab(ModuleWorld.tabCWWorld);
@@ -21,19 +21,19 @@ public class BlockOreDecor extends Block {
 
     @Override
     public Icon getIcon(int side, int meta) {
-        return EnumOreDecor.VALID[meta].icon;
+        return EnumDecor.VALID[meta].icon;
     }
 
     @Override
     public void registerIcons(IconRegister ir) {
-        for (EnumOreDecor orePrimary : EnumOreDecor.VALID) {
+        for (EnumDecor orePrimary : EnumDecor.VALID) {
             orePrimary.registerIcon(ir);
         }
     }
 
     @Override
     public void getSubBlocks(int ID, CreativeTabs tab, List list) {
-        for (EnumOreDecor orePrimary : EnumOreDecor.VALID) {
+        for (EnumDecor orePrimary : EnumDecor.VALID) {
             list.add(orePrimary.getIS(1));
         }
     }
@@ -44,7 +44,7 @@ public class BlockOreDecor extends Block {
     }
 
     public void registerOres() {
-        for (EnumOreDecor orePrimary : EnumOreDecor.VALID) {
+        for (EnumDecor orePrimary : EnumDecor.VALID) {
             orePrimary.registerOre();
         }
     }

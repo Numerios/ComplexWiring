@@ -1,4 +1,4 @@
-package num.complexwiring.world.ore.decor;
+package num.complexwiring.world.decor;
 
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.item.ItemStack;
@@ -8,31 +8,31 @@ import num.complexwiring.lib.Reference;
 import num.complexwiring.lib.Strings;
 import num.complexwiring.world.ModuleWorld;
 
-public enum EnumOreDecor {
+public enum EnumDecor {
     LIMESTONE_ROUGH(Strings.DECOR_LIMESTONE_ROUGH_NAME, Type.ROUGH),
     DOLOMITE_ROUGH(Strings.DECOR_DOLOMITE_ROUGH_NAME, Type.ROUGH),
     ARENITE_ROUGH(Strings.DECOR_ARENITE_ROUGH_NAME, Type.ROUGH),
     LIMESTONE(Strings.DECOR_LIMESTONE_SMOOTH_NAME, Type.SMOOTH),
     DOLOMITE(Strings.DECOR_DOLOMITE_SMOOTH_NAME, Type.SMOOTH),
     ARENITE(Strings.DECOR_ARENITE_SMOOTH_NAME, Type.SMOOTH),
+    DARKDOLOMITE(Strings.DECOR_DARKDOLOMITE_NAME, Type.SMOOTH),
     LIMESTONE_BRICK(Strings.DECOR_LIMESTONE_BRICK_NAME, Type.BRICK),
     DOLOMITE_BRICK(Strings.DECOR_DOLOMITE_BRICK_NAME, Type.BRICK),
     ARENITE_BRICK(Strings.DECOR_ARENITE_BRICK_NAME, Type.BRICK),
+    DARKDOLOMITE_BRICK(Strings.DECOR_DARKDOLOMITE_BRICK_NAME, Type.BRICK),
     LIMESTONE_SMALLBRICK(Strings.DECOR_LIMESTONE_SMALLBRICK_NAME, Type.SMALLBRICK),
     DOLOMITE_SMALLBRICK(Strings.DECOR_DOLOMITE_SMALLBRICK_NAME, Type.SMALLBRICK),
     ARENITE_SMALLBRICK(Strings.DECOR_ARENITE_SMALLBRICK_NAME, Type.SMALLBRICK),
-    LIMESTONE_DOLOMITE_MIX(Strings.DECOR_LIMESTONE_DOLOMITE_MIX_NAME, Type.MIX),
-    DOLOMITE_ARENITE_MIX(Strings.DECOR_DOLOMITE_ARENITE_MIX_NAME, Type.MIX),
-    ARENITE_LIMESTONE_MIX(Strings.DECOR_ARENITE_LIMESTONE_MIX_NAME, Type.MIX),
-    ;
+    DARKDOLOMITE_SMALLBRICK(Strings.DECOR_DARKDOLOMITE_SMALLBRICK_NAME, Type.SMALLBRICK),
+    DOLOMITE_DARKDOLOMITE_MIX(Strings.DECOR_DOLOMITE_DARKDOLOMITE_MIX_NAME, Type.MIX);
 
-    public static final EnumOreDecor[] VALID = values();
+    public static final EnumDecor[] VALID = values();
     public final String name;
     public final Type type;
     public final int meta = this.ordinal();
     public Icon icon;
 
-    private EnumOreDecor(String name, Type type) {
+    private EnumDecor(String name, Type type) {
         this.name = name;
         this.type = type;
     }

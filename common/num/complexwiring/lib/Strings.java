@@ -90,18 +90,19 @@ public class Strings {
     public static final String DECOR_LIMESTONE_SMOOTH_NAME = "decorLimestone";
     public static final String DECOR_DOLOMITE_SMOOTH_NAME = "decorDolomite";
     public static final String DECOR_ARENITE_SMOOTH_NAME = "decorArenite";
+    public static final String DECOR_DARKDOLOMITE_NAME = "decorDarkDolomite";
 
     public static final String DECOR_LIMESTONE_BRICK_NAME = "decorLimestoneBrick";
     public static final String DECOR_DOLOMITE_BRICK_NAME = "decorDolomiteBrick";
     public static final String DECOR_ARENITE_BRICK_NAME = "decorAreniteBrick";
+    public static final String DECOR_DARKDOLOMITE_BRICK_NAME = "decorDarkDolomiteBrick";
 
     public static final String DECOR_LIMESTONE_SMALLBRICK_NAME = "decorLimestoneSmallbrick";
     public static final String DECOR_DOLOMITE_SMALLBRICK_NAME = "decorDolomiteSmallbrick";
     public static final String DECOR_ARENITE_SMALLBRICK_NAME = "decorAreniteSmallbrick";
+    public static final String DECOR_DARKDOLOMITE_SMALLBRICK_NAME = "decorDarkDolomiteSmallbrick";
 
-    public static final String DECOR_LIMESTONE_DOLOMITE_MIX_NAME = "decorLimestoneDolomiteMix";
-    public static final String DECOR_DOLOMITE_ARENITE_MIX_NAME = "decorDolomiteAreniteMix";
-    public static final String DECOR_ARENITE_LIMESTONE_MIX_NAME = "decorAreniteLimestoneMix";
+    public static final String DECOR_DOLOMITE_DARKDOLOMITE_MIX_NAME = "decorDolomiteDarkDolomiteMix";
 
     public static final String INGOT_COPPER_NAME = "ingotCopper";
     public static final String INGOT_TIN_NAME = "ingotTin";

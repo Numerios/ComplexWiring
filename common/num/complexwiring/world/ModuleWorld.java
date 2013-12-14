@@ -9,10 +9,10 @@ import num.complexwiring.core.CreativeTabCW;
 import num.complexwiring.lib.Module;
 import num.complexwiring.recipe.OrelyzerRecipe;
 import num.complexwiring.recipe.RecipeManager;
+import num.complexwiring.world.decor.BlockDecor;
+import num.complexwiring.world.decor.EnumDecor;
+import num.complexwiring.world.decor.ItemBlockDecor;
 import num.complexwiring.world.gen.WorldGenerator;
-import num.complexwiring.world.ore.decor.BlockOreDecor;
-import num.complexwiring.world.ore.decor.EnumOreDecor;
-import num.complexwiring.world.ore.decor.ItemBlockOreDecor;
 import num.complexwiring.world.ore.primary.BlockOrePrimary;
 import num.complexwiring.world.ore.primary.EnumOrePrimary;
 import num.complexwiring.world.ore.primary.ItemBlockOrePrimary;
@@ -34,7 +34,7 @@ public class ModuleWorld extends Module {
     public void preInit() {
         registerBlocks();
         registerItems();
-        tabCWWorld.setIcon(EnumOreDecor.LIMESTONE.getIS(1));
+        tabCWWorld.setIcon(EnumDecor.LIMESTONE.getIS(1));
     }
 
     @Override
@@ -61,9 +61,9 @@ public class ModuleWorld extends Module {
         ((BlockOreSecondaryVanilla) oreSecondaryVanilla).registerOres();
         GameRegistry.registerBlock(oreSecondaryVanilla, ItemBlockOreSecondaryVanilla.class, oreSecondaryVanilla.getUnlocalizedName());
 
-        oreDecor = new BlockOreDecor(672);
-        ((BlockOreDecor) oreDecor).registerOres();
-        GameRegistry.registerBlock(oreDecor, ItemBlockOreDecor.class, oreDecor.getUnlocalizedName());
+        oreDecor = new BlockDecor(672);
+        ((BlockDecor) oreDecor).registerOres();
+        GameRegistry.registerBlock(oreDecor, ItemBlockDecor.class, oreDecor.getUnlocalizedName());
     }
 
     private void registerItems() {
@@ -133,9 +133,9 @@ public class ModuleWorld extends Module {
                 new RecipeRandomOutput(EnumOreSecondaryVanilla.CINNABAR.getIS(1), 0.075F),
                 new RecipeRandomOutput(EnumOreSecondaryVanilla.SPHALERITE.getIS(1), 0.075F),
                 new RecipeRandomOutput(EnumOreSecondaryVanilla.COBALTITE.getIS(1), 0.075F),
-                new RecipeRandomOutput(EnumOreDecor.DOLOMITE.getIS(1), 0.20F),
-                new RecipeRandomOutput(EnumOreDecor.LIMESTONE.getIS(1), 0.20F),
-                new RecipeRandomOutput(EnumOreDecor.ARENITE.getIS(1), 0.20F)));
+                new RecipeRandomOutput(EnumDecor.DOLOMITE.getIS(1), 0.20F),
+                new RecipeRandomOutput(EnumDecor.LIMESTONE.getIS(1), 0.20F),
+                new RecipeRandomOutput(EnumDecor.ARENITE.getIS(1), 0.20F)));
 
         RecipeManager.add(new OrelyzerRecipe(new ItemStack(Block.blockClay), 720,
                 new RecipeRandomOutput(EnumOreSecondaryRare.LITHIUM.getIS(1), 0.15F)));
