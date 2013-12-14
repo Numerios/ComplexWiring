@@ -11,6 +11,7 @@ import num.complexwiring.machine.basic.BlockBasicMachine;
 import num.complexwiring.machine.basic.ItemBlockBasicMachine;
 import num.complexwiring.machine.powered.BlockPoweredMachine;
 import num.complexwiring.machine.powered.ItemBlockPoweredMachine;
+import num.complexwiring.recipe.CrusherRecipe;
 import num.complexwiring.recipe.OrelyzerRecipe;
 import num.complexwiring.recipe.RecipeManager;
 
@@ -50,5 +51,10 @@ public class ModuleMachine extends Module {
                 new RecipeRandomOutput(new ItemStack(Item.diamond, 1), 0.1F),
                 new RecipeRandomOutput(new ItemStack(Item.stick, 2), 0.8F),
                 new RecipeRandomOutput(new ItemStack(Item.stick, 1), 1F)));
+
+        RecipeManager.add(new CrusherRecipe(new ItemStack(Block.cobblestone, 1), 100,
+                new RecipeRandomOutput(new ItemStack(Block.sand, 1), 0.5F),
+                new RecipeRandomOutput(new ItemStack(Block.sand, 1), 0.2F),
+                new RecipeRandomOutput(new ItemStack(Block.gravel, 1), 0.4F)));
     }
 }

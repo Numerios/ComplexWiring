@@ -47,7 +47,7 @@ public class ContainerMachineBasicOrelyzer extends ContainerBase {
                 }
                 slot.onSlotChange(slotIS, is);
             } else if (slotID > 3) {
-                if (RecipeManager.get(slotIS) != null) {
+                if (RecipeManager.get(RecipeManager.Type.ORELYZER, slotIS) != null) {
                     if (!mergeItemStack(slotIS, 0, 1, false)) {
                         if (tile.getFuelBurnTime(slotIS) > 0) {
                             if (!mergeItemStack(slotIS, 1, 2, false)) {

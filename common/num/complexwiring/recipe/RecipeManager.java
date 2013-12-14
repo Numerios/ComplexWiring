@@ -8,33 +8,42 @@ import java.util.List;
 public class RecipeManager {
 
     private static List<OrelyzerRecipe> orelyzerRecipes = new ArrayList<OrelyzerRecipe>();
+    private static List<CrusherRecipe> crusherRecipes = new ArrayList<CrusherRecipe>();
 
-    public static void add(OrelyzerRecipe orelyzerRecipe) {
-        orelyzerRecipes.add(orelyzerRecipe);
+    public static void add(ICWRecipe recipe) {
+        if(recipe.getType() == Type.ORELYZER) orelyzerRecipes.add((OrelyzerRecipe) recipe);
+        else if (recipe.getType() == Type.CRUSHER) crusherRecipes.add((CrusherRecipe) recipe);
     }
 
-    public static OrelyzerRecipe get(ItemStack is) {
+    public static ICWRecipe get(Type type, ItemStack is) {
         if (is != null) {
-            for (OrelyzerRecipe orelyzerRecipe : orelyzerRecipes) {
-                if (orelyzerRecipe.matches(is)) {
-                    return orelyzerRecipe;
+            if(type == Type.ORELYZER){
+                for (OrelyzerRecipe orelyzerRecipe : orelyzerRecipes) {
+                    if (orelyzerRecipe.matches(is)) return orelyzerRecipe;
+                }
+            } else if (type == Type.CRUSHER){
+                for (CrusherRecipe crusherRecipe : crusherRecipes) {
+                    if (crusherRecipe.matches(is)) return crusherRecipe;
                 }
             }
         }
         return null;
     }
 
-    public static int toRecipeID(OrelyzerRecipe recipe) {
-        if (orelyzerRecipes.contains(recipe)) {
-            return orelyzerRecipes.indexOf(recipe);
-        }
-        return -1;
+    public static int toRecipeID(Type type, ICWRecipe recipe) {
+        if (type == Type.ORELYZER && orelyzerRecipes.contains(recipe)) return orelyzerRecipes.indexOf(recipe);
+        else if (type == Type.CRUSHER && crusherRecipes.contains(recipe)) return crusherRecipes.indexOf(recipe);
+        else return -1;
     }
 
-    public static OrelyzerRecipe fromRecipeID(int ID) {
-        if (orelyzerRecipes.size() < ID) {
-            return orelyzerRecipes.get(ID);
-        }
+    public static ICWRecipe fromRecipeID(Type type, int ID) {
+        if (type == Type.ORELYZER && orelyzerRecipes.size() < ID) return orelyzerRecipes.get(ID);
+        else if (type == Type.CRUSHER && crusherRecipes.size() < ID) return crusherRecipes.get(ID);
         return null;
+    }
+
+    public enum Type{
+        ORELYZER,
+        CRUSHER
     }
 }

@@ -46,14 +46,14 @@ public class TileEntityBasicFurnace extends TileEntityInventoryBase implements I
                     }
                 }
             }
+            if(burnTime > 0){
+                burnTime--;
+            }
             if(recipe != null) {
-                if(burnTime > 0){
-                    burnTime--;
-                    processTime++;
+                processTime++;
 
-                    if(processTime >= recipeNeededTime) {
-                        endProcessing();
-                    }
+                if(processTime >= recipeNeededTime) {
+                    endProcessing();
                 }
                 if(burnTime == 0) takeFuel();
             }

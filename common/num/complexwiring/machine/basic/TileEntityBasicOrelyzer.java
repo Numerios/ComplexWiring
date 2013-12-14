@@ -47,9 +47,11 @@ public class TileEntityBasicOrelyzer extends TileEntityInventoryBase implements 
                     startProcessing();
                 }
             }
+            if(burnTime > 0){
+                burnTime--;
+            }
             if(recipe != null) {
                 if(burnTime > 0){
-                    burnTime--;
                     processTime++;
 
                     if(processTime >= recipeNeedTime) {
@@ -69,10 +71,10 @@ public class TileEntityBasicOrelyzer extends TileEntityInventoryBase implements 
     }
 
     public boolean canBeProcessed(){
-        if (RecipeManager.get(getStackInSlot(0)) == null) {
+        if (RecipeManager.get(RecipeManager.Type.ORELYZER, getStackInSlot(0)) == null) {
             return false;
         } else {
-            recipe = RecipeManager.get(getStackInSlot(0));
+            recipe = (OrelyzerRecipe) RecipeManager.get(RecipeManager.Type.ORELYZER, getStackInSlot(0));
             takeFuel();
             return true;
         }
@@ -181,7 +183,7 @@ public class TileEntityBasicOrelyzer extends TileEntityInventoryBase implements 
     public void writeToNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);
 
-        nbt.setShort("recipe", (short) RecipeManager.toRecipeID(recipe));
+        nbt.setShort("recipe", (short) RecipeManager.toRecipeID(RecipeManager.Type.ORELYZER, recipe));
         nbt.setShort("burnTime", (short) burnTime);
         nbt.setShort("processTime", (short) processTime);
         nbt.setShort("recipeTime", (short) recipeNeedTime);
@@ -204,7 +206,7 @@ public class TileEntityBasicOrelyzer extends TileEntityInventoryBase implements 
     public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);
 
-        recipe = RecipeManager.fromRecipeID(nbt.getShort("recipe"));
+        recipe = (OrelyzerRecipe) RecipeManager.fromRecipeID(RecipeManager.Type.ORELYZER, nbt.getShort("recipe"));
         burnTime = nbt.getShort("burnTime");
         processTime = nbt.getShort("processTime");
         recipeNeedTime = nbt.getShort("recipeTime");

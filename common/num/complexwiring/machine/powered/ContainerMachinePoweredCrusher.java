@@ -1,36 +1,47 @@
-package num.complexwiring.machine.basic;
+package num.complexwiring.machine.powered;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.FurnaceRecipes;
 import num.complexwiring.api.base.ContainerBase;
 import num.complexwiring.client.SlotMachine;
 import num.complexwiring.client.SlotOutput;
-import num.complexwiring.recipe.RecipeManager;
 
-public class ContainerMachineBasicFurnace extends ContainerBase {
+public class ContainerMachinePoweredCrusher extends ContainerBase {
+    protected final TileEntityPoweredCrusher tile;
 
-    protected final TileEntityBasicFurnace tile;
-
-    public ContainerMachineBasicFurnace(InventoryPlayer playerInv, TileEntityBasicFurnace tile) {
+    public ContainerMachinePoweredCrusher(InventoryPlayer playerInv, TileEntityPoweredCrusher tile) {
         super(playerInv, tile);
         this.tile = tile;
 
-        addSlotToContainer(new SlotMachine(tile, 0, 56, 17));   // ore input
-        addSlotToContainer(new SlotMachine(tile, 1, 56, 53));   // fuel input
+        addSlotToContainer(new SlotMachine(tile, 0, 56, 35));   // ore input
+        addSlotToContainer(new SlotMachine(tile, 1, 12, 57));   // energy input (battery and similar)
         addSlotToContainer(new SlotOutput(tile, 2, 116, 35));   // ore output
         addSlotToContainer(new SlotOutput(tile, 3, 136, 35));   // ore output 2
 
-
         addPlayerInventory(playerInv);
+
         tile.playersUsing.add(playerInv.player);
     }
 
     @Override
     public boolean canInteractWith(EntityPlayer player) {
         return tile.isUseableByPlayer(player);
+    }
+
+    public void addPlayerInventory(InventoryPlayer inv) {
+        //inventory - 9-26
+        for (int row = 0; row < 3; row++) {
+            for (int col = 0; col < 9; col++) {
+                addSlotToContainer(new Slot(inv, col + row * 9 + 9, 8 + col * 18, 84 + row * 18));
+            }
+        }
+
+        //hotbar - 0-9
+        for (int col = 0; col < 9; col++) {
+            addSlotToContainer(new Slot(inv, col, 8 + col * 18, 142));
+        }
     }
 
     @Override
@@ -48,19 +59,20 @@ public class ContainerMachineBasicFurnace extends ContainerBase {
                 }
                 slot.onSlotChange(slotIS, is);
             } else if (slotID > 3) {
-                if (FurnaceRecipes.smelting().getSmeltingResult(getSlot(slotID).getStack()) != null) {
+                /*if (RecipeManager.get(slotIS) != null) {
                     if (!mergeItemStack(slotIS, 0, 1, false)) {
-                        if (tile.getFuelBurnTime(slotIS) > 0) {
+                        if (TileEntityFurnace.getItemBurnTime(slotIS) > 0) {
                             if (!mergeItemStack(slotIS, 1, 2, false)) {
                                 return null;
                             }
                         }
                     }
-                } else if (tile.getFuelBurnTime(slotIS) > 0) {
+                } else if (TileEntityFurnace.getItemBurnTime(slotIS) > 0) {
                     if (!mergeItemStack(slotIS, 1, 2, false)) {
                         return null;
                     }
-                } else if (slotID >= 4 && slotID < 31) {
+                } else*/
+                if (slotID >= 4 && slotID < 31) {
                     if (!mergeItemStack(slotIS, 31, 40, false)) {
                         return null;
                     }
