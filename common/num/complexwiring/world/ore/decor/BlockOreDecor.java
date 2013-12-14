@@ -14,7 +14,7 @@ public class BlockOreDecor extends Block {
     public BlockOreDecor(int ID) {
         super(ID, Material.rock);
         setUnlocalizedName(Reference.MOD_ID.toLowerCase() + ".world.ore.decor");
-        setHardness(3.0F);
+        setHardness(2.0F);
         setResistance(3.0F);
         setCreativeTab(ModuleWorld.tabCWWorld);
     }
