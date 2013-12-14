@@ -124,6 +124,8 @@ public class TileEntityPoweredOrelyzer extends TileEntityPoweredBase implements 
 
     @Override
     public boolean canInsertItem(int slot, ItemStack is, int side) {
+        if(slot == 2 || slot == 3) return false;
+
         return isItemValidForSlot(slot, is);
     }
 
@@ -146,6 +148,7 @@ public class TileEntityPoweredOrelyzer extends TileEntityPoweredBase implements 
         super.writeToNBT(nbt);
 
         nbt.setShort("processTime", (short) processTime);
+        nbt.setShort("recipe", (short) RecipeManager.toRecipeID(recipe));
         nbt.setShort("recipePower", (short) recipeNeededPower);
 
         if (recipeOutput != null) {
@@ -166,6 +169,7 @@ public class TileEntityPoweredOrelyzer extends TileEntityPoweredBase implements 
         super.readFromNBT(nbt);
 
         processTime = nbt.getShort("processTime");
+        recipe = RecipeManager.fromRecipeID(nbt.getShort("recipe"));
         recipeNeededPower = nbt.getShort("recipePower");
 
         recipeOutput.clear();

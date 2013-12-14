@@ -167,6 +167,8 @@ public class TileEntityBasicOrelyzer extends TileEntityInventoryBase implements 
 
     @Override
     public boolean canInsertItem(int slot, ItemStack is, int side) {
+        if(slot == 2 || slot == 3) return false;
+
         return isItemValidForSlot(slot, is);
     }
 
@@ -179,6 +181,7 @@ public class TileEntityBasicOrelyzer extends TileEntityInventoryBase implements 
     public void writeToNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);
 
+        nbt.setShort("recipe", (short) RecipeManager.toRecipeID(recipe));
         nbt.setShort("burnTime", (short) burnTime);
         nbt.setShort("processTime", (short) processTime);
         nbt.setShort("recipeTime", (short) recipeNeedTime);
@@ -201,6 +204,7 @@ public class TileEntityBasicOrelyzer extends TileEntityInventoryBase implements 
     public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);
 
+        recipe = RecipeManager.fromRecipeID(nbt.getShort("recipe"));
         burnTime = nbt.getShort("burnTime");
         processTime = nbt.getShort("processTime");
         recipeNeedTime = nbt.getShort("recipeTime");
