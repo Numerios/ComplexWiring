@@ -15,7 +15,7 @@ public class Recipes {
                 add.invoke(null, recipe);
                 return true;
             } catch (Exception e) {
-                System.err.println("[CW] [API] Couldn't add a recipe remotely! " + e.printStackTrace());
+                System.err.println("[CW] [API] Couldn't add a recipe remotely!");
             }
         }
         return false;
