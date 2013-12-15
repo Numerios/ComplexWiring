@@ -5,8 +5,8 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import num.complexwiring.api.base.ContainerBase;
-import num.complexwiring.client.SlotMachine;
-import num.complexwiring.client.SlotOutput;
+import num.complexwiring.client.slot.SlotMachine;
+import num.complexwiring.client.slot.SlotOutput;
 
 public class ContainerMachinePoweredCrusher extends ContainerBase {
     protected final TileEntityPoweredCrusher tile;

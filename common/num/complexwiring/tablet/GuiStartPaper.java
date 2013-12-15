@@ -8,7 +8,7 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 @SideOnly(Side.CLIENT)
-public class GuiStartPaper extends GuiScreen{
+public class GuiStartPaper extends GuiScreen {
     protected final ResourceLocation texture = new ResourceLocation("complexwiring", "textures/gui/tablet/startpaper/" + "crafting" + ".png");
     protected final EntityPlayer player;
     protected int xSize = 176;
@@ -17,19 +17,24 @@ public class GuiStartPaper extends GuiScreen{
     protected int guiLeft;
     protected int guiTop;
 
-    public GuiStartPaper(EntityPlayer player){
+    public GuiStartPaper(EntityPlayer player) {
         this.player = player;
     }
 
     @Override
-    public void initGui(){
+    public void initGui() {
         super.initGui();
         this.guiLeft = (this.width - this.xSize) / 2;
         this.guiTop = (this.height - this.ySize) / 2;
     }
 
     @Override
-    public void drawScreen(int par1, int par2, float par3){
+    public boolean doesGuiPauseGame() {
+        return false;
+    }
+
+    @Override
+    public void drawScreen(int par1, int par2, float par3) {
         drawBackground();
         super.drawScreen(par1, par2, par3);
         GL11.glPushMatrix();
@@ -39,12 +44,12 @@ public class GuiStartPaper extends GuiScreen{
         GL11.glPopMatrix();
     }
 
-    protected void drawBackground(){
+    protected void drawBackground() {
         this.mc.getTextureManager().bindTexture(texture);
         this.drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
     }
 
-    protected void drawForeground(){
+    protected void drawForeground() {
         fontRenderer.drawString("§lSURIVIVE", xSize / 2 - fontRenderer.getStringWidth("§lSURIVIVE") / 2, 24, 0x332211);
         fontRenderer.drawString("§lMINE", xSize / 2 - fontRenderer.getStringWidth("§lMINE") / 2, 36, 0x332211);
         fontRenderer.drawString("§lCRAFT", xSize / 2 - fontRenderer.getStringWidth("§lCRAFT") / 2, 48, 0x332211);

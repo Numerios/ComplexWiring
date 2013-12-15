@@ -1,4 +1,4 @@
-package num.complexwiring.client;
+package num.complexwiring.client.slot;
 
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
