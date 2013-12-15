@@ -2,7 +2,6 @@ package num.complexwiring.api.recipe;
 
 import cpw.mods.fml.common.Loader;
 
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 public class Recipes {
@@ -15,14 +14,8 @@ public class Recipes {
                 Method add = recipeManager.getMethod("add", ICWRecipe.class);
                 add.invoke(null, recipe);
                 return true;
-            } catch (NoSuchMethodException e) {
-                System.err.println("[CW-API] Couldn't add a recipe remotely!");
-            } catch (ClassNotFoundException e) {
-                System.err.println("[CW-API] Couldn't add a recipe remotely!");
-            } catch (InvocationTargetException e) {
-                System.err.println("[CW-API] Couldn't add a recipe remotely!");
-            } catch (IllegalAccessException e) {
-                System.err.println("[CW-API] Couldn't add a recipe remotely!");
+            } catch (Exception e) {
+                System.err.println("[CW] [API] Couldn't add a recipe remotely! " + e.printStackTrace());
             }
         }
         return false;
