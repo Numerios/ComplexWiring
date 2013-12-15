@@ -24,10 +24,10 @@ public class ModuleTablet extends Module {
     }
 
     private void registerItems() {
-        ItemTablet itemTablet = new ItemTablet(1024);
+        itemTablet = new ItemTablet(1024);
         GameRegistry.registerItem(itemTablet, Strings.TABLET_NAME);
 
-        ItemStartPaper itemStartPaper = new ItemStartPaper(1022);
+        itemStartPaper = new ItemStartPaper(1022);
         GameRegistry.registerItem(itemStartPaper, Strings.STARTPAPER_NAME);
     }
 

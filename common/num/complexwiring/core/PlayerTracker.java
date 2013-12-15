@@ -16,7 +16,7 @@ public class PlayerTracker implements IPlayerTracker {
         NBTTagCompound nbt = player.getEntityData();
         if (!nbt.getBoolean(Reference.MOD_ID + " " + "spawnPaper")) {
             nbt.setBoolean(Reference.MOD_ID + " " + "spawnPaper", true);
-            ItemStack spawnPaper = new ItemStack(ModuleTablet.itemStartPaper);   //FIXME!
+            ItemStack spawnPaper = new ItemStack(ModuleTablet.itemStartPaper);
             if (!player.inventory.addItemStackToInventory(spawnPaper)){
                 Random rand = new Random();
                 EntityItem item = new EntityItem(player.worldObj, player.posX + 0.5 - rand.nextDouble(), player.posY + 0.5 - rand.nextDouble(), player.posZ + 0.5 - rand.nextDouble(), spawnPaper);
