@@ -7,10 +7,12 @@ import net.minecraft.world.World;
 import num.complexwiring.api.vec.Vector3;
 import num.complexwiring.machine.basic.*;
 import num.complexwiring.machine.powered.*;
+import num.complexwiring.tablet.GuiStartPaper;
 import num.complexwiring.tablet.GuiTablet;
 
 public class GuiHandler implements IGuiHandler {
     public static final int TABLET_BASIC_ID = 42;
+    public static final int STARTPAPER_ID = 43;
 
     @Override
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
@@ -50,6 +52,8 @@ public class GuiHandler implements IGuiHandler {
             return new GuiMachinePoweredCrusher(player.inventory, (TileEntityPoweredCrusher) tile);          // Powered Crusher
         } else if (ID == TABLET_BASIC_ID){
             return new GuiTablet(player);       // The Tablet!
+        } else if (ID == STARTPAPER_ID){
+            return new GuiStartPaper(player);
         }
         return null;
 

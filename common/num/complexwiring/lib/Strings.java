@@ -129,4 +129,5 @@ public class Strings {
     public static final String MACHINE_POWERED_CRUSHER_DESC = StatCollector.translateToLocal("tile.complexwiring.machine.powered.crusher.desc");   //TODO MAKE THIS PRETTIER
 
     public static final String TABLET_NAME = "tablet";
+    public static final String STARTPAPER_NAME = "startpaper";
 }
