@@ -2,8 +2,12 @@ package num.complexwiring.tablet;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
@@ -16,6 +20,9 @@ public class GuiStartPaper extends GuiScreen {
 
     protected int guiLeft;
     protected int guiTop;
+
+    private int craftingGridX = 42;
+    private int craftingGridY = 80;
 
     public GuiStartPaper(EntityPlayer player) {
         this.player = player;
@@ -57,5 +64,12 @@ public class GuiStartPaper extends GuiScreen {
         fontRenderer.drawString("§n" + player.getDisplayName(), xSize / 2 - fontRenderer.getStringWidth("§n" + player.getDisplayName()) / 2, 60, 0x443322);
 
         fontRenderer.drawString("§oComplex Wiring", xSize / 2 - fontRenderer.getStringWidth("§oComplex Wiring") / 2, ySize - 28, 0x554433);
+
+        RenderItem renderItem = new RenderItem();
+        renderItem.renderItemIntoGUI(fontRenderer, Minecraft.getMinecraft().getTextureManager(), new ItemStack(Item.redstone), craftingGridX + 16, craftingGridY);
+        renderItem.renderItemIntoGUI(fontRenderer, Minecraft.getMinecraft().getTextureManager(), new ItemStack(Item.paper), craftingGridX, craftingGridY + 16);
+        renderItem.renderItemIntoGUI(fontRenderer, Minecraft.getMinecraft().getTextureManager(), new ItemStack(Item.book), craftingGridX + 16, craftingGridY + 16);
+        renderItem.renderItemIntoGUI(fontRenderer, Minecraft.getMinecraft().getTextureManager(), new ItemStack(Item.paper), craftingGridX + 32, craftingGridY + 16);
+        renderItem.renderItemIntoGUI(fontRenderer, Minecraft.getMinecraft().getTextureManager(), new ItemStack(Item.redstone), craftingGridX + 16, craftingGridY + 32);
     }
 }
