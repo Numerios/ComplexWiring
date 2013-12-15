@@ -11,7 +11,7 @@ import org.lwjgl.opengl.GL11;
 public class GuiStartPaper extends GuiScreen {
     protected final ResourceLocation texture = new ResourceLocation("complexwiring", "textures/gui/tablet/startpaper/" + "crafting" + ".png");
     protected final EntityPlayer player;
-    protected int xSize = 176;
+    protected int xSize = 132;
     protected int ySize = 166;
 
     protected int guiLeft;
@@ -50,12 +50,12 @@ public class GuiStartPaper extends GuiScreen {
     }
 
     protected void drawForeground() {
-        fontRenderer.drawString("§lSURIVIVE", xSize / 2 - fontRenderer.getStringWidth("§lSURIVIVE") / 2, 24, 0x332211);
-        fontRenderer.drawString("§lMINE", xSize / 2 - fontRenderer.getStringWidth("§lMINE") / 2, 36, 0x332211);
-        fontRenderer.drawString("§lCRAFT", xSize / 2 - fontRenderer.getStringWidth("§lCRAFT") / 2, 48, 0x332211);
+        fontRenderer.drawString("§lSURIVIVE", xSize / 2 - fontRenderer.getStringWidth("§lSURIVIVE") / 2, 16, 0x332211);
+        fontRenderer.drawString("§lMINE", xSize / 2 - fontRenderer.getStringWidth("§lMINE") / 2, 28, 0x332211);
+        fontRenderer.drawString("§lCRAFT", xSize / 2 - fontRenderer.getStringWidth("§lCRAFT") / 2, 40, 0x332211);
 
-        fontRenderer.drawString("§n" + player.getDisplayName(), xSize / 2 - fontRenderer.getStringWidth("§n" + player.getDisplayName()) / 2, 68, 0x443322);
+        fontRenderer.drawString("§n" + player.getDisplayName(), xSize / 2 - fontRenderer.getStringWidth("§n" + player.getDisplayName()) / 2, 60, 0x443322);
 
-        fontRenderer.drawString("§oComplex Wiring", xSize / 2 - fontRenderer.getStringWidth("§oComplex Wiring") / 2, ySize - 24, 0x554433);
+        fontRenderer.drawString("§oComplex Wiring", xSize / 2 - fontRenderer.getStringWidth("§oComplex Wiring") / 2, ySize - 28, 0x554433);
     }
 }

@@ -77,24 +77,33 @@ tile.complexwiring.world.decor.darkdolomite.name=Tmavý dolomit
 tile.complexwiring.world.decor.limestonebrick.name=Vápencová cihla
 tile.complexwiring.world.decor.dolomitebrick.name=Dolomitová cihla
 tile.complexwiring.world.decor.arenitebrick.name=Arenitová cihla
-tile.complexwiring.world.decor.darkdolomitebrick.name=Tmavá vápencová cihla
+tile.complexwiring.world.decor.darkdolomitebrick.name=Tmavá dolomitová cihla
 
 tile.complexwiring.world.decor.limestonesmallbrick.name=Vápencové cihličky
 tile.complexwiring.world.decor.dolomitesmallbrick.name=Dolomitové cihličky
-tile.complexwiring.world.decor.arenitesmallbrick.name==Arenitové cihličky
-tile.complexwiring.world.decor.darkdolomitesmallbrick.name=Tmavé vápencové cihličky
+tile.complexwiring.world.decor.arenitesmallbrick.name=Arenitové cihličky
+tile.complexwiring.world.decor.darkdolomitesmallbrick.name=Tmavé dolomitové cihličky
 
 tile.complexwiring.world.decor.dolomitedarkdolomitemix.name=Mix dolomitu a tmavého dolomitu
 
 tile.complexwiring.machine.basic.orelyzer.name=Základní rudolyzér
 tile.complexwiring.machine.basic.orelyzer.desc=Analyzuj své rudy!
-tile.complexwiring.machine.basic.furnace.name=Základní pec
-tile.complexwiring.machine.basic.furnace.desc=Vypeč své rudy!
 
 tile.complexwiring.machine.powered.orelyzer.name=Napájený rudolyzér
 tile.complexwiring.machine.powered.orelyzer.desc=Analyzuj své rudy s MJ!
+
+tile.complexwiring.machine.basic.furnace.name=Základní pec
+tile.complexwiring.machine.basic.furnace.desc=Lepší vypalovačka
+
 tile.complexwiring.machine.powered.furnace.name=Napájená pec
-tile.complexwiring.machine.powered.furnace.desc=Vypeč své rudy s MJ!
+tile.complexwiring.machine.powered.furnace.desc=Lepší MJ vypalovačka
+
+tile.complexwiring.machine.basic.crusher.name=Základní drtič
+tile.complexwiring.machine.basic.crusher.desc=Rozdrť své nepřátele!
+
+tile.complexwiring.machine.powered.crusher.name=Napájený drtič
+tile.complexwiring.machine.powered.crusher.desc=Rozdrť své nepřátele s MJ!
+
 
 item.complexwiring.base.ingot.copper.name=Měděný ingot
 item.complexwiring.base.ingot.tin.name=Cínový ingot
