@@ -57,7 +57,7 @@ public class GuiStartPaper extends GuiScreen {
     }
 
     protected void drawForeground() {
-        fontRenderer.drawString("§lSURIVIVE", xSize / 2 - fontRenderer.getStringWidth("§lSURIVIVE") / 2, 16, 0x332211);
+        fontRenderer.drawString("§lSURVIVE", xSize / 2 - fontRenderer.getStringWidth("§lSURVIVE") / 2, 16, 0x332211);
         fontRenderer.drawString("§lMINE", xSize / 2 - fontRenderer.getStringWidth("§lMINE") / 2, 28, 0x332211);
         fontRenderer.drawString("§lCRAFT", xSize / 2 - fontRenderer.getStringWidth("§lCRAFT") / 2, 40, 0x332211);
 
