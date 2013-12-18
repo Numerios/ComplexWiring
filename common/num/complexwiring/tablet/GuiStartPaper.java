@@ -66,6 +66,7 @@ public class GuiStartPaper extends GuiScreen {
         fontRenderer.drawString("§oComplex Wiring", xSize / 2 - fontRenderer.getStringWidth("§oComplex Wiring") / 2, ySize - 28, 0x554433);
 
         RenderItem renderItem = new RenderItem();
+        renderItem.renderWithColor = false;
         renderItem.renderItemIntoGUI(fontRenderer, Minecraft.getMinecraft().getTextureManager(), new ItemStack(Item.redstone), craftingGridX + 16, craftingGridY);
         renderItem.renderItemIntoGUI(fontRenderer, Minecraft.getMinecraft().getTextureManager(), new ItemStack(Item.paper), craftingGridX, craftingGridY + 16);
         renderItem.renderItemIntoGUI(fontRenderer, Minecraft.getMinecraft().getTextureManager(), new ItemStack(Item.book), craftingGridX + 16, craftingGridY + 16);
