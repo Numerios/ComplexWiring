@@ -9,10 +9,12 @@ import num.complexwiring.machine.basic.*;
 import num.complexwiring.machine.powered.*;
 import num.complexwiring.tablet.GuiStartPaper;
 import num.complexwiring.tablet.GuiTablet;
+import num.complexwiring.tablet.research.GuiGuideBook;
 
 public class GuiHandler implements IGuiHandler {
     public static final int TABLET_BASIC_ID = 42;
     public static final int STARTPAPER_ID = 43;
+    public static final int GUIDEBOOK_ID = 44;
 
     @Override
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
@@ -54,6 +56,8 @@ public class GuiHandler implements IGuiHandler {
             return new GuiTablet(player);       // The Tablet!
         } else if (ID == STARTPAPER_ID){
             return new GuiStartPaper(player);
+        } else if (ID == GUIDEBOOK_ID){
+            return new GuiGuideBook(player);
         }
         return null;
 
