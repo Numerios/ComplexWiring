@@ -1,4 +1,4 @@
-package num.complexwiring.tablet;
+package num.complexwiring.tablet.guidebook;
 
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -14,12 +14,12 @@ import num.complexwiring.lib.Reference;
 
 import java.util.List;
 
-public class ItemStartPaper extends Item {
+public class ItemGuidebook extends Item{
     private Icon icon;
 
-    public ItemStartPaper(int ID) {
+    public ItemGuidebook(int ID) {
         super(ID);
-        setUnlocalizedName(Reference.MOD_ID.toLowerCase() + ".tablet.startpaper");
+        setUnlocalizedName(Reference.MOD_ID.toLowerCase() + ".tablet.guidebook");
         setCreativeTab(ModuleBase.tabCWBase);
         setMaxDamage(1024);
         setMaxStackSize(1);
@@ -37,7 +37,7 @@ public class ItemStartPaper extends Item {
 
     @Override
     public ItemStack onItemRightClick(ItemStack is, World world, EntityPlayer player) {
-        player.openGui(ComplexWiring.instance, GuiHandler.STARTPAPER_ID, world, 0, 0, 0);
+        player.openGui(ComplexWiring.instance, GuiHandler.GUIDEBOOK_ID, world, 0, 0, 0);
         return is;
     }
 }

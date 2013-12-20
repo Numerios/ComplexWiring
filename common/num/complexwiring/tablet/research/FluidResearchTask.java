@@ -15,10 +15,10 @@ public class FluidResearchTask implements IResearchTask{
     }
 
     public String getLocalizedName() {
-        return StatCollector.translateToLocal("research.complexwiring.task.fluid." + name);
+        return StatCollector.translateToLocal("research.complexwiring.task.fluid." + name.toLowerCase());
     }
 
     public String getLocalizedDesc() {
-        return StatCollector.translateToLocal("research.complexwiring.task.fluid." + desc);
+        return StatCollector.translateToLocal("research.complexwiring.task.fluid." + desc.toLowerCase());
     }
 }

@@ -6,13 +6,15 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import num.complexwiring.lib.Module;
 import num.complexwiring.lib.Strings;
-import num.complexwiring.recipe.RecipeManager;
+import num.complexwiring.tablet.guidebook.ItemGuidebook;
 import num.complexwiring.tablet.research.Research;
 import num.complexwiring.tablet.research.ResearchManager;
 import num.complexwiring.tablet.research.SolidResearchTask;
+import num.complexwiring.tablet.startpaper.ItemStartPaper;
+import num.complexwiring.tablet.tablet.ItemTablet;
 
 public class ModuleTablet extends Module {
-    public static Item itemTablet, itemStartPaper, itemGuideBook;
+    public static Item itemTablet, itemStartPaper, itemGuidebook;
 
     @Override
     public void preInit() {
@@ -23,6 +25,7 @@ public class ModuleTablet extends Module {
     @Override
     public void init() {
         registerRecipes();
+
         ResearchManager.init();
         ResearchManager.addAll(
                 new Research(Research.Tier.TIER_0, "Research", "Testing research",
@@ -44,11 +47,11 @@ public class ModuleTablet extends Module {
         itemTablet = new ItemTablet(1024);
         GameRegistry.registerItem(itemTablet, Strings.TABLET_NAME);
 
-        itemStartPaper = new ItemStartPaper(1022);
+        itemStartPaper = new ItemStartPaper(1021);
         GameRegistry.registerItem(itemStartPaper, Strings.STARTPAPER_NAME);
 
-        itemGuideBook = new ItemGuideBook(1022);
-        GameRegistry.registerItem(itemGuideBook, Strings.GUIDEBOOK_NAME);
+        itemGuidebook = new ItemGuidebook(1022);
+        GameRegistry.registerItem(itemGuidebook, Strings.GUIDEBOOK_NAME);
     }
 
     private void registerRecipes() {

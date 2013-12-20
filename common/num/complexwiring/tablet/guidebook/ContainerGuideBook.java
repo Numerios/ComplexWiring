@@ -1,13 +1,13 @@
-package num.complexwiring.tablet;
+package num.complexwiring.tablet.guidebook;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 
-public class ContainerGuideBook extends Container {
+public class ContainerGuidebook extends Container {
 
-    public ContainerGuideBook(InventoryPlayer inv){
+    public ContainerGuidebook(InventoryPlayer inv){
         addPlayerInventory(inv);
     }
 

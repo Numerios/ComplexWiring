@@ -20,11 +20,11 @@ public class Research implements IResearch {
     }
 
     public String getLocalizedName() {
-        return StatCollector.translateToLocal("research.complexwiring.research." + name);
+        return StatCollector.translateToLocal("research.complexwiring.research." + name.toLowerCase());
     }
 
     public String getLocalizedDesc() {
-        return StatCollector.translateToLocal("research.complexwiring.research." + desc);
+        return StatCollector.translateToLocal("research.complexwiring.research." + desc.toLowerCase());
     }
 
     public ArrayList<IResearchTask> getResearchTasks() {

@@ -1,4 +1,9 @@
 package num.complexwiring.client.gui;
 
-public class GuiHelper {
+import net.minecraft.client.gui.FontRenderer;
+
+public class GuiHelper {                //TODO Use the following method everywhere
+    public static void drawCenteredString(FontRenderer fontRenderer, String string, int width, int height, int colour){
+        fontRenderer.drawString(string, width / 2 - fontRenderer.getStringWidth(string) / 2, height, colour);
+    }
 }

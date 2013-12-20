@@ -7,9 +7,9 @@ import net.minecraft.world.World;
 import num.complexwiring.api.vec.Vector3;
 import num.complexwiring.machine.basic.*;
 import num.complexwiring.machine.powered.*;
-import num.complexwiring.tablet.GuiStartPaper;
-import num.complexwiring.tablet.GuiTablet;
-import num.complexwiring.tablet.research.GuiGuideBook;
+import num.complexwiring.tablet.guidebook.GuiGuidebook;
+import num.complexwiring.tablet.startpaper.GuiStartPaper;
+import num.complexwiring.tablet.tablet.GuiTablet;
 
 public class GuiHandler implements IGuiHandler {
     public static final int TABLET_BASIC_ID = 42;
@@ -57,7 +57,7 @@ public class GuiHandler implements IGuiHandler {
         } else if (ID == STARTPAPER_ID){
             return new GuiStartPaper(player);
         } else if (ID == GUIDEBOOK_ID){
-            return new GuiGuideBook(player);
+            return new GuiGuidebook(player);
         }
         return null;
 

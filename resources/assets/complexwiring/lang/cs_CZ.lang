@@ -117,9 +117,4 @@ item.complexwiring.base.dust.lead.name=Olověný prášek
 
 item.complexwiring.tablet.name=Tablet
 item.complexwiring.tablet.startpaper.name=§lPočátek
-item.complexwiring.tablet.guidebook.name=Příručka
-
-research.complexwiring.research.Research=Testovací výzkum
-research.complexwiring.research.Research2=Testujeme ještě jednou
-research.complexwiring.task.solid.Stone=Sežeň nějakej šutr!
-research.complexwiring.task.solid.Wood=Sežeň nějakej dřevo!
+item.complexwiring.tablet.guidebook.name=§lPříručka

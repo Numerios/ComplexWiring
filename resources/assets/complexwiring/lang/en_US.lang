@@ -112,9 +112,4 @@ item.complexwiring.base.dust.lead.name=Leaden Dust
 
 item.complexwiring.tablet.name=Tablet
 item.complexwiring.tablet.startpaper.name=§lThe Beginning
-item.complexwiring.tablet.guidebook.name=Guide book
-
-research.complexwiring.research.Research=Testing research
-research.complexwiring.research.Research2=Testing again
-research.complexwiring.task.solid.Stone=Get some Stone!
-research.complexwiring.task.solid.Wood=Get some Wood!
+item.complexwiring.tablet.guidebook.name=§lThe Guidebook

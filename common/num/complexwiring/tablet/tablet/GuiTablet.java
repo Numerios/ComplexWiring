@@ -1,4 +1,4 @@
-package num.complexwiring.tablet;
+package num.complexwiring.tablet.tablet;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

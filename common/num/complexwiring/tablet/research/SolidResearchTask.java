@@ -15,10 +15,10 @@ public class SolidResearchTask implements IResearchTask {
     }
 
     public String getLocalizedName() {
-        return StatCollector.translateToLocal("research.complexwiring.task.solid." + name);
+        return StatCollector.translateToLocal("research.complexwiring.task.solid." + name.toLowerCase());
     }
 
     public String getLocalizedDesc() {
-        return StatCollector.translateToLocal("research.complexwiring.task.solid." + desc);
+        return StatCollector.translateToLocal("research.complexwiring.task.solid." + desc.toLowerCase());
     }
 }
