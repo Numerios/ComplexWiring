@@ -48,17 +48,17 @@ public class GuiGuidebook extends GuiContainer {
         drawRightPage();
         GL11.glPopMatrix();
 
-        glTranslateDefault();
+        glTranslateDefault(); //TODO: BUTTONS FOR SWITCHING PAGES!
     }
 
     protected void drawLeftPage() {
         GuiHelper.drawCenteredString(fontRenderer, "Left Page", (int) leftPage.getWidth(), 0, 0x606060);
-        GuiHelper.drawCenteredString(fontRenderer, "0", (int) leftPage.getWidth(), (int) leftPage.getHeight() - 6, 0x606060);
+        GuiHelper.drawCenteredString(fontRenderer, "" + page, (int) leftPage.getWidth(), (int) leftPage.getHeight() - 6, 0x606060);
     }
 
     protected void drawRightPage() {
         GuiHelper.drawCenteredString(fontRenderer, "Right Page", (int) rightPage.getWidth(), 0, 0x606060);
-        GuiHelper.drawCenteredString(fontRenderer, "1", (int) rightPage.getWidth(), (int) rightPage.getHeight() - 6, 0x606060);
+        GuiHelper.drawCenteredString(fontRenderer, "" + (page + 1), (int) rightPage.getWidth(), (int) rightPage.getHeight() - 6, 0x606060);
     }
 
     private void glTranslateDefault() {

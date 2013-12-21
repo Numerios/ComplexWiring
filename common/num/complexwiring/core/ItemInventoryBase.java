@@ -1,42 +1,21 @@
-package num.complexwiring.api.base;
+package num.complexwiring.core;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.network.packet.Packet;
-import net.minecraft.util.StatCollector;
-import num.complexwiring.api.vec.Vector3;
-import num.complexwiring.core.PacketHandler;
 
-import java.io.DataInputStream;
-import java.io.IOException;
-import java.util.HashSet;
-import java.util.Set;
-
-/**
- * A basic TileEntity with IInventory support!
- */
-public abstract class TileEntityInventoryBase extends TileEntityBase implements IInventory {
-    public final Set<EntityPlayer> playersUsing = new HashSet<EntityPlayer>();
+public abstract class ItemInventoryBase implements IInventory {
     private final int inventorySize;
     protected ItemStack[] inventory;
-    private String name;
+    public ItemStack is;
+    public NBTTagCompound nbt;
 
-    public TileEntityInventoryBase(int inventorySize, String name) {
+    public ItemInventoryBase(ItemStack is, int inventorySize) {
         this.inventorySize = inventorySize;
-        this.name = name;
-        inventory = new ItemStack[getSizeInventory()];
-    }
-
-    @Override
-    public void setup() {
-    }
-
-    @Override
-    public void update() {
-        super.update();
+        this.is = is;
+        this.inventory = new ItemStack[inventorySize];
     }
 
     @Override
@@ -91,12 +70,12 @@ public abstract class TileEntityInventoryBase extends TileEntityBase implements 
 
     @Override
     public String getInvName() {
-        return StatCollector.translateToLocal(name + ".name");
+        return null;
     }
 
     @Override
     public boolean isInvNameLocalized() {
-        return true;
+        return false;
     }
 
     @Override
@@ -106,7 +85,7 @@ public abstract class TileEntityInventoryBase extends TileEntityBase implements 
 
     @Override
     public boolean isUseableByPlayer(EntityPlayer player) {
-        return Vector3.get(player).distance(this.getPosition()) <= 64 && this.getPosition().toTile(worldObj) == this;
+        return true;
     }
 
     @Override
@@ -123,9 +102,19 @@ public abstract class TileEntityInventoryBase extends TileEntityBase implements 
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound nbt) {
-        super.writeToNBT(nbt);
+    public void onInventoryChanged() {
+        saveContents();
+    }
 
+    public void saveContents() {
+        if (this.nbt != null) {
+            this.is.setTagCompound(nbt);
+        }
+
+        writeToNBT(nbt);
+    }
+
+    public void writeToNBT(NBTTagCompound nbt) {
         NBTTagList inventoryNBT = new NBTTagList();
         for (int i = 0; i < getSizeInventory(); i++) {
             if (getStackInSlot(i) != null) {
@@ -138,10 +127,7 @@ public abstract class TileEntityInventoryBase extends TileEntityBase implements 
         nbt.setTag("contents", inventoryNBT);
     }
 
-    @Override
-    public void readFromNBT(NBTTagCompound nbt) {
-        super.readFromNBT(nbt);
-
+    public void readToNBT(NBTTagCompound nbt) {
         NBTTagList inventoryNBT = nbt.getTagList("contents");
         inventory = new ItemStack[getSizeInventory()];
         for (int i = 0; i < inventoryNBT.tagCount(); i++) {
@@ -151,13 +137,5 @@ public abstract class TileEntityInventoryBase extends TileEntityBase implements 
                 setInventorySlotContents(slot, ItemStack.loadItemStackFromNBT(itemNBT));
             }
         }
-    }
-
-    @Override
-    public Packet getDescriptionPacket() {
-        return PacketHandler.getPacket(this, -1);
-    }
-
-    public void handlePacket(DataInputStream is) throws IOException {
     }
 }
