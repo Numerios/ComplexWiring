@@ -10,6 +10,7 @@ import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import num.complexwiring.ComplexWiring;
 import num.complexwiring.base.ModuleBase;
+import num.complexwiring.core.ExternalItemInventory;
 import num.complexwiring.core.GuiHandler;
 import num.complexwiring.lib.Reference;
 
@@ -63,5 +64,12 @@ public class ItemGuidebook extends Item{
             is.setTagCompound(new NBTTagCompound());
         }
         is.getTagCompound().setInteger("page", page);
+    }
+
+    public ExternalItemInventory getItemInventory(ItemStack is){
+        if (is.getItem() == this){
+            return new ExternalItemInventory(is, 9); //testing value
+        }
+        return null;
     }
 }

@@ -7,7 +7,9 @@ import net.minecraft.world.World;
 import num.complexwiring.api.vec.Vector3;
 import num.complexwiring.machine.basic.*;
 import num.complexwiring.machine.powered.*;
+import num.complexwiring.tablet.guidebook.ContainerGuidebook;
 import num.complexwiring.tablet.guidebook.GuiGuidebook;
+import num.complexwiring.tablet.guidebook.ItemGuidebook;
 import num.complexwiring.tablet.startpaper.GuiStartPaper;
 import num.complexwiring.tablet.tablet.GuiTablet;
 
@@ -32,6 +34,8 @@ public class GuiHandler implements IGuiHandler {
             return new ContainerMachinePoweredFurnace(player.inventory, (TileEntityPoweredFurnace) tile);     // Powered Furnace
         } else if (tile instanceof TileEntityPoweredCrusher && vec3.blockMetadata(world) == EnumPoweredMachine.VALID[2].ordinal()) {
             return new ContainerMachinePoweredCrusher(player.inventory, (TileEntityPoweredCrusher) tile);     // Powered Crusher
+        } else if (ID >= GUIDEBOOK_ID && ID <= GUIDEBOOK_ID + 100) {
+            return new ContainerGuidebook(player.inventory, ((ItemGuidebook) player.inventory.getCurrentItem().getItem()).getItemInventory(player.inventory.getCurrentItem()));
         }
         return null;
     }
@@ -52,11 +56,11 @@ public class GuiHandler implements IGuiHandler {
             return new GuiMachinePoweredFurnace(player.inventory, (TileEntityPoweredFurnace) tile);          // Powered Furnace
         } else if (tile instanceof TileEntityPoweredCrusher && vec3.blockMetadata(world) == EnumPoweredMachine.VALID[2].ordinal()) {
             return new GuiMachinePoweredCrusher(player.inventory, (TileEntityPoweredCrusher) tile);          // Powered Crusher
-        } else if (ID == TABLET_BASIC_ID){
+        } else if (ID == TABLET_BASIC_ID) {
             return new GuiTablet(player, 0);       // The Tablet!
-        } else if (ID == STARTPAPER_ID){
+        } else if (ID == STARTPAPER_ID) {
             return new GuiStartPaper(player);
-        } else if (ID >= GUIDEBOOK_ID && ID <= GUIDEBOOK_ID + 100){
+        } else if (ID >= GUIDEBOOK_ID && ID <= GUIDEBOOK_ID + 100) {
             return new GuiGuidebook(player, ID - GUIDEBOOK_ID);
         }
         return null;

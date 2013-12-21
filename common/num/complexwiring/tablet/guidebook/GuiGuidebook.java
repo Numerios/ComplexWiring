@@ -14,7 +14,7 @@ public class GuiGuidebook extends GuiContainer {
     protected int page = 0;
 
     public GuiGuidebook(EntityPlayer player, int page) {
-        super(new ContainerGuidebook(player.inventory));
+        super(new ContainerGuidebook(player.inventory, ((ItemGuidebook) player.inventory.getCurrentItem().getItem()).getItemInventory(player.inventory.getCurrentItem())));
 
         this.page = page;
         xSize = 216;
