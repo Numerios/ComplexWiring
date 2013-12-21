@@ -23,7 +23,7 @@ public class ItemGuidebook extends Item{
         super(ID);
         setUnlocalizedName(Reference.MOD_ID.toLowerCase() + ".tablet.guidebook");
         setCreativeTab(ModuleBase.tabCWBase);
-        setMaxDamage(1024);
+        setMaxDamage(0);
         setMaxStackSize(1);
     }
 

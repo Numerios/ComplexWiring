@@ -6,13 +6,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 
-public abstract class ItemInventoryBase implements IInventory {
+public class ExternalItemInventory implements IInventory {
     private final int inventorySize;
     protected ItemStack[] inventory;
     public ItemStack is;
     public NBTTagCompound nbt;
 
-    public ItemInventoryBase(ItemStack is, int inventorySize) {
+    public ExternalItemInventory(ItemStack is, int inventorySize) {
         this.inventorySize = inventorySize;
         this.is = is;
         this.inventory = new ItemStack[inventorySize];
