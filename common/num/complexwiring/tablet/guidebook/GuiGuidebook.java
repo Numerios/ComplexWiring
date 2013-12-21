@@ -33,6 +33,8 @@ public class GuiGuidebook extends GuiContainer {
     @Override
     protected void drawGuiContainerForegroundLayer(int i, int j) {
         super.drawGuiContainerForegroundLayer(i, j);
+        boolean unicodeFlag = this.fontRenderer.getUnicodeFlag();
+        this.fontRenderer.setUnicodeFlag(true);
 
         GL11.glPushMatrix();
         GL11.glTranslated(leftPage.getX(), leftPage.getY(), 0.0D);
@@ -49,6 +51,8 @@ public class GuiGuidebook extends GuiContainer {
         GL11.glPopMatrix();
 
         glTranslateDefault(); //TODO: BUTTONS FOR SWITCHING PAGES!
+
+        this.fontRenderer.setUnicodeFlag(unicodeFlag);
     }
 
     protected void drawLeftPage() {
