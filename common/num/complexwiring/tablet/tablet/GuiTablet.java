@@ -11,14 +11,17 @@ import org.lwjgl.opengl.GL11;
 public class GuiTablet extends GuiScreen{
     protected final ResourceLocation texture = new ResourceLocation("complexwiring", "textures/gui/tablet/" + "basic" + ".png");
     protected final EntityPlayer player;
+
+    protected int page = 0;
     protected int xSize = 216;
     protected int ySize = 166;
 
     protected int guiLeft;
     protected int guiTop;
 
-    public GuiTablet(EntityPlayer player){
+    public GuiTablet(EntityPlayer player, int page){
         this.player = player;
+        this.page = page;
     }
 
     @Override

@@ -14,7 +14,7 @@ import num.complexwiring.tablet.tablet.GuiTablet;
 public class GuiHandler implements IGuiHandler {
     public static final int TABLET_BASIC_ID = 42;
     public static final int STARTPAPER_ID = 43;
-    public static final int GUIDEBOOK_ID = 44;
+    public static final int GUIDEBOOK_ID = 300;
 
     @Override
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
@@ -53,11 +53,11 @@ public class GuiHandler implements IGuiHandler {
         } else if (tile instanceof TileEntityPoweredCrusher && vec3.blockMetadata(world) == EnumPoweredMachine.VALID[2].ordinal()) {
             return new GuiMachinePoweredCrusher(player.inventory, (TileEntityPoweredCrusher) tile);          // Powered Crusher
         } else if (ID == TABLET_BASIC_ID){
-            return new GuiTablet(player);       // The Tablet!
+            return new GuiTablet(player, 0);       // The Tablet!
         } else if (ID == STARTPAPER_ID){
             return new GuiStartPaper(player);
-        } else if (ID == GUIDEBOOK_ID){
-            return new GuiGuidebook(player);
+        } else if (ID >= GUIDEBOOK_ID && ID <= GUIDEBOOK_ID + 100){
+            return new GuiGuidebook(player, ID - GUIDEBOOK_ID);
         }
         return null;
 

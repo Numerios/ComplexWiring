@@ -11,10 +11,12 @@ import java.awt.*;
 public class GuiGuidebook extends GuiContainer {
     protected final ResourceLocation texture;
     protected Rectangle leftPage, rightPage;
+    protected int page = 0;
 
-    public GuiGuidebook(EntityPlayer player) {
+    public GuiGuidebook(EntityPlayer player, int page) {
         super(new ContainerGuidebook(player.inventory));
 
+        this.page = page;
         xSize = 216;
         ySize = 216;
         leftPage = new Rectangle(7, 7, 96, 118);
