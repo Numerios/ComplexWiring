@@ -5,20 +5,19 @@ import net.minecraftforge.fluids.FluidStack;
 import num.complexwiring.api.research.IResearchTask;
 
 public class FluidResearchTask implements IResearchTask {
-    public final String name, desc;
+    public final String name;
     private final FluidStack goal;
 
-    public FluidResearchTask(String name, String desc, FluidStack goal) {
+    public FluidResearchTask(String name, FluidStack goal) {
         this.goal = goal;
         this.name = name;
-        this.desc = desc;
     }
 
     public String getLocalizedName() {
-        return StatCollector.translateToLocal("research.complexwiring.task.fluid." + name.toLowerCase());
+        return StatCollector.translateToLocal("research.complexwiring.task.fluid." + name.toLowerCase() + ".name");
     }
 
     public String getLocalizedDesc() {
-        return StatCollector.translateToLocal("research.complexwiring.task.fluid." + desc.toLowerCase());
+        return StatCollector.translateToLocal("research.complexwiring.task.fluid." + name.toLowerCase() + ".desc");
     }
 }

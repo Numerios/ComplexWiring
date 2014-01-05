@@ -29,13 +29,13 @@ public class ModuleTablet extends Module {
 
         ResearchManager.init();
         ResearchManager.addAll(
-                new Research(Research.Tier.TIER_0, "Research", "Testing research",
-                        new SolidResearchTask("Stone", "Get some stone", new ItemStack(Block.stone)),
-                        new SolidResearchTask("Wood", "Get some wood", new ItemStack(Block.wood))
+                new Research(Research.Tier.TIER_0, "First",
+                        new SolidResearchTask("Stone", new ItemStack(Block.stone)),
+                        new SolidResearchTask("Wood", new ItemStack(Block.wood))
                 ),
-                new Research(Research.Tier.TIER_0, "Research2", "Testing again",
-                    new SolidResearchTask("Stone", "Get some stone", new ItemStack(Block.stone)),
-                    new SolidResearchTask("Wood", "Get some wood", new ItemStack(Block.wood))
+                new Research(Research.Tier.TIER_0, "Second",
+                    new SolidResearchTask("Stone", new ItemStack(Block.stone)),
+                    new SolidResearchTask("Wood", new ItemStack(Block.wood))
                 )
         );
 

@@ -21,6 +21,7 @@ public class GuidebookPage {
     }
 
     public GuidebookPage(IResearch research){
+        this.type = Type.RESEARCH;
         this.research = research;
     }
 

@@ -4,6 +4,8 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
+import num.complexwiring.api.research.IResearch;
+import num.complexwiring.api.research.IResearchTask;
 import num.complexwiring.api.tablet.GuidebookPage;
 import num.complexwiring.client.gui.GuiHelper;
 import org.lwjgl.opengl.GL11;
@@ -65,17 +67,42 @@ public class GuiGuidebook extends GuiContainer {
         this.fontRenderer.setUnicodeFlag(unicodeFlag);
     }
 
+    //TODO: TEXT WITH MAX WIDTH (auto /n)
     protected void drawLeftPage() {
         GuiHelper.drawCenteredString(fontRenderer, "Left Page", (int) leftPageRect.getWidth(), 0, 0x606060);
         guidebookPage = GuidebookPageRegistry.pageMap.get(page);
-        GuiHelper.drawCenteredString(fontRenderer, guidebookPage.text, (int) leftPageRect.getWidth(), 40, 0x606060);          //TODO: CHECK THE PAGE TYPE!
+        if (guidebookPage.type == GuidebookPage.Type.TEXT) {
+            GuiHelper.drawLocaleCenteredString(fontRenderer, guidebookPage.text, (int) leftPageRect.getWidth(), 10, 0x606060);
+        } else if (guidebookPage.type == GuidebookPage.Type.RESEARCH) {
+            IResearch research = guidebookPage.research;
+            GuiHelper.drawCenteredString(fontRenderer, "§l" + research.getLocalizedName(), (int) leftPageRect.getWidth(), 10, 0x606060);
+            GuiHelper.drawCenteredString(fontRenderer, "§o" + research.getLocalizedDesc(), (int) leftPageRect.getWidth(), 18, 0x606060);
+            int n = 0;
+            for (IResearchTask task : research.getResearchTasks()) {
+                GuiHelper.drawCenteredString(fontRenderer, "§8" + task.getLocalizedName(), (int) leftPageRect.getWidth(), 30 + (n * 25), 0x606060);
+                GuiHelper.drawCenteredString(fontRenderer, "§7" + task.getLocalizedDesc(), (int) leftPageRect.getWidth(), 40 + (n * 25), 0x606060);
+                n++;
+            }
+        }
         GuiHelper.drawCenteredString(fontRenderer, "" + page, (int) leftPageRect.getWidth(), (int) leftPageRect.getHeight() - 6, 0x606060);
     }
 
     protected void drawRightPage() {
         GuiHelper.drawCenteredString(fontRenderer, "Right Page", (int) rightPageRect.getWidth(), 0, 0x606060);
         guidebookPage = GuidebookPageRegistry.pageMap.get(page + 1);
-        GuiHelper.drawCenteredString(fontRenderer, guidebookPage.text, (int) leftPageRect.getWidth(), 40, 0x606060);            //TODO: CHECK THE PAGE TYPE!
+        if (guidebookPage.type == GuidebookPage.Type.TEXT) {
+            GuiHelper.drawLocaleCenteredString(fontRenderer, guidebookPage.text, (int) leftPageRect.getWidth(), 10, 0x606060);
+        } else if (guidebookPage.type == GuidebookPage.Type.RESEARCH) {
+            IResearch research = guidebookPage.research;
+            GuiHelper.drawCenteredString(fontRenderer, "§l" + research.getLocalizedName(), (int) leftPageRect.getWidth(), 10, 0x606060);
+            GuiHelper.drawCenteredString(fontRenderer, "§o" + research.getLocalizedDesc(), (int) leftPageRect.getWidth(), 18, 0x606060);
+            int n = 0;
+            for (IResearchTask task : research.getResearchTasks()) {
+                GuiHelper.drawCenteredString(fontRenderer, "§8" + task.getLocalizedName(), (int) leftPageRect.getWidth(), 30 + (n * 25), 0x606060);
+                GuiHelper.drawCenteredString(fontRenderer, "§7" + task.getLocalizedDesc(), (int) leftPageRect.getWidth(), 40 + (n * 25), 0x606060);
+                n++;
+            }
+        }
         GuiHelper.drawCenteredString(fontRenderer, "" + (page + 1), (int) rightPageRect.getWidth(), (int) rightPageRect.getHeight() - 6, 0x606060);
     }
 
