@@ -1,5 +1,6 @@
 package num.complexwiring.tablet.guidebook;
 
+import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
@@ -23,6 +24,14 @@ public class GuiGuidebook extends GuiContainer {
         leftPageRect = new Rectangle(7, 7, 96, 118);
         rightPageRect = new Rectangle(113, 7, 96, 118);
         texture = new ResourceLocation("complexwiring", "textures/gui/tablet/guidebook/blank.png");
+    }
+
+    @Override
+    public void initGui() {
+        super.initGui();
+        buttonList.clear();
+        buttonList.add(new GuiButton(0, guiLeft + 10 + 7, guiTop + 110, 20, 20, "<"));
+        buttonList.add(new GuiButton(1, guiLeft + 10 + 177, guiTop + 110, 20, 20, ">"));
     }
 
     @Override
@@ -51,22 +60,22 @@ public class GuiGuidebook extends GuiContainer {
         drawRightPage();
         GL11.glPopMatrix();
 
-        glTranslateDefault(); //TODO: BUTTONS FOR SWITCHING PAGES!
+        glTranslateDefault();
 
         this.fontRenderer.setUnicodeFlag(unicodeFlag);
     }
 
     protected void drawLeftPage() {
         GuiHelper.drawCenteredString(fontRenderer, "Left Page", (int) leftPageRect.getWidth(), 0, 0x606060);
-        guidebookPage = GuidebookPageRegistry.pageMap.get(page).page;
-        GuiHelper.drawCenteredString(fontRenderer, guidebookPage.text, (int) leftPageRect.getWidth(), 40, 0x606060);
+        guidebookPage = GuidebookPageRegistry.pageMap.get(page);
+        GuiHelper.drawCenteredString(fontRenderer, guidebookPage.text, (int) leftPageRect.getWidth(), 40, 0x606060);          //TODO: CHECK THE PAGE TYPE!
         GuiHelper.drawCenteredString(fontRenderer, "" + page, (int) leftPageRect.getWidth(), (int) leftPageRect.getHeight() - 6, 0x606060);
     }
 
     protected void drawRightPage() {
         GuiHelper.drawCenteredString(fontRenderer, "Right Page", (int) rightPageRect.getWidth(), 0, 0x606060);
-        guidebookPage = GuidebookPageRegistry.pageMap.get(page + 1).page;
-        GuiHelper.drawCenteredString(fontRenderer, guidebookPage.text, (int) leftPageRect.getWidth(), 40, 0x606060);
+        guidebookPage = GuidebookPageRegistry.pageMap.get(page + 1);
+        GuiHelper.drawCenteredString(fontRenderer, guidebookPage.text, (int) leftPageRect.getWidth(), 40, 0x606060);            //TODO: CHECK THE PAGE TYPE!
         GuiHelper.drawCenteredString(fontRenderer, "" + (page + 1), (int) rightPageRect.getWidth(), (int) rightPageRect.getHeight() - 6, 0x606060);
     }
 
@@ -75,5 +84,17 @@ public class GuiGuidebook extends GuiContainer {
         GL11.glTranslatef((float) guiLeft, (float) guiTop, 0.0F);
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         GL11.glPopMatrix();
+    }
+
+    public void actionPerformed(GuiButton button) {
+        if (button.id == 0)   //backward
+            if ((page - 2) >= 0) {
+                page -= 2;
+            }
+        if (button.id == 1) { //forward
+            if ((page + 2) < GuidebookPageRegistry.MAX_PAGE) {
+                page += 2;
+            }
+        }
     }
 }
