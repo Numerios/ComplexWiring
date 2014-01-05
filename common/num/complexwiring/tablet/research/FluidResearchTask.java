@@ -4,7 +4,7 @@ import net.minecraft.util.StatCollector;
 import net.minecraftforge.fluids.FluidStack;
 import num.complexwiring.api.research.IResearchTask;
 
-public class FluidResearchTask implements IResearchTask{
+public class FluidResearchTask implements IResearchTask {
     public final String name, desc;
     private final FluidStack goal;
 

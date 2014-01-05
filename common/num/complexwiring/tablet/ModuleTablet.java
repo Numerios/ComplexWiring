@@ -6,6 +6,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import num.complexwiring.lib.Module;
 import num.complexwiring.lib.Strings;
+import num.complexwiring.tablet.guidebook.GuidebookPageRegistry;
 import num.complexwiring.tablet.guidebook.ItemGuidebook;
 import num.complexwiring.tablet.research.Research;
 import num.complexwiring.tablet.research.ResearchManager;
@@ -37,6 +38,8 @@ public class ModuleTablet extends Module {
                     new SolidResearchTask("Wood", "Get some wood", new ItemStack(Block.wood))
                 )
         );
+
+        GuidebookPageRegistry.init();
     }
 
     private void registerBlocks() {

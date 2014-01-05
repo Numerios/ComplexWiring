@@ -60,8 +60,8 @@ public class GuiHandler implements IGuiHandler {
             return new GuiTablet(player, 0);       // The Tablet!
         } else if (ID == STARTPAPER_ID) {
             return new GuiStartPaper(player);
-        } else if (ID >= GUIDEBOOK_ID && ID <= GUIDEBOOK_ID + 100) {
-            return new GuiGuidebook(player, ID - GUIDEBOOK_ID);
+        } else if (ID == GUIDEBOOK_ID) {
+            return new GuiGuidebook(player);
         }
         return null;
 
