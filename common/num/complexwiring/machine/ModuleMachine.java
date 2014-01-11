@@ -4,9 +4,11 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 import num.complexwiring.api.recipe.RecipeRandomOutput;
 import num.complexwiring.core.CreativeTabCW;
 import num.complexwiring.lib.Module;
+import num.complexwiring.lib.Strings;
 import num.complexwiring.machine.basic.BlockBasicMachine;
 import num.complexwiring.machine.basic.ItemBlockBasicMachine;
 import num.complexwiring.machine.powered.BlockPoweredMachine;
@@ -18,6 +20,7 @@ import num.complexwiring.recipe.RecipeManager;
 public class ModuleMachine extends Module {
 
     public static Block machineBasic, machinePowered;
+    public static Item toolWoodsaw;
     public static CreativeTabCW tabCWMachine = new CreativeTabCW("tabCWMachine", null);
 
     @Override
@@ -43,10 +46,24 @@ public class ModuleMachine extends Module {
     }
 
     private void registerItems() {
-
+        toolWoodsaw = new ItemToolWoodsaw(1111);
+        GameRegistry.registerItem(toolWoodsaw, Strings.WOODSAW_NAME);
     }
 
     private void registerRecipes() {
+
+        GameRegistry.addRecipe(new ItemStack(toolWoodsaw),
+                "SII",
+                "SFI",
+                "S  ",
+                'S', new ItemStack(Item.stick),
+                'I', new ItemStack(Item.ingotIron),
+                'F', new ItemStack(Item.flint)
+        );
+
+        GameRegistry.addShapelessRecipe(new ItemStack(Block.planks, 6), new ItemStack(toolWoodsaw, 1, OreDictionary.WILDCARD_VALUE),
+                new ItemStack(Block.wood, 1));
+
         RecipeManager.add(new OrelyzerRecipe(new ItemStack(Block.wood, 1), 120,
                 new RecipeRandomOutput(new ItemStack(Item.diamond, 1), 0.1F),
                 new RecipeRandomOutput(new ItemStack(Item.stick, 2), 0.8F),

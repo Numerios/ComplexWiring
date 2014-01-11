@@ -131,4 +131,6 @@ public class Strings {
     public static final String TABLET_NAME = "tablet";
     public static final String STARTPAPER_NAME = "startpaper";
     public static final String GUIDEBOOK_NAME = "guidebook";
+
+    public static final String WOODSAW_NAME = "woodsaw";
 }
