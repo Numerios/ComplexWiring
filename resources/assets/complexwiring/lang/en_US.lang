@@ -105,6 +105,8 @@ item.complexwiring.base.ingot.tin.name=Tin Ingot
 item.complexwiring.base.ingot.silver.name=Silver Ingot
 item.complexwiring.base.ingot.lead.name=Lead Ingot
 
+item.complexwiring.base.dust.iron.name=Iron Dust
+item.complexwiring.base.dust.gold.name=Gold Dust
 item.complexwiring.base.dust.copper.name=Copper Dust
 item.complexwiring.base.dust.tin.name=Tin Dust
 item.complexwiring.base.dust.silver.name=Silver Dust

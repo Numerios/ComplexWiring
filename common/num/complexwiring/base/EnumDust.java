@@ -8,6 +8,8 @@ import num.complexwiring.lib.Reference;
 import num.complexwiring.lib.Strings;
 
 public enum EnumDust {
+    IRON(Strings.DUST_IRON_NAME),
+    GOLD(Strings.DUST_GOLD_NAME),
     COPPER(Strings.DUST_COPPER_NAME),
     TIN(Strings.DUST_TIN_NAME),
     SILVER(Strings.DUST_SILVER_NAME),
@@ -32,6 +34,7 @@ public enum EnumDust {
     }
 
     public ItemStack getIS(int amount) {
+        System.err.println("ITEMSTACK: " + amount + " | " + meta);
         return new ItemStack(ModuleBase.dust, amount, meta);
     }
 

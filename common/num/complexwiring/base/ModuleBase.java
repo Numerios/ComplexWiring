@@ -2,6 +2,8 @@ package num.complexwiring.base;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.FurnaceRecipes;
 import num.complexwiring.core.CreativeTabCW;
 import num.complexwiring.lib.Module;
 
@@ -30,6 +32,14 @@ public class ModuleBase extends Module {
     }
 
     private void registerRecipes() {
-
+        for (EnumDust dust : EnumDust.VALID) {
+            if (dust == EnumDust.IRON) {
+                FurnaceRecipes.smelting().addSmelting(ModuleBase.dust.itemID, dust.meta, new ItemStack(Item.ingotIron), 0.6F);
+            } else if (dust == EnumDust.GOLD) {
+                FurnaceRecipes.smelting().addSmelting(ModuleBase.dust.itemID, dust.meta, new ItemStack(Item.ingotGold), 0.6F);
+            } else {
+                FurnaceRecipes.smelting().addSmelting(ModuleBase.dust.itemID, dust.meta, EnumIngot.VALID[dust.meta - 2].getIS(1), 0.6F);
+            }
+        }
     }
 }
