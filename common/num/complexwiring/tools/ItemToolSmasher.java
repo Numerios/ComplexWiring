@@ -22,7 +22,6 @@ import java.util.Random;
 
 public class ItemToolSmasher extends ItemPickaxe {
     private Random rand;
-    private ItemStack result;
 
     public ItemToolSmasher(int ID) {
         super(ID, ModuleTools.toolMaterial);
@@ -63,8 +62,8 @@ public class ItemToolSmasher extends ItemPickaxe {
         ItemStack is = new ItemStack(b, 1, vec3.blockMetadata(world));
         String oreName = OreDictionary.getOreName(OreDictionary.getOreID(is));
         if (b != null && entity instanceof EntityPlayer) {
+            ItemStack result = null;
             if (oreName.contains("ore")) {
-                result = null;
                 if (oreName.contains("oreIron")) {
                     result = EnumDust.IRON.getIS(2);
                 } else if (oreName.contains("oreGold")) {
@@ -79,17 +78,16 @@ public class ItemToolSmasher extends ItemPickaxe {
                     result = EnumDust.LEAD.getIS(2);
                 }
 
-                System.err.println("RESULT: " + result + " |ORE: " + oreName);
                 if (!world.isRemote && world.getGameRules().getGameRuleBooleanValue("doTileDrops") && result != null) {  // taken from Block.class
+                    ItemStack dropped = result.copy();
                     float f = 0.7F;
                     double d0 = (double) (world.rand.nextFloat() * f) + (double) (1.0F - f) * 0.5D;
                     double d1 = (double) (world.rand.nextFloat() * f) + (double) (1.0F - f) * 0.5D;
                     double d2 = (double) (world.rand.nextFloat() * f) + (double) (1.0F - f) * 0.5D;
-                    EntityItem entityitem = new EntityItem(world, (double) x + d0, (double) y + d1, (double) z + d2, result.copy());
+                    EntityItem entityitem = new EntityItem(world, (double) x + d0, (double) y + d1, (double) z + d2, dropped);
                     entityitem.delayBeforeCanPickup = 10;
                     world.spawnEntityInWorld(entityitem);
                 }
-                result = null;
                 world.setBlock(x, y, z, 0, 0, 3);
             }
         }

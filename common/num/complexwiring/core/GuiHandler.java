@@ -9,7 +9,6 @@ import num.complexwiring.machine.basic.*;
 import num.complexwiring.machine.powered.*;
 import num.complexwiring.tablet.guidebook.ContainerGuidebook;
 import num.complexwiring.tablet.guidebook.GuiGuidebook;
-import num.complexwiring.tablet.guidebook.ItemGuidebook;
 import num.complexwiring.tablet.startpaper.GuiStartPaper;
 import num.complexwiring.tablet.tablet.GuiTablet;
 
@@ -34,8 +33,8 @@ public class GuiHandler implements IGuiHandler {
             return new ContainerMachinePoweredFurnace(player.inventory, (TileEntityPoweredFurnace) tile);     // Powered Furnace
         } else if (tile instanceof TileEntityPoweredCrusher && vec3.blockMetadata(world) == EnumPoweredMachine.VALID[2].ordinal()) {
             return new ContainerMachinePoweredCrusher(player.inventory, (TileEntityPoweredCrusher) tile);     // Powered Crusher
-        } else if (ID >= GUIDEBOOK_ID && ID <= GUIDEBOOK_ID + 100) {
-            return new ContainerGuidebook(player.inventory, ((ItemGuidebook) player.inventory.getCurrentItem().getItem()).getItemInventory(player.inventory.getCurrentItem()));
+        } else if (ID == GUIDEBOOK_ID) {
+            return new ContainerGuidebook(player.inventory);
         }
         return null;
     }
