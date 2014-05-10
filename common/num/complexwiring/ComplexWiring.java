@@ -7,15 +7,16 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.common.registry.GameRegistry;
-import num.complexwiring.core.*;
+import net.minecraftforge.common.MinecraftForge;
+import num.complexwiring.core.GuiHandler;
+import num.complexwiring.core.Logger;
+import num.complexwiring.core.ModuleManager;
 import num.complexwiring.core.proxy.CommonProxy;
 import num.complexwiring.lib.Reference;
+import num.complexwiring.power.electrical.NetworkTickHandler;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION)
-@NetworkMod(clientSideRequired = true, serverSideRequired = true, channels = {PacketHandler.CHANNEL}, packetHandler = PacketHandler.class)
 
 public class ComplexWiring {
 
@@ -30,12 +31,13 @@ public class ComplexWiring {
         Logger.init();
 
         ModuleManager.preInit();
-        GameRegistry.registerPlayerTracker(new PlayerTracker());
+        //GameRegistry.registerPlayerTracker(new PlayerTracker());
     }
 
     @EventHandler
-    public void init(FMLInitializationEvent event) {
-        NetworkRegistry.instance().registerGuiHandler(instance, new GuiHandler());
+    public void init(FMLInitializationEvent event) {                                                               //  ass
+        NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
+        MinecraftForge.EVENT_BUS.register(NetworkTickHandler.INSTANCE);
 
         ModuleManager.init();
     }

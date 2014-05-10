@@ -43,8 +43,8 @@ public class GuiMachinePoweredOrelyzer extends GuiInventoryBase {
     protected void drawGuiContainerForegroundLayer(int par1, int par2) {
         super.drawGuiContainerForegroundLayer(par1, par2);
 
-        String invName = tile.getInvName();
-        fontRenderer.drawString(invName, xSize / 2 - fontRenderer.getStringWidth(invName) / 2, 6, 0x404040);
+        String invName = tile.getInventoryName();
+        fontRendererObj.drawString(invName, xSize / 2 - fontRendererObj.getStringWidth(invName) / 2, 6, 0x404040);
     }
 
     private void drawProgress(int energy, int cook, int cornerX, int cornerY) {

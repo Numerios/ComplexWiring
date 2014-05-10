@@ -34,7 +34,7 @@ public class InventoryHelper {
 
                             slotIS.stackSize -= amount;
 
-                            EntityItem item = new EntityItem(world, vec3.getX() + offsetX, vec3.getY() + offsetY, vec3.getZ() + offsetZ, new ItemStack(slotIS.itemID, amount, slotIS.getItemDamage()));
+                            EntityItem item = new EntityItem(world, vec3.getX() + offsetX, vec3.getY() + offsetY, vec3.getZ() + offsetZ, new ItemStack(slotIS.getItem(), amount, slotIS.getItemDamage()));
 
                             if (slotIS.hasTagCompound()) {
                                 item.getEntityItem().setTagCompound((NBTTagCompound) slotIS.getTagCompound().copy());

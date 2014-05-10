@@ -5,13 +5,13 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.network.packet.Packet;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.util.StatCollector;
+import net.minecraftforge.common.util.Constants;
 import num.complexwiring.api.vec.Vector3;
-import num.complexwiring.core.PacketHandler;
 
-import java.io.DataInputStream;
-import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -90,12 +90,12 @@ public abstract class TileEntityInventoryBase extends TileEntityBase implements 
     }
 
     @Override
-    public String getInvName() {
+    public String getInventoryName() {
         return StatCollector.translateToLocal(name + ".name");
     }
 
     @Override
-    public boolean isInvNameLocalized() {
+    public boolean hasCustomInventoryName() {
         return true;
     }
 
@@ -110,11 +110,11 @@ public abstract class TileEntityInventoryBase extends TileEntityBase implements 
     }
 
     @Override
-    public void openChest() {
+    public void openInventory() {
     }
 
     @Override
-    public void closeChest() {
+    public void closeInventory() {
     }
 
     @Override
@@ -125,7 +125,16 @@ public abstract class TileEntityInventoryBase extends TileEntityBase implements 
     @Override
     public void writeToNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);
+        writePacketNBT(nbt);
+    }
 
+    @Override
+    public void readFromNBT(NBTTagCompound nbt) {
+        super.readFromNBT(nbt);
+        readPacketNBT(nbt);
+    }
+
+    protected void writePacketNBT(NBTTagCompound nbt){
         NBTTagList inventoryNBT = new NBTTagList();
         for (int i = 0; i < getSizeInventory(); i++) {
             if (getStackInSlot(i) != null) {
@@ -138,15 +147,13 @@ public abstract class TileEntityInventoryBase extends TileEntityBase implements 
         nbt.setTag("contents", inventoryNBT);
     }
 
-    @Override
-    public void readFromNBT(NBTTagCompound nbt) {
-        super.readFromNBT(nbt);
 
-        NBTTagList inventoryNBT = nbt.getTagList("contents");
+    protected void readPacketNBT(NBTTagCompound nbt){
+        NBTTagList inventoryNBT = nbt.getTagList("contents", Constants.NBT.TAG_COMPOUND);
         inventory = new ItemStack[getSizeInventory()];
         for (int i = 0; i < inventoryNBT.tagCount(); i++) {
-            NBTTagCompound itemNBT = (NBTTagCompound) inventoryNBT.tagAt(i);
-            byte slot = itemNBT.getByte("slot");
+            NBTTagCompound itemNBT = inventoryNBT.getCompoundTagAt(i);
+            int slot = itemNBT.getByte("slot") & 0xFF;
             if (slot >= 0 && slot < getSizeInventory()) {
                 setInventorySlotContents(slot, ItemStack.loadItemStackFromNBT(itemNBT));
             }
@@ -155,9 +162,12 @@ public abstract class TileEntityInventoryBase extends TileEntityBase implements 
 
     @Override
     public Packet getDescriptionPacket() {
-        return PacketHandler.getPacket(this, -1);
+        NBTTagCompound nbt = new NBTTagCompound();
+        writePacketNBT(nbt);
+        return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, nbt);
     }
 
-    public void handlePacket(DataInputStream is) throws IOException {
+    public void onDataPacket(NetworkManager networkManager, S35PacketUpdateTileEntity packet){
+        readPacketNBT(packet.func_148857_g());
     }
 }

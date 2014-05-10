@@ -1,8 +1,8 @@
 package num.complexwiring.world.ore.secondary.vanilla;
 
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraftforge.oredict.OreDictionary;
 import num.complexwiring.lib.Reference;
 import num.complexwiring.lib.Strings;
@@ -30,7 +30,7 @@ public enum EnumOreSecondaryVanilla {
     public final String name;
     public final String origin;
     public final int meta = this.ordinal();
-    public Icon icon;
+    public IIcon icon;
 
     EnumOreSecondaryVanilla(String name, String oreDictOrigin) {
         this.name = name;
@@ -42,7 +42,7 @@ public enum EnumOreSecondaryVanilla {
         return name.toLowerCase().substring(3);
     }
 
-    public void registerIcon(IconRegister ir) {
+    public void registerIcon(IIconRegister ir) {
         icon = ir.registerIcon(Reference.TEXTURE_PATH + "world/ore/secondary/" + name);
     }
 

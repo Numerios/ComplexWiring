@@ -3,26 +3,26 @@ package num.complexwiring.machine.basic;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import num.complexwiring.ComplexWiring;
 import num.complexwiring.api.vec.Vector3;
 import num.complexwiring.core.InventoryHelper;
 import num.complexwiring.lib.Reference;
 import num.complexwiring.machine.ModuleMachine;
-import num.complexwiring.machine.powered.TileEntityPoweredOrelyzer;
 
 import java.util.List;
 
 public class BlockBasicMachine extends Block implements ITileEntityProvider {
 
-    public BlockBasicMachine(int ID) {
-        super(ID, Material.iron);
-        setUnlocalizedName(Reference.MOD_ID.toLowerCase() + ".machine.basic");
+    public BlockBasicMachine() {
+        super(Material.iron);
+        setBlockName(Reference.MOD_ID.toLowerCase() + ".machine.basic");
         setHardness(3.0F);
         setResistance(3.0F);
         setCreativeTab(ModuleMachine.tabCWMachine);
@@ -57,11 +57,11 @@ public class BlockBasicMachine extends Block implements ITileEntityProvider {
     }
 
     @Override
-    public void breakBlock(World world, int x, int y, int z, int par5, int par6) {
+    public void breakBlock(World world, int x, int y, int z, Block block, int par6) {
         Vector3 vec3 = new Vector3(x, y, z);
         InventoryHelper.dropInventory(world, vec3);
-        super.breakBlock(world, x, y, z, par5, par6);
-        world.removeBlockTileEntity(x, y, z);
+        super.breakBlock(world, x, y, z, block, par6);
+        world.removeTileEntity(x, y, z);
     }
 
     @Override
@@ -70,24 +70,24 @@ public class BlockBasicMachine extends Block implements ITileEntityProvider {
     }
 
     @Override
-    public TileEntity createNewTileEntity(World world) {
+    public TileEntity createNewTileEntity(World world, int i) {
         return null;
     }
 
     @Override
-    public Icon getIcon(int side, int meta) {
+    public IIcon getIcon(int side, int meta) {
         return EnumBasicMachine.VALID[meta].icon;
     }
 
     @Override
-    public void registerIcons(IconRegister ir) {
+    public void registerBlockIcons(IIconRegister ir) {
         for (EnumBasicMachine machine : EnumBasicMachine.VALID) {
             machine.registerIcon(ir);
         }
     }
 
     @Override
-    public void getSubBlocks(int ID, CreativeTabs tab, List list) {
+    public void getSubBlocks(Item item, CreativeTabs tab, List list) {
         for (EnumBasicMachine machine : EnumBasicMachine.VALID) {
             list.add(machine.getIS(1));
         }

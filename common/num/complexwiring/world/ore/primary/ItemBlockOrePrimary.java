@@ -1,12 +1,13 @@
 package num.complexwiring.world.ore.primary;
 
+import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import num.complexwiring.world.ModuleWorld;
 
 public class ItemBlockOrePrimary extends ItemBlock {
-    public ItemBlockOrePrimary(int ID) {
-        super(ID);
+    public ItemBlockOrePrimary(Block block) {
+        super(block);
         setHasSubtypes(true);
         setMaxDamage(0);
     }

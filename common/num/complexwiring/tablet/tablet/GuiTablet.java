@@ -48,14 +48,14 @@ public class GuiTablet extends GuiScreen{
     }
 
     protected void drawForeground(){
-        fontRenderer.drawString("§l The Tablet!", xSize / 2 - fontRenderer.getStringWidth("§l The Tablet!") / 2, 6, 0x404040);
+        fontRendererObj.drawString("§l The Tablet!", xSize / 2 - fontRendererObj.getStringWidth("§l The Tablet!") / 2, 6, 0x404040);
 
-        fontRenderer.drawString("Welcome to the magical", xSize / 2 - fontRenderer.getStringWidth("Welcome to the magical") / 2, 44, 0x404040);
-        fontRenderer.drawString("world of technology,", xSize / 2 - fontRenderer.getStringWidth("world of technology,") / 2, 52, 0x404040);
+        fontRendererObj.drawString("Welcome to the magical", xSize / 2 - fontRendererObj.getStringWidth("Welcome to the magical") / 2, 44, 0x404040);
+        fontRendererObj.drawString("world of technology,", xSize / 2 - fontRendererObj.getStringWidth("world of technology,") / 2, 52, 0x404040);
 
-        fontRenderer.drawString("§n" + player.getDisplayName(), xSize / 2 - fontRenderer.getStringWidth("§n" + player.getDisplayName()) / 2, 68, 0x404040);
+        fontRendererObj.drawString("§n" + player.getDisplayName(), xSize / 2 - fontRendererObj.getStringWidth("§n" + player.getDisplayName()) / 2, 68, 0x404040);
 
-        fontRenderer.drawString("§o Complex Wiring,", xSize / 2 - fontRenderer.getStringWidth("§o Complex Wiring,") / 2, ySize - 24, 0x404040);
-        fontRenderer.drawString("§o we haven't even started yet ;)", xSize / 2 - fontRenderer.getStringWidth("§o we haven't even started yet ;)") / 2, ySize - 14, 0x404040);
+        fontRendererObj.drawString("§o Complex Wiring,", xSize / 2 - fontRendererObj.getStringWidth("§o Complex Wiring,") / 2, ySize - 24, 0x404040);
+        fontRendererObj.drawString("§o we haven't even started yet ;)", xSize / 2 - fontRendererObj.getStringWidth("§o we haven't even started yet ;)") / 2, ySize - 14, 0x404040);
     }
 }

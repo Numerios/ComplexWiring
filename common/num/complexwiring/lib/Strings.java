@@ -137,4 +137,5 @@ public class Strings {
     public static final String SAW_NAME = "saw";
     public static final String SMASHER_NAME = "smasher";
 
+    public static final String DRIVESHAFT_NAME = "driveShaft";
 }

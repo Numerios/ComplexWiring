@@ -2,7 +2,8 @@ package num.complexwiring.machine;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
-import net.minecraft.item.Item;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import num.complexwiring.api.recipe.CrusherRecipe;
 import num.complexwiring.api.recipe.OrelyzerRecipe;
@@ -33,11 +34,11 @@ public class ModuleMachine extends Module {
     }
 
     private void registerBlocks() {
-        machineBasic = new BlockBasicMachine(670);
+        machineBasic = new BlockBasicMachine();
         GameRegistry.registerBlock(machineBasic, ItemBlockBasicMachine.class, machineBasic.getUnlocalizedName());
         ((BlockBasicMachine) machineBasic).registerTiles();
 
-        machinePowered = new BlockPoweredMachine(671);
+        machinePowered = new BlockPoweredMachine();
         GameRegistry.registerBlock(machinePowered, ItemBlockPoweredMachine.class, machinePowered.getUnlocalizedName());
         ((BlockPoweredMachine) machinePowered).registerTiles();
     }
@@ -46,14 +47,14 @@ public class ModuleMachine extends Module {
     }
 
     private void registerRecipes() {
-        RecipeManager.add(new OrelyzerRecipe(new ItemStack(Block.wood, 1), 120,
-                new RecipeRandomOutput(new ItemStack(Item.diamond, 1), 0.1F),
-                new RecipeRandomOutput(new ItemStack(Item.stick, 2), 0.8F),
-                new RecipeRandomOutput(new ItemStack(Item.stick, 1), 1F)));
+        RecipeManager.add(new OrelyzerRecipe(new ItemStack(Blocks.log, 1), 120,
+                new RecipeRandomOutput(new ItemStack(Items.diamond, 1), 0.1F),
+                new RecipeRandomOutput(new ItemStack(Items.stick, 2), 0.8F),
+                new RecipeRandomOutput(new ItemStack(Items.stick, 1), 1F)));
 
-        RecipeManager.add(new CrusherRecipe(new ItemStack(Block.cobblestone, 1), 100,
-                new RecipeRandomOutput(new ItemStack(Block.sand, 1), 0.5F),
-                new RecipeRandomOutput(new ItemStack(Block.sand, 1), 0.2F),
-                new RecipeRandomOutput(new ItemStack(Block.gravel, 1), 0.4F)));
+        RecipeManager.add(new CrusherRecipe(new ItemStack(Blocks.cobblestone, 1), 100,
+                new RecipeRandomOutput(new ItemStack(Blocks.sand, 1), 0.5F),
+                new RecipeRandomOutput(new ItemStack(Blocks.sand, 1), 0.2F),
+                new RecipeRandomOutput(new ItemStack(Blocks.gravel, 1), 0.4F)));
     }
 }

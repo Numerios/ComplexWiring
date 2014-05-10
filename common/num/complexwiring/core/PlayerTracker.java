@@ -1,6 +1,5 @@
 package num.complexwiring.core;
 
-import cpw.mods.fml.common.IPlayerTracker;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -10,9 +9,8 @@ import num.complexwiring.tablet.ModuleTablet;
 
 import java.util.Random;
 
-public class PlayerTracker implements IPlayerTracker {
-    @Override
-    public void onPlayerLogin(EntityPlayer player) {      // TODO: later use this for research stuff!
+public class PlayerTracker{
+    public void onPlayerLogin(EntityPlayer player) {      // TODO: FIX (1.7) && later use this for research stuff!
         NBTTagCompound nbt = player.getEntityData();
         if (!nbt.getBoolean(Reference.MOD_ID + " " + "spawnPaper")) {
             nbt.setBoolean(Reference.MOD_ID + " " + "spawnPaper", true);
@@ -24,17 +22,5 @@ public class PlayerTracker implements IPlayerTracker {
                 item.onCollideWithPlayer(player);
             }
         }
-    }
-
-    @Override
-    public void onPlayerLogout(EntityPlayer player) {
-    }
-
-    @Override
-    public void onPlayerChangedDimension(EntityPlayer player) {
-    }
-
-    @Override
-    public void onPlayerRespawn(EntityPlayer player) {
     }
 }

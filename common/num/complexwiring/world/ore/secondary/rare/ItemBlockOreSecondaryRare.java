@@ -1,12 +1,13 @@
 package num.complexwiring.world.ore.secondary.rare;
 
+import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import num.complexwiring.world.ModuleWorld;
 import num.complexwiring.world.ore.secondary.ItemBlockOreSecondary;
 
 public class ItemBlockOreSecondaryRare extends ItemBlockOreSecondary {
-    public ItemBlockOreSecondaryRare(int ID) {
-        super(ID);
+    public ItemBlockOreSecondaryRare(Block block) {
+        super(block);
     }
 
     @Override

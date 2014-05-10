@@ -4,16 +4,11 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.network.packet.Packet;
 import num.complexwiring.api.base.TileEntityPoweredBase;
-import num.complexwiring.api.vec.Vector3;
-import num.complexwiring.core.InventoryHelper;
-import num.complexwiring.core.PacketHandler;
 import num.complexwiring.api.recipe.OrelyzerRecipe;
+import num.complexwiring.core.InventoryHelper;
 import num.complexwiring.recipe.RecipeManager;
 
-import java.io.DataInputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -47,10 +42,10 @@ public class TileEntityPoweredOrelyzer extends TileEntityPoweredBase implements 
         if (!worldObj.isRemote) {
             storedEnergy = powerHandler.getEnergyStored();
 
-            if(recipe == null) {
-                if(RecipeManager.get(RecipeManager.Type.ORELYZER, getStackInSlot(0)) != null) {
+            if (recipe == null) {
+                if (RecipeManager.get(RecipeManager.Type.ORELYZER, getStackInSlot(0)) != null) {
                     recipe = (OrelyzerRecipe) RecipeManager.get(RecipeManager.Type.ORELYZER, getStackInSlot(0));
-                    if(recipe.getNeededPower() <= ((int) storedEnergy)){
+                    if (recipe.getNeededPower() <= ((int) storedEnergy)) {
                         recipeNeededPower = recipe.getNeededPower();
                         recipeOutput = recipe.getCompleteOutput(random);
                         processTime = 0;
@@ -65,13 +60,13 @@ public class TileEntityPoweredOrelyzer extends TileEntityPoweredBase implements 
                     }
                 }
             }
-            if(recipe != null) {
-                if(storedEnergy > 0){
+            if (recipe != null) {
+                if (storedEnergy > 0) {
                     powerHandler.useEnergy(1, USED_ENERGY, true);
                     storedEnergy = powerHandler.getEnergyStored();
                     processTime = processTime + 2;
 
-                    if(processTime >= recipeNeededPower) {
+                    if (processTime >= recipeNeededPower) {
                         endProcessing();
                     }
                 } else {
@@ -82,15 +77,13 @@ public class TileEntityPoweredOrelyzer extends TileEntityPoweredBase implements 
                 }
             }
             if (ticks % 4 == 0) {
-                PacketHandler.sendPacket(getDescriptionPacket(), worldObj, Vector3.get(this));
+                worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
+                markDirty();
             }
         }
-        //TODO: DO NOT LOAD IT ALL THE TIME!
-        worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
-        onInventoryChanged();
     }
 
-    public void endProcessing(){
+    public void endProcessing() {
         if (recipeOutput != null && recipeOutput.size() > 0) {
             for (ItemStack output : recipeOutput) {
                 if (output != null && output.stackSize != 0) {
@@ -124,23 +117,12 @@ public class TileEntityPoweredOrelyzer extends TileEntityPoweredBase implements 
 
     @Override
     public boolean canInsertItem(int slot, ItemStack is, int side) {
-        if(slot == 2 || slot == 3) return false;
-
-        return isItemValidForSlot(slot, is);
+        return !(slot == 2 || slot == 3) && isItemValidForSlot(slot, is);
     }
 
     @Override
     public boolean canExtractItem(int slot, ItemStack is, int side) {
         return (slot == 2 || slot == 3);
-    }
-
-    @Override
-    public Packet getDescriptionPacket() {
-        return PacketHandler.getPacket(this, EnumPoweredMachine.ORELYZER.ordinal());
-    }
-
-    @Override
-    public void handlePacket(DataInputStream is) throws IOException {
     }
 
     @Override
@@ -173,9 +155,9 @@ public class TileEntityPoweredOrelyzer extends TileEntityPoweredBase implements 
         recipeNeededPower = nbt.getShort("recipePower");
 
         recipeOutput.clear();
-        NBTTagList outputNBT = nbt.getTagList("currentOutput");
+        NBTTagList outputNBT = (NBTTagList) nbt.getTag("currentOutput");
         for (int i = 0; i < outputNBT.tagCount(); i++) {
-            NBTTagCompound itemNBT = (NBTTagCompound) outputNBT.tagAt(i);
+            NBTTagCompound itemNBT = outputNBT.getCompoundTagAt(i);
             recipeOutput.add(ItemStack.loadItemStackFromNBT(itemNBT));
         }
     }

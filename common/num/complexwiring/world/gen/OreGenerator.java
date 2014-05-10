@@ -1,6 +1,6 @@
 package num.complexwiring.world.gen;
 
-import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import num.complexwiring.world.ModuleWorld;
@@ -26,7 +26,7 @@ public class OreGenerator {
     }
 
     public boolean generateMinable(World world, Random rand, int x, int y, int z){
-        WorldGenMinable minable = new WorldGenMinable(ModuleWorld.orePrimary.blockID, this.ore.meta, this.ore.clusterSize, Block.stone.blockID);
+        WorldGenMinable minable = new WorldGenMinable(ModuleWorld.orePrimary, this.ore.meta, this.ore.clusterSize, Blocks.stone);
         return minable.generate(world, rand, x, y, z);
     }
 }

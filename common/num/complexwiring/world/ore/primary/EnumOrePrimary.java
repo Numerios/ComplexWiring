@@ -1,9 +1,8 @@
 package num.complexwiring.world.ore.primary;
 
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
-import net.minecraftforge.common.MinecraftForge;
+import net.minecraft.util.IIcon;
 import net.minecraftforge.oredict.OreDictionary;
 import num.complexwiring.lib.Reference;
 import num.complexwiring.lib.Strings;
@@ -23,7 +22,7 @@ public enum EnumOrePrimary {
     public final String name;
     public final int harvestLevel, minY, maxY, chance, clusterSize;
     public final int meta = this.ordinal();
-    public Icon icon;
+    public IIcon icon;
 
     private EnumOrePrimary(String name, int harvestLevel, int minY, int maxY, int chance, int clusterSize) {
         this.name = name;
@@ -39,7 +38,7 @@ public enum EnumOrePrimary {
         return name.toLowerCase().substring(3);
     }
 
-    public void registerIcon(IconRegister ir) {
+    public void registerIcon(IIconRegister ir) {
         icon = ir.registerIcon(Reference.TEXTURE_PATH + "world/ore/primary/" + name);
     }
 
@@ -49,7 +48,7 @@ public enum EnumOrePrimary {
 
     public void registerOre() {
         OreDictionary.registerOre(this.name, this.getIS(1));
-        MinecraftForge.setBlockHarvestLevel(ModuleWorld.orePrimary, this.meta, "pickaxe", harvestLevel);
+        ModuleWorld.orePrimary.setHarvestLevel("pickaxe", harvestLevel, this.meta);
     }
 }
 

@@ -3,7 +3,7 @@
   "modid": "ComplexWiring",
   "name": "Complex Wiring",
   "description": "Complex Wiring is a new Minecraft technical mod!",
-  "version": "0.0.0",
+  "version": "@VERSION@",
   "url": "www.github.com/numerios/ComplexWiring",
   "updateUrl": "",
   "authorList": [

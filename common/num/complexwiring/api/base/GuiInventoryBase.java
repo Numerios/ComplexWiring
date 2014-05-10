@@ -41,8 +41,8 @@ public abstract class GuiInventoryBase extends GuiContainer {
     protected void drawGuiContainerForegroundLayer(int par1, int par2) {
         super.drawGuiContainerForegroundLayer(par1, par2);
 
-        String invName = container.getTile().getInvName();
-        fontRenderer.drawString(invName, xSize / 2 - fontRenderer.getStringWidth(invName) / 2, 6, 0x404040);
+        String invName = container.getTile().getInventoryName();
+        fontRendererObj.drawString(invName, xSize / 2 - fontRendererObj.getStringWidth(invName) / 2, 6, 0x404040);
     }
 
     protected void updateTooltips() {
@@ -58,7 +58,7 @@ public abstract class GuiInventoryBase extends GuiContainer {
     protected void drawTooltips(int mouseX, int mouseY) {
         for (GuiTooltip tooltip : tooltips) {
             if (tooltip.isHover(mouseX - guiLeft, mouseY - guiTop)) {
-                drawHoveringText(tooltip.getTexts(), mouseX, mouseY, fontRenderer);
+                drawHoveringText(tooltip.getTexts(), mouseX, mouseY, fontRendererObj);
             }
         }
     }

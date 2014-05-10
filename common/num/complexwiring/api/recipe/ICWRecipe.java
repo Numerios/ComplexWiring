@@ -1,7 +1,6 @@
 package num.complexwiring.api.recipe;
 
 import net.minecraft.item.ItemStack;
-import num.complexwiring.api.recipe.RecipeRandomOutput;
 import num.complexwiring.recipe.RecipeManager;
 
 import java.util.ArrayList;

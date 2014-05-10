@@ -18,6 +18,7 @@ public class ModuleManager {
         modules.add(new ModuleWorld());
         modules.add(new ModuleMachine());
         modules.add(new ModuleTools());
+       //soon(tm) modules.add(new ModulePower());
 
         for (Module module : modules) {
             module.preInit();

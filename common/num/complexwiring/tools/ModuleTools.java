@@ -1,11 +1,11 @@
 package num.complexwiring.tools;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import net.minecraft.block.Block;
-import net.minecraft.item.EnumToolMaterial;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.common.EnumHelper;
+import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.oredict.OreDictionary;
 import num.complexwiring.base.ModuleBase;
 import num.complexwiring.core.CreativeTabCW;
@@ -13,8 +13,8 @@ import num.complexwiring.lib.Strings;
 
 public class ModuleTools extends ModuleBase {
     public static Item toolSaw, toolSmasher;
-    public static CreativeTabCW tabCWTools = new CreativeTabCW("tabCWMachine", null);
-    public static EnumToolMaterial toolMaterial = EnumHelper.addToolMaterial("CWTOOLMATERIAL", 3, 32, 5.0F, 1.5F, 0);
+    public static CreativeTabCW tabCWTools = new CreativeTabCW("tabCWTools", null);
+    public static Item.ToolMaterial toolMaterial = EnumHelper.addToolMaterial("CWTOOLMATERIAL", 3, 32, 5.0F, 1.5F, 0);
 
     @Override
     public void preInit() {
@@ -32,11 +32,11 @@ public class ModuleTools extends ModuleBase {
     }
 
     private void registerItems() {
-        toolSaw = new ItemToolSaw(1111);
+        toolSaw = new ItemToolSaw();
         GameRegistry.registerItem(toolSaw, Strings.SAW_NAME);
 
-        toolSmasher = new ItemToolSmasher(1112);
-        GameRegistry.registerItem(toolSaw, Strings.SMASHER_NAME);
+        toolSmasher = new ItemToolSmasher();
+        GameRegistry.registerItem(toolSmasher, Strings.SMASHER_NAME);
     }
 
     private void registerRecipes() {
@@ -44,18 +44,18 @@ public class ModuleTools extends ModuleBase {
                 "SII",
                 "SFI",
                 "S  ",
-                'S', new ItemStack(Item.stick),
-                'I', new ItemStack(Item.ingotIron),
-                'F', new ItemStack(Item.flint)
+                'S', new ItemStack(Items.stick),
+                'I', new ItemStack(Items.iron_ingot),
+                'F', new ItemStack(Items.flint)
         );
 
         GameRegistry.addRecipe(new ItemStack(toolSaw),
                 "IIS",
                 "IFS",
                 "  S",
-                'S', new ItemStack(Item.stick),
-                'I', new ItemStack(Item.ingotIron),
-                'F', new ItemStack(Item.flint)
+                'S', new ItemStack(Items.stick),
+                'I', new ItemStack(Items.iron_ingot),
+                'F', new ItemStack(Items.flint)
         );
 
         for (String log : new String[] {"log", "wood", "logWood"}) {
@@ -63,7 +63,7 @@ public class ModuleTools extends ModuleBase {
                 if (logIS == null){
                     continue;
                 }
-                GameRegistry.addShapelessRecipe(new ItemStack(Block.planks, 6), new ItemStack(toolSaw, 1, OreDictionary.WILDCARD_VALUE), logIS);
+                GameRegistry.addShapelessRecipe(new ItemStack(Blocks.planks, 6), new ItemStack(toolSaw, 1, OreDictionary.WILDCARD_VALUE), logIS);
             }
         }
 
@@ -71,10 +71,10 @@ public class ModuleTools extends ModuleBase {
                 "IGI",
                 "IFI",
                 " S ",
-                'S', new ItemStack(Item.stick),
-                'I', new ItemStack(Item.ingotIron),
-                'F', new ItemStack(Item.flint),
-                'G', new ItemStack(Item.ingotGold)
+                'S', new ItemStack(Items.stick),
+                'I', new ItemStack(Items.iron_ingot),
+                'F', new ItemStack(Items.flint),
+                'G', new ItemStack(Items.gold_ingot)
         );
 
       /*  for (String ore : new String[] {"oreIron", "oreGold", "oreCopper", "oreTin", "oreSilver", "oreLead"}) {

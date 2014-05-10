@@ -2,6 +2,7 @@ package num.complexwiring.machine.powered;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -10,8 +11,8 @@ import num.complexwiring.machine.ModuleMachine;
 import java.util.List;
 
 public class ItemBlockPoweredMachine extends ItemBlock {
-    public ItemBlockPoweredMachine(int ID) {
-        super(ID);
+    public ItemBlockPoweredMachine(Block block) {
+        super(block);
         setHasSubtypes(true);
         setMaxDamage(0);
     }

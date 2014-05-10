@@ -4,7 +4,7 @@ import buildcraft.api.power.IPowerReceptor;
 import buildcraft.api.power.PowerHandler;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 
 public abstract class TileEntityPoweredBase extends TileEntityInventoryBase implements IPowerReceptor {
     protected static final int USED_ENERGY = 2;
@@ -14,7 +14,7 @@ public abstract class TileEntityPoweredBase extends TileEntityInventoryBase impl
     protected static final int MAX_STORED_ENERGY = 4000;
     protected static final PowerHandler.Type type = PowerHandler.Type.MACHINE;
     protected PowerHandler powerHandler;
-    protected float storedEnergy;
+    protected double storedEnergy;
 
     public TileEntityPoweredBase(int inventorySize, String name) {
         super(inventorySize, name);
@@ -58,13 +58,13 @@ public abstract class TileEntityPoweredBase extends TileEntityInventoryBase impl
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound nbt) {
+    protected void writePacketNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);
         powerHandler.writeToNBT(nbt);
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound nbt) {
+    protected void readPacketNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);
         powerHandler.readFromNBT(nbt);
         storedEnergy = powerHandler.getEnergyStored();

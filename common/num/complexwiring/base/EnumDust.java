@@ -1,8 +1,8 @@
 package num.complexwiring.base;
 
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraftforge.oredict.OreDictionary;
 import num.complexwiring.lib.Reference;
 import num.complexwiring.lib.Strings;
@@ -18,7 +18,7 @@ public enum EnumDust {
     public static final EnumDust[] VALID = values();
     public final String name;
     public final int meta = this.ordinal();
-    public Icon icon;
+    public IIcon icon;
 
     private EnumDust(String name) {
         this.name = name;
@@ -29,12 +29,11 @@ public enum EnumDust {
         return ModuleBase.dust.getUnlocalizedName() + "." + name.toLowerCase().substring(4);
     }
 
-    public void registerIcon(IconRegister ir) {
+    public void registerIcon(IIconRegister ir) {
         icon = ir.registerIcon(Reference.TEXTURE_PATH + name);
     }
 
     public ItemStack getIS(int amount) {
-        System.err.println("ITEMSTACK: " + amount + " | " + meta);
         return new ItemStack(ModuleBase.dust, amount, meta);
     }
 

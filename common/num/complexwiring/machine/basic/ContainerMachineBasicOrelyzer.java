@@ -10,7 +10,6 @@ import num.complexwiring.recipe.RecipeManager;
 import num.complexwiring.api.base.ContainerBase;
 
 public class ContainerMachineBasicOrelyzer extends ContainerBase {
-
     protected final TileEntityBasicOrelyzer tile;
 
     public ContainerMachineBasicOrelyzer(InventoryPlayer playerInv, TileEntityBasicOrelyzer tile) {

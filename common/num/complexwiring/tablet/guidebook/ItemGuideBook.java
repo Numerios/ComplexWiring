@@ -1,11 +1,11 @@
 package num.complexwiring.tablet.guidebook;
 
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import num.complexwiring.ComplexWiring;
 import num.complexwiring.base.ModuleBase;
@@ -15,10 +15,10 @@ import num.complexwiring.lib.Reference;
 import java.util.List;
 
 public class ItemGuidebook extends Item{
-    private Icon icon;
+    private IIcon icon;
 
-    public ItemGuidebook(int ID) {
-        super(ID);
+    public ItemGuidebook() {
+        super();
         setUnlocalizedName(Reference.MOD_ID.toLowerCase() + ".tablet.guidebook");
         setCreativeTab(ModuleBase.tabCWBase);
         setMaxDamage(0);
@@ -26,12 +26,12 @@ public class ItemGuidebook extends Item{
     }
 
     @Override
-    public void registerIcons(IconRegister ir) {
+    public void registerIcons(IIconRegister ir) {
         icon = ir.registerIcon(Reference.TEXTURE_PATH + this.getUnlocalizedName());
     }
 
     @Override
-    public void getSubItems(int id, CreativeTabs tab, List list) {
+    public void getSubItems(Item item, CreativeTabs tab, List list) {
         list.add(new ItemStack(this));
     }
 

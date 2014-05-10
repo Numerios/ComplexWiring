@@ -1,11 +1,12 @@
 package num.complexwiring.api.vec;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 
 /**
  * The ultimate class for coordinates in three-dimensional space. Uses doubles.
@@ -139,7 +140,7 @@ public class Vector3 implements Cloneable {
     }
 
     public TileEntity toTile(World world) {
-        return world.getBlockTileEntity(this.getX(), this.getY(), this.getZ());
+        return world.getTileEntity(this.getX(), this.getY(), this.getZ());
     }
 
     public boolean blockExists(World world) {
@@ -157,11 +158,8 @@ public class Vector3 implements Cloneable {
         return 0;
     }
 
-    public int blockID(World world) {
-        if (blockExists(world)) {
-            return world.getBlockId(this.getX(), this.getY(), this.getZ());
-        }
-        return 0;
+    public Block getBlock(World world) {
+        return world.getBlock(this.getX(), this.getY(), this.getZ());
     }
 
     public boolean isAir(World world) {

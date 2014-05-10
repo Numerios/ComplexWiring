@@ -28,8 +28,8 @@ public class GuiGuidebook extends GuiContainer {
     @Override
     protected void drawGuiContainerForegroundLayer(int i, int j) {
         super.drawGuiContainerForegroundLayer(i, j);
-        boolean unicodeFlag = this.fontRenderer.getUnicodeFlag();
-        this.fontRenderer.setUnicodeFlag(true);
-        this.fontRenderer.setUnicodeFlag(unicodeFlag);
+        boolean unicodeFlag = this.fontRendererObj.getUnicodeFlag();
+        this.fontRendererObj.setUnicodeFlag(true);
+        this.fontRendererObj.setUnicodeFlag(unicodeFlag);
     }
 }
