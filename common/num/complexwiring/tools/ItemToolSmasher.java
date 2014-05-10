@@ -17,7 +17,6 @@ import net.minecraftforge.oredict.OreDictionary;
 import num.complexwiring.api.vec.Vector3;
 import num.complexwiring.base.EnumDust;
 import num.complexwiring.lib.Reference;
-import num.complexwiring.machine.ModuleMachine;
 
 import java.util.List;
 import java.util.Random;
@@ -29,7 +28,7 @@ public class ItemToolSmasher extends ItemPickaxe {
         super(ModuleTools.toolMaterial);
         rand = new Random();
         setUnlocalizedName(Reference.MOD_ID.toLowerCase() + ".tools.smasher");
-        setCreativeTab(ModuleMachine.tabCWMachine);
+        setCreativeTab(ModuleTools.tabCWTools);
         setNoRepair();
         setMaxStackSize(1);
     }

@@ -16,7 +16,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
 import num.complexwiring.api.vec.Vector3;
 import num.complexwiring.lib.Reference;
-import num.complexwiring.machine.ModuleMachine;
 
 import java.util.List;
 import java.util.Random;
@@ -28,7 +27,7 @@ public class ItemToolSaw extends ItemAxe {
         super(ModuleTools.toolMaterial);
         rand = new Random();
         setUnlocalizedName(Reference.MOD_ID.toLowerCase() + ".tools.saw");
-        setCreativeTab(ModuleMachine.tabCWMachine);
+        setCreativeTab(ModuleTools.tabCWTools);
         setNoRepair();
         setMaxStackSize(1);
     }
