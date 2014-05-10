@@ -126,8 +126,8 @@ public class TileEntityPoweredOrelyzer extends TileEntityPoweredBase implements 
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound nbt) {
-        super.writeToNBT(nbt);
+    protected void writePacketNBT(NBTTagCompound nbt) {
+        super.writePacketNBT(nbt);
 
         nbt.setShort("processTime", (short) processTime);
         nbt.setShort("recipe", (short) RecipeManager.toRecipeID(RecipeManager.Type.ORELYZER, recipe));
@@ -147,8 +147,8 @@ public class TileEntityPoweredOrelyzer extends TileEntityPoweredBase implements 
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound nbt) {
-        super.readFromNBT(nbt);
+    protected void readPacketNBT(NBTTagCompound nbt) {
+        super.readPacketNBT(nbt);
 
         processTime = nbt.getShort("processTime");
         recipe = (OrelyzerRecipe) RecipeManager.fromRecipeID(RecipeManager.Type.ORELYZER, nbt.getShort("recipe"));
@@ -156,9 +156,11 @@ public class TileEntityPoweredOrelyzer extends TileEntityPoweredBase implements 
 
         recipeOutput.clear();
         NBTTagList outputNBT = (NBTTagList) nbt.getTag("currentOutput");
-        for (int i = 0; i < outputNBT.tagCount(); i++) {
-            NBTTagCompound itemNBT = outputNBT.getCompoundTagAt(i);
-            recipeOutput.add(ItemStack.loadItemStackFromNBT(itemNBT));
+        if (outputNBT != null) {
+            for (int i = 0; i < outputNBT.tagCount(); i++) {
+                NBTTagCompound itemNBT = outputNBT.getCompoundTagAt(i);
+                recipeOutput.add(ItemStack.loadItemStackFromNBT(itemNBT));
+            }
         }
     }
 

@@ -103,7 +103,7 @@ public class TileEntityBasicFurnace extends TileEntityInventoryBase implements I
     }
 
     @Override
-    public void writePacketNBT(NBTTagCompound nbt) {
+    protected void writePacketNBT(NBTTagCompound nbt) {
         super.writePacketNBT(nbt);
 
         NBTTagCompound recipeTag = new NBTTagCompound();
@@ -115,7 +115,7 @@ public class TileEntityBasicFurnace extends TileEntityInventoryBase implements I
     }
 
     @Override
-    public void readPacketNBT(NBTTagCompound nbt) {
+    protected void readPacketNBT(NBTTagCompound nbt) {
         super.readPacketNBT(nbt);
 
         recipe = ItemStack.loadItemStackFromNBT(nbt.getCompoundTag("recipe"));

@@ -126,7 +126,7 @@ public class TileEntityPoweredCrusher extends TileEntityPoweredBase implements I
     }
 
     @Override
-    public void writePacketNBT(NBTTagCompound nbt) {
+    protected void writePacketNBT(NBTTagCompound nbt) {
         super.writePacketNBT(nbt);
 
         nbt.setShort("processTime", (short) processTime);
@@ -147,8 +147,8 @@ public class TileEntityPoweredCrusher extends TileEntityPoweredBase implements I
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound nbt) {
-        super.readFromNBT(nbt);
+    protected void readPacketNBT(NBTTagCompound nbt) {
+        super.readPacketNBT(nbt);
 
         processTime = nbt.getShort("processTime");
         recipe = (CrusherRecipe) RecipeManager.fromRecipeID(RecipeManager.Type.CRUSHER, nbt.getShort("recipe"));
@@ -156,9 +156,11 @@ public class TileEntityPoweredCrusher extends TileEntityPoweredBase implements I
 
         recipeOutput.clear();
         NBTTagList outputNBT = (NBTTagList) nbt.getTag("currentOutput");
-        for (int i = 0; i < outputNBT.tagCount(); i++) {
-            NBTTagCompound itemNBT = outputNBT.getCompoundTagAt(i);
-            recipeOutput.add(ItemStack.loadItemStackFromNBT(itemNBT));
+        if (outputNBT != null) {
+            for (int i = 0; i < outputNBT.tagCount(); i++) {
+                NBTTagCompound itemNBT = outputNBT.getCompoundTagAt(i);
+                recipeOutput.add(ItemStack.loadItemStackFromNBT(itemNBT));
+            }
         }
     }
 

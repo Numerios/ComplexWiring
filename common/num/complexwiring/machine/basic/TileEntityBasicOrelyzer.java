@@ -171,7 +171,7 @@ public class TileEntityBasicOrelyzer extends TileEntityInventoryBase implements 
     }
 
     @Override
-    public void writePacketNBT(NBTTagCompound nbt) {
+    protected void writePacketNBT(NBTTagCompound nbt) {
         super.writePacketNBT(nbt);
 
         nbt.setShort("recipe", (short) RecipeManager.toRecipeID(RecipeManager.Type.ORELYZER, recipe));
@@ -194,7 +194,7 @@ public class TileEntityBasicOrelyzer extends TileEntityInventoryBase implements 
     }
 
     @Override
-    public void readPacketNBT(NBTTagCompound nbt) {
+    protected void readPacketNBT(NBTTagCompound nbt) {
         super.readPacketNBT(nbt);
 
         recipe = (OrelyzerRecipe) RecipeManager.fromRecipeID(RecipeManager.Type.ORELYZER, nbt.getShort("recipe"));
