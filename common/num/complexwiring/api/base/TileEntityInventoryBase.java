@@ -134,7 +134,7 @@ public abstract class TileEntityInventoryBase extends TileEntityBase implements 
         readPacketNBT(nbt);
     }
 
-    public void writePacketNBT(NBTTagCompound nbt){
+    public void writePacketNBT(NBTTagCompound nbt) {
         NBTTagList inventoryNBT = new NBTTagList();
         for (int i = 0; i < getSizeInventory(); i++) {
             if (getStackInSlot(i) != null) {
@@ -148,7 +148,7 @@ public abstract class TileEntityInventoryBase extends TileEntityBase implements 
     }
 
 
-    public void readPacketNBT(NBTTagCompound nbt){
+    public void readPacketNBT(NBTTagCompound nbt) {
         NBTTagList inventoryNBT = nbt.getTagList("contents", Constants.NBT.TAG_COMPOUND);
         inventory = new ItemStack[getSizeInventory()];
         for (int i = 0; i < inventoryNBT.tagCount(); i++) {
@@ -167,7 +167,7 @@ public abstract class TileEntityInventoryBase extends TileEntityBase implements 
         return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, nbt);
     }
 
-    public void onDataPacket(NetworkManager networkManager, S35PacketUpdateTileEntity packet){
+    public void onDataPacket(NetworkManager networkManager, S35PacketUpdateTileEntity packet) {
         readPacketNBT(packet.func_148857_g());
     }
 }

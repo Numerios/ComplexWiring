@@ -61,7 +61,7 @@ public class ItemToolSaw extends ItemAxe {
         ItemStack is = new ItemStack(block, vec3.blockMetadata(world));
         int oreID = OreDictionary.getOreID(is);
         if (block != null && entity instanceof EntityPlayer) {
-            if (OreDictionary.getOreName(oreID).contains("wood") || OreDictionary.getOreName(oreID).contains("log") || block == Blocks.log){
+            if (OreDictionary.getOreName(oreID).contains("wood") || OreDictionary.getOreName(oreID).contains("log") || block == Blocks.log) {
                 ItemStack result = new ItemStack(Blocks.planks, 6);
                 if (!world.isRemote && world.getGameRules().getGameRuleBooleanValue("doTileDrops")) {  // taken from Block.class
                     float f = 0.7F;

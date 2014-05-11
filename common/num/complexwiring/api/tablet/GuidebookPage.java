@@ -15,22 +15,22 @@ public class GuidebookPage {
     public IRecipe vanillaRecipe = null;
     public ICWRecipe modRecipe = null;
 
-    public GuidebookPage(String text){
+    public GuidebookPage(String text) {
         this.type = Type.TEXT;
         this.text = text;
     }
 
-    public GuidebookPage(IResearch research){
+    public GuidebookPage(IResearch research) {
         this.type = Type.RESEARCH;
         this.research = research;
     }
 
-    public GuidebookPage(IRecipe recipe){
+    public GuidebookPage(IRecipe recipe) {
         this.type = Type.VANILLA_CRAFTING;
         this.vanillaRecipe = recipe;
     }
 
-    public GuidebookPage(ICWRecipe recipe){
+    public GuidebookPage(ICWRecipe recipe) {
         this.type = Type.MOD_CRAFTING;
         this.modRecipe = recipe;
     }

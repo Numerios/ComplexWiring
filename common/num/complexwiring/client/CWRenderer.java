@@ -14,7 +14,7 @@ public class CWRenderer implements IItemRenderer {
     public static final CWRenderer INSTANCE = new CWRenderer();
     private static final HashMap<ItemStack, IOBJRenderer> RENDERER = new HashMap<ItemStack, IOBJRenderer>();
 
-    public static void register(ItemStack is, IOBJRenderer renderer){
+    public static void register(ItemStack is, IOBJRenderer renderer) {
         MinecraftForgeClient.registerItemRenderer(is.getItem(), INSTANCE);
         RENDERER.put(is, renderer);
     }

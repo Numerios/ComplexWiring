@@ -25,7 +25,7 @@ public class OreGenerator {
         world.getChunkFromChunkCoords(chunkX, chunkZ).setChunkModified();
     }
 
-    public boolean generateMinable(World world, Random rand, int x, int y, int z){
+    public boolean generateMinable(World world, Random rand, int x, int y, int z) {
         WorldGenMinable minable = new WorldGenMinable(ModuleWorld.orePrimary, this.ore.meta, this.ore.clusterSize, Blocks.stone);
         return minable.generate(world, rand, x, y, z);
     }

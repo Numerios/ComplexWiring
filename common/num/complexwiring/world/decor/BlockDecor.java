@@ -42,9 +42,9 @@ public class BlockDecor extends Block {
 
     @Override
     public int damageDropped(int meta) {
-        if(meta == EnumDecor.ARENITE.meta) return EnumDecor.ARENITE_ROUGH.meta;
-        if(meta == EnumDecor.DOLOMITE.meta) return EnumDecor.DOLOMITE_ROUGH.meta;
-        if(meta == EnumDecor.LIMESTONE.meta) return EnumDecor.LIMESTONE_ROUGH.meta;
+        if (meta == EnumDecor.ARENITE.meta) return EnumDecor.ARENITE_ROUGH.meta;
+        if (meta == EnumDecor.DOLOMITE.meta) return EnumDecor.DOLOMITE_ROUGH.meta;
+        if (meta == EnumDecor.LIMESTONE.meta) return EnumDecor.LIMESTONE_ROUGH.meta;
 
         return meta;
     }

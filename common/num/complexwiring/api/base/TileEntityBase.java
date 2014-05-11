@@ -35,7 +35,7 @@ public abstract class TileEntityBase extends TileEntity {
     public void update() {
     }
 
-    protected Vector3 getPosition(){
+    protected Vector3 getPosition() {
         return Vector3.get(this);
     }
 }

@@ -24,16 +24,16 @@ public class TileEntityBasicFurnace extends TileEntityInventoryBase implements I
         super(4, EnumBasicMachine.FURNACE.getFullUnlocalizedName());
     }
 
-    public void update(){
+    public void update() {
         super.update();
 
         if (!worldObj.isRemote) {
-            if(recipe == null) {
-                if(inventory[0] != null && FurnaceRecipes.smelting().getSmeltingResult(inventory[0]) != null) {
+            if (recipe == null) {
+                if (inventory[0] != null && FurnaceRecipes.smelting().getSmeltingResult(inventory[0]) != null) {
                     recipe = FurnaceRecipes.smelting().getSmeltingResult(inventory[0]).copy();
 
                     takeFuel();
-                    if(burnTime > 0){
+                    if (burnTime > 0) {
                         inventory[0].stackSize--;
 
                         if (getStackInSlot(0).stackSize <= 0) {
@@ -44,16 +44,16 @@ public class TileEntityBasicFurnace extends TileEntityInventoryBase implements I
                     }
                 }
             }
-            if(burnTime > 0){
+            if (burnTime > 0) {
                 burnTime--;
             }
-            if(recipe != null) {
+            if (recipe != null) {
                 processTime++;
 
-                if(processTime >= recipeNeededTime) {
+                if (processTime >= recipeNeededTime) {
                     endProcessing();
                 }
-                if(burnTime == 0) takeFuel();
+                if (burnTime == 0) takeFuel();
             }
             if (ticks % 4 == 0) {
                 worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
@@ -62,7 +62,7 @@ public class TileEntityBasicFurnace extends TileEntityInventoryBase implements I
         }
     }
 
-    public void endProcessing(){
+    public void endProcessing() {
         if (recipe != null) {
             for (int i : SLOTS_OUTPUT) {
                 if (getStackInSlot(i) == null) {
@@ -83,11 +83,11 @@ public class TileEntityBasicFurnace extends TileEntityInventoryBase implements I
         processTime = 0;
     }
 
-    public void takeFuel(){
-        if(burnTime == 0){
+    public void takeFuel() {
+        if (burnTime == 0) {
             if (getStackInSlot(1) != null) {
                 fuelBurnTime = getFuelBurnTime(inventory[1]);
-                if(fuelBurnTime != 0){
+                if (fuelBurnTime != 0) {
                     burnTime = fuelBurnTime;
                     inventory[1].stackSize--;
                     if (getStackInSlot(1).stackSize == 0) {
@@ -107,7 +107,7 @@ public class TileEntityBasicFurnace extends TileEntityInventoryBase implements I
         super.writePacketNBT(nbt);
 
         NBTTagCompound recipeTag = new NBTTagCompound();
-        if(recipe != null) recipe.writeToNBT(recipeTag);
+        if (recipe != null) recipe.writeToNBT(recipeTag);
         nbt.setTag("recipe", recipeTag);
         nbt.setShort("burnTime", (short) burnTime);
         nbt.setShort("processTime", (short) processTime);

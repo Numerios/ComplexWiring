@@ -14,17 +14,17 @@ public class RecipeManager {
     private static List<CrusherRecipe> crusherRecipes = new ArrayList<CrusherRecipe>();
 
     public static void add(ICWRecipe recipe) {
-        if(recipe.getType() == Type.ORELYZER) orelyzerRecipes.add((OrelyzerRecipe) recipe);
+        if (recipe.getType() == Type.ORELYZER) orelyzerRecipes.add((OrelyzerRecipe) recipe);
         else if (recipe.getType() == Type.CRUSHER) crusherRecipes.add((CrusherRecipe) recipe);
     }
 
     public static ICWRecipe get(Type type, ItemStack is) {
         if (is != null) {
-            if(type == Type.ORELYZER){
+            if (type == Type.ORELYZER) {
                 for (OrelyzerRecipe orelyzerRecipe : orelyzerRecipes) {
                     if (orelyzerRecipe.matches(is)) return orelyzerRecipe;
                 }
-            } else if (type == Type.CRUSHER){
+            } else if (type == Type.CRUSHER) {
                 for (CrusherRecipe crusherRecipe : crusherRecipes) {
                     if (crusherRecipe.matches(is)) return crusherRecipe;
                 }
@@ -45,7 +45,7 @@ public class RecipeManager {
         return null;
     }
 
-    public enum Type{
+    public enum Type {
         ORELYZER,
         CRUSHER
     }

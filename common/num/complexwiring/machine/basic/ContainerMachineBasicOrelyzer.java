@@ -4,10 +4,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import num.complexwiring.api.base.ContainerBase;
 import num.complexwiring.client.slot.SlotMachine;
 import num.complexwiring.client.slot.SlotOutput;
 import num.complexwiring.recipe.RecipeManager;
-import num.complexwiring.api.base.ContainerBase;
 
 public class ContainerMachineBasicOrelyzer extends ContainerBase {
     protected final TileEntityBasicOrelyzer tile;

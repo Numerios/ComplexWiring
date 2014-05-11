@@ -42,10 +42,10 @@ public class TileEntityPoweredCrusher extends TileEntityPoweredBase implements I
         if (!worldObj.isRemote) {
             storedEnergy = powerHandler.getEnergyStored();
 
-            if(recipe == null) {
-                if(RecipeManager.get(RecipeManager.Type.CRUSHER, getStackInSlot(0)) != null) {
+            if (recipe == null) {
+                if (RecipeManager.get(RecipeManager.Type.CRUSHER, getStackInSlot(0)) != null) {
                     recipe = (CrusherRecipe) RecipeManager.get(RecipeManager.Type.CRUSHER, getStackInSlot(0));
-                    if(recipe.getNeededPower() <= ((int) storedEnergy)){
+                    if (recipe.getNeededPower() <= ((int) storedEnergy)) {
                         recipeNeededPower = recipe.getNeededPower();
                         recipeOutput = recipe.getCompleteOutput(random);
                         processTime = 0;
@@ -60,13 +60,13 @@ public class TileEntityPoweredCrusher extends TileEntityPoweredBase implements I
                     }
                 }
             }
-            if(recipe != null) {
-                if(storedEnergy > 0){
+            if (recipe != null) {
+                if (storedEnergy > 0) {
                     powerHandler.useEnergy(1, USED_ENERGY, true);
                     storedEnergy = powerHandler.getEnergyStored();
                     processTime = processTime + 2;
 
-                    if(processTime >= recipeNeededPower) {
+                    if (processTime >= recipeNeededPower) {
                         endProcessing();
                     }
                 } else {
@@ -83,7 +83,7 @@ public class TileEntityPoweredCrusher extends TileEntityPoweredBase implements I
         }
     }
 
-    public void endProcessing(){
+    public void endProcessing() {
         if (recipeOutput != null && recipeOutput.size() > 0) {
             for (ItemStack output : recipeOutput) {
                 if (output != null && output.stackSize != 0) {

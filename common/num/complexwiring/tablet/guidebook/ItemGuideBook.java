@@ -14,7 +14,7 @@ import num.complexwiring.lib.Reference;
 
 import java.util.List;
 
-public class ItemGuidebook extends Item{
+public class ItemGuidebook extends Item {
     private IIcon icon;
 
     public ItemGuidebook() {
@@ -42,6 +42,6 @@ public class ItemGuidebook extends Item{
     }
 
     @Override
-    public void onCreated(ItemStack is, World world, EntityPlayer player){
+    public void onCreated(ItemStack is, World world, EntityPlayer player) {
     }
 }

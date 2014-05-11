@@ -28,7 +28,7 @@ public class GuidebookPageRegistry {
             pageMap.put(n, enumPage.page);
             n++;
         }
-        for (IResearch research : ResearchManager.researchList){
+        for (IResearch research : ResearchManager.researchList) {
             pageMap.put(n, new GuidebookPage(research));
             n++;
         }

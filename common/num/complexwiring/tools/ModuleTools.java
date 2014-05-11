@@ -58,9 +58,9 @@ public class ModuleTools extends ModuleBase {
                 'F', new ItemStack(Items.flint)
         );
 
-        for (String log : new String[] {"log", "wood", "logWood"}) {
+        for (String log : new String[]{"log", "wood", "logWood"}) {
             for (ItemStack logIS : OreDictionary.getOres(log)) {
-                if (logIS == null){
+                if (logIS == null) {
                     continue;
                 }
                 GameRegistry.addShapelessRecipe(new ItemStack(Blocks.planks, 6), new ItemStack(toolSaw, 1, OreDictionary.WILDCARD_VALUE), logIS);

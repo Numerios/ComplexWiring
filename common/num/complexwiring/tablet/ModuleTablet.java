@@ -34,8 +34,8 @@ public class ModuleTablet extends Module {
                         new SolidResearchTask("Wood", new ItemStack(Blocks.log))
                 ),
                 new Research(Research.Tier.TIER_0, "Second",
-                    new SolidResearchTask("Stone", new ItemStack(Blocks.stone)),
-                    new SolidResearchTask("Wood", new ItemStack(Blocks.log))
+                        new SolidResearchTask("Stone", new ItemStack(Blocks.stone)),
+                        new SolidResearchTask("Wood", new ItemStack(Blocks.log))
                 )
         );
 

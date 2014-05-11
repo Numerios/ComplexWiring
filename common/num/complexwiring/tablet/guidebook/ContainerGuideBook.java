@@ -7,7 +7,7 @@ import net.minecraft.inventory.Slot;
 
 public class ContainerGuidebook extends Container {
 
-    public ContainerGuidebook(InventoryPlayer inv){
+    public ContainerGuidebook(InventoryPlayer inv) {
         addPlayerInventory(inv);
     }
 

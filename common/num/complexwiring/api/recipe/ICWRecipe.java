@@ -12,10 +12,15 @@ import java.util.Random;
 public interface ICWRecipe {
 
     public ItemStack getInput();
+
     public boolean matches(ItemStack is);
+
     public int getNeededPower();
+
     public RecipeRandomOutput[] getOutputs();
+
     public ArrayList<ItemStack> getCompleteOutput(Random rand);
+
     public RecipeManager.Type getType();
 
 }
