@@ -35,7 +35,7 @@ public class ComplexWiring {
     }
 
     @EventHandler
-    public void init(FMLInitializationEvent event) {                                                               //  ass
+    public void init(FMLInitializationEvent event) {
         NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
         MinecraftForge.EVENT_BUS.register(NetworkTickHandler.INSTANCE);
 

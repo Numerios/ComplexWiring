@@ -18,8 +18,8 @@ public class ItemDust extends Item {
 
     @Override
     public void registerIcons(IIconRegister ir) {
-        for (EnumIngot ingot : EnumIngot.VALID) {
-            ingot.registerIcon(ir);
+        for (EnumDust dust : EnumDust.VALID) {
+            dust.registerIcon(ir);
         }
     }
 
