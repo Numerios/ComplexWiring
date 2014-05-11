@@ -170,7 +170,7 @@ public class TileEntityBasicCrusher extends TileEntityInventoryBase implements I
     }
 
     @Override
-    protected void writePacketNBT(NBTTagCompound nbt) {
+    public void writePacketNBT(NBTTagCompound nbt) {
         super.writePacketNBT(nbt);
 
         nbt.setShort("recipe", (short) RecipeManager.toRecipeID(RecipeManager.Type.CRUSHER, recipe));
@@ -193,7 +193,7 @@ public class TileEntityBasicCrusher extends TileEntityInventoryBase implements I
     }
 
     @Override
-    protected void readPacketNBT(NBTTagCompound nbt) {
+    public void readPacketNBT(NBTTagCompound nbt) {
         super.readPacketNBT(nbt);
 
         recipe = (CrusherRecipe) RecipeManager.fromRecipeID(RecipeManager.Type.CRUSHER, nbt.getShort("recipe"));

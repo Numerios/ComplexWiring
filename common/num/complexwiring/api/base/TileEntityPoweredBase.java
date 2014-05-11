@@ -58,14 +58,14 @@ public abstract class TileEntityPoweredBase extends TileEntityInventoryBase impl
     }
 
     @Override
-    protected void writePacketNBT(NBTTagCompound nbt) {
-        super.writeToNBT(nbt);
+    public void writePacketNBT(NBTTagCompound nbt) {
+        super.writePacketNBT(nbt);
         powerHandler.writeToNBT(nbt);
     }
 
     @Override
-    protected void readPacketNBT(NBTTagCompound nbt) {
-        super.readFromNBT(nbt);
+    public void readPacketNBT(NBTTagCompound nbt) {
+        super.readPacketNBT(nbt);
         powerHandler.readFromNBT(nbt);
         storedEnergy = powerHandler.getEnergyStored();
     }

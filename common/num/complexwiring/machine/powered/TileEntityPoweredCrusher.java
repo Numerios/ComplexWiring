@@ -126,7 +126,7 @@ public class TileEntityPoweredCrusher extends TileEntityPoweredBase implements I
     }
 
     @Override
-    protected void writePacketNBT(NBTTagCompound nbt) {
+    public void writePacketNBT(NBTTagCompound nbt) {
         super.writePacketNBT(nbt);
 
         nbt.setShort("processTime", (short) processTime);
@@ -147,7 +147,7 @@ public class TileEntityPoweredCrusher extends TileEntityPoweredBase implements I
     }
 
     @Override
-    protected void readPacketNBT(NBTTagCompound nbt) {
+    public void readPacketNBT(NBTTagCompound nbt) {
         super.readPacketNBT(nbt);
 
         processTime = nbt.getShort("processTime");

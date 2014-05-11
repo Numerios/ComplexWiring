@@ -134,7 +134,7 @@ public abstract class TileEntityInventoryBase extends TileEntityBase implements 
         readPacketNBT(nbt);
     }
 
-    protected void writePacketNBT(NBTTagCompound nbt){
+    public void writePacketNBT(NBTTagCompound nbt){
         NBTTagList inventoryNBT = new NBTTagList();
         for (int i = 0; i < getSizeInventory(); i++) {
             if (getStackInSlot(i) != null) {
@@ -148,7 +148,7 @@ public abstract class TileEntityInventoryBase extends TileEntityBase implements 
     }
 
 
-    protected void readPacketNBT(NBTTagCompound nbt){
+    public void readPacketNBT(NBTTagCompound nbt){
         NBTTagList inventoryNBT = nbt.getTagList("contents", Constants.NBT.TAG_COMPOUND);
         inventory = new ItemStack[getSizeInventory()];
         for (int i = 0; i < inventoryNBT.tagCount(); i++) {

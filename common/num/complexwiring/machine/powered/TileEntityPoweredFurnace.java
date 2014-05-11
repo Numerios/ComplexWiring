@@ -35,11 +35,11 @@ public class TileEntityPoweredFurnace extends TileEntityPoweredBase implements I
         if (!worldObj.isRemote) {
             storedEnergy = powerHandler.getEnergyStored();
 
-            if(recipe == null) {
-                if(FurnaceRecipes.smelting().getSmeltingResult(inventory[0]) != null) {
+            if (recipe == null && inventory[0] != null) {
+                if (FurnaceRecipes.smelting().getSmeltingResult(inventory[0]) != null) {
                     recipe = FurnaceRecipes.smelting().getSmeltingResult(inventory[0]).copy();
 
-                    if(recipeNeededPower <= ((int) storedEnergy)){
+                    if (recipeNeededPower <= ((int) storedEnergy)) {
                         inventory[0].stackSize--;
 
                         if (getStackInSlot(0).stackSize <= 0) {
@@ -50,13 +50,13 @@ public class TileEntityPoweredFurnace extends TileEntityPoweredBase implements I
                     }
                 }
             }
-            if(recipe != null) {
-                if(storedEnergy > 0){
+            if (recipe != null) {
+                if (storedEnergy > 0) {
                     powerHandler.useEnergy(USED_ENERGY, USED_ENERGY, true);
                     storedEnergy = powerHandler.getEnergyStored();
                     processTime++;
 
-                    if(processTime >= recipeNeededPower) {
+                    if (processTime >= recipeNeededPower) {
                         endProcessing();
                     }
                 } else {
@@ -72,7 +72,7 @@ public class TileEntityPoweredFurnace extends TileEntityPoweredBase implements I
         }
     }
 
-    public void endProcessing(){
+    public void endProcessing() {
         if (recipe != null && recipe.stackSize != 0) {
             for (int i : SLOTS_OUTPUT) {
                 if (getStackInSlot(i) == null) {
@@ -109,17 +109,19 @@ public class TileEntityPoweredFurnace extends TileEntityPoweredBase implements I
     }
 
     @Override
-    protected void writePacketNBT(NBTTagCompound nbt) {
+    public void writePacketNBT(NBTTagCompound nbt) {
         super.writePacketNBT(nbt);
 
-        NBTTagCompound recipeTag = new NBTTagCompound();
-        if(recipe != null) recipe.writeToNBT(recipeTag);
-        nbt.setTag("recipe", recipeTag);
+        if (recipe != null) {
+            NBTTagCompound recipeTag = new NBTTagCompound();
+            recipe.writeToNBT(recipeTag);
+            nbt.setTag("recipe", recipeTag);
+        }
         nbt.setShort("processTime", (short) processTime);
     }
 
     @Override
-    protected void readPacketNBT(NBTTagCompound nbt) {
+    public void readPacketNBT(NBTTagCompound nbt) {
         super.readPacketNBT(nbt);
 
         recipe = ItemStack.loadItemStackFromNBT(nbt.getCompoundTag("recipe"));
