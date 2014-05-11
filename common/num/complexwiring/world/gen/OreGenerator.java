@@ -16,7 +16,7 @@ public class OreGenerator {
     }
 
     public void generate(World world, int chunkX, int chunkZ, Random rand) {
-        for (int i = 0; i < this.ore.chance; i++) {
+        for (int i = 0; i < this.ore.clusterNum; i++) {
             int x = chunkX + rand.nextInt(16);
             int y = rand.nextInt(Math.max(this.ore.maxY - this.ore.minY, 0) + this.ore.minY);
             int z = chunkZ + rand.nextInt(16);
