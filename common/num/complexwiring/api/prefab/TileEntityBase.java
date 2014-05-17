@@ -1,6 +1,7 @@
 package num.complexwiring.api.prefab;
 
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
 import num.complexwiring.api.vec.Vector3;
 
 /**
@@ -35,7 +36,12 @@ public abstract class TileEntityBase extends TileEntity {
     public void update() {
     }
 
-    protected Vector3 getPosition() {
-        return Vector3.get(this);
+
+    public Vector3 pos() {
+        return new Vector3(this.xCoord, this.yCoord, this.zCoord);
+    }
+
+    public World world() {
+        return worldObj;
     }
 }
