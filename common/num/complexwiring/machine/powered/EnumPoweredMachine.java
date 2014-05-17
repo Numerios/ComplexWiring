@@ -11,9 +11,9 @@ import num.complexwiring.machine.ModuleMachine;
 
 public enum EnumPoweredMachine {
 
-    ORELYZER(Strings.MACHINE_POWERED_ORELYZER_NAME, Strings.MACHINE_POWERED_ORELYZER_DESC, TileEntityPoweredOrelyzer.class),
-    FURNACE(Strings.MACHINE_POWERED_FURNACE_NAME, Strings.MACHINE_POWERED_FURNACE_DESC, TileEntityPoweredFurnace.class),
-    CRUSHER(Strings.MACHINE_POWERED_CRUSHER_NAME, Strings.MACHINE_POWERED_CRUSHER_DESC, TileEntityPoweredCrusher.class);
+    ORELYZER(Strings.MACHINE_POWERED_ORELYZER_NAME, Strings.MACHINE_POWERED_ORELYZER_DESC, TileEntityBCPoweredOrelyzer.class),
+    FURNACE(Strings.MACHINE_POWERED_FURNACE_NAME, Strings.MACHINE_POWERED_FURNACE_DESC, TileEntityBCPoweredFurnace.class),
+    CRUSHER(Strings.MACHINE_POWERED_CRUSHER_NAME, Strings.MACHINE_POWERED_CRUSHER_DESC, TileEntityBCPoweredCrusher.class);
 
     public static final EnumPoweredMachine[] VALID = values();
     public final String name, desc;

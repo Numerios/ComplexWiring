@@ -9,9 +9,9 @@ import num.complexwiring.client.slot.SlotMachine;
 import num.complexwiring.client.slot.SlotOutput;
 
 public class ContainerMachinePoweredCrusher extends ContainerBase {
-    protected final TileEntityPoweredCrusher tile;
+    protected final TileEntityBCPoweredCrusher tile;
 
-    public ContainerMachinePoweredCrusher(InventoryPlayer playerInv, TileEntityPoweredCrusher tile) {
+    public ContainerMachinePoweredCrusher(InventoryPlayer playerInv, TileEntityBCPoweredCrusher tile) {
         super(playerInv, tile);
         this.tile = tile;
 

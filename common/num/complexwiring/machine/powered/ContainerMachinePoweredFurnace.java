@@ -9,9 +9,9 @@ import num.complexwiring.client.slot.SlotMachine;
 import num.complexwiring.client.slot.SlotOutput;
 
 public class ContainerMachinePoweredFurnace extends ContainerBase {
-    protected final TileEntityPoweredFurnace tile;
+    protected final TileEntityBCPoweredFurnace tile;
 
-    public ContainerMachinePoweredFurnace(InventoryPlayer playerInv, TileEntityPoweredFurnace tile) {
+    public ContainerMachinePoweredFurnace(InventoryPlayer playerInv, TileEntityBCPoweredFurnace tile) {
         super(playerInv, tile);
         this.tile = tile;
 

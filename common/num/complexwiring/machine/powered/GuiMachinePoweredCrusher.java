@@ -9,9 +9,9 @@ import java.awt.*;
 
 public class GuiMachinePoweredCrusher extends GuiInventoryBase {
     protected GuiTooltip energyTooltip, progressTooltip;
-    protected TileEntityPoweredCrusher tile;
+    protected TileEntityBCPoweredCrusher tile;
 
-    public GuiMachinePoweredCrusher(InventoryPlayer player, TileEntityPoweredCrusher tile) {
+    public GuiMachinePoweredCrusher(InventoryPlayer player, TileEntityBCPoweredCrusher tile) {
         super(new ContainerMachinePoweredCrusher(player, tile), new ResourceLocation("complexwiring", "textures/gui/machine/powered/" + EnumPoweredMachine.CRUSHER.getUnlocalizedName() + ".png"));
         this.tile = tile;
     }

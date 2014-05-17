@@ -9,9 +9,9 @@ import num.complexwiring.client.slot.SlotMachine;
 import num.complexwiring.client.slot.SlotOutput;
 
 public class ContainerMachinePoweredOrelyzer extends ContainerBase {
-    protected final TileEntityPoweredOrelyzer tile;
+    protected final TileEntityBCPoweredOrelyzer tile;
 
-    public ContainerMachinePoweredOrelyzer(InventoryPlayer playerInv, TileEntityPoweredOrelyzer tile) {
+    public ContainerMachinePoweredOrelyzer(InventoryPlayer playerInv, TileEntityBCPoweredOrelyzer tile) {
         super(playerInv, tile);
         this.tile = tile;
 

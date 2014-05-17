@@ -4,15 +4,15 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import num.complexwiring.api.prefab.TileEntityPoweredBase;
-import num.complexwiring.api.recipe.CrusherRecipe;
+import num.complexwiring.api.prefab.TileEntityBCPoweredBase;
+import num.complexwiring.api.recipe.OrelyzerRecipe;
 import num.complexwiring.core.InventoryHelper;
 import num.complexwiring.recipe.RecipeManager;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-public class TileEntityPoweredCrusher extends TileEntityPoweredBase implements ISidedInventory {
+public class TileEntityBCPoweredOrelyzer extends TileEntityBCPoweredBase implements ISidedInventory {
 
     private static final int[] SLOTS_OUTPUT = new int[]{2, 3};
     private static final int[] SLOTS_TOP = new int[]{0};
@@ -20,13 +20,13 @@ public class TileEntityPoweredCrusher extends TileEntityPoweredBase implements I
 
     private Random random = new Random();
 
-    private CrusherRecipe recipe;
+    private OrelyzerRecipe recipe;
     private ArrayList<ItemStack> recipeOutput;
     private int processTime = 0;
     private int recipeNeededPower = 0;
 
-    public TileEntityPoweredCrusher() {
-        super(4, EnumPoweredMachine.CRUSHER.getFullUnlocalizedName());
+    public TileEntityBCPoweredOrelyzer() {
+        super(4, EnumPoweredMachine.ORELYZER.getFullUnlocalizedName());
         recipeOutput = new ArrayList<ItemStack>();
     }
 
@@ -43,8 +43,8 @@ public class TileEntityPoweredCrusher extends TileEntityPoweredBase implements I
             storedEnergy = powerHandler.getEnergyStored();
 
             if (recipe == null) {
-                if (RecipeManager.get(RecipeManager.Type.CRUSHER, getStackInSlot(0)) != null) {
-                    recipe = (CrusherRecipe) RecipeManager.get(RecipeManager.Type.CRUSHER, getStackInSlot(0));
+                if (RecipeManager.get(RecipeManager.Type.ORELYZER, getStackInSlot(0)) != null) {
+                    recipe = (OrelyzerRecipe) RecipeManager.get(RecipeManager.Type.ORELYZER, getStackInSlot(0));
                     if (recipe.getNeededPower() <= ((int) storedEnergy)) {
                         recipeNeededPower = recipe.getNeededPower();
                         recipeOutput = recipe.getCompleteOutput(random);
@@ -130,7 +130,7 @@ public class TileEntityPoweredCrusher extends TileEntityPoweredBase implements I
         super.writePacketNBT(nbt);
 
         nbt.setShort("processTime", (short) processTime);
-        nbt.setShort("recipe", (short) RecipeManager.toRecipeID(RecipeManager.Type.CRUSHER, recipe));
+        nbt.setShort("recipe", (short) RecipeManager.toRecipeID(RecipeManager.Type.ORELYZER, recipe));
         nbt.setShort("recipePower", (short) recipeNeededPower);
 
         if (recipeOutput != null) {
@@ -151,7 +151,7 @@ public class TileEntityPoweredCrusher extends TileEntityPoweredBase implements I
         super.readPacketNBT(nbt);
 
         processTime = nbt.getShort("processTime");
-        recipe = (CrusherRecipe) RecipeManager.fromRecipeID(RecipeManager.Type.CRUSHER, nbt.getShort("recipe"));
+        recipe = (OrelyzerRecipe) RecipeManager.fromRecipeID(RecipeManager.Type.ORELYZER, nbt.getShort("recipe"));
         recipeNeededPower = nbt.getShort("recipePower");
 
         recipeOutput.clear();

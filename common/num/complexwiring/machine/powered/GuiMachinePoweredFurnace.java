@@ -9,9 +9,9 @@ import java.awt.*;
 
 public class GuiMachinePoweredFurnace extends GuiInventoryBase {
     protected GuiTooltip energyTooltip, progressTooltip;
-    protected TileEntityPoweredFurnace tile;
+    protected TileEntityBCPoweredFurnace tile;
 
-    public GuiMachinePoweredFurnace(InventoryPlayer player, TileEntityPoweredFurnace tile) {
+    public GuiMachinePoweredFurnace(InventoryPlayer player, TileEntityBCPoweredFurnace tile) {
         super(new ContainerMachinePoweredFurnace(player, tile), new ResourceLocation("complexwiring", "textures/gui/machine/powered/" + EnumPoweredMachine.FURNACE.getUnlocalizedName() + ".png"));
         this.tile = tile;
     }

@@ -4,10 +4,10 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
-import num.complexwiring.api.prefab.TileEntityPoweredBase;
+import num.complexwiring.api.prefab.TileEntityBCPoweredBase;
 import num.complexwiring.core.InventoryHelper;
 
-public class TileEntityPoweredFurnace extends TileEntityPoweredBase implements ISidedInventory {
+public class TileEntityBCPoweredFurnace extends TileEntityBCPoweredBase implements ISidedInventory {
 
     private static final int[] SLOTS_OUTPUT = new int[]{2, 3};
     private static final int[] SLOTS_TOP = new int[]{0};
@@ -19,7 +19,7 @@ public class TileEntityPoweredFurnace extends TileEntityPoweredBase implements I
     private int processTime = 0;
     private int recipeNeededPower = 160;
 
-    public TileEntityPoweredFurnace() {
+    public TileEntityBCPoweredFurnace() {
         super(4, EnumPoweredMachine.FURNACE.getFullUnlocalizedName());
     }
 

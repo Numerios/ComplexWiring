@@ -9,9 +9,9 @@ import java.awt.*;
 
 public class GuiMachinePoweredOrelyzer extends GuiInventoryBase {
     protected GuiTooltip energyTooltip, progressTooltip;
-    protected TileEntityPoweredOrelyzer tile;
+    protected TileEntityBCPoweredOrelyzer tile;
 
-    public GuiMachinePoweredOrelyzer(InventoryPlayer player, TileEntityPoweredOrelyzer tile) {
+    public GuiMachinePoweredOrelyzer(InventoryPlayer player, TileEntityBCPoweredOrelyzer tile) {
         super(new ContainerMachinePoweredOrelyzer(player, tile), new ResourceLocation("complexwiring", "textures/gui/machine/powered/" + EnumPoweredMachine.ORELYZER.getUnlocalizedName() + ".png"));
         this.tile = tile;
     }

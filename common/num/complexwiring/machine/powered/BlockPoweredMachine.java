@@ -38,11 +38,11 @@ public class BlockPoweredMachine extends Block implements ITileEntityProvider {
     public TileEntity createTileEntity(World world, int meta) {
         switch (meta) {
             case 0:     //TODO: Make it a little more flexible
-                return new TileEntityPoweredOrelyzer();
+                return new TileEntityBCPoweredOrelyzer();
             case 1:
-                return new TileEntityPoweredFurnace();
+                return new TileEntityBCPoweredFurnace();
             case 2:
-                return new TileEntityPoweredCrusher();
+                return new TileEntityBCPoweredCrusher();
         }
         return null;
     }

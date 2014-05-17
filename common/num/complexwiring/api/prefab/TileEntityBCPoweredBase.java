@@ -6,7 +6,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public abstract class TileEntityPoweredBase extends TileEntityInventoryBase implements IPowerReceptor {
+public abstract class TileEntityBCPoweredBase extends TileEntityInventoryBase implements IPowerReceptor {
     protected static final int USED_ENERGY = 2;
     protected static final int MIN_RECIEVED_ENERGY = 1;
     protected static final int MAX_RECIEVED_ENERGY = 5;
@@ -16,7 +16,7 @@ public abstract class TileEntityPoweredBase extends TileEntityInventoryBase impl
     protected PowerHandler powerHandler;
     protected double storedEnergy;
 
-    public TileEntityPoweredBase(int inventorySize, String name) {
+    public TileEntityBCPoweredBase(int inventorySize, String name) {
         super(inventorySize, name);
         powerHandler = createPowerHandler(type);
     }
