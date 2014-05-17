@@ -5,7 +5,7 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
-import num.complexwiring.api.base.ContainerBase;
+import num.complexwiring.api.prefab.ContainerBase;
 import num.complexwiring.client.slot.SlotMachine;
 import num.complexwiring.client.slot.SlotOutput;
 

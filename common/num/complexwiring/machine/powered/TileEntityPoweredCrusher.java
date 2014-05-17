@@ -4,7 +4,7 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import num.complexwiring.api.base.TileEntityPoweredBase;
+import num.complexwiring.api.prefab.TileEntityPoweredBase;
 import num.complexwiring.api.recipe.CrusherRecipe;
 import num.complexwiring.core.InventoryHelper;
 import num.complexwiring.recipe.RecipeManager;

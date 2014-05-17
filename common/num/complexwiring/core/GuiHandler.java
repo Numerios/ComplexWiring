@@ -7,6 +7,12 @@ import net.minecraft.world.World;
 import num.complexwiring.api.vec.Vector3;
 import num.complexwiring.machine.basic.*;
 import num.complexwiring.machine.powered.*;
+import num.complexwiring.power.electrical.battery.ContainerBattery;
+import num.complexwiring.power.electrical.battery.GuiBattery;
+import num.complexwiring.power.electrical.battery.TileBattery;
+import num.complexwiring.power.electrical.generator.ContainerGenerator;
+import num.complexwiring.power.electrical.generator.GuiGenerator;
+import num.complexwiring.power.electrical.generator.TileGenerator;
 import num.complexwiring.tablet.guidebook.ContainerGuidebook;
 import num.complexwiring.tablet.guidebook.GuiGuidebook;
 import num.complexwiring.tablet.startpaper.GuiStartPaper;
@@ -33,6 +39,10 @@ public class GuiHandler implements IGuiHandler {
             return new ContainerMachinePoweredFurnace(player.inventory, (TileEntityPoweredFurnace) tile);     // Powered Furnace
         } else if (tile instanceof TileEntityPoweredCrusher && vec3.blockMetadata(world) == EnumPoweredMachine.VALID[2].ordinal()) {
             return new ContainerMachinePoweredCrusher(player.inventory, (TileEntityPoweredCrusher) tile);     // Powered Crusher
+        } else if (tile instanceof TileGenerator){
+            return new ContainerGenerator(player.inventory, (TileGenerator) tile);
+        } else if (tile instanceof TileBattery){
+            return new ContainerBattery(player.inventory, (TileBattery) tile);
         } else if (ID == GUIDEBOOK_ID) {
             return new ContainerGuidebook(player.inventory);
         }
@@ -55,6 +65,10 @@ public class GuiHandler implements IGuiHandler {
             return new GuiMachinePoweredFurnace(player.inventory, (TileEntityPoweredFurnace) tile);          // Powered Furnace
         } else if (tile instanceof TileEntityPoweredCrusher && vec3.blockMetadata(world) == EnumPoweredMachine.VALID[2].ordinal()) {
             return new GuiMachinePoweredCrusher(player.inventory, (TileEntityPoweredCrusher) tile);          // Powered Crusher
+        } else if (tile instanceof TileGenerator){
+            return new GuiGenerator(player.inventory, (TileGenerator) tile);
+        } else if (tile instanceof TileBattery){
+            return new GuiBattery(player.inventory, (TileBattery) tile);
         } else if (ID == TABLET_BASIC_ID) {
             return new GuiTablet(player, 0);       // The Tablet!
         } else if (ID == STARTPAPER_ID) {

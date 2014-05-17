@@ -1,4 +1,4 @@
-package num.complexwiring.api.base;
+package num.complexwiring.api.prefab;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.util.ResourceLocation;

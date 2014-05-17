@@ -5,7 +5,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntityFurnace;
-import num.complexwiring.api.base.TileEntityInventoryBase;
+import num.complexwiring.api.prefab.TileEntityInventoryBase;
 import num.complexwiring.api.recipe.OrelyzerRecipe;
 import num.complexwiring.core.InventoryHelper;
 import num.complexwiring.recipe.RecipeManager;

@@ -1,4 +1,4 @@
-package num.complexwiring.api.base;
+package num.complexwiring.api.prefab;
 
 import net.minecraft.tileentity.TileEntity;
 import num.complexwiring.api.vec.Vector3;
