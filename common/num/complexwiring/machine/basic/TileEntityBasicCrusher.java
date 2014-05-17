@@ -18,14 +18,12 @@ public class TileEntityBasicCrusher extends TileEntityInventoryBase implements I
     private static final int[] SLOTS_OUTPUT = new int[]{2, 3};
     private static final int[] SLOTS_TOP = new int[]{0};
     private static final int[] SLOTS_BOTTOM = new int[]{2, 3, 1};
-
+    public int processTime = 0;
+    public int burnTime = 0;
     private Random random = new Random();
-
     private CrusherRecipe recipe;
     private ArrayList<ItemStack> recipeOutput;
     private int recipeNeedTime = 0;
-    public int processTime = 0;
-    public int burnTime = 0;
     private int fuelBurnTime = 0;
 
     public TileEntityBasicCrusher() {

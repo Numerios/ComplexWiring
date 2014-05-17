@@ -38,11 +38,6 @@ public class Vector3 implements Cloneable {
         this(dir.offsetX, dir.offsetY, dir.offsetZ);
     }
 
-    @Override
-    public Vector3 clone() {
-        return new Vector3(this.x, this.y, this.z);
-    }
-
     public Vector3(Vec3 mcvec3) {
         this.x = mcvec3.xCoord;
         this.y = mcvec3.yCoord;
@@ -59,6 +54,11 @@ public class Vector3 implements Cloneable {
 
     public static Vector3 getCenter(TileEntity tile) {
         return new Vector3(tile.xCoord + 0.5, tile.yCoord + 0.5, tile.zCoord + 0.5);
+    }
+
+    @Override
+    public Vector3 clone() {
+        return new Vector3(this.x, this.y, this.z);
     }
 
     // TODO: getCenter(Entity) - needs to offset properly!

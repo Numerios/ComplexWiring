@@ -10,18 +10,6 @@ public class GuidebookPageRegistry {
     public static HashMap<Integer, GuidebookPage> pageMap = new HashMap<Integer, GuidebookPage>();
     public static int MAX_PAGE;
 
-    public static enum EnumPage {
-        PAGE_ONE(new GuidebookPage("page.one")),
-        PAGE_TWO(new GuidebookPage("page.two")),
-        PAGE_THREE(new GuidebookPage("page.three")),
-        PAGE_FOUR(new GuidebookPage("page.four"));
-        public GuidebookPage page;
-
-        private EnumPage(GuidebookPage page) {
-            this.page = page;
-        }
-    }
-
     public static void init() {
         int n = 0;
         for (EnumPage enumPage : EnumPage.values()) {
@@ -37,5 +25,17 @@ public class GuidebookPageRegistry {
             n++;
         }
         MAX_PAGE = n;
+    }
+
+    public static enum EnumPage {
+        PAGE_ONE(new GuidebookPage("page.one")),
+        PAGE_TWO(new GuidebookPage("page.two")),
+        PAGE_THREE(new GuidebookPage("page.three")),
+        PAGE_FOUR(new GuidebookPage("page.four"));
+        public GuidebookPage page;
+
+        private EnumPage(GuidebookPage page) {
+            this.page = page;
+        }
     }
 }

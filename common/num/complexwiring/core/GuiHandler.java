@@ -39,9 +39,9 @@ public class GuiHandler implements IGuiHandler {
             return new ContainerMachinePoweredFurnace(player.inventory, (TileEntityBCPoweredFurnace) tile);     // Powered Furnace
         } else if (tile instanceof TileEntityBCPoweredCrusher && vec3.blockMetadata(world) == EnumPoweredMachine.VALID[2].ordinal()) {
             return new ContainerMachinePoweredCrusher(player.inventory, (TileEntityBCPoweredCrusher) tile);     // Powered Crusher
-        } else if (tile instanceof TileGenerator){
+        } else if (tile instanceof TileGenerator) {
             return new ContainerGenerator(player.inventory, (TileGenerator) tile);
-        } else if (tile instanceof TileBattery){
+        } else if (tile instanceof TileBattery) {
             return new ContainerBattery(player.inventory, (TileBattery) tile);
         } else if (ID == GUIDEBOOK_ID) {
             return new ContainerGuidebook(player.inventory);
@@ -65,9 +65,9 @@ public class GuiHandler implements IGuiHandler {
             return new GuiMachinePoweredFurnace(player.inventory, (TileEntityBCPoweredFurnace) tile);          // Powered Furnace
         } else if (tile instanceof TileEntityBCPoweredCrusher && vec3.blockMetadata(world) == EnumPoweredMachine.VALID[2].ordinal()) {
             return new GuiMachinePoweredCrusher(player.inventory, (TileEntityBCPoweredCrusher) tile);          // Powered Crusher
-        } else if (tile instanceof TileGenerator){
+        } else if (tile instanceof TileGenerator) {
             return new GuiGenerator(player.inventory, (TileGenerator) tile);
-        } else if (tile instanceof TileBattery){
+        } else if (tile instanceof TileBattery) {
             return new GuiBattery(player.inventory, (TileBattery) tile);
         } else if (ID == TABLET_BASIC_ID) {
             return new GuiTablet(player, 0);       // The Tablet!

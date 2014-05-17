@@ -38,29 +38,25 @@ public class EnergyInternalHandler implements IEnergyInternalHandler {
         return this;
     }
 
-    public void setCapacity(long capacity) {
-        this.capacity = capacity;
-    }
-
     public void setMaxTransfer(long maxTransfer) {
         setMaxCharge(maxTransfer);
         setMaxDrain(maxTransfer);
-    }
-
-    public void setMaxCharge(long maxCharge) {
-        this.maxCharge = maxCharge;
-    }
-
-    public void setMaxDrain(long maxDrain) {
-        this.maxDrain = maxDrain;
     }
 
     public long getMaxCharge() {
         return maxCharge;
     }
 
+    public void setMaxCharge(long maxCharge) {
+        this.maxCharge = maxCharge;
+    }
+
     public long getMaxDrain() {
         return maxDrain;
+    }
+
+    public void setMaxDrain(long maxDrain) {
+        this.maxDrain = maxDrain;
     }
 
     public long getRemainingSpace() {
@@ -101,6 +97,10 @@ public class EnergyInternalHandler implements IEnergyInternalHandler {
     @Override
     public long getCapacity() {
         return capacity;
+    }
+
+    public void setCapacity(long capacity) {
+        this.capacity = capacity;
     }
 
     @Override

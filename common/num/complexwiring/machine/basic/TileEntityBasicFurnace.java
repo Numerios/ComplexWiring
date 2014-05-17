@@ -13,11 +13,10 @@ public class TileEntityBasicFurnace extends TileEntityInventoryBase implements I
     private static final int[] SLOTS_OUTPUT = new int[]{2, 3};
     private static final int[] SLOTS_TOP = new int[]{0};
     private static final int[] SLOTS_BOTTOM = new int[]{2, 3, 1};
-
-    private ItemStack recipe;
-    private int recipeNeededTime = 160;
     public int processTime = 0;
     public int burnTime = 0;
+    private ItemStack recipe;
+    private int recipeNeededTime = 160;
     private int fuelBurnTime = 0;
 
     public TileEntityBasicFurnace() {
