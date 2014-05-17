@@ -105,6 +105,8 @@ item.complexwiring.base.ingot.tin.name=Tin Ingot
 item.complexwiring.base.ingot.silver.name=Silver Ingot
 item.complexwiring.base.ingot.lead.name=Lead Ingot
 
+item.complexwiring.base.dust.iron.name=Iron Dust
+item.complexwiring.base.dust.gold.name=Gold Dust
 item.complexwiring.base.dust.copper.name=Copper Dust
 item.complexwiring.base.dust.tin.name=Tin Dust
 item.complexwiring.base.dust.silver.name=Silver Dust
@@ -112,3 +114,16 @@ item.complexwiring.base.dust.lead.name=Leaden Dust
 
 item.complexwiring.tablet.name=Tablet
 item.complexwiring.tablet.startpaper.name=§lThe Beginning
+item.complexwiring.tablet.guidebook.name=§lThe Guidebook
+
+research.complexwiring.research.first.name=First!
+research.complexwiring.research.first.desc=IT BEGINS!
+
+research.complexwiring.research.second.name=Second!
+research.complexwiring.research.second.desc=IT HAS BEGUN!
+
+research.complexwiring.task.solid.stone.name=Stone. Get it.
+research.complexwiring.task.solid.stone.desc=YER PEASANT, GET STONE(D).
+
+research.complexwiring.task.solid.wood.name=Chop Chop
+research.complexwiring.task.solid.wood.desc=Get. That. Wood.

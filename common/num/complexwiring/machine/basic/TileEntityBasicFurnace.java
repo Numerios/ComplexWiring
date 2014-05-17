@@ -5,10 +5,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntityFurnace;
-import num.complexwiring.api.base.TileEntityInventoryBase;
-import num.complexwiring.api.vec.Vector3;
+import num.complexwiring.api.prefab.TileEntityInventoryBase;
 import num.complexwiring.core.InventoryHelper;
-import num.complexwiring.core.PacketHandler;
 
 public class TileEntityBasicFurnace extends TileEntityInventoryBase implements ISidedInventory {
 
@@ -26,16 +24,16 @@ public class TileEntityBasicFurnace extends TileEntityInventoryBase implements I
         super(4, EnumBasicMachine.FURNACE.getFullUnlocalizedName());
     }
 
-    public void update(){
+    public void update() {
         super.update();
 
         if (!worldObj.isRemote) {
-            if(recipe == null) {
-                if(inventory[0] != null && FurnaceRecipes.smelting().getSmeltingResult(inventory[0]) != null) {
+            if (recipe == null) {
+                if (inventory[0] != null && FurnaceRecipes.smelting().getSmeltingResult(inventory[0]) != null) {
                     recipe = FurnaceRecipes.smelting().getSmeltingResult(inventory[0]).copy();
 
                     takeFuel();
-                    if(burnTime > 0){
+                    if (burnTime > 0) {
                         inventory[0].stackSize--;
 
                         if (getStackInSlot(0).stackSize <= 0) {
@@ -46,28 +44,25 @@ public class TileEntityBasicFurnace extends TileEntityInventoryBase implements I
                     }
                 }
             }
-            if(burnTime > 0){
+            if (burnTime > 0) {
                 burnTime--;
             }
-            if(recipe != null) {
+            if (recipe != null) {
                 processTime++;
 
-                if(processTime >= recipeNeededTime) {
+                if (processTime >= recipeNeededTime) {
                     endProcessing();
                 }
-                if(burnTime == 0) takeFuel();
+                if (burnTime == 0) takeFuel();
             }
             if (ticks % 4 == 0) {
-                PacketHandler.sendPacket(getDescriptionPacket(), worldObj, Vector3.get(this));
+                worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
+                markDirty();
             }
         }
-        //TODO: DO NOT LOAD IT ALL THE TIME!
-        worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
-        onInventoryChanged();
-
     }
 
-    public void endProcessing(){
+    public void endProcessing() {
         if (recipe != null) {
             for (int i : SLOTS_OUTPUT) {
                 if (getStackInSlot(i) == null) {
@@ -88,15 +83,15 @@ public class TileEntityBasicFurnace extends TileEntityInventoryBase implements I
         processTime = 0;
     }
 
-    public void takeFuel(){
-        if(burnTime == 0){
+    public void takeFuel() {
+        if (burnTime == 0) {
             if (getStackInSlot(1) != null) {
                 fuelBurnTime = getFuelBurnTime(inventory[1]);
-                if(fuelBurnTime != 0){
+                if (fuelBurnTime != 0) {
                     burnTime = fuelBurnTime;
                     inventory[1].stackSize--;
                     if (getStackInSlot(1).stackSize == 0) {
-                        inventory[1] = inventory[1].getItem().getContainerItemStack(inventory[1]);
+                        inventory[1] = inventory[1].getItem().getContainerItem(inventory[1]);
                     }
                 }
             } else {
@@ -108,20 +103,20 @@ public class TileEntityBasicFurnace extends TileEntityInventoryBase implements I
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound nbt) {
-        super.writeToNBT(nbt);
+    public void writePacketNBT(NBTTagCompound nbt) {
+        super.writePacketNBT(nbt);
 
-        NBTTagCompound recipeTag = new NBTTagCompound("recipe");
-        if(recipe != null) recipe.writeToNBT(recipeTag);
-        nbt.setCompoundTag("recipe", recipeTag);
+        NBTTagCompound recipeTag = new NBTTagCompound();
+        if (recipe != null) recipe.writeToNBT(recipeTag);
+        nbt.setTag("recipe", recipeTag);
         nbt.setShort("burnTime", (short) burnTime);
         nbt.setShort("processTime", (short) processTime);
         nbt.setShort("fuelBurnTime", (short) fuelBurnTime);
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound nbt) {
-        super.readFromNBT(nbt);
+    public void readPacketNBT(NBTTagCompound nbt) {
+        super.readPacketNBT(nbt);
 
         recipe = ItemStack.loadItemStackFromNBT(nbt.getCompoundTag("recipe"));
         burnTime = nbt.getShort("burnTime");

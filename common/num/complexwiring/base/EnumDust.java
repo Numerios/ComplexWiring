@@ -1,13 +1,15 @@
 package num.complexwiring.base;
 
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraftforge.oredict.OreDictionary;
 import num.complexwiring.lib.Reference;
 import num.complexwiring.lib.Strings;
 
 public enum EnumDust {
+    IRON(Strings.DUST_IRON_NAME),
+    GOLD(Strings.DUST_GOLD_NAME),
     COPPER(Strings.DUST_COPPER_NAME),
     TIN(Strings.DUST_TIN_NAME),
     SILVER(Strings.DUST_SILVER_NAME),
@@ -16,7 +18,7 @@ public enum EnumDust {
     public static final EnumDust[] VALID = values();
     public final String name;
     public final int meta = this.ordinal();
-    public Icon icon;
+    public IIcon icon;
 
     private EnumDust(String name) {
         this.name = name;
@@ -27,7 +29,7 @@ public enum EnumDust {
         return ModuleBase.dust.getUnlocalizedName() + "." + name.toLowerCase().substring(4);
     }
 
-    public void registerIcon(IconRegister ir) {
+    public void registerIcon(IIconRegister ir) {
         icon = ir.registerIcon(Reference.TEXTURE_PATH + name);
     }
 

@@ -1,12 +1,13 @@
 package num.complexwiring.world.decor;
 
+import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import num.complexwiring.world.ModuleWorld;
 
 public class ItemBlockDecor extends ItemBlock {
-    public ItemBlockDecor(int ID) {
-        super(ID);
+    public ItemBlockDecor(Block block) {
+        super(block);
         setHasSubtypes(true);
         setMaxDamage(0);
     }

@@ -1,10 +1,10 @@
 package num.complexwiring.machine.powered;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
-import num.complexwiring.api.base.TileEntityInventoryBase;
+import net.minecraft.util.IIcon;
+import num.complexwiring.api.prefab.TileEntityInventoryBase;
 import num.complexwiring.lib.Reference;
 import num.complexwiring.lib.Strings;
 import num.complexwiring.machine.ModuleMachine;
@@ -19,7 +19,7 @@ public enum EnumPoweredMachine {
     public final String name, desc;
     public final Class<? extends TileEntityInventoryBase> tile;
     public final int meta = this.ordinal();
-    public Icon icon;
+    public IIcon icon;
 
     EnumPoweredMachine(String name, String desc, Class<? extends TileEntityInventoryBase> tile) {
         this.name = name;
@@ -32,7 +32,7 @@ public enum EnumPoweredMachine {
         return name.toLowerCase().substring(7 + 7);
     }
 
-    public void registerIcon(IconRegister ir) {
+    public void registerIcon(IIconRegister ir) {
         icon = ir.registerIcon(Reference.TEXTURE_PATH + name);
     }
 

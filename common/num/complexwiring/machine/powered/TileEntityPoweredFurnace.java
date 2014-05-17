@@ -4,14 +4,8 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.packet.Packet;
-import num.complexwiring.api.base.TileEntityPoweredBase;
-import num.complexwiring.api.vec.Vector3;
+import num.complexwiring.api.prefab.TileEntityPoweredBase;
 import num.complexwiring.core.InventoryHelper;
-import num.complexwiring.core.PacketHandler;
-
-import java.io.DataInputStream;
-import java.io.IOException;
 
 public class TileEntityPoweredFurnace extends TileEntityPoweredBase implements ISidedInventory {
 
@@ -41,11 +35,11 @@ public class TileEntityPoweredFurnace extends TileEntityPoweredBase implements I
         if (!worldObj.isRemote) {
             storedEnergy = powerHandler.getEnergyStored();
 
-            if(recipe == null) {
-                if(FurnaceRecipes.smelting().getSmeltingResult(inventory[0]) != null) {
+            if (recipe == null && inventory[0] != null) {
+                if (FurnaceRecipes.smelting().getSmeltingResult(inventory[0]) != null) {
                     recipe = FurnaceRecipes.smelting().getSmeltingResult(inventory[0]).copy();
 
-                    if(recipeNeededPower <= ((int) storedEnergy)){
+                    if (recipeNeededPower <= ((int) storedEnergy)) {
                         inventory[0].stackSize--;
 
                         if (getStackInSlot(0).stackSize <= 0) {
@@ -56,13 +50,13 @@ public class TileEntityPoweredFurnace extends TileEntityPoweredBase implements I
                     }
                 }
             }
-            if(recipe != null) {
-                if(storedEnergy > 0){
+            if (recipe != null) {
+                if (storedEnergy > 0) {
                     powerHandler.useEnergy(USED_ENERGY, USED_ENERGY, true);
                     storedEnergy = powerHandler.getEnergyStored();
                     processTime++;
 
-                    if(processTime >= recipeNeededPower) {
+                    if (processTime >= recipeNeededPower) {
                         endProcessing();
                     }
                 } else {
@@ -72,15 +66,13 @@ public class TileEntityPoweredFurnace extends TileEntityPoweredBase implements I
                 }
             }
             if (ticks % 4 == 0) {
-                PacketHandler.sendPacket(getDescriptionPacket(), worldObj, Vector3.get(this));
+                worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
+                markDirty();
             }
         }
-        //TODO: DO NOT LOAD IT ALL THE TIME!
-        worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
-        onInventoryChanged();
     }
 
-    public void endProcessing(){
+    public void endProcessing() {
         if (recipe != null && recipe.stackSize != 0) {
             for (int i : SLOTS_OUTPUT) {
                 if (getStackInSlot(i) == null) {
@@ -117,27 +109,20 @@ public class TileEntityPoweredFurnace extends TileEntityPoweredBase implements I
     }
 
     @Override
-    public Packet getDescriptionPacket() {
-        return PacketHandler.getPacket(this, EnumPoweredMachine.FURNACE.ordinal());
-    }
+    public void writePacketNBT(NBTTagCompound nbt) {
+        super.writePacketNBT(nbt);
 
-    @Override
-    public void handlePacket(DataInputStream is) throws IOException {
-    }
-
-    @Override
-    public void writeToNBT(NBTTagCompound nbt) {
-        super.writeToNBT(nbt);
-
-        NBTTagCompound recipeTag = new NBTTagCompound("recipe");
-        if(recipe != null) recipe.writeToNBT(recipeTag);
-        nbt.setCompoundTag("recipe", recipeTag);
+        if (recipe != null) {
+            NBTTagCompound recipeTag = new NBTTagCompound();
+            recipe.writeToNBT(recipeTag);
+            nbt.setTag("recipe", recipeTag);
+        }
         nbt.setShort("processTime", (short) processTime);
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound nbt) {
-        super.readFromNBT(nbt);
+    public void readPacketNBT(NBTTagCompound nbt) {
+        super.readPacketNBT(nbt);
 
         recipe = ItemStack.loadItemStackFromNBT(nbt.getCompoundTag("recipe"));
         processTime = nbt.getShort("processTime");

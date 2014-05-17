@@ -1,12 +1,13 @@
 package num.complexwiring.core;
 
-import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class CreativeTabCW extends CreativeTabs {
 
-    private ItemStack icon = new ItemStack(Block.stone, 1);
+    private ItemStack icon = new ItemStack(Blocks.stone, 1);
 
     public CreativeTabCW(String name, ItemStack is) {
         super(name);
@@ -18,6 +19,11 @@ public class CreativeTabCW extends CreativeTabs {
     @Override
     public ItemStack getIconItemStack() {
         return icon;
+    }
+
+    @Override
+    public Item getTabIconItem() {
+        return icon.getItem();
     }
 
     public void setIcon(ItemStack is) {

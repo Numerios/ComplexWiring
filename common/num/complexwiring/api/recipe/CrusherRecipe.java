@@ -19,7 +19,7 @@ public class CrusherRecipe implements ICWRecipe {
         this.outputs = outputs;
         this.neededPower = neededPower;
 
-        oreDictionary = OreDictionary.getOreName(input.itemID);
+        oreDictionary = OreDictionary.getOreName(OreDictionary.getOreID(input));
     }
 
     public boolean matches(ItemStack is) {

@@ -13,7 +13,7 @@ public class WorldGenerator implements IWorldGenerator {
     private Random rand;
 
     public WorldGenerator() {
-        GameRegistry.registerWorldGenerator(this);
+        GameRegistry.registerWorldGenerator(this, 0);
         rand = new Random();
     }
 

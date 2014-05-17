@@ -109,6 +109,8 @@ public class Strings {
     public static final String INGOT_SILVER_NAME = "ingotSilver";
     public static final String INGOT_LEAD_NAME = "ingotLead";
 
+    public static final String DUST_IRON_NAME = "dustIron";
+    public static final String DUST_GOLD_NAME = "dustGold";
     public static final String DUST_COPPER_NAME = "dustCopper";
     public static final String DUST_TIN_NAME = "dustTin";
     public static final String DUST_SILVER_NAME = "dustSilver";
@@ -130,4 +132,10 @@ public class Strings {
 
     public static final String TABLET_NAME = "tablet";
     public static final String STARTPAPER_NAME = "startpaper";
+    public static final String GUIDEBOOK_NAME = "guidebook";
+
+    public static final String SAW_NAME = "saw";
+    public static final String SMASHER_NAME = "smasher";
+
+    public static final String DRIVESHAFT_NAME = "driveShaft";
 }

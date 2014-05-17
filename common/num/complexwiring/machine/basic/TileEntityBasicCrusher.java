@@ -4,17 +4,12 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.network.packet.Packet;
 import net.minecraft.tileentity.TileEntityFurnace;
-import num.complexwiring.api.base.TileEntityInventoryBase;
-import num.complexwiring.api.vec.Vector3;
-import num.complexwiring.core.InventoryHelper;
-import num.complexwiring.core.PacketHandler;
+import num.complexwiring.api.prefab.TileEntityInventoryBase;
 import num.complexwiring.api.recipe.CrusherRecipe;
+import num.complexwiring.core.InventoryHelper;
 import num.complexwiring.recipe.RecipeManager;
 
-import java.io.DataInputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -38,39 +33,36 @@ public class TileEntityBasicCrusher extends TileEntityInventoryBase implements I
         recipeOutput = new ArrayList<ItemStack>();
     }
 
-    public void update(){
+    public void update() {
         super.update();
 
         if (!worldObj.isRemote) {
-            if(recipe == null) {
-                if(canBeProcessed()) {
+            if (recipe == null) {
+                if (canBeProcessed()) {
                     startProcessing();
                 }
             }
-            if(burnTime > 0){
+            if (burnTime > 0) {
                 burnTime--;
             }
-            if(recipe != null) {
-                if(burnTime > 0){
+            if (recipe != null) {
+                if (burnTime > 0) {
                     processTime++;
 
-                    if(processTime >= recipeNeedTime) {
+                    if (processTime >= recipeNeedTime) {
                         endProcessing();
                     }
                 }
-                if(burnTime == 0) takeFuel();
+                if (burnTime == 0) takeFuel();
             }
             if (ticks % 4 == 0) {
-                PacketHandler.sendPacket(getDescriptionPacket(), worldObj, Vector3.get(this));
+                worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
+                markDirty();
             }
         }
-        //TODO: DO NOT LOAD IT ALL THE TIME!
-        worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
-        onInventoryChanged();
-
     }
 
-    public boolean canBeProcessed(){
+    public boolean canBeProcessed() {
         if (RecipeManager.get(RecipeManager.Type.CRUSHER, getStackInSlot(0)) == null) {
             return false;
         } else {
@@ -80,15 +72,15 @@ public class TileEntityBasicCrusher extends TileEntityInventoryBase implements I
         }
     }
 
-    public void takeFuel(){
-        if(burnTime == 0){
+    public void takeFuel() {
+        if (burnTime == 0) {
             if (getStackInSlot(1) != null) {
                 fuelBurnTime = getFuelBurnTime(inventory[1]);
-                if(fuelBurnTime != 0){
+                if (fuelBurnTime != 0) {
                     burnTime = fuelBurnTime;
                     inventory[1].stackSize--;
                     if (getStackInSlot(1).stackSize == 0) {
-                        inventory[1] = inventory[1].getItem().getContainerItemStack(inventory[1]);
+                        inventory[1] = inventory[1].getItem().getContainerItem(inventory[1]);
                     }
                 }
             } else {
@@ -101,8 +93,8 @@ public class TileEntityBasicCrusher extends TileEntityInventoryBase implements I
         }
     }
 
-    public void startProcessing(){
-        if(recipe != null &&  burnTime > 0){
+    public void startProcessing() {
+        if (recipe != null && burnTime > 0) {
             recipeNeedTime = recipe.getNeededPower();
             recipeOutput = recipe.getCompleteOutput(random);
 
@@ -114,7 +106,7 @@ public class TileEntityBasicCrusher extends TileEntityInventoryBase implements I
         }
     }
 
-    public void endProcessing(){
+    public void endProcessing() {
         if (recipeOutput != null && recipeOutput.size() > 0) {
             for (ItemStack output : recipeOutput) {
                 if (output != null && output.stackSize != 0) {
@@ -169,9 +161,7 @@ public class TileEntityBasicCrusher extends TileEntityInventoryBase implements I
 
     @Override
     public boolean canInsertItem(int slot, ItemStack is, int side) {
-        if(slot == 2 || slot == 3) return false;
-
-        return isItemValidForSlot(slot, is);
+        return !(slot == 2 || slot == 3) && isItemValidForSlot(slot, is);
     }
 
     @Override
@@ -180,8 +170,8 @@ public class TileEntityBasicCrusher extends TileEntityInventoryBase implements I
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound nbt) {
-        super.writeToNBT(nbt);
+    public void writePacketNBT(NBTTagCompound nbt) {
+        super.writePacketNBT(nbt);
 
         nbt.setShort("recipe", (short) RecipeManager.toRecipeID(RecipeManager.Type.CRUSHER, recipe));
         nbt.setShort("burnTime", (short) burnTime);
@@ -203,8 +193,8 @@ public class TileEntityBasicCrusher extends TileEntityInventoryBase implements I
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound nbt) {
-        super.readFromNBT(nbt);
+    public void readPacketNBT(NBTTagCompound nbt) {
+        super.readPacketNBT(nbt);
 
         recipe = (CrusherRecipe) RecipeManager.fromRecipeID(RecipeManager.Type.CRUSHER, nbt.getShort("recipe"));
         burnTime = nbt.getShort("burnTime");
@@ -213,20 +203,12 @@ public class TileEntityBasicCrusher extends TileEntityInventoryBase implements I
         fuelBurnTime = nbt.getShort("fuelBurnTime");
 
         recipeOutput.clear();
-        NBTTagList outputNBT = nbt.getTagList("currentOutput");
-        for (int i = 0; i < outputNBT.tagCount(); i++) {
-            NBTTagCompound itemNBT = (NBTTagCompound) outputNBT.tagAt(i);
-            recipeOutput.add(ItemStack.loadItemStackFromNBT(itemNBT));
+        NBTTagList outputNBT = (NBTTagList) nbt.getTag("currentOutput");
+        if (outputNBT != null) {
+            for (int i = 0; i < outputNBT.tagCount(); i++) {
+                NBTTagCompound itemNBT = outputNBT.getCompoundTagAt(i);
+                recipeOutput.add(ItemStack.loadItemStackFromNBT(itemNBT));
+            }
         }
     }
-
-    @Override
-    public Packet getDescriptionPacket() {
-        return PacketHandler.getPacket(this, EnumBasicMachine.FURNACE.ordinal());
-    }
-
-    @Override
-    public void handlePacket(DataInputStream is) throws IOException {
-    }
-
 }

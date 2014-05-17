@@ -2,9 +2,10 @@ package num.complexwiring.world.decor;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.util.Icon;
+import net.minecraft.item.Item;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import num.complexwiring.lib.Reference;
 import num.complexwiring.world.ModuleWorld;
@@ -12,28 +13,28 @@ import num.complexwiring.world.ModuleWorld;
 import java.util.List;
 
 public class BlockDecor extends Block {
-    public BlockDecor(int ID) {
-        super(ID, Material.rock);
-        setUnlocalizedName(Reference.MOD_ID.toLowerCase() + ".world.decor");
+    public BlockDecor() {
+        super(Material.rock);
+        setBlockName(Reference.MOD_ID.toLowerCase() + ".world.decor");
         setHardness(2.0F);
         setResistance(3.0F);
         setCreativeTab(ModuleWorld.tabCWWorld);
     }
 
     @Override
-    public Icon getIcon(int side, int meta) {
+    public IIcon getIcon(int side, int meta) {
         return EnumDecor.VALID[meta].icon;
     }
 
     @Override
-    public void registerIcons(IconRegister ir) {
+    public void registerBlockIcons(IIconRegister ir) {
         for (EnumDecor orePrimary : EnumDecor.VALID) {
             orePrimary.registerIcon(ir);
         }
     }
 
     @Override
-    public void getSubBlocks(int ID, CreativeTabs tab, List list) {
+    public void getSubBlocks(Item item, CreativeTabs tab, List list) {
         for (EnumDecor orePrimary : EnumDecor.VALID) {
             list.add(orePrimary.getIS(1));
         }
@@ -41,9 +42,9 @@ public class BlockDecor extends Block {
 
     @Override
     public int damageDropped(int meta) {
-        if(meta == EnumDecor.ARENITE.meta) return EnumDecor.ARENITE_ROUGH.meta;
-        if(meta == EnumDecor.DOLOMITE.meta) return EnumDecor.DOLOMITE_ROUGH.meta;
-        if(meta == EnumDecor.LIMESTONE.meta) return EnumDecor.LIMESTONE_ROUGH.meta;
+        if (meta == EnumDecor.ARENITE.meta) return EnumDecor.ARENITE_ROUGH.meta;
+        if (meta == EnumDecor.DOLOMITE.meta) return EnumDecor.DOLOMITE_ROUGH.meta;
+        if (meta == EnumDecor.LIMESTONE.meta) return EnumDecor.LIMESTONE_ROUGH.meta;
 
         return meta;
     }

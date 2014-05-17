@@ -1,7 +1,6 @@
 package num.complexwiring.api.recipe;
 
 import net.minecraft.item.ItemStack;
-import num.complexwiring.api.recipe.RecipeRandomOutput;
 import num.complexwiring.recipe.RecipeManager;
 
 import java.util.ArrayList;
@@ -13,10 +12,15 @@ import java.util.Random;
 public interface ICWRecipe {
 
     public ItemStack getInput();
+
     public boolean matches(ItemStack is);
+
     public int getNeededPower();
+
     public RecipeRandomOutput[] getOutputs();
+
     public ArrayList<ItemStack> getCompleteOutput(Random rand);
+
     public RecipeManager.Type getType();
 
 }

@@ -7,9 +7,12 @@ bin/
 /*.iws
 .idea/
 
-# To ignore APIs #
-libs/
-
 # To ignore other potentially unwanted files #
 *.psd
 
+# To ignore Gradle's building stuff #
+.gradle/
+build/
+
+# To ignore hidden surprises! #
+common/num/complexwiring/power

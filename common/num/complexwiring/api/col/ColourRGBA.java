@@ -13,15 +13,19 @@ public class ColourRGBA {
         this.g = (byte) g;
         this.b = (byte) b;
         this.a = (byte) a;
-        colour = this.getInt();
+        colour = this.getIntRGBA();
     }
 
     public ColourRGBA(int colour) {
         this((colour >> 24) & 0xFF, (colour >> 16) & 0xFF, (colour >> 8) & 0xFF, colour & 0xFF);
     }
 
-    public int getInt() {
+    public int getIntRGBA() {
         return (this.r & 0xFF) << 24 | (this.g & 0xFF) << 16 | (this.b & 0xFF) << 8 | (this.a & 0xFF);
+    }
+
+    public int getIntRGB() {
+        return (this.r & 0xFF) << 16 | (this.g & 0xFF) << 8 | (this.b & 0xFF);
     }
 
     public ColourRGBA add(ColourRGBA other) {
@@ -58,6 +62,6 @@ public class ColourRGBA {
 
     @Override
     public String toString() {
-        return "0x" + Integer.toHexString(this.getInt()).toUpperCase();
+        return "0x" + Integer.toHexString(this.getIntRGBA()).toUpperCase();
     }
 }
