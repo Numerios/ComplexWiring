@@ -7,7 +7,6 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
 public class ContainerBase extends Container {
-
     protected final TileEntityInventoryBase tile;
 
     public ContainerBase(InventoryPlayer playerInv, TileEntityInventoryBase tile) {

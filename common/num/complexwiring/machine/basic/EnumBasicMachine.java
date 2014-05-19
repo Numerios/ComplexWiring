@@ -10,7 +10,6 @@ import num.complexwiring.lib.Strings;
 import num.complexwiring.machine.ModuleMachine;
 
 public enum EnumBasicMachine {
-
     ORELYZER(Strings.MACHINE_BASIC_ORELYZER_NAME, Strings.MACHINE_BASIC_ORELYZER_DESC, TileEntityBasicOrelyzer.class),
     FURNACE(Strings.MACHINE_BASIC_FURNACE_NAME, Strings.MACHINE_BASIC_FURNACE_DESC, TileEntityBasicFurnace.class),
     CRUSHER(Strings.MACHINE_BASIC_CRUSHER_NAME, Strings.MACHINE_BASIC_CRUSHER_DESC, TileEntityBasicCrusher.class);
@@ -28,7 +27,7 @@ public enum EnumBasicMachine {
     }
 
     public String getUnlocalizedName() {
-        // removes the "machine" and "Basic" from the name and makes it lowercase (ex. machineBasic -> machine)
+        // removes the "machine" and "Basic" from the name and makes it lowercase (ex. machineBasicSomething -> something)
         return name.toLowerCase().substring(7 + 5);
     }
 
