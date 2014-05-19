@@ -9,6 +9,7 @@ bin/
 
 # To ignore other potentially unwanted files #
 *.psd
+*.jar
 
 # To ignore Gradle's building stuff #
 .gradle/
