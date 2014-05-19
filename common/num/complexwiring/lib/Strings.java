@@ -62,9 +62,7 @@ public class Strings {
     // STONE/COBBLE Secondary
     public static final String ORE_PYROLUSITE_NAME = "orePyrolusite";
     public static final String ORE_CINNABAR_NAME = "oreCinnabar";
-    public static final String ORE_DOLOMITE_NAME = "oreDolomite";
     public static final String ORE_SPHALERITE_NAME = "oreSphalerite";
-    public static final String ORE_LIMESTONE_NAME = "oreLimestone";
     public static final String ORE_LIME_NAME = "oreLime";
     public static final String ORE_COBALTITE_NAME = "oreCobaltite";
 
@@ -116,6 +114,12 @@ public class Strings {
     public static final String DUST_SILVER_NAME = "dustSilver";
     public static final String DUST_LEAD_NAME = "dustLead";
 
+    public static final String NUGGET_IRON_NAME = "nuggetIron";
+    public static final String NUGGET_COPPER_NAME = "nuggetCopper";
+    public static final String NUGGET_TIN_NAME = "nuggetTin";
+    public static final String NUGGET_SILVER_NAME = "nuggetSilver";
+    public static final String NUGGET_LEAD_NAME = "nuggetLead";
+
     public static final String MACHINE_BASIC_ORELYZER_NAME = "machineBasicOrelyzer";
     public static final String MACHINE_BASIC_ORELYZER_DESC = StatCollector.translateToLocal("tile.complexwiring.machine.basic.orelyzer.desc");
     public static final String MACHINE_BASIC_FURNACE_NAME = "machineBasicFurnace";
@@ -137,5 +141,5 @@ public class Strings {
     public static final String SAW_NAME = "saw";
     public static final String SMASHER_NAME = "smasher";
 
-    public static final String DRIVESHAFT_NAME = "driveShaft";
+    public static final String DRIVESHAFT_NAME = "driveShaft";     //you ain't seen nuthin'
 }

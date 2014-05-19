@@ -9,17 +9,17 @@ import num.complexwiring.lib.Reference;
 
 import java.util.List;
 
-public class ItemDust extends Item {
-    public ItemDust() {
+public class ItemNugget extends Item{
+    public ItemNugget() {
         super();
-        setUnlocalizedName(Reference.MOD_ID.toLowerCase() + ".base.dust");
+        setUnlocalizedName(Reference.MOD_ID.toLowerCase() + ".base.nugget");
         setCreativeTab(ModuleBase.tabCWBase);
     }
 
     @Override
     public void registerIcons(IIconRegister ir) {
-        for (EnumDust dust : EnumDust.VALID) {
-            dust.registerIcon(ir);
+        for (EnumNugget nugget : EnumNugget.VALID) {
+            nugget.registerIcon(ir);
         }
     }
 
@@ -30,24 +30,24 @@ public class ItemDust extends Item {
 
     @Override
     public IIcon getIconFromDamage(int meta) {
-        return EnumDust.VALID[meta].icon;
+        return EnumNugget.VALID[meta].icon;
     }
 
     @Override
     public String getUnlocalizedName(ItemStack is) {
-        return EnumDust.VALID[is.getItemDamage()].getUnlocalizedName();
+        return EnumNugget.VALID[is.getItemDamage()].getUnlocalizedName();
     }
 
     @Override
     public void getSubItems(Item item, CreativeTabs tab, List list) {
-        for (int i = 0; i < EnumDust.VALID.length; i++) {
-            list.add(EnumDust.VALID[i].getIS(1));
+        for (int i = 0; i < EnumNugget.VALID.length; i++) {
+            list.add(EnumNugget.VALID[i].getIS(1));
         }
     }
 
     public void registerOres() {
-        for (EnumDust dust : EnumDust.VALID) {
-            dust.registerOre();
+        for (EnumNugget nugget : EnumNugget.VALID) {
+            nugget.registerOre();
         }
     }
 }

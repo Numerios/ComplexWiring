@@ -1,6 +1,8 @@
 itemGroup.tabCWBase=Complex Wiring - Base
 itemGroup.tabCWWorld=Complex Wiring - World
 itemGroup.tabCWMachine=Complex Wiring - Machine
+itemGroup.tabCWPower=Complex Wiring - Power
+itemGroup.tabCWTools=Complex Wiring - Tools
 
 tile.complexwiring.world.ore.primary.copper.name=Copper Ore
 tile.complexwiring.world.ore.primary.tin.name=Tin Ore
@@ -110,7 +112,13 @@ item.complexwiring.base.dust.gold.name=Gold Dust
 item.complexwiring.base.dust.copper.name=Copper Dust
 item.complexwiring.base.dust.tin.name=Tin Dust
 item.complexwiring.base.dust.silver.name=Silver Dust
-item.complexwiring.base.dust.lead.name=Leaden Dust
+item.complexwiring.base.dust.lead.name=Lead Dust
+
+item.complexwiring.base.nugget.iron.name=Iron Nugget
+item.complexwiring.base.nugget.copper.name=Copper Nugget
+item.complexwiring.base.nugget.tin.name=Tin Nugget
+item.complexwiring.base.nugget.silver.name=Silver Nugget
+item.complexwiring.base.nugget.lead.name=Lead Nugget
 
 item.complexwiring.tablet.name=Tablet
 item.complexwiring.tablet.startpaper.name=§lThe Beginning
