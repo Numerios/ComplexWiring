@@ -110,10 +110,18 @@ item.complexwiring.base.ingot.tin.name=Cínový ingot
 item.complexwiring.base.ingot.silver.name=Stříbrný ingot
 item.complexwiring.base.ingot.lead.name=Olověný ingot
 
+item.complexwiring.base.dust.iron.name=Železný prášek
+item.complexwiring.base.dust.gold.name=Zlatý prášek
 item.complexwiring.base.dust.copper.name=Měděný prášek
 item.complexwiring.base.dust.tin.name=Cínový prášek
 item.complexwiring.base.dust.silver.name=Stříbrný prášek
 item.complexwiring.base.dust.lead.name=Olověný prášek
+
+item.complexwiring.base.nugget.iron.name=Železný nuget
+item.complexwiring.base.nugget.copper.name=Měděný nuget
+item.complexwiring.base.nugget.tin.name=Cínový nuget
+item.complexwiring.base.nugget.silver.name=Stříbrný nuget
+item.complexwiring.base.nugget.lead.name=Olověný nuget
 
 item.complexwiring.tablet.name=Tablet
 item.complexwiring.tablet.startpaper.name=§lPočátek
