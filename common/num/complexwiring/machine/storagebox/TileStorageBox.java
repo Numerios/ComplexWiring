@@ -1,28 +1,32 @@
 package num.complexwiring.machine.storagebox;
 
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.ForgeDirection;
 import num.complexwiring.api.prefab.IFacing;
 import num.complexwiring.api.prefab.TileEntityInventoryBase;
+import num.complexwiring.core.Logger;
 
-public class TileStorageBox extends TileEntityInventoryBase implements IStorageBox, IFacing {
+public abstract class TileStorageBox extends TileEntityInventoryBase implements IStorageBox, IFacing {
     private ItemStack containing;
     private ForgeDirection facing;
 
-    public TileStorageBox(EnumStorageBox storageBox) {
-        super(storageBox.capacity, storageBox.getFullUnlocalizedName());
+    public TileStorageBox(int capacity, String tileName) {
+        super(capacity, tileName);
         facing = ForgeDirection.NORTH;
     }
 
     @Override
     public void update() {
         super.update();
-        if (!this.world().isRemote) {
-            //    if (ticks % 5 == 0) {
-            world().markBlockForUpdate(xCoord, yCoord, zCoord);
+        if (!this.worldObj.isRemote) {
+            if (ticks % 10 == 0) {
+                Logger.debug("Containing: " + getContaining());
+            }
+            worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
             markDirty();
-            //    }
         }
     }
 
@@ -108,6 +112,88 @@ public class TileStorageBox extends TileEntityInventoryBase implements IStorageB
         }
     }
 
+    public void onLeftClick(EntityPlayer player) {      // <- I be buggy -.-
+        if (getContaining() == null) {
+            return;
+        }
+        int target;
+        if (!world().isRemote) {
+            if (player.isSneaking()) {
+                target = 1;
+            } else {
+                target = 64;      //maxStackSize = ejectAll
+            }
+            int ejected = 0;
+            if (getContaining() != null && target > 0) {
+                for (int slot = 0; slot < getSizeInventory(); slot++) {
+                    ItemStack slotIS = getStackInSlot(slot);
+                    if (slotIS != null && slotIS.stackSize > 0) {
+                        int taken = Math.min(slotIS.stackSize, target);
+                        ItemStack dropped = slotIS.copy();
+                        dropped.stackSize = taken;
+
+                        EntityItem entityItem = new EntityItem(world(), player.posX, player.posY, player.posZ, dropped);
+                        entityItem.delayBeforeCanPickup = 0;
+                        world().spawnEntityInWorld(entityItem);
+
+                        slotIS.stackSize -= taken;
+                        ejected += taken;
+                        if (slotIS.stackSize <= 0) {
+                            slotIS = null;
+                        }
+                        setInventorySlotContents(slot, slotIS);
+                        if (getAmountInv() == 0) {
+                            containing = null;
+                        }
+                    }
+                }
+                world().markBlockForUpdate(xCoord, yCoord, zCoord);
+                markDirty();
+            }
+        }
+    }
+
+    public void onRightClick(EntityPlayer player) {
+        ItemStack is = player.getCurrentEquippedItem();
+        if (is != null) {
+            if ((getContaining() != null && containing.isItemEqual(is)) || getContaining() == null) {
+                player.inventory.setInventorySlotContents(player.inventory.currentItem, addChecked(is));
+            }
+        }
+    }
+
+    public int getAmountInv() {
+        int amount = 0;
+        for (int i = 0; i < this.getSizeInventory(); i++) {
+            ItemStack slotIS = getStackInSlot(i);
+            if (slotIS != null)
+                amount += slotIS.stackSize;
+        }
+        return amount;
+    }
+
+    public ItemStack addChecked(ItemStack is) {
+        if (is == null) {
+            return is;
+        }
+        if (getContaining() == null || getContaining().isItemEqual(is)) {
+            int free = Math.max((getSizeInventory() * 64) - (containing != null ? containing.stackSize : 0), 0);
+            if (is.stackSize <= free) {
+                this.add(is);
+                is = null;
+            } else {
+                this.add(is, free);
+                is.stackSize -= free;
+            }
+            return is;
+        }
+        if (is.stackSize <= 0) {
+            return null;
+        }
+        return is;
+    }
+
+
     @Override
     public void writePacketNBT(NBTTagCompound nbt) {
         super.writePacketNBT(nbt);
@@ -160,6 +246,18 @@ public class TileStorageBox extends TileEntityInventoryBase implements IStorageB
 
     @Override
     public void addToStorage(ItemStack is) {
-        BlockStorageBox.add(this, is);
+        this.addChecked(is);
+    }
+
+    public static class TileStorageBoxBasic extends TileStorageBox {
+        public TileStorageBoxBasic() {
+            super(EnumStorageBox.BASIC.capacity, EnumStorageBox.BASIC.getFullUnlocalizedName());
+        }
+    }
+
+    public static class TileStorageBoxAdvanced extends TileStorageBox {
+        public TileStorageBoxAdvanced() {
+            super(EnumStorageBox.ADVANCED.capacity, EnumStorageBox.ADVANCED.getFullUnlocalizedName());
+        }
     }
 }

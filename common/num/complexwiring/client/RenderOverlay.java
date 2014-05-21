@@ -12,6 +12,7 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
+import num.complexwiring.core.Logger;
 import org.lwjgl.opengl.GL11;
 
 @SideOnly(Side.CLIENT)
@@ -38,7 +39,7 @@ public class RenderOverlay {
                     GL11.glRotatef(-90, 0, 1, 0);
                     break;
             }
-            GL11.glScalef(0.031875F , 0.031875F, -0.00001F);    // 51/1600  = 1.02 * 1/32
+            GL11.glScalef(0.031875F, 0.031875F, -0.00001F);    // 51/1600  = 1.02 * 1/32
             GL11.glRotatef(180, 0, 0, 1);
             TextureManager renderEngine = Minecraft.getMinecraft().renderEngine;
             GL11.glDisable(GL11.GL_LIGHTING);
@@ -159,18 +160,16 @@ public class RenderOverlay {
 
     public static void renderISWithTextOnSide(TileEntity tile, ItemStack is, double x, double y, double z, ForgeDirection side) {
         String amount = "0";
-        String name = "   ";
-        if (is == null ){
-            amount = "0";
-            name = "   ";
-            is = null;
-        } else {
+        String name = "";
+        if (is != null) {
+            Logger.debug("x: " + is.stackSize);
             if (is.stackSize >= 64) {
                 int stack = (is.stackSize / 64);
                 amount = stack + "x64" + (is.stackSize - (stack * 64) == 0 ? "" : " + " + (is.stackSize - (stack * 64)));
             } else {
                 amount = "" + is.stackSize;
             }
+            Logger.debug("y: " + amount);
             name = is.getDisplayName();
         }
 

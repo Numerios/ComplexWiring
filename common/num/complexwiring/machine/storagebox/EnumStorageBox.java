@@ -1,5 +1,6 @@
 package num.complexwiring.machine.storagebox;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -8,8 +9,8 @@ import num.complexwiring.lib.Strings;
 import num.complexwiring.machine.ModuleMachine;
 
 public enum EnumStorageBox {
-    BASIC(Strings.STORAGEBOX_BASIC_NAME, Strings.STORAGEBOX_BASIC_DESC, TileStorageBox.class, 32),
-    ADVANCED(Strings.STORAGEBOX_ADVANCED_NAME, Strings.STORAGEBOX_ADVANCED_DESC, TileStorageBox.class, 128);
+    BASIC(Strings.STORAGEBOX_BASIC_NAME, Strings.STORAGEBOX_BASIC_DESC, TileStorageBox.TileStorageBoxBasic.class, 32),
+    ADVANCED(Strings.STORAGEBOX_ADVANCED_NAME, Strings.STORAGEBOX_ADVANCED_DESC, TileStorageBox.TileStorageBoxAdvanced.class, 128);
 
     public static final EnumStorageBox[] VALID = values();
     public final String name, desc;
@@ -43,6 +44,8 @@ public enum EnumStorageBox {
     public String getFullUnlocalizedName() {
         return ModuleMachine.storageBox.getUnlocalizedName() + "." + this.getUnlocalizedName();
     }
+
     public void registerTile() {
+        GameRegistry.registerTileEntity(tile, "storagebox." + this.getUnlocalizedName());
     }
 }
