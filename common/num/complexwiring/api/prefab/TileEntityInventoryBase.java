@@ -17,6 +17,7 @@ import java.util.Set;
 
 /**
  * A basic TileEntity with IInventory support!
+ * TODO: Add ISidedInventory
  */
 public abstract class TileEntityInventoryBase extends TileEntityBase implements IInventory {
     public final Set<EntityPlayer> playersUsing = new HashSet<EntityPlayer>();

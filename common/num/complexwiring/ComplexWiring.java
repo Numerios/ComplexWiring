@@ -17,9 +17,7 @@ import num.complexwiring.lib.Reference;
 import num.complexwiring.power.electrical.NetworkTickHandler;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION)
-
 public class ComplexWiring {
-
     public static final boolean DEBUG = true;
     @Instance(Reference.MOD_ID)
     public static ComplexWiring instance;
@@ -30,19 +28,25 @@ public class ComplexWiring {
     public void preInit(FMLPreInitializationEvent event) {
         Logger.init();
 
+        Logger.debug("PreInit!");
+
         ModuleManager.preInit();
         //GameRegistry.registerPlayerTracker(new PlayerTracker());
     }
 
     @EventHandler
     public void init(FMLInitializationEvent event) {
+        Logger.debug("Init!");
+
         NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
         MinecraftForge.EVENT_BUS.register(NetworkTickHandler.INSTANCE);
 
         ModuleManager.init();
+        proxy.init();
     }
 
     @EventHandler
     public void postInit(FMLPostInitializationEvent event) {
+        Logger.debug("PostInit!");
     }
 }
