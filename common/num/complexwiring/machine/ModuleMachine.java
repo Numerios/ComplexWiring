@@ -12,13 +12,14 @@ import num.complexwiring.core.CreativeTabCW;
 import num.complexwiring.lib.Module;
 import num.complexwiring.machine.basic.BlockBasicMachine;
 import num.complexwiring.machine.basic.ItemBlockBasicMachine;
+import num.complexwiring.machine.storagebox.BlockStorageBox;
+import num.complexwiring.machine.storagebox.ItemBlockStorageBox;
 import num.complexwiring.machine.powered.BlockPoweredMachine;
 import num.complexwiring.machine.powered.ItemBlockPoweredMachine;
 import num.complexwiring.recipe.RecipeManager;
 
 public class ModuleMachine extends Module {
-
-    public static Block machineBasic, machinePowered;
+    public static Block machineBasic, machinePowered, storageBox;
     public static CreativeTabCW tabCWMachine = new CreativeTabCW("tabCWMachine", null);
 
     @Override
@@ -41,6 +42,10 @@ public class ModuleMachine extends Module {
         machinePowered = new BlockPoweredMachine();
         GameRegistry.registerBlock(machinePowered, ItemBlockPoweredMachine.class, machinePowered.getUnlocalizedName());
         ((BlockPoweredMachine) machinePowered).registerTiles();
+
+        storageBox = new BlockStorageBox();
+        GameRegistry.registerBlock(storageBox, ItemBlockStorageBox.class, storageBox.getUnlocalizedName());
+        ((BlockStorageBox) storageBox).registerTiles();
     }
 
     private void registerItems() {

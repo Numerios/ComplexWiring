@@ -134,6 +134,11 @@ public class Strings {
     public static final String MACHINE_POWERED_CRUSHER_NAME = "machinePoweredCrusher";
     public static final String MACHINE_POWERED_CRUSHER_DESC = StatCollector.translateToLocal("tile.complexwiring.machine.powered.crusher.desc");   //TODO MAKE THIS PRETTIER
 
+    public static final String STORAGEBOX_BASIC_NAME = "storageBoxBasic";
+    public static final String STORAGEBOX_BASIC_DESC = StatCollector.translateToLocal("tile.complexwiring.machine.storagebox.basic.desc");
+    public static final String STORAGEBOX_ADVANCED_NAME = "storageBoxAdvanced";
+    public static final String STORAGEBOX_ADVANCED_DESC = StatCollector.translateToLocal("tile.complexwiring.machine.storagebox.advanced.desc");
+
     public static final String TABLET_NAME = "tablet";
     public static final String STARTPAPER_NAME = "startpaper";
     public static final String GUIDEBOOK_NAME = "guidebook";
@@ -142,4 +147,6 @@ public class Strings {
     public static final String SMASHER_NAME = "smasher";
 
     public static final String DRIVESHAFT_NAME = "driveShaft";     //you ain't seen nuthin'
+
+
 }

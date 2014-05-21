@@ -102,6 +102,11 @@ tile.complexwiring.machine.powered.furnace.desc=Smelt your ores with MJ!
 tile.complexwiring.machine.powered.crusher.name=Powered Crusher
 tile.complexwiring.machine.powered.crusher.desc=Crush your ores with MJ!
 
+tile.complexwiring.machine.storagebox.basic.name=Basic Storage Box
+tile.complexwiring.machine.storagebox.basic.desc=Store up to 32 stacks of one item in a single block!
+tile.complexwiring.machine.storagebox.advanced.name=Advanced Storage Box
+tile.complexwiring.machine.storagebox.advanced.desc=Store up to 128 stacks of one item in a single block!
+
 item.complexwiring.base.ingot.copper.name=Copper Ingot
 item.complexwiring.base.ingot.tin.name=Tin Ingot
 item.complexwiring.base.ingot.silver.name=Silver Ingot
