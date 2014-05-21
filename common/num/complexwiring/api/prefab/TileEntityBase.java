@@ -21,6 +21,7 @@ public abstract class TileEntityBase extends TileEntity {
         if (ticks >= Long.MAX_VALUE) {
             ticks = 1;
         }
+        ticks++;
         update();
     }
 
