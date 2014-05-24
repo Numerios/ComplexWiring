@@ -15,7 +15,6 @@ public abstract class TileStorageBox extends TileEntityInventoryBase implements 
 
     public TileStorageBox(int capacity, String tileName) {
         super(capacity, tileName);
-        facing = ForgeDirection.NORTH;
     }
 
     @Override
