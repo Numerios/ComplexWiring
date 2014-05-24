@@ -5,7 +5,7 @@ import net.minecraft.nbt.NBTTagCompound;
 /**
  * The ultimate class for coordinates in two-dimensional space. Uses doubles.
  */
-public class Vector2 implements Cloneable {
+public class Vector2 implements Cloneable, Comparable {
     public double x, y;
 
     public Vector2(double x, double y) {
@@ -109,5 +109,20 @@ public class Vector2 implements Cloneable {
     @Override
     public String toString() {
         return "[x: " + this.x + ", y: " + this.y + "]";
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        if (o instanceof Vector2) {
+            Vector2 other = (Vector2) o;
+            if (this.x > other.x || this.y > other.y) {
+                return 1;
+            } else if (this.x < other.x || this.y < other.y) {
+                return -1;
+            } else {
+                return 0;
+            }
+        }
+        return 0;
     }
 }

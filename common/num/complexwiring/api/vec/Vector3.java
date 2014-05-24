@@ -11,7 +11,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 /**
  * The ultimate class for coordinates in three-dimensional space. Uses doubles.
  */
-public class Vector3 implements Cloneable {
+public class Vector3 implements Cloneable, Comparable {
     public double x, y, z;
 
     public Vector3(double x, double y, double z) {
@@ -225,5 +225,20 @@ public class Vector3 implements Cloneable {
     @Override
     public String toString() {
         return "[x: " + this.x + ", y: " + this.y + ", z: " + this.z + "]";
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        if (o instanceof Vector3) {
+            Vector3 other = (Vector3) o;
+            if (this.x > other.x || this.y > other.y || this.z > other.z) {
+                return 1;
+            } else if (this.x < other.x || this.y < other.y || this.z < other.z) {
+                return -1;
+            } else {
+                return 0;
+            }
+        }
+        return 0;
     }
 }
