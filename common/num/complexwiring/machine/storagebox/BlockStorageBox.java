@@ -34,28 +34,6 @@ public class BlockStorageBox extends Block implements ITileEntityProvider {
         isBlockContainer = true;
     }
 
-    public static ItemStack add(TileStorageBox tile, ItemStack is) {
-        if (is == null) {
-            return is;
-        }
-        ItemStack containing = tile.getContaining();
-        if (containing == null || containing.isItemEqual(is)) {
-            int free = Math.max((tile.getSizeInventory() * 64) - (containing != null ? containing.stackSize : 0), 0);
-            if (is.stackSize <= free) {
-                tile.add(is);
-                is = null;
-            } else {
-                tile.add(is, free);
-                is.stackSize -= free;
-            }
-            return is;
-        }
-        if (is.stackSize <= 0) {
-            return null;
-        }
-        return is;
-    }
-
     @Override
     public boolean hasTileEntity(int meta) {
         return true;
