@@ -19,7 +19,7 @@ import org.lwjgl.opengl.GL11;
 public class RenderOverlay {
     private static RenderItem renderItem = ((RenderItem) RenderManager.instance.getEntityClassRenderObject(EntityItem.class));
 
-    public static void renderItemOnSide(TileEntity tile, ItemStack is, double x, double y, double z, ForgeDirection side) {
+    public static void renderItemOnSide(ItemStack is, double x, double y, double z, ForgeDirection side) {
         if (is != null) {
             GL11.glPushMatrix();
             switch (side) {
@@ -173,7 +173,7 @@ public class RenderOverlay {
             name = is.getDisplayName();
         }
 
-        renderItemOnSide(tile, is, x, y, z, side);
+        renderItemOnSide(is, x, y, z, side);
         GL11.glPushMatrix();
         GL11.glDisable(GL11.GL_LIGHTING);
         renderDynamicTextOnSide(name, side, 0.02F, x, y - 0.375F, z);
