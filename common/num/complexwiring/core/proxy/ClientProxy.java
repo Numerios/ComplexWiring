@@ -5,6 +5,8 @@ import cpw.mods.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.client.model.AdvancedModelLoader;
 import num.complexwiring.client.CARE.TechneModelLoader;
 import num.complexwiring.client.RenderingHandler;
+import num.complexwiring.machine.smasher.RenderSmasher;
+import num.complexwiring.machine.smasher.TileSmasher;
 import num.complexwiring.machine.storagebox.RenderStorageBox;
 import num.complexwiring.machine.storagebox.TileStorageBox;
 
@@ -15,5 +17,6 @@ public class ClientProxy extends CommonProxy {
         AdvancedModelLoader.registerModelHandler(new TechneModelLoader());
         RenderingRegistry.registerBlockHandler(new RenderingHandler());
         ClientRegistry.bindTileEntitySpecialRenderer(TileStorageBox.class, new RenderStorageBox());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileSmasher.class, new RenderSmasher());
     }
 }

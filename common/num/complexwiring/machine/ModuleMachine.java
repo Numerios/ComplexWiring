@@ -12,6 +12,8 @@ import num.complexwiring.core.CreativeTabCW;
 import num.complexwiring.lib.Module;
 import num.complexwiring.machine.basic.BlockBasicMachine;
 import num.complexwiring.machine.basic.ItemBlockBasicMachine;
+import num.complexwiring.machine.smasher.BlockSmasher;
+import num.complexwiring.machine.smasher.ItemBlockSmasher;
 import num.complexwiring.machine.storagebox.BlockStorageBox;
 import num.complexwiring.machine.storagebox.ItemBlockStorageBox;
 import num.complexwiring.machine.powered.BlockPoweredMachine;
@@ -19,7 +21,7 @@ import num.complexwiring.machine.powered.ItemBlockPoweredMachine;
 import num.complexwiring.recipe.RecipeManager;
 
 public class ModuleMachine extends Module {
-    public static Block machineBasic, machinePowered, storageBox;
+    public static Block machineBasic, machinePowered, storageBox, smasher;
     public static CreativeTabCW tabCWMachine = new CreativeTabCW("tabCWMachine", null);
 
     @Override
@@ -46,6 +48,10 @@ public class ModuleMachine extends Module {
         storageBox = new BlockStorageBox();
         GameRegistry.registerBlock(storageBox, ItemBlockStorageBox.class, storageBox.getUnlocalizedName());
         ((BlockStorageBox) storageBox).registerTiles();
+
+        smasher = new BlockSmasher();
+        GameRegistry.registerBlock(smasher, ItemBlockSmasher.class, smasher.getUnlocalizedName());
+        ((BlockSmasher) smasher).registerTiles();
     }
 
     private void registerItems() {
