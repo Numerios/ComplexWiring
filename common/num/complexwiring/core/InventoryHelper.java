@@ -9,10 +9,15 @@ import net.minecraft.world.World;
 import num.complexwiring.api.vec.Vector3;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class InventoryHelper {
     private static Random rand;
+
+    public static void dropIS(World world, Vector3 vec3, List<ItemStack> itemStacks) {
+        dropIS(world, vec3, itemStacks.toArray(new ItemStack[itemStacks.size()]));
+    }
 
     public static void dropIS(World world, Vector3 vec3, ItemStack... itemStacks) {
         for (ItemStack is : itemStacks)
@@ -57,7 +62,7 @@ public class InventoryHelper {
                     }
                 }
                 if (!itemStacks.isEmpty()) {
-                    dropIS(world, vec3, (ItemStack[]) itemStacks.toArray());             //possibly too much code!
+                    dropIS(world, vec3, itemStacks);             //possibly too much code!
                 }
             }
         }
