@@ -10,14 +10,15 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+import num.complexwiring.base.ModuleBase;
 import num.complexwiring.client.RenderingHandler;
-import num.complexwiring.core.Logger;
 import num.complexwiring.lib.Reference;
 import num.complexwiring.machine.ModuleMachine;
 
@@ -56,7 +57,6 @@ public class BlockSmasher extends Block implements ITileEntityProvider {
         int facing = MathHelper.floor_double(entity.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
         TileSmasher tile = (TileSmasher) world.getTileEntity(x, y, z);
         if (tile != null) {
-            Logger.debug("facing! " + facing);
             switch (facing) {
                 case 0:
                     tile.setFacing(ForgeDirection.NORTH);
@@ -72,6 +72,18 @@ public class BlockSmasher extends Block implements ITileEntityProvider {
                     break;
             }
         }
+    }
+
+    @Override
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9) {
+        if (!world.isRemote && world.getTileEntity(x, y, z) instanceof TileSmasher) {
+            TileSmasher tile = (TileSmasher) world.getTileEntity(x, y, z);
+            if (player.getCurrentEquippedItem().getItem() == ModuleBase.screwdriver) {
+                int facing = MathHelper.floor_double(player.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
+                tile.setFacing(ForgeDirection.getOrientation(ForgeDirection.ROTATION_MATRIX[facing][tile.getFacing().ordinal()]));
+            }
+        }
+        return true;
     }
 
     @Override

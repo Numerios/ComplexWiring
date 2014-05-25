@@ -10,7 +10,7 @@ import num.complexwiring.core.CreativeTabCW;
 import num.complexwiring.lib.Module;
 
 public class ModuleBase extends Module {
-    public static Item ingot, dust, nugget;
+    public static Item ingot, dust, nugget, screwdriver;
     public static CreativeTabCW tabCWBase = new CreativeTabCW("tabCWBase", null);
 
     @Override
@@ -35,6 +35,10 @@ public class ModuleBase extends Module {
         nugget = new ItemNugget();
         ((ItemNugget) nugget).registerOres();
         GameRegistry.registerItem(nugget, nugget.getUnlocalizedName());
+
+        screwdriver = new ItemScrewdriver();
+        ((ItemScrewdriver) screwdriver).registerOres();
+        GameRegistry.registerItem(screwdriver, screwdriver.getUnlocalizedName());
     }
 
     private void registerRecipes() {
