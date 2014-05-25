@@ -48,5 +48,6 @@ public class ComplexWiring {
     @EventHandler
     public void postInit(FMLPostInitializationEvent event) {
         Logger.debug("PostInit!");
+        ModuleManager.postInit();
     }
 }

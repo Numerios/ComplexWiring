@@ -31,4 +31,10 @@ public class ModuleManager {
             module.init();
         }
     }
+
+    public static void postInit() {
+        for (Module module : modules) {
+            module.postInit();
+        }
+    }
 }
