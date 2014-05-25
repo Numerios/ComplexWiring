@@ -1,5 +1,6 @@
 package num.complexwiring;
 
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -12,6 +13,7 @@ import net.minecraftforge.common.MinecraftForge;
 import num.complexwiring.core.GuiHandler;
 import num.complexwiring.core.Logger;
 import num.complexwiring.core.ModuleManager;
+import num.complexwiring.core.PlayerEventHandler;
 import num.complexwiring.core.network.PacketPipeline;
 import num.complexwiring.core.proxy.CommonProxy;
 import num.complexwiring.lib.Reference;
@@ -32,7 +34,7 @@ public class ComplexWiring {
         Logger.debug("PreInit started!");
 
         ModuleManager.preInit();
-        //GameRegistry.registerPlayerTracker(new PlayerTracker());
+        FMLCommonHandler.instance().bus().register(new PlayerEventHandler());
 
         Logger.debug("PreInit finished!");
     }
