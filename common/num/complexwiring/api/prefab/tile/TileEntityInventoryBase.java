@@ -165,7 +165,7 @@ public abstract class TileEntityInventoryBase extends TileEntityBase implements 
     public Packet getDescriptionPacket() {
         NBTTagCompound nbt = new NBTTagCompound();
         writePacketNBT(nbt);
-        return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, nbt);
+        return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, this.blockMetadata, nbt);
     }
 
     public void onDataPacket(NetworkManager networkManager, S35PacketUpdateTileEntity packet) {
