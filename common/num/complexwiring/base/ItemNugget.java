@@ -9,7 +9,7 @@ import num.complexwiring.lib.Reference;
 
 import java.util.List;
 
-public class ItemNugget extends Item{
+public class ItemNugget extends Item {
     public ItemNugget() {
         super();
         setUnlocalizedName(Reference.MOD_ID.toLowerCase() + ".base.nugget");

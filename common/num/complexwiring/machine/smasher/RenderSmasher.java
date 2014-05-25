@@ -28,7 +28,7 @@ public class RenderSmasher extends TileEntitySpecialRenderer {
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-        switch (smasher.getFacing()){
+        switch (smasher.getFacing()) {
             case UP:
                 glRotatef(0, 0, 1, 0);   //TODO: facing could have UP and down too! :)
                 break;

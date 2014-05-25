@@ -10,6 +10,7 @@ public class GuidebookPage {
     public String text = null;
     public IRecipe vanillaRecipe = null;
     public ICWRecipe modRecipe = null;
+
     public GuidebookPage(String text) {
         this.type = Type.TEXT;
         this.text = text;

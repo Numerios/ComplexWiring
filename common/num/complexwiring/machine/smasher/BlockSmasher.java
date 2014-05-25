@@ -23,16 +23,16 @@ import num.complexwiring.machine.ModuleMachine;
 
 import java.util.List;
 
-public class BlockSmasher extends Block implements ITileEntityProvider{
-    public BlockSmasher(){
+public class BlockSmasher extends Block implements ITileEntityProvider {
+    public IIcon icon;
+
+    public BlockSmasher() {
         super(Material.rock);
         setBlockName(Reference.MOD_ID.toLowerCase() + ".machine.smasher");
         setHardness(2F);
         setResistance(2F);
         setCreativeTab(ModuleMachine.tabCWMachine);
     }
-
-    public IIcon icon;
 
     @Override
     public boolean hasTileEntity(int meta) {
@@ -96,7 +96,7 @@ public class BlockSmasher extends Block implements ITileEntityProvider{
 
     @Override
     public void getSubBlocks(Item item, CreativeTabs tab, List list) {
-            list.add(new ItemStack(ModuleMachine.smasher));
+        list.add(new ItemStack(ModuleMachine.smasher));
     }
 
     public void registerTiles() {
