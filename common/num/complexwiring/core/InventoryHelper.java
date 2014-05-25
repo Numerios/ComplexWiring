@@ -51,7 +51,10 @@ public class InventoryHelper {
                 IInventory inv = (IInventory) tile;
                 ArrayList<ItemStack> itemStacks = new ArrayList<ItemStack>();
                 for (int slot = 0; slot < inv.getSizeInventory(); slot++) {
-                    itemStacks.add(inv.getStackInSlot(slot));
+                    ItemStack slotIS = inv.getStackInSlot(slot);
+                    if (slotIS != null) {
+                        itemStacks.add(slotIS);
+                    }
                 }
                 if (!itemStacks.isEmpty()) {
                     dropIS(world, vec3, (ItemStack[]) itemStacks.toArray());             //possibly too much code!
