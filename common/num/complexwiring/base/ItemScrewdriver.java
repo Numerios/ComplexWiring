@@ -5,6 +5,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+import net.minecraftforge.oredict.OreDictionary;
 import num.complexwiring.lib.Reference;
 
 import java.util.List;
@@ -44,8 +45,6 @@ public class ItemScrewdriver extends Item {
     }
 
     public void registerOres() {
-        for (EnumNugget nugget : EnumNugget.VALID) {
-            nugget.registerOre();
-        }
+        OreDictionary.registerOre("CW:screwdriver", new ItemStack(ModuleBase.screwdriver));
     }
 }
