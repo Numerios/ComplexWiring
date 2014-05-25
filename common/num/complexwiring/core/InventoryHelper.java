@@ -15,35 +15,32 @@ public class InventoryHelper {
     private static Random rand;
 
     public static void dropIS(World world, Vector3 vec3, ItemStack... itemStacks) {
-        TileEntity tile = vec3.toTile(world);
-        if (tile != null) {
-            for (ItemStack is : itemStacks)
-                if (is != null) {
-                    rand = new Random();
+        for (ItemStack is : itemStacks)
+            if (is != null) {
+                rand = new Random();
 
-                    float offsetX = rand.nextFloat() + 0.2F;
-                    float offsetY = rand.nextFloat() + 0.2F;
-                    float offsetZ = rand.nextFloat() + 0.2F;
+                float offsetX = rand.nextFloat() + 0.15F;
+                float offsetY = rand.nextFloat() + 0.15F;
+                float offsetZ = rand.nextFloat() + 0.15F;
 
-                    while (is.stackSize > 0) {
-                        int amount = rand.nextInt(is.stackSize + 1);
+                while (is.stackSize > 0) {
+                    int amount = rand.nextInt(is.stackSize + 1);
 
-                        is.stackSize -= amount;
+                    is.stackSize -= amount;
 
-                        EntityItem item = new EntityItem(world, vec3.getX() + offsetX, vec3.getY() + offsetY, vec3.getZ() + offsetZ, is.copy());
+                    EntityItem item = new EntityItem(world, vec3.getX() + offsetX, vec3.getY() + offsetY, vec3.getZ() + offsetZ, is.copy());
 
-                        if (is.hasTagCompound()) {
-                            item.getEntityItem().setTagCompound((NBTTagCompound) is.getTagCompound().copy());
-                        }
-
-                        float motion = 0.075F;
-                        item.motionX = ((float) rand.nextGaussian() * motion);
-                        item.motionY = ((float) rand.nextGaussian() * motion + 0.15F);
-                        item.motionZ = ((float) rand.nextGaussian() * motion);
-                        world.spawnEntityInWorld(item);
+                    if (is.hasTagCompound()) {
+                        item.getEntityItem().setTagCompound((NBTTagCompound) is.getTagCompound().copy());
                     }
+
+                    float motion = 0.05F;
+                    item.motionX = ((float) rand.nextGaussian() * motion);
+                    item.motionY = ((float) rand.nextGaussian() * motion + 0.1F);
+                    item.motionZ = ((float) rand.nextGaussian() * motion);
+                    world.spawnEntityInWorld(item);
                 }
-        }
+            }
     }
 
 

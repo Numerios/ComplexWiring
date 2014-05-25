@@ -162,6 +162,10 @@ public class Vector3 implements Cloneable, Comparable {
         return world.getBlock(this.getX(), this.getY(), this.getZ());
     }
 
+    public void setBlock(World world, Block block) {
+        world.setBlock(this.getX(), this.getY(), this.getZ(), block);
+    }
+
     public boolean isAir(World world) {
         return world.isAirBlock(this.getX(), this.getY(), this.getZ());
     }
