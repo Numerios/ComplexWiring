@@ -9,6 +9,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
+import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageCodec;
 import net.minecraft.client.Minecraft;
@@ -23,6 +24,7 @@ import java.util.*;
 /**
  * @author sirgingalot, some code from: cpw
  */
+@ChannelHandler.Sharable
 public class PacketPipeline extends MessageToMessageCodec<FMLProxyPacket, ICWPacket> {
     private EnumMap<Side, FMLEmbeddedChannel> channels;
     private LinkedList<Class<? extends ICWPacket>> packets = new LinkedList<Class<? extends ICWPacket>>();
