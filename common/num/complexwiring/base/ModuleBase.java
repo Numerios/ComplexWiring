@@ -47,6 +47,7 @@ public class ModuleBase extends Module {
                 FurnaceRecipes.smelting().func_151394_a(dust.getIS(1), EnumIngot.VALID[dust.meta - 2].getIS(1), 0.6F);
             }
         }
+
         for (EnumNugget nugget : EnumNugget.VALID) {
             if (nugget == EnumNugget.IRON) {
                 GameRegistry.addRecipe(new ShapelessOreRecipe(nugget.getIS(9), "ingotIron"));

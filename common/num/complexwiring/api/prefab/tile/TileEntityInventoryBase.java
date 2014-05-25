@@ -1,4 +1,4 @@
-package num.complexwiring.api.prefab;
+package num.complexwiring.api.prefab.tile;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;

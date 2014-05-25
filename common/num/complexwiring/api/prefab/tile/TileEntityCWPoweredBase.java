@@ -1,4 +1,4 @@
-package num.complexwiring.api.prefab;
+package num.complexwiring.api.prefab.tile;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;

@@ -1,11 +1,10 @@
-package num.complexwiring.client.gui;
+package num.complexwiring.api.gui;
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class GuiTooltip {
-
     protected Rectangle location;
     protected List<String> texts;
 

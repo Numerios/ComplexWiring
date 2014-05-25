@@ -2,7 +2,7 @@ package num.complexwiring.client.slot;
 
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import num.complexwiring.api.prefab.TileEntityInventoryBase;
+import num.complexwiring.api.prefab.tile.TileEntityInventoryBase;
 
 public class SlotMachine extends Slot {
     protected TileEntityInventoryBase machine;

@@ -2,8 +2,8 @@ package num.complexwiring.machine.powered;
 
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
-import num.complexwiring.api.prefab.GuiInventoryBase;
-import num.complexwiring.client.gui.GuiTooltip;
+import num.complexwiring.api.gui.GuiInventoryBase;
+import num.complexwiring.api.gui.GuiTooltip;
 
 import java.awt.*;
 

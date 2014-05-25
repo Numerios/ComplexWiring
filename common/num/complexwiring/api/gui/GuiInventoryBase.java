@@ -1,8 +1,7 @@
-package num.complexwiring.api.prefab;
+package num.complexwiring.api.gui;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.util.ResourceLocation;
-import num.complexwiring.client.gui.GuiTooltip;
 import org.lwjgl.opengl.GL11;
 
 import java.util.ArrayList;

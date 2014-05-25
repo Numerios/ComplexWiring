@@ -1,4 +1,4 @@
-package num.complexwiring.api.prefab;
+package num.complexwiring.api.prefab.tile;
 
 import buildcraft.api.power.IPowerReceptor;
 import buildcraft.api.power.PowerHandler;

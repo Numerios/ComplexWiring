@@ -6,7 +6,7 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 import num.complexwiring.api.prefab.IFacing;
-import num.complexwiring.api.prefab.TileEntityBase;
+import num.complexwiring.api.prefab.tile.TileEntityBase;
 import num.complexwiring.core.Logger;
 
 public class TileSmasher extends TileEntityBase implements IFacing {

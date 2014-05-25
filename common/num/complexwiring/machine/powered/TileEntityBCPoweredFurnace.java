@@ -4,7 +4,7 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
-import num.complexwiring.api.prefab.TileEntityBCPoweredBase;
+import num.complexwiring.api.prefab.tile.TileEntityBCPoweredBase;
 import num.complexwiring.core.InventoryHelper;
 
 public class TileEntityBCPoweredFurnace extends TileEntityBCPoweredBase implements ISidedInventory {
