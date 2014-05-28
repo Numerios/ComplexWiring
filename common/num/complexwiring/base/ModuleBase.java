@@ -1,9 +1,7 @@
 package num.complexwiring.base;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import num.complexwiring.core.CreativeTabCW;
 import num.complexwiring.lib.Module;
@@ -42,25 +40,13 @@ public class ModuleBase extends Module {
 
     private void registerRecipes() {
         for (EnumDust dust : EnumDust.VALID) {
-            if (dust == EnumDust.IRON) {
-                GameRegistry.addSmelting(dust.getIS(1), new ItemStack(Items.iron_ingot), 0.6F);
-            } else if (dust == EnumDust.GOLD) {
-                GameRegistry.addSmelting(dust.getIS(1), new ItemStack(Items.gold_ingot), 0.6F);
-            } else {
-                GameRegistry.addSmelting(dust.getIS(1), EnumIngot.VALID[dust.meta - 2].getIS(1), 0.6F);
-            }
+            GameRegistry.addSmelting(dust.getIS(1), EnumMaterial.getMaterial(dust).ingot.copy(), 0.6F);
         }
 
         for (EnumNugget nugget : EnumNugget.VALID) {
-            if (nugget == EnumNugget.IRON) {
-                GameRegistry.addRecipe(new ShapelessOreRecipe(nugget.getIS(9), "ingotIron"));
-                GameRegistry.addRecipe(new ShapelessOreRecipe(Items.iron_ingot, nugget.name, nugget.name, nugget.name,
-                        nugget.name, nugget.name, nugget.name, nugget.name, nugget.name, nugget.name));   //I'm so sorry
-            } else {
-                GameRegistry.addRecipe(new ShapelessOreRecipe(nugget.getIS(9), "ingot" + nugget.name.substring(6)));
-                GameRegistry.addRecipe(new ShapelessOreRecipe(EnumIngot.VALID[nugget.meta - 1].getIS(1), nugget.name, nugget.name, nugget.name,
-                        nugget.name, nugget.name, nugget.name, nugget.name, nugget.name, nugget.name));   //I'm so sorry (again)
-            }
+            GameRegistry.addRecipe(new ShapelessOreRecipe(nugget.getIS(9), EnumMaterial.getMaterial(nugget).ingot.copy()));
+            GameRegistry.addRecipe(new ShapelessOreRecipe(EnumMaterial.getMaterial(nugget).ingot.copy(), nugget.name, nugget.name, nugget.name,
+                    nugget.name, nugget.name, nugget.name, nugget.name, nugget.name, nugget.name));   //I'm so sorry
         }
     }
 }
