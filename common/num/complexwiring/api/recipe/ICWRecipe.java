@@ -17,9 +17,7 @@ public interface ICWRecipe {
 
     public int getNeededPower();
 
-    public RecipeRandomOutput[] getOutputs();
-
-    public ArrayList<ItemStack> getCompleteOutput(Random rand);
+    public ArrayList<ItemStack> getOutput(Random rand);
 
     public RecipeManager.Type getType();
 

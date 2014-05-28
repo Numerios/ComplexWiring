@@ -35,11 +35,7 @@ public class OrelyzerRecipe implements ICWRecipe {
         return neededPower;
     }
 
-    public RecipeRandomOutput[] getOutputs() {
-        return outputs;
-    }
-
-    public ArrayList<ItemStack> getCompleteOutput(Random rand) {
+    public ArrayList<ItemStack> getOutput(Random rand) {
         ArrayList<ItemStack> completeOutput = new ArrayList<ItemStack>();
         for (RecipeRandomOutput output : outputs) {
             float f = rand.nextFloat();

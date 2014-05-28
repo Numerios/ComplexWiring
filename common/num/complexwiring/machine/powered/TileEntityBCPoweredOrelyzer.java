@@ -47,7 +47,7 @@ public class TileEntityBCPoweredOrelyzer extends TileEntityBCPoweredBase impleme
                     recipe = (OrelyzerRecipe) RecipeManager.get(RecipeManager.Type.ORELYZER, getStackInSlot(0));
                     if (recipe.getNeededPower() <= ((int) storedEnergy)) {
                         recipeNeededPower = recipe.getNeededPower();
-                        recipeOutput = recipe.getCompleteOutput(random);
+                        recipeOutput = recipe.getOutput(random);
                         processTime = 0;
 
                         inventory[0].stackSize--;

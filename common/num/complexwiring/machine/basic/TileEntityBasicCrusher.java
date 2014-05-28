@@ -93,7 +93,7 @@ public class TileEntityBasicCrusher extends TileEntityInventoryBase implements I
     public void startProcessing() {
         if (recipe != null && burnTime > 0) {
             recipeNeedTime = recipe.getNeededPower();
-            recipeOutput = recipe.getCompleteOutput(random);
+            recipeOutput = recipe.getOutput(random);
 
             inventory[0].stackSize--;
 

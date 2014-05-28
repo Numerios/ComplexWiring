@@ -47,7 +47,7 @@ public class TileEntityBCPoweredCrusher extends TileEntityBCPoweredBase implemen
                     recipe = (CrusherRecipe) RecipeManager.get(RecipeManager.Type.CRUSHER, getStackInSlot(0));
                     if (recipe.getNeededPower() <= ((int) storedEnergy)) {
                         recipeNeededPower = recipe.getNeededPower();
-                        recipeOutput = recipe.getCompleteOutput(random);
+                        recipeOutput = recipe.getOutput(random);
                         processTime = 0;
 
                         inventory[0].stackSize--;
