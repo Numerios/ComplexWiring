@@ -6,7 +6,6 @@ import net.minecraftforge.common.util.ForgeDirection;
 import num.complexwiring.api.energy.EnergyInternalHandler;
 import num.complexwiring.api.energy.IEnergyInterface;
 import num.complexwiring.api.energy.IEnergyItem;
-import num.complexwiring.power.electrical.IElectricInterface;
 
 /**
  * A basic TileEntity with the implementation of IEnergyInterface
@@ -38,7 +37,7 @@ public abstract class TileEntityCWPoweredBase extends TileEntityInventoryBase im
 
     @Override
     public boolean canConnect(ForgeDirection dir, Object target) {
-        return (target instanceof IElectricInterface) && !(dir == null);
+        return (target instanceof IEnergyInterface) && !(dir == null);
     }
 
     @Override
