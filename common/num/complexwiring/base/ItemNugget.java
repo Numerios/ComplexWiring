@@ -12,6 +12,8 @@ import java.util.List;
 public class ItemNugget extends Item {
     public ItemNugget() {
         super();
+        setHasSubtypes(true);
+        setMaxDamage(0);
         setUnlocalizedName(Reference.MOD_ID.toLowerCase() + ".base.nugget");
         setCreativeTab(ModuleBase.tabCWBase);
     }
