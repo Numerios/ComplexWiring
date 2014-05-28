@@ -22,6 +22,9 @@ public abstract class TileStorageBox extends TileEntityInventoryBase implements 
         super.update();
         if (!this.worldObj.isRemote) {
             if (ticks % 10 == 0) {
+                if (getAmountInv() == 0) {
+                    containing = null;
+                }
                 Logger.debug("Containing: " + getContaining());
             }
             worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
@@ -144,6 +147,9 @@ public abstract class TileStorageBox extends TileEntityInventoryBase implements 
                         if (getAmountInv() == 0) {
                             containing = null;
                         }
+                        if (ejected >= target) {
+                            return;
+                        }
                     }
                 }
                 world().markBlockForUpdate(xCoord, yCoord, zCoord);
@@ -161,7 +167,7 @@ public abstract class TileStorageBox extends TileEntityInventoryBase implements 
         }
     }
 
-    public int getAmountInv() {
+    public int getAmountInv() {   //this be an ugly hax
         int amount = 0;
         for (int i = 0; i < this.getSizeInventory(); i++) {
             ItemStack slotIS = getStackInSlot(i);
@@ -246,6 +252,10 @@ public abstract class TileStorageBox extends TileEntityInventoryBase implements 
     @Override
     public void addToStorage(ItemStack is) {
         this.addChecked(is);
+    }
+
+    public boolean isEmpty() {
+        return containing == null;
     }
 
     public static class TileStorageBoxBasic extends TileStorageBox {

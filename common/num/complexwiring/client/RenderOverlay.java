@@ -13,6 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 import num.complexwiring.core.Logger;
+import num.complexwiring.machine.storagebox.TileStorageBox;
 import org.lwjgl.opengl.GL11;
 
 @SideOnly(Side.CLIENT)
@@ -162,14 +163,13 @@ public class RenderOverlay {
         String amount = "0";
         String name = "";
         if (is != null) {
-            Logger.debug("x: " + is.stackSize);
             if (is.stackSize >= 64) {
                 int stack = (is.stackSize / 64);
                 amount = stack + "x64" + (is.stackSize - (stack * 64) == 0 ? "" : " + " + (is.stackSize - (stack * 64)));
             } else {
                 amount = "" + is.stackSize;
             }
-            Logger.debug("y: " + amount);
+            Logger.debug("stacksize: " + is.stackSize + " amount: " + amount + " isEmpty: " + ((TileStorageBox) tile).isEmpty());
             name = is.getDisplayName();
         }
 
