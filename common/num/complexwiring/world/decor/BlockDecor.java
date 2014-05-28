@@ -5,7 +5,9 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import num.complexwiring.lib.Reference;
 import num.complexwiring.world.ModuleWorld;
@@ -42,16 +44,17 @@ public class BlockDecor extends Block {
 
     @Override
     public int damageDropped(int meta) {
-        if (meta == EnumDecor.ARENITE.meta) return EnumDecor.ARENITE_ROUGH.meta;
-        if (meta == EnumDecor.DOLOMITE.meta) return EnumDecor.DOLOMITE_ROUGH.meta;
-        if (meta == EnumDecor.LIMESTONE.meta) return EnumDecor.LIMESTONE_ROUGH.meta;
-
         return meta;
     }
 
     @Override
     public int getDamageValue(World world, int x, int y, int z) {
         return world.getBlockMetadata(x, y, z);
+    }
+
+    @Override
+    public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z) {
+        return new ItemStack(this, 1, world.getBlockMetadata(x, y, z));
     }
 
     public void registerOres() {

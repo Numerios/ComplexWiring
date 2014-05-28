@@ -40,7 +40,8 @@ public class ModuleWorld extends Module {
 
     @Override
     public void init() {
-        registerRecipes();
+        registerVanillaRecipes();
+        registerCWRecipes();
         new WorldGenerator();
     }
 
@@ -71,7 +72,11 @@ public class ModuleWorld extends Module {
 
     }
 
-    private void registerRecipes() {
+    private void registerVanillaRecipes() {
+
+    }
+
+    private void registerCWRecipes() {
         RecipeManager.add(new OrelyzerRecipe(EnumOrePrimary.COPPER.getIS(1), 240,
                 new RecipeRandomOutput(EnumOreSecondaryClassic.CHALCOCITE.getIS(1), 0.50F),
                 new RecipeRandomOutput(EnumOreSecondaryClassic.BORNITE.getIS(1), 0.20F),
