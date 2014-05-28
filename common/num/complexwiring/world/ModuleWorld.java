@@ -73,7 +73,36 @@ public class ModuleWorld extends Module {
     }
 
     private void registerVanillaRecipes() {
+        GameRegistry.addSmelting(EnumDecor.LIMESTONE_ROUGH.getIS(1), EnumDecor.LIMESTONE.getIS(1), 0.6F);
+        GameRegistry.addSmelting(EnumDecor.DOLOMITE_ROUGH.getIS(1), EnumDecor.DOLOMITE.getIS(1), 0.6F);
+        GameRegistry.addSmelting(EnumDecor.ARENITE_ROUGH.getIS(1), EnumDecor.ARENITE.getIS(1), 0.6F);
+        GameRegistry.addSmelting(EnumDecor.DOLOMITE.getIS(1), EnumDecor.DARKDOLOMITE.getIS(1), 0.45F);
 
+        GameRegistry.addShapedRecipe(EnumDecor.LIMESTONE_BRICK.getIS(4), "##", "##", '#', EnumDecor.LIMESTONE.getIS(1));
+        GameRegistry.addShapedRecipe(EnumDecor.DOLOMITE_BRICK.getIS(4), "##", "##", '#', EnumDecor.DOLOMITE.getIS(1));
+        GameRegistry.addShapedRecipe(EnumDecor.ARENITE_BRICK.getIS(4), "##", "##", '#', EnumDecor.ARENITE.getIS(1));
+        GameRegistry.addShapedRecipe(EnumDecor.DARKDOLOMITE_BRICK.getIS(4), "##", "##", '#', EnumDecor.DARKDOLOMITE.getIS(1));
+
+        GameRegistry.addShapedRecipe(EnumDecor.LIMESTONE_SMALLBRICK.getIS(4), "##", "##", '#', EnumDecor.LIMESTONE_BRICK.getIS(1));
+        GameRegistry.addShapedRecipe(EnumDecor.DOLOMITE_SMALLBRICK.getIS(4), "##", "##", '#', EnumDecor.DOLOMITE_BRICK.getIS(1));
+        GameRegistry.addShapedRecipe(EnumDecor.ARENITE_SMALLBRICK.getIS(4), "##", "##", '#', EnumDecor.ARENITE_BRICK.getIS(1));
+        GameRegistry.addShapedRecipe(EnumDecor.DARKDOLOMITE_SMALLBRICK.getIS(4), "##", "##", '#', EnumDecor.DARKDOLOMITE_BRICK.getIS(1));
+
+        GameRegistry.addShapelessRecipe(EnumDecor.LIMESTONE.getIS(1), EnumDecor.LIMESTONE_BRICK.getIS(1));
+        GameRegistry.addShapelessRecipe(EnumDecor.DOLOMITE.getIS(1), EnumDecor.DOLOMITE_BRICK.getIS(1));
+        GameRegistry.addShapelessRecipe(EnumDecor.ARENITE.getIS(1), EnumDecor.ARENITE_BRICK.getIS(1));
+        GameRegistry.addShapelessRecipe(EnumDecor.DARKDOLOMITE.getIS(1), EnumDecor.DARKDOLOMITE_BRICK.getIS(1));
+
+        GameRegistry.addShapelessRecipe(EnumDecor.LIMESTONE_BRICK.getIS(1), EnumDecor.LIMESTONE_SMALLBRICK.getIS(1));
+        GameRegistry.addShapelessRecipe(EnumDecor.DOLOMITE_BRICK.getIS(1), EnumDecor.DOLOMITE_SMALLBRICK.getIS(1));
+        GameRegistry.addShapelessRecipe(EnumDecor.ARENITE_BRICK.getIS(1), EnumDecor.ARENITE_SMALLBRICK.getIS(1));
+        GameRegistry.addShapelessRecipe(EnumDecor.DARKDOLOMITE_BRICK.getIS(1), EnumDecor.DARKDOLOMITE_SMALLBRICK.getIS(1));
+
+        GameRegistry.addShapelessRecipe(EnumDecor.LIMESTONE_ROUGH.getIS(1), EnumDecor.LIMESTONE.getIS(1));
+        GameRegistry.addShapelessRecipe(EnumDecor.DOLOMITE_ROUGH.getIS(1), EnumDecor.DOLOMITE.getIS(1));
+        GameRegistry.addShapelessRecipe(EnumDecor.ARENITE_ROUGH.getIS(1), EnumDecor.ARENITE.getIS(1));
+
+        GameRegistry.addShapelessRecipe(EnumDecor.DOLOMITE_DARKDOLOMITE_MIX.getIS(4), EnumDecor.DOLOMITE.getIS(1), EnumDecor.DOLOMITE.getIS(1), EnumDecor.DARKDOLOMITE.getIS(1), EnumDecor.DARKDOLOMITE.getIS(1));
     }
 
     private void registerCWRecipes() {

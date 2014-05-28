@@ -18,8 +18,8 @@ public class BlockDecor extends Block {
     public BlockDecor() {
         super(Material.rock);
         setBlockName(Reference.MOD_ID.toLowerCase() + ".world.decor");
-        setHardness(2.0F);
-        setResistance(3.0F);
+        setHardness(0.5F);
+        setResistance(1.0F);
         setCreativeTab(ModuleWorld.tabCWWorld);
     }
 
@@ -30,15 +30,15 @@ public class BlockDecor extends Block {
 
     @Override
     public void registerBlockIcons(IIconRegister ir) {
-        for (EnumDecor orePrimary : EnumDecor.VALID) {
-            orePrimary.registerIcon(ir);
+        for (EnumDecor decor : EnumDecor.VALID) {
+            decor.registerIcon(ir);
         }
     }
 
     @Override
     public void getSubBlocks(Item item, CreativeTabs tab, List list) {
-        for (EnumDecor orePrimary : EnumDecor.VALID) {
-            list.add(orePrimary.getIS(1));
+        for (EnumDecor decor : EnumDecor.VALID) {
+            list.add(decor.getIS(1));
         }
     }
 
@@ -58,8 +58,8 @@ public class BlockDecor extends Block {
     }
 
     public void registerOres() {
-        for (EnumDecor orePrimary : EnumDecor.VALID) {
-            orePrimary.registerOre();
+        for (EnumDecor decor : EnumDecor.VALID) {
+            decor.registerOre();
         }
     }
 }

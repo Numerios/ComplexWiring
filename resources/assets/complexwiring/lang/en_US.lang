@@ -67,26 +67,26 @@ tile.complexwiring.world.ore.secondary.vanilla.subbituminous.name=Sub-Bituminous
 tile.complexwiring.world.ore.secondary.vanilla.bituminous.name=Bituminous Ore
 tile.complexwiring.world.ore.secondary.vanilla.anthracite.name=Anthracite Ore
 
-tile.complexwiring.world.decor.limestonerough.name=Rough Limestone
-tile.complexwiring.world.decor.dolomiterough.name=Rough Dolomite
-tile.complexwiring.world.decor.areniterough.name=Rough Arenite
+tile.complexwiring.world.decor.limestoneRough.name=Rough Limestone
+tile.complexwiring.world.decor.dolomiteRough.name=Rough Dolomite
+tile.complexwiring.world.decor.areniteRough.name=Rough Arenite
 
 tile.complexwiring.world.decor.limestone.name=Limestone
 tile.complexwiring.world.decor.dolomite.name=Dolomite
 tile.complexwiring.world.decor.arenite.name=Arenite
-tile.complexwiring.world.decor.darkdolomite.name=Dark Dolomite
+tile.complexwiring.world.decor.darkDolomite.name=Dark Dolomite
 
-tile.complexwiring.world.decor.limestonebrick.name=Limestone Brick
-tile.complexwiring.world.decor.dolomitebrick.name=Dolomite Brick
-tile.complexwiring.world.decor.arenitebrick.name=Arenite Brick
-tile.complexwiring.world.decor.darkdolomitebrick.name=Dark Dolomite Brick
+tile.complexwiring.world.decor.limestoneBrick.name=Limestone Brick
+tile.complexwiring.world.decor.dolomiteBrick.name=Dolomite Brick
+tile.complexwiring.world.decor.areniteBrick.name=Arenite Brick
+tile.complexwiring.world.decor.darkDolomiteBrick.name=Dark Dolomite Brick
 
-tile.complexwiring.world.decor.limestonesmallbrick.name=Small Limestone Bricks
-tile.complexwiring.world.decor.dolomitesmallbrick.name=Small Dolomite Bricks
-tile.complexwiring.world.decor.arenitesmallbrick.name=Small Arenite Bricks
-tile.complexwiring.world.decor.darkdolomitesmallbrick.name=Small Dark Dolomite Bricks
+tile.complexwiring.world.decor.limestoneSmallbrick.name=Small Limestone Bricks
+tile.complexwiring.world.decor.dolomiteSmallbrick.name=Small Dolomite Bricks
+tile.complexwiring.world.decor.areniteSmallbrick.name=Small Arenite Bricks
+tile.complexwiring.world.decor.darkDolomiteSmallbrick.name=Small Dark Dolomite Bricks
 
-tile.complexwiring.world.decor.dolomitedarkdolomitemix.name=Dolomite - Dark Dolomite Mix
+tile.complexwiring.world.decor.dolomiteDarkDolomiteMix.name=Dolomite - Dark Dolomite Mix
 
 tile.complexwiring.machine.basic.orelyzer.name=Basic Orelyzer
 tile.complexwiring.machine.basic.orelyzer.desc=Analyze your ores!
