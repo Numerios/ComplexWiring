@@ -8,20 +8,22 @@ import num.complexwiring.lib.Reference;
 import num.complexwiring.lib.Strings;
 
 public enum EnumDust {
-    IRON(Strings.DUST_IRON_NAME),
-    GOLD(Strings.DUST_GOLD_NAME),
-    COPPER(Strings.DUST_COPPER_NAME),
-    TIN(Strings.DUST_TIN_NAME),
-    SILVER(Strings.DUST_SILVER_NAME),
-    LEAD(Strings.DUST_LEAD_NAME);
+    IRON(Strings.DUST_IRON_NAME, EnumMaterial.IRON),
+    GOLD(Strings.DUST_GOLD_NAME, EnumMaterial.GOLD),
+    COPPER(Strings.DUST_COPPER_NAME, EnumMaterial.COPPER),
+    TIN(Strings.DUST_TIN_NAME, EnumMaterial.TIN),
+    SILVER(Strings.DUST_SILVER_NAME, EnumMaterial.SILVER),
+    LEAD(Strings.DUST_LEAD_NAME, EnumMaterial.LEAD);
 
     public static final EnumDust[] VALID = values();
     public final String name;
+    public final EnumMaterial material;
     public final int meta = this.ordinal();
     public IIcon icon;
 
-    private EnumDust(String name) {
+    private EnumDust(String name, EnumMaterial material) {
         this.name = name;
+        this.material = material;
     }
 
     public String getUnlocalizedName() {

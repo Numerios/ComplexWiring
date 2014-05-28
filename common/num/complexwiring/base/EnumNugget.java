@@ -8,19 +8,21 @@ import num.complexwiring.lib.Reference;
 import num.complexwiring.lib.Strings;
 
 public enum EnumNugget {
-    IRON(Strings.NUGGET_IRON_NAME),
-    COPPER(Strings.NUGGET_COPPER_NAME),
-    TIN(Strings.NUGGET_TIN_NAME),
-    SILVER(Strings.NUGGET_SILVER_NAME),
-    LEAD(Strings.NUGGET_LEAD_NAME);
+    IRON(Strings.NUGGET_IRON_NAME, EnumMaterial.IRON),
+    COPPER(Strings.NUGGET_COPPER_NAME, EnumMaterial.COPPER),
+    TIN(Strings.NUGGET_TIN_NAME, EnumMaterial.TIN),
+    SILVER(Strings.NUGGET_SILVER_NAME, EnumMaterial.SILVER),
+    LEAD(Strings.NUGGET_LEAD_NAME, EnumMaterial.LEAD);
 
     public static final EnumNugget[] VALID = values();
+    public final EnumMaterial material;
     public final String name;
     public final int meta = this.ordinal();
     public IIcon icon;
 
-    private EnumNugget(String name) {
+    private EnumNugget(String name, EnumMaterial material) {
         this.name = name;
+        this.material = material;
     }
 
     public String getUnlocalizedName() {
