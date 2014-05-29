@@ -2,6 +2,7 @@ package num.complexwiring.api.vec;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Vec3;
@@ -164,6 +165,14 @@ public class Vector3 implements Cloneable, Comparable {
 
     public void setBlock(World world, Block block) {
         world.setBlock(this.getX(), this.getY(), this.getZ(), block);
+    }
+
+    public ItemStack getIS(World world) {
+        return getIS(world, 1);
+    }
+
+    public ItemStack getIS(World world, int amount) {
+        return new ItemStack(world.getBlock(this.getX(), this.getY(), this.getZ()), amount, world.getBlockMetadata(this.getX(), this.getY(), this.getZ()));
     }
 
     public boolean isAir(World world) {
