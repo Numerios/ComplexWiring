@@ -155,7 +155,7 @@ public class TileEntityBCPoweredOrelyzer extends TileEntityBCPoweredBase impleme
         recipeNeededPower = nbt.getShort("recipePower");
 
         recipeOutput.clear();
-        NBTTagList outputNBT = (NBTTagList) nbt.getTag("currentOutput");
+        NBTTagList outputNBT = (NBTTagList) nbt.getTag("recipeOutput");
         if (outputNBT != null) {
             for (int i = 0; i < outputNBT.tagCount(); i++) {
                 NBTTagCompound itemNBT = outputNBT.getCompoundTagAt(i);
