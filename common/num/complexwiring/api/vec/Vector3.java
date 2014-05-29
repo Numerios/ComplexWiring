@@ -204,15 +204,19 @@ public class Vector3 implements Cloneable, Comparable {
     }
 
     public double mag() {
-        return Math.sqrt(this.magSqrt());
+        return Math.sqrt(this.magSquared());
     }
 
-    public double magSqrt() {
+    public double magSquared() {
         return this.x * this.x + this.y * this.y + this.z * this.z;
     }
 
     public double distance(Vector3 other) {
         return this.add(other.clone().invert()).mag();
+    }
+
+    public double distanceSquared(Vector3 other) {
+        return this.add(other.clone().invert()).magSquared();
     }
 
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
