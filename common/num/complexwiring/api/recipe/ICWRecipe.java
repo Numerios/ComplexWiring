@@ -3,7 +3,7 @@ package num.complexwiring.api.recipe;
 import net.minecraft.item.ItemStack;
 import num.complexwiring.recipe.RecipeManager;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -17,8 +17,7 @@ public interface ICWRecipe {
 
     public int getNeededPower();
 
-    public ArrayList<ItemStack> getOutput(Random rand);
+    public List<ItemStack> getOutput(Random rand);
 
     public RecipeManager.Type getType();
-
 }
