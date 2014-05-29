@@ -2,16 +2,20 @@ package num.complexwiring.machine.smasher;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
+import net.minecraft.util.MathHelper;
 import net.minecraftforge.common.util.ForgeDirection;
 import num.complexwiring.api.prefab.IFacing;
 import num.complexwiring.api.prefab.tile.TileEntityBase;
 import num.complexwiring.api.vec.Vector3;
 import num.complexwiring.base.EnumDust;
+import num.complexwiring.base.ItemScrewdriver;
 import num.complexwiring.core.Logger;
 
 public class TileSmasher extends TileEntityBase implements IFacing {
@@ -38,10 +42,10 @@ public class TileSmasher extends TileEntityBase implements IFacing {
                     facingVec.setBlock(world(), Blocks.air);
                 }
             }
-        //    if (ticks % 4 == 0) {
-                worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
-                markDirty();
-        //    }
+            //    if (ticks % 4 == 0) {
+            worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
+            markDirty();
+            //    }
         }
     }
 
@@ -54,6 +58,16 @@ public class TileSmasher extends TileEntityBase implements IFacing {
     public void setFacing(ForgeDirection dir) {
         Logger.debug("My new facing is: " + dir.toString());
         this.facing = dir;
+    }
+
+    public void onRightClick(EntityPlayer player) {
+        ItemStack is = player.getCurrentEquippedItem();
+        if (is != null) {
+            if (is.getItem() instanceof ItemScrewdriver) {
+                int playerFacing = MathHelper.floor_double(player.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
+                this.setFacing(ForgeDirection.getOrientation(ForgeDirection.ROTATION_MATRIX[playerFacing][facing.ordinal()]));
+            }
+        }
     }
 
     public void writePacketNBT(NBTTagCompound nbt) {
