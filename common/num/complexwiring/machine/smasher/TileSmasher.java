@@ -38,6 +38,10 @@ public class TileSmasher extends TileEntityBase implements IFacing {
                     facingVec.setBlock(world(), Blocks.air);
                 }
             }
+        //    if (ticks % 4 == 0) {
+                worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
+                markDirty();
+        //    }
         }
     }
 
