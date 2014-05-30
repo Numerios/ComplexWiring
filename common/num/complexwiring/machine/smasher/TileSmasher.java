@@ -1,11 +1,11 @@
 package num.complexwiring.machine.smasher;
 
-import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
@@ -13,41 +13,79 @@ import net.minecraft.util.MathHelper;
 import net.minecraftforge.common.util.ForgeDirection;
 import num.complexwiring.api.prefab.IFacing;
 import num.complexwiring.api.prefab.tile.TileEntityBase;
+import num.complexwiring.api.recipe.SmasherRecipe;
 import num.complexwiring.api.vec.Vector3;
-import num.complexwiring.base.EnumDust;
 import num.complexwiring.base.ItemScrewdriver;
 import num.complexwiring.core.Logger;
+import num.complexwiring.recipe.RecipeManager;
+
+import java.util.ArrayList;
+import java.util.Random;
 
 public class TileSmasher extends TileEntityBase implements IFacing {
     private ForgeDirection facing;
-    private float progress;
-    private static float PROGRESS_PER_TICK = 0.005F;
+    private SmasherRecipe recipe;
+    private ArrayList<ItemStack> recipeOutput;
+    private int processTime = 0;
+    private int recipeNeededPower = 0;
+
+    public TileSmasher() {
+        recipeOutput = new ArrayList<ItemStack>();
+    }
 
     @Override
     public void update() {
         if (!world().isRemote) {
-            Vector3 facingVec = pos().clone().step(facing);
-            if (facingVec.blockExists(world())) {
-                Block block = facingVec.getBlock(world());
-                if (progress <= 1F) {
-                    if (block == Blocks.iron_ore) {
-                        progress += PROGRESS_PER_TICK;
+            Vector3 facingVec = pos().clone().step(facing); //FIXME: Add a condition "if no recipe block in front, end"
+            if (recipe == null) {
+                if (RecipeManager.get(RecipeManager.Type.ORELYZER, facingVec.getIS(world())) != null) {
+                    recipe = (SmasherRecipe) RecipeManager.get(RecipeManager.Type.SMASHER, facingVec.getIS(world()));
+                    if (true) { //hasPower
+                        recipeNeededPower = recipe.getNeededPower();
+                        recipeOutput = recipe.getOutput(new Random());
+                        processTime = 0;
+                    } else {
+                        recipe = null;
                     }
-                } else {
-                    progress = 0F;
-                    EntityItem entityItem = new EntityItem(world(), pos().getX() + 0.5, pos().getY() + 0.5, pos().getZ() + 0.5, EnumDust.IRON.getIS(2).copy());
+                }
+            }
+            if (recipe != null) {
+                processTime++;
+                if (processTime >= recipeNeededPower) {
+                    endProcessing();
+                }
+            } else {
+                resetProcessing();
+            }
+        }
+        worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
+        markDirty();
+
+    }
+
+    private void resetProcessing() {
+        recipe = null;
+        recipeOutput.clear();
+        recipeNeededPower = 0;
+        processTime = 0;
+    }
+
+
+    public void endProcessing() {
+        if (recipeOutput != null && recipeOutput.size() > 0) {
+            for (ItemStack output : recipeOutput) {
+                if (output != null && output.stackSize != 0) {
+                    EntityItem entityItem = new EntityItem(world(), pos().getX() + 0.5, pos().getY() + 0.5, pos().getZ() + 0.5, output);
                     entityItem.setVelocity(0, 0, 0);
                     entityItem.delayBeforeCanPickup = 0;
                     world().spawnEntityInWorld(entityItem);
-                    facingVec.setBlock(world(), Blocks.air);
                 }
             }
-            //    if (ticks % 4 == 0) {
-            worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
-            markDirty();
-            //    }
+            pos().clone().step(facing).setBlock(world(), Blocks.air);
         }
+        resetProcessing();
     }
+
 
     @Override
     public ForgeDirection getFacing() {
@@ -72,12 +110,38 @@ public class TileSmasher extends TileEntityBase implements IFacing {
 
     public void writePacketNBT(NBTTagCompound nbt) {
         nbt.setShort("facing", (short) facing.ordinal());
-        nbt.setFloat("progress", progress);
+        nbt.setShort("processTime", (short) processTime);
+        nbt.setInteger("recipe", RecipeManager.toRecipeID(RecipeManager.Type.SMASHER, recipe));
+        nbt.setShort("recipePower", (short) recipeNeededPower);
+
+        if (recipeOutput != null) {
+            NBTTagList outputNBT = new NBTTagList();
+            for (ItemStack is : recipeOutput) {
+                if (is != null) {
+                    NBTTagCompound itemNBT = new NBTTagCompound();
+                    is.writeToNBT(itemNBT);
+                    outputNBT.appendTag(itemNBT);
+                }
+            }
+            nbt.setTag("recipeOutput", outputNBT);
+        }
     }
 
     public void readPacketNBT(NBTTagCompound nbt) {
         this.facing = ForgeDirection.getOrientation(nbt.getShort("facing"));
-        this.progress = nbt.getFloat("progress");
+
+        processTime = nbt.getShort("processTime");
+        recipe = (SmasherRecipe) RecipeManager.fromRecipeID(RecipeManager.Type.SMASHER, nbt.getInteger("recipe"));
+        recipeNeededPower = nbt.getShort("recipePower");
+
+        recipeOutput.clear();
+        NBTTagList outputNBT = (NBTTagList) nbt.getTag("recipeOutput");
+        if (outputNBT != null) {
+            for (int i = 0; i < outputNBT.tagCount(); i++) {
+                NBTTagCompound itemNBT = outputNBT.getCompoundTagAt(i);
+                recipeOutput.add(ItemStack.loadItemStackFromNBT(itemNBT));
+            }
+        }
     }
 
     @Override
@@ -103,7 +167,10 @@ public class TileSmasher extends TileEntityBase implements IFacing {
         readPacketNBT(packet.func_148857_g());
     }
 
-    public float getProgress() {
-        return progress;
+    public float getProgress(int scale) {
+        if (processTime == 0 || recipeNeededPower == 0) {
+            return 0;
+        }
+        return processTime * scale / recipeNeededPower;
     }
 }

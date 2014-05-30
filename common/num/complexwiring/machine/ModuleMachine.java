@@ -8,6 +8,8 @@ import net.minecraft.item.ItemStack;
 import num.complexwiring.api.recipe.CrusherRecipe;
 import num.complexwiring.api.recipe.OrelyzerRecipe;
 import num.complexwiring.api.recipe.RecipeRandomOutput;
+import num.complexwiring.api.recipe.SmasherRecipe;
+import num.complexwiring.base.EnumDust;
 import num.complexwiring.core.CreativeTabCW;
 import num.complexwiring.lib.Module;
 import num.complexwiring.machine.basic.BlockBasicMachine;
@@ -67,5 +69,8 @@ public class ModuleMachine extends Module {
                 new RecipeRandomOutput(new ItemStack(Blocks.sand, 1), 0.5F),
                 new RecipeRandomOutput(new ItemStack(Blocks.sand, 1), 0.2F),
                 new RecipeRandomOutput(new ItemStack(Blocks.gravel, 1), 0.4F)));
+
+        RecipeManager.add(new SmasherRecipe(new ItemStack(Blocks.iron_ore), 180, EnumDust.IRON.getIS(2)));
+        RecipeManager.add(new SmasherRecipe(new ItemStack(Blocks.gold_ore), 270, EnumDust.GOLD.getIS(2)));
     }
 }

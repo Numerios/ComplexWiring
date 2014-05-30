@@ -5,8 +5,7 @@ import net.minecraft.world.World;
 import num.complexwiring.api.vec.Vector3;
 import num.complexwiring.recipe.RecipeManager;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class SmasherRecipe implements ICWRecipe {
@@ -37,8 +36,12 @@ public class SmasherRecipe implements ICWRecipe {
         return neededPower;
     }
 
-    public List<ItemStack> getOutput(Random rand) {
-        return Arrays.asList(output);
+    public ArrayList<ItemStack> getOutput(Random rand) {
+        ArrayList<ItemStack> completeOutput = new ArrayList<ItemStack>();
+        for (ItemStack is : output) {
+            completeOutput.add(is.copy());
+        }
+        return completeOutput;
     }
 
     @Override

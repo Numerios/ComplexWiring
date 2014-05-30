@@ -54,7 +54,7 @@ public class RenderSmasher extends TileEntitySpecialRenderer {
         FMLClientHandler.instance().getClient().renderEngine.bindTexture(texture);
         model.renderOnly("Block Base", "Block Interface");
 
-        glRotatef(((TileSmasher) tile).getProgress() * 180 * 3, 0, 1, 0);               //very wild guess
+        glRotatef(((TileSmasher) tile).getProgress(180) * 3, 0, 1, 0);               //very wild guess
         model.renderAllExcept("Block Base", "Block Interface");
 
         glShadeModel(GL_FLAT);
