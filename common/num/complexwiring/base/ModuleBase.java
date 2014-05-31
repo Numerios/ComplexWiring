@@ -1,7 +1,10 @@
 package num.complexwiring.base;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import num.complexwiring.core.CreativeTabCW;
 import num.complexwiring.lib.Module;
@@ -52,5 +55,9 @@ public class ModuleBase extends Module {
             GameRegistry.addRecipe(new ShapelessOreRecipe(EnumMaterial.getMaterial(nugget).getIngot().copy(), nugget.name, nugget.name, nugget.name,
                     nugget.name, nugget.name, nugget.name, nugget.name, nugget.name, nugget.name));   //I'm so sorry
         }
+
+        GameRegistry.addShapedRecipe(new ItemStack(Items.paper, 2), "###", '#', EnumComponent.WOOD_PULP.getIS(1));
+        GameRegistry.addShapedRecipe(new ItemStack(Blocks.planks), "#", "#", '#', EnumComponent.WOOD_PULP.getIS(1)); //wood - 4 plank
+        GameRegistry.addShapedRecipe(new ItemStack(Items.stick), "#", '#', EnumComponent.WOOD_PULP.getIS(1));     //wood - 8 stick
     }
 }

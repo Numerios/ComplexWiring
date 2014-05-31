@@ -3,12 +3,9 @@ package num.complexwiring.machine;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import num.complexwiring.api.recipe.CrusherRecipe;
-import num.complexwiring.api.recipe.OrelyzerRecipe;
-import num.complexwiring.api.recipe.RecipeRandomOutput;
 import num.complexwiring.api.recipe.SmasherRecipe;
+import num.complexwiring.base.EnumComponent;
 import num.complexwiring.base.EnumMaterial;
 import num.complexwiring.core.CreativeTabCW;
 import num.complexwiring.lib.Module;
@@ -56,18 +53,15 @@ public class ModuleMachine extends Module {
     }
 
     private void registerRecipes() {
-        RecipeManager.add(new OrelyzerRecipe(new ItemStack(Blocks.log, 1), 120,
-                new RecipeRandomOutput(new ItemStack(Items.diamond, 1), 0.1F),
-                new RecipeRandomOutput(new ItemStack(Items.stick, 2), 0.8F),
-                new RecipeRandomOutput(new ItemStack(Items.stick, 1), 1F)));
-
-        RecipeManager.add(new CrusherRecipe(new ItemStack(Blocks.cobblestone, 1), 100,
-                new RecipeRandomOutput(new ItemStack(Blocks.sand, 1), 0.5F),
-                new RecipeRandomOutput(new ItemStack(Blocks.sand, 1), 0.2F),
-                new RecipeRandomOutput(new ItemStack(Blocks.gravel, 1), 0.4F)));
-
         for (EnumMaterial material : EnumMaterial.VALID) {
             RecipeManager.add(new SmasherRecipe(material.getOre(), 180, material.getDust(2)));
         }
+
+        RecipeManager.add(new SmasherRecipe(new ItemStack(Blocks.log, 1, 0), 90, EnumComponent.WOOD_PULP.getIS(10)));                     //FIXME: Smasher derpiness!
+        RecipeManager.add(new SmasherRecipe(new ItemStack(Blocks.log, 1, 1), 90, EnumComponent.WOOD_PULP.getIS(10)));
+        RecipeManager.add(new SmasherRecipe(new ItemStack(Blocks.log, 1, 2), 90, EnumComponent.WOOD_PULP.getIS(10)));
+        RecipeManager.add(new SmasherRecipe(new ItemStack(Blocks.log, 1, 3), 90, EnumComponent.WOOD_PULP.getIS(10)));
+        RecipeManager.add(new SmasherRecipe(new ItemStack(Blocks.log2, 1, 0), 90, EnumComponent.WOOD_PULP.getIS(10)));
+        RecipeManager.add(new SmasherRecipe(new ItemStack(Blocks.log2, 1, 1), 90, EnumComponent.WOOD_PULP.getIS(10)));
     }
 }
