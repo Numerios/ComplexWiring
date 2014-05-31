@@ -17,7 +17,7 @@ public enum EnumMaterial {
     public static final EnumMaterial[] VALID = values();
     public final String name;
     public final ColourRGB colour;
-    public final ItemStack ore, ingot, dust, nugget;
+    private final ItemStack ore, ingot, dust, nugget;
 
     private EnumMaterial(String name, ColourRGB colour, ItemStack ore, ItemStack ingot, ItemStack dust, ItemStack nugget) {
         this.name = name;
@@ -54,5 +54,45 @@ public enum EnumMaterial {
 
     public static EnumMaterial getMaterial(EnumNugget nugget) {
         return EnumMaterial.VALID[nugget.meta + 1];
+    }
+
+    public ItemStack getOre() {
+        return getOre(1);
+    }
+
+    public ItemStack getOre(int amount) {
+        ItemStack is = ore.copy();
+        is.stackSize = amount;
+        return is;
+    }
+
+    public ItemStack getIngot() {
+        return getIngot(1);
+    }
+
+    public ItemStack getIngot(int amount) {
+        ItemStack is = ingot.copy();
+        is.stackSize = amount;
+        return is;
+    }
+
+    public ItemStack getDust() {
+        return getDust(1);
+    }
+
+    public ItemStack getDust(int amount) {
+        ItemStack is = dust.copy();
+        is.stackSize = amount;
+        return is;
+    }
+
+    public ItemStack getNugget() {
+        return getNugget(1);
+    }
+
+    public ItemStack getNugget(int amount) {
+        ItemStack is = nugget.copy();
+        is.stackSize = amount;
+        return is;
     }
 }
