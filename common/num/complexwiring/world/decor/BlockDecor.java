@@ -18,8 +18,8 @@ public class BlockDecor extends Block {
     public BlockDecor() {
         super(Material.rock);
         setBlockName(Reference.MOD_ID.toLowerCase() + ".world.decor");
-        setHardness(0.5F);
-        setResistance(1.0F);
+        setHardness(1.8F);
+        setResistance(2F);
         setCreativeTab(ModuleWorld.tabCWWorld);
     }
 
