@@ -143,10 +143,7 @@ public class Strings {
     public static final String STARTPAPER_NAME = "startpaper";
     public static final String GUIDEBOOK_NAME = "guidebook";
 
-    public static final String SAW_NAME = "saw";
-    public static final String SMASHER_NAME = "smasher";
-
     public static final String DRIVESHAFT_NAME = "driveShaft";     //you ain't seen nuthin'
 
-
+    public static final String WOOD_PULP_NAME = "woodPulp";
 }

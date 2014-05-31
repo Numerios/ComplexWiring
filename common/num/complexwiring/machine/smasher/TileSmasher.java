@@ -40,7 +40,7 @@ public class TileSmasher extends TileEntityBase implements IFacing {
             if (recipe == null) {
                 if (RecipeManager.get(RecipeManager.Type.ORELYZER, facingVec.getIS(world())) != null) {
                     recipe = (SmasherRecipe) RecipeManager.get(RecipeManager.Type.SMASHER, facingVec.getIS(world()));
-                    if (true) { //hasPower
+                    if (recipe != null) { // + hasPower
                         recipeNeededPower = recipe.getNeededPower();
                         recipeOutput = recipe.getOutput(new Random());
                         processTime = 0;
