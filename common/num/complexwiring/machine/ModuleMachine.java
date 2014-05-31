@@ -9,13 +9,9 @@ import num.complexwiring.api.recipe.CrusherRecipe;
 import num.complexwiring.api.recipe.OrelyzerRecipe;
 import num.complexwiring.api.recipe.RecipeRandomOutput;
 import num.complexwiring.api.recipe.SmasherRecipe;
-import num.complexwiring.base.EnumDust;
+import num.complexwiring.base.EnumMaterial;
 import num.complexwiring.core.CreativeTabCW;
 import num.complexwiring.lib.Module;
-import num.complexwiring.machine.basic.BlockBasicMachine;
-import num.complexwiring.machine.basic.ItemBlockBasicMachine;
-import num.complexwiring.machine.powered.BlockPoweredMachine;
-import num.complexwiring.machine.powered.ItemBlockPoweredMachine;
 import num.complexwiring.machine.smasher.BlockSmasher;
 import num.complexwiring.machine.smasher.ItemBlockSmasher;
 import num.complexwiring.machine.storagebox.BlockStorageBox;
@@ -30,7 +26,7 @@ public class ModuleMachine extends Module {
     public void preInit() {
         registerBlocks();
         registerItems();
-        tabCWMachine.setIcon(new ItemStack(machineBasic));
+        tabCWMachine.setIcon(new ItemStack(smasher));
     }
 
     @Override
@@ -39,13 +35,13 @@ public class ModuleMachine extends Module {
     }
 
     private void registerBlocks() {
-        machineBasic = new BlockBasicMachine();
+    /*    machineBasic = new BlockBasicMachine();
         GameRegistry.registerBlock(machineBasic, ItemBlockBasicMachine.class, machineBasic.getUnlocalizedName());
         ((BlockBasicMachine) machineBasic).registerTiles();
 
         machinePowered = new BlockPoweredMachine();
         GameRegistry.registerBlock(machinePowered, ItemBlockPoweredMachine.class, machinePowered.getUnlocalizedName());
-        ((BlockPoweredMachine) machinePowered).registerTiles();
+        ((BlockPoweredMachine) machinePowered).registerTiles();                                                            */
 
         storageBox = new BlockStorageBox();
         GameRegistry.registerBlock(storageBox, ItemBlockStorageBox.class, storageBox.getUnlocalizedName());
@@ -70,7 +66,8 @@ public class ModuleMachine extends Module {
                 new RecipeRandomOutput(new ItemStack(Blocks.sand, 1), 0.2F),
                 new RecipeRandomOutput(new ItemStack(Blocks.gravel, 1), 0.4F)));
 
-        RecipeManager.add(new SmasherRecipe(new ItemStack(Blocks.iron_ore), 180, EnumDust.IRON.getIS(2)));
-        RecipeManager.add(new SmasherRecipe(new ItemStack(Blocks.gold_ore), 270, EnumDust.GOLD.getIS(2)));
+        for (EnumMaterial material : EnumMaterial.VALID) {
+            RecipeManager.add(new SmasherRecipe(material.getOre(), 180, material.getDust(2)));
+        }
     }
 }

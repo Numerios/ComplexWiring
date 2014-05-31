@@ -40,12 +40,12 @@ public class ModuleBase extends Module {
 
     private void registerRecipes() {
         for (EnumDust dust : EnumDust.VALID) {
-            GameRegistry.addSmelting(dust.getIS(1), EnumMaterial.getMaterial(dust).ingot.copy(), 0.6F);
+            GameRegistry.addSmelting(dust.getIS(1), EnumMaterial.getMaterial(dust).getIngot(), 0.6F);
         }
 
         for (EnumNugget nugget : EnumNugget.VALID) {
-            GameRegistry.addRecipe(new ShapelessOreRecipe(nugget.getIS(9), EnumMaterial.getMaterial(nugget).ingot.copy()));
-            GameRegistry.addRecipe(new ShapelessOreRecipe(EnumMaterial.getMaterial(nugget).ingot.copy(), nugget.name, nugget.name, nugget.name,
+            GameRegistry.addRecipe(new ShapelessOreRecipe(nugget.getIS(9), EnumMaterial.getMaterial(nugget).getIngot()));
+            GameRegistry.addRecipe(new ShapelessOreRecipe(EnumMaterial.getMaterial(nugget).getIngot().copy(), nugget.name, nugget.name, nugget.name,
                     nugget.name, nugget.name, nugget.name, nugget.name, nugget.name, nugget.name));   //I'm so sorry
         }
     }
