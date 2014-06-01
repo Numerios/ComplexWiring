@@ -4,11 +4,16 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import num.complexwiring.ComplexWiring;
 import num.complexwiring.api.recipe.SmasherRecipe;
 import num.complexwiring.base.EnumComponent;
 import num.complexwiring.base.EnumMaterial;
 import num.complexwiring.core.CreativeTabCW;
 import num.complexwiring.lib.Module;
+import num.complexwiring.machine.basic.BlockBasicMachine;
+import num.complexwiring.machine.basic.ItemBlockBasicMachine;
+import num.complexwiring.machine.powered.BlockPoweredMachine;
+import num.complexwiring.machine.powered.ItemBlockPoweredMachine;
 import num.complexwiring.machine.smasher.BlockSmasher;
 import num.complexwiring.machine.smasher.ItemBlockSmasher;
 import num.complexwiring.machine.storagebox.BlockStorageBox;
@@ -32,13 +37,15 @@ public class ModuleMachine extends Module {
     }
 
     private void registerBlocks() {
-    /*    machineBasic = new BlockBasicMachine();
-        GameRegistry.registerBlock(machineBasic, ItemBlockBasicMachine.class, machineBasic.getUnlocalizedName());
-        ((BlockBasicMachine) machineBasic).registerTiles();
+        if (ComplexWiring.DEBUG) {
+            machineBasic = new BlockBasicMachine();
+            GameRegistry.registerBlock(machineBasic, ItemBlockBasicMachine.class, machineBasic.getUnlocalizedName());
+            ((BlockBasicMachine) machineBasic).registerTiles();
 
-        machinePowered = new BlockPoweredMachine();
-        GameRegistry.registerBlock(machinePowered, ItemBlockPoweredMachine.class, machinePowered.getUnlocalizedName());
-        ((BlockPoweredMachine) machinePowered).registerTiles();                                                            */
+            machinePowered = new BlockPoweredMachine();
+            GameRegistry.registerBlock(machinePowered, ItemBlockPoweredMachine.class, machinePowered.getUnlocalizedName());
+            ((BlockPoweredMachine) machinePowered).registerTiles();
+        }
 
         storageBox = new BlockStorageBox();
         GameRegistry.registerBlock(storageBox, ItemBlockStorageBox.class, storageBox.getUnlocalizedName());
