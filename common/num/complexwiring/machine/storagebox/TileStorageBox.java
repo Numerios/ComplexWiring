@@ -2,152 +2,212 @@ package num.complexwiring.machine.storagebox;
 
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.ForgeDirection;
-import num.complexwiring.ComplexWiring;
 import num.complexwiring.api.prefab.IFacing;
 import num.complexwiring.api.prefab.tile.TileEntityInventoryBase;
-import num.complexwiring.api.vec.Vector3;
 import num.complexwiring.core.Logger;
 
-public class TileStorageBox extends TileEntityInventoryBase implements IStorageBox, IInventory, IFacing {
-
+public abstract class TileStorageBox extends TileEntityInventoryBase implements IStorageBox, IFacing {
+    private ItemStack containing;
     private ForgeDirection facing;
-    private ItemStack storage;
-    private int capacity;
 
     public TileStorageBox(int capacity, String tileName) {
         super(capacity, tileName);
-        Logger.debug(Thread.currentThread().getStackTrace().toString());
-        this.capacity = capacity;
     }
 
     @Override
     public void update() {
         super.update();
+        if (!this.worldObj.isRemote) {
+            if (ticks % 10 == 0) {
+                if (getAmountInv() == 0) {
+                    containing = null;
+                }
+                Logger.debug("Containing: " + getContaining());
+            }
+            worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+            markDirty();
+        }
     }
 
-    @Override
-    public void setFacing(ForgeDirection direction) {
-        facing = direction;
+    public ItemStack getContaining() {
+        if (this.containing == null) {
+            this.assembleContaining();
+        }
+        return this.containing;
     }
 
-    public ItemStack add(ItemStack itemStack) {
-        if (itemStack != null && itemStack.stackSize > 0) {
-            if (storage == null) {
-                storage = itemStack;
-                return null; //Whole itemStack added to StorageBox
-            } else {
-                if (storage.isItemEqual(itemStack)) {
-                    int finalSize = storage.stackSize + itemStack.stackSize;
-                    if (finalSize <= getInventoryStackLimit()) {
-                        storage.stackSize += itemStack.stackSize;
-                        return null; //Whole itemStack added to StorageBox
+    public ForgeDirection getFacing() {
+        return this.facing;
+    }
+
+    public void setFacing(ForgeDirection facing) {
+        this.facing = facing;
+    }
+
+    public void assembleContaining() {
+        if (world() == null || !world().isRemote) {
+            ItemStack is = null;
+            boolean refresh = false;
+
+            for (int i = 0; i < this.getSizeInventory(); i++) {
+                ItemStack slotIS = this.inventory[i];
+                if (slotIS != null && slotIS.stackSize > 0) {
+                    if (is == null) {
+                        is = slotIS.copy();
                     } else {
-                        int overflow = finalSize - getInventoryStackLimit();
-                        storage.stackSize = getInventoryStackLimit();
-                        return itemStack.splitStack(overflow); // Storage box is full now, returning the rest of itemStack
+                        is.stackSize += slotIS.stackSize;
+                    }
+
+                    if (slotIS.stackSize > slotIS.getMaxStackSize()) {
+                        refresh = true;
                     }
                 }
             }
-        }
-        return itemStack;
-    }
-
-    public ItemStack remove(int amount) {
-        if (storage != null) {
-            ItemStack returned;
-
-            if(amount > storage.stackSize) {
-                amount = storage.stackSize;
+            if (is != null) {
+                this.containing = is.copy();
             }
-            returned = storage.splitStack(amount);
-            if(storage.stackSize < 1) {
-                storage = null;
+            if ((refresh || this.inventory.length > this.getSizeInventory()) && this.containing != null) {
+                this.refreshInventory(this.containing);
             }
-
-            world().markBlockForUpdate(pos().getX(), pos().getY(), pos().getZ());
-            markDirty();
-            return returned;
-        }
-        return null;
-    }
-
-    public void removeAndDrop(int amount) {
-        ItemStack toDrop = remove(amount);
-
-        if(toDrop != null) {
-            Vector3 pos = pos().add(facing.offsetX * .3, facing.offsetY * .3, facing.offsetZ * .3);
-            EntityItem entityItem = new EntityItem(world(), pos.getX(), pos.getY(), pos.getZ(), toDrop.splitStack(amount));
-            entityItem.delayBeforeCanPickup = 0;
-            world().spawnEntityInWorld(entityItem);
         }
     }
 
-    /**
-     * Adding items into StorageBox
-     * When holding SHIFT key adding 1, otherwise 64
-     *
-     * @param player
-     */
-    public void onRightClick(EntityPlayer player) {
-        ItemStack itemStack = player.getCurrentEquippedItem();
-        if (itemStack != null) {
-            if (player.isSneaking()) { //FIXME: Override placing block to allow insert by one
-                ItemStack addedItemStack = add(itemStack.splitStack(1)); //If StorageBox is full and player wants to add one more item
-                if (addedItemStack != null) {
-                    itemStack.stackSize += 1;
-                }
-                player.inventory.setInventorySlotContents(player.inventory.currentItem, itemStack);
-            } else {
-                player.inventory.setInventorySlotContents(player.inventory.currentItem, add(itemStack));
-            }
+    public void refreshInventory(ItemStack is) {
+        this.inventory = new ItemStack[this.getSizeInventory()];
+        if (is != null) {
+            ItemStack base = is.copy();
+            int itemsLeft = base.stackSize;
 
-            world().markBlockForUpdate(pos().getX(), pos().getY(), pos().getZ());
-            markDirty();
-        } else {
-            if (storage.stackSize < getInventoryStackLimit()) {
-                boolean somethingAdded = false;
-                for (int slot = 0; slot < player.inventory.getSizeInventory(); slot++) {
-                    ItemStack itemInSlot = player.inventory.getStackInSlot(slot);
-                    if (itemInSlot != null && itemInSlot.isItemEqual(storage)) {
-                        somethingAdded = true;
-                        player.inventory.setInventorySlotContents(slot, add(itemInSlot));
-                    }
-                }
-
-                if (somethingAdded) {
-                    world().markBlockForUpdate(pos().getX(), pos().getY(), pos().getZ());
-                    ComplexWiring.proxy.updatePlayerInventory(player);
-                    markDirty();
+            for (int slot = 0; slot < this.inventory.length; slot++) {
+                int stackL = Math.min(Math.min(itemsLeft, base.getMaxStackSize()), this.getInventoryStackLimit());
+                this.inventory[slot] = base.copy();
+                this.inventory[slot].stackSize = stackL;
+                itemsLeft -= stackL;
+                if (base.stackSize <= 0) {
+                    base = null;
+                    break;
                 }
             }
         }
     }
 
+    public void add(ItemStack is, int amount) {
+        if (is != null) {
+            ItemStack copy = is.copy();
+            copy.stackSize = amount;
+            this.add(copy);
+        }
+    }
 
-    /**
-     * Taking items from StorageBox
-     * When holding SHIFT key taking by 1, otherwise 64
-     *
-     * @param player
-     */
+    public void add(ItemStack is) {
+        if (is != null && is.stackSize > 0) {
+            if (this.getContaining() == null) {
+                this.containing = is;
+                refreshInventory(getContaining());
+            } else if (this.getContaining().isItemEqual(is)) {
+                getContaining().stackSize += is.stackSize;
+                refreshInventory(getContaining());
+            }
+        }
+    }
+
     public void onLeftClick(EntityPlayer player) {
-        int target = 64;
-        if (player.isSneaking()) target = 1;
+        if (getContaining() == null) {
+            return;
+        }
+        int target;
+        if (!world().isRemote) {
+            if (player.isSneaking()) {
+                target = 1;
+            } else {
+                target = 64;      //maxStackSize = ejectAll
+            }
+            int ejected = 0;
+            if (getContaining() != null && target > 0) {
+                for (int slot = 0; slot < getSizeInventory(); slot++) {
+                    ItemStack slotIS = getStackInSlot(slot);
+                    if (slotIS != null && slotIS.stackSize > 0) {
+                        int taken = Math.min(slotIS.stackSize, target);
+                        ItemStack dropped = slotIS.copy();
+                        dropped.stackSize = taken;
 
-        removeAndDrop(target);
+                        EntityItem entityItem = new EntityItem(world(), player.posX, player.posY, player.posZ, dropped);
+                        entityItem.delayBeforeCanPickup = 0;
+                        world().spawnEntityInWorld(entityItem);
+
+                        slotIS.stackSize -= taken;
+                        ejected += taken;
+                        if (slotIS.stackSize <= 0) {
+                            slotIS = null;
+                        }
+                        setInventorySlotContents(slot, slotIS);
+                        if (getAmountInv() == 0) {
+                            containing = null;
+                        }
+                        if (ejected >= target) {
+                            return;
+                        }
+                    }
+                }
+                world().markBlockForUpdate(xCoord, yCoord, zCoord);
+                markDirty();
+            }
+        }
     }
+
+    public void onRightClick(EntityPlayer player) { //FIXME: Override placing blocks when sneaking to allow inserting by one
+        ItemStack is = player.getCurrentEquippedItem();
+        if (is != null) {
+            if ((getContaining() != null && containing.isItemEqual(is)) || getContaining() == null) {
+                player.inventory.setInventorySlotContents(player.inventory.currentItem, addChecked(is));
+            }
+        }
+    }
+
+    public int getAmountInv() {   //this be an ugly hax
+        int amount = 0;
+        for (int i = 0; i < this.getSizeInventory(); i++) {
+            ItemStack slotIS = getStackInSlot(i);
+            if (slotIS != null)
+                amount += slotIS.stackSize;
+        }
+        return amount;
+    }
+
+    public ItemStack addChecked(ItemStack is) {
+        if (is == null) {
+            return is;
+        }
+        if (getContaining() == null || getContaining().isItemEqual(is)) {
+            int free = Math.max((getSizeInventory() * 64) - (containing != null ? containing.stackSize : 0), 0);
+            if (is.stackSize <= free) {
+                this.add(is);
+                is = null;
+            } else {
+                this.add(is, free);
+                is.stackSize -= free;
+            }
+            return is;
+        }
+        if (is.stackSize <= 0) {
+            return null;
+        }
+        return is;
+    }
+
 
     @Override
     public void writePacketNBT(NBTTagCompound nbt) {
         super.writePacketNBT(nbt);
         nbt.setShort("facing", (short) facing.ordinal());
-        if (storage != null) {
-            nbt.setTag("containing", storage.writeToNBT(new NBTTagCompound()));
-            nbt.setInteger("amount", storage.stackSize);
+        this.assembleContaining();
+        ItemStack is = this.getContaining();
+        if (is != null) {
+            nbt.setTag("containing", is.writeToNBT(new NBTTagCompound()));
+            nbt.setInteger("amount", is.stackSize);
         } else {
             nbt.setTag("containing", new NBTTagCompound());
             nbt.setInteger("amount", 0);
@@ -158,74 +218,49 @@ public class TileStorageBox extends TileEntityInventoryBase implements IStorageB
     public void readPacketNBT(NBTTagCompound nbt) {
         super.readPacketNBT(nbt);
         this.facing = ForgeDirection.getOrientation(nbt.getShort("facing"));
-        NBTTagCompound content = nbt.getCompoundTag("containing");
-        if (!content.hasNoTags()) {
-            ItemStack is = ItemStack.loadItemStackFromNBT(nbt.getCompoundTag("containing"));
-            storage = is;
-            storage.stackSize = nbt.getInteger("amount");
+        NBTTagCompound nbtContaining = nbt.getCompoundTag("containing");
+        if (!nbtContaining.hasNoTags()) {
+            this.containing = ItemStack.loadItemStackFromNBT(nbtContaining);
+            this.containing.stackSize = nbt.getInteger("amount");
+            this.refreshInventory(this.containing);
         } else {
-            storage = null;
+            containing = null;
         }
-    }
-
-    @Override
-    public ForgeDirection getFacing() {
-        return facing;
-    }
-
-    @Override
-    public void addToStorage(ItemStack itemStack) {
-        add(itemStack);
-    }
-
-    @Override
-    public int getSizeInventory() {
-        return 1;
-    }
-
-    @Override
-    public ItemStack getStackInSlot(int slot) {
-        return storage;
     }
 
     @Override
     public ItemStack decrStackSize(int slot, int amount) {
-        ItemStack returnedIs = null;
-        if (storage != null) {
-            if (storage.stackSize <= amount) {
-                returnedIs = storage.copy();
-                storage = null;
+        if (containing != null) {
+            ItemStack is;
+            if (containing.stackSize <= amount) {
+                is = containing;
+                containing = null;
+                this.markDirty();
+                world().markBlockForUpdate(xCoord, yCoord, zCoord);
+                refreshInventory(getContaining());
+                return is;
             } else {
-                returnedIs = storage.splitStack(amount);
+                is = containing.splitStack(amount);
+                if (containing.stackSize == 0) {
+                    containing = null;
+                }
+                world().markBlockForUpdate(xCoord, yCoord, zCoord);
+                this.markDirty();
+                refreshInventory(getContaining());
+                return is;
             }
-
-            world().markBlockForUpdate(pos().getX(), pos().getY(), pos().getZ());
-            markDirty();
+        } else {
+            return null;
         }
-        return returnedIs;
     }
 
     @Override
-    public ItemStack getStackInSlotOnClosing(int slot) {
-        return storage;
+    public void addToStorage(ItemStack is) {
+        this.addChecked(is);
     }
 
-    @Override
-    public void setInventorySlotContents(int slot, ItemStack itemStack) {
-        storage = itemStack;
-    }
-
-    @Override
-    public int getInventoryStackLimit() {
-        if (storage != null) {
-            return storage.getMaxStackSize() * capacity;
-        }
-        return 64;
-    }
-
-    @Override
-    public boolean isUseableByPlayer(EntityPlayer player) {
-        return Vector3.get(player).distanceSquared(pos()) <= 1024 && this.pos().toTile(worldObj) == this;
+    public boolean isEmpty() {
+        return containing == null;
     }
 
     public static class TileStorageBoxBasic extends TileStorageBox {

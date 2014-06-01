@@ -16,7 +16,7 @@ public class RenderStorageBox extends TileEntitySpecialRenderer {
         if (tile instanceof TileStorageBox) {
             GL11.glPushMatrix();
             TileStorageBox tileStorageBox = (TileStorageBox) tile;
-            RenderOverlay.renderISWithTextOnSide(tileStorageBox, tileStorageBox.getStackInSlot(0), x, y, z, tileStorageBox.getFacing());
+            RenderOverlay.renderISWithTextOnSide(tileStorageBox, tileStorageBox.getContaining(), x, y, z, tileStorageBox.getFacing());
             GL11.glPopMatrix();
         }
     }
