@@ -9,6 +9,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
+import num.complexwiring.base.ModuleBase;
 import num.complexwiring.core.GuiHandler;
 import num.complexwiring.core.Logger;
 import num.complexwiring.core.ModuleManager;
@@ -16,6 +17,9 @@ import num.complexwiring.core.PlayerEventHandler;
 import num.complexwiring.core.network.PacketPipeline;
 import num.complexwiring.core.proxy.CommonProxy;
 import num.complexwiring.lib.Reference;
+import num.complexwiring.machine.ModuleMachine;
+import num.complexwiring.tablet.ModuleTablet;
+import num.complexwiring.world.ModuleWorld;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION)
 public class ComplexWiring {
@@ -31,7 +35,13 @@ public class ComplexWiring {
         Logger.init();
         Logger.debug("PreInit started!");
 
-        ModuleManager.preInit();
+        ModuleManager.INSTANCE.register(new ModuleBase());
+        ModuleManager.INSTANCE.register(new ModuleTablet());
+        ModuleManager.INSTANCE.register(new ModuleWorld());
+        ModuleManager.INSTANCE.register(new ModuleMachine());
+
+        ModuleManager.INSTANCE.preInit();
+
         FMLCommonHandler.instance().bus().register(new PlayerEventHandler());
 
         Logger.debug("PreInit finished!");
@@ -45,7 +55,7 @@ public class ComplexWiring {
 
         NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
 
-        ModuleManager.init();
+        ModuleManager.INSTANCE.init();
         Logger.debug("Init finished!");
     }
 
@@ -54,7 +64,7 @@ public class ComplexWiring {
         Logger.debug("PostInit started!");
         packetPipeline.postInit();
 
-        ModuleManager.postInit();
+        ModuleManager.INSTANCE.postInit();
         Logger.debug("PostInit finished!");
     }
 }

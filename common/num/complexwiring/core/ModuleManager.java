@@ -1,36 +1,45 @@
 package num.complexwiring.core;
 
-import num.complexwiring.base.ModuleBase;
 import num.complexwiring.lib.Module;
-import num.complexwiring.machine.ModuleMachine;
-import num.complexwiring.tablet.ModuleTablet;
-import num.complexwiring.world.ModuleWorld;
 
 import java.util.ArrayList;
 
 public class ModuleManager {
-    private static ArrayList<Module> modules = new ArrayList<Module>();
+    public static final ModuleManager INSTANCE = new ModuleManager();
+    private ArrayList<Module> modules = new ArrayList<Module>();
+    private Phase phase = Phase.LOAD;
 
-    public static void preInit() {
-        modules.add(new ModuleBase());
-        modules.add(new ModuleTablet());
-        modules.add(new ModuleWorld());
-        modules.add(new ModuleMachine());
+    public void register(Module module) {
+        modules.add(module);
+    }
 
+    public void preInit() {
+        phase = Phase.PREINIT;
         for (Module module : modules) {
             module.preInit();
         }
     }
 
-    public static void init() {
+    public void init() {
+        phase = Phase.INIT;
         for (Module module : modules) {
             module.init();
         }
     }
 
-    public static void postInit() {
+    public void postInit() {
+        phase = Phase.POSTINIT;
         for (Module module : modules) {
             module.postInit();
         }
+        phase = Phase.FINISHED;
+    }
+
+    public Phase getPhase() {
+        return phase;
+    }
+
+    public enum Phase {
+        LOAD, PREINIT, INIT, POSTINIT, FINISHED;
     }
 }
