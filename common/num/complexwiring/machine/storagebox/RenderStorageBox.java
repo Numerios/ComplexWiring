@@ -5,6 +5,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import num.complexwiring.client.RenderOverlay;
+import num.complexwiring.core.Logger;
 import org.lwjgl.opengl.GL11;
 
 @SideOnly(Side.CLIENT)
@@ -15,7 +16,7 @@ public class RenderStorageBox extends TileEntitySpecialRenderer {
         if (tile instanceof TileStorageBox) {
             GL11.glPushMatrix();
             TileStorageBox tileStorageBox = (TileStorageBox) tile;
-            RenderOverlay.renderISWithTextOnSide(tile, tileStorageBox.getContaining(), x, y, z, tileStorageBox.getFacing());
+            RenderOverlay.renderISWithTextOnSide(tileStorageBox, tileStorageBox.getStackInSlot(0), x, y, z, tileStorageBox.getFacing());
             GL11.glPopMatrix();
         }
     }

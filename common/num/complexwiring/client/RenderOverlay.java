@@ -163,13 +163,10 @@ public class RenderOverlay {
         String amount = "0";
         String name = "";
         if (is != null) {
-            if (is.stackSize >= 64) {
-                int stack = (is.stackSize / 64);
-                amount = stack + "x64" + (is.stackSize - (stack * 64) == 0 ? "" : " + " + (is.stackSize - (stack * 64)));
-            } else {
-                amount = "" + is.stackSize;
-            }
-            Logger.debug("stacksize: " + is.stackSize + " amount: " + amount + " isEmpty: " + ((TileStorageBox) tile).isEmpty());
+            amount = (is.stackSize % 64) + "";
+            int stacks = (is.stackSize / 64);
+            if(stacks > 0) amount = stacks + "x64 + " + amount;
+
             name = is.getDisplayName();
         }
 
