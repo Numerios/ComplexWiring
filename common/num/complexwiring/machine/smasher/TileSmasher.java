@@ -36,9 +36,9 @@ public class TileSmasher extends TileEntityBase implements IFacing {
     @Override
     public void update() {
         if (!world().isRemote) {
-            Vector3 facingVec = pos().clone().step(facing); //FIXME: Add a condition "if no recipe block in front, end"
+            Vector3 facingVec = pos().clone().step(facing);
             if (recipe == null) {
-                if (RecipeManager.get(RecipeManager.Type.ORELYZER, facingVec.getIS(world())) != null) {
+                if (RecipeManager.get(RecipeManager.Type.SMASHER, facingVec.getIS(world())) != null) {
                     recipe = (SmasherRecipe) RecipeManager.get(RecipeManager.Type.SMASHER, facingVec.getIS(world()));
                     if (recipe != null) { // + hasPower
                         recipeNeededPower = recipe.getNeededPower();
@@ -49,7 +49,7 @@ public class TileSmasher extends TileEntityBase implements IFacing {
                     }
                 }
             }
-            if (recipe != null) {
+            if (recipe != null && facingVec.getIS(world()).isItemEqual(recipe.getInput())) {
                 processTime++;
                 if (processTime >= recipeNeededPower) {
                     endProcessing();
