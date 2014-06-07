@@ -163,7 +163,7 @@ public abstract class TileStorageBox extends TileEntityInventoryBase implements 
         ItemStack is = player.getCurrentEquippedItem();
         if (is != null) {
             if (is.getItem() instanceof ItemScrewdriver) {
-                this.setFacing(ItemScrewdriver.getSideToRotate(player.rotationYaw, 0F, player.isSneaking()));
+                this.setFacing(ItemScrewdriver.getSideToRotate(player.rotationYaw, 0F, !player.isSneaking()));
                 return;
             }
 
