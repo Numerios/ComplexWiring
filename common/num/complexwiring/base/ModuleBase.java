@@ -5,6 +5,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import num.complexwiring.core.CreativeTabCW;
 import num.complexwiring.lib.Module;
@@ -20,7 +21,13 @@ public class ModuleBase extends Module {
 
     @Override
     public void init() {
+        registerVanillaOreDict();
         registerRecipes();
+    }
+
+    private void registerVanillaOreDict() {
+        OreDictionary.registerOre("ingotIron", Items.iron_ingot);
+        OreDictionary.registerOre("ingotGold", Items.gold_ingot);
     }
 
     private void registerItems() {
