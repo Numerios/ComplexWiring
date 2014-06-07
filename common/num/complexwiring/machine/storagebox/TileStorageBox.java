@@ -7,6 +7,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.ForgeDirection;
 import num.complexwiring.api.prefab.IFacing;
 import num.complexwiring.api.prefab.tile.TileEntityInventoryBase;
+import num.complexwiring.base.ItemScrewdriver;
 import num.complexwiring.core.Logger;
 
 public abstract class TileStorageBox extends TileEntityInventoryBase implements IStorageBox, IFacing {
@@ -161,6 +162,11 @@ public abstract class TileStorageBox extends TileEntityInventoryBase implements 
     public void onRightClick(EntityPlayer player) { //FIXME: Override placing blocks when sneaking to allow inserting by one
         ItemStack is = player.getCurrentEquippedItem();
         if (is != null) {
+            if (is.getItem() instanceof ItemScrewdriver) {
+                this.setFacing(ItemScrewdriver.getSideToRotate(player.rotationYaw, 0F, player.isSneaking()));
+                return;
+            }
+
             if ((getContaining() != null && containing.isItemEqual(is)) || getContaining() == null) {
                 player.inventory.setInventorySlotContents(player.inventory.currentItem, addChecked(is));
             }

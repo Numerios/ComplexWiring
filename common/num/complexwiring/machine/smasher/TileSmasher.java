@@ -9,7 +9,6 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
-import net.minecraft.util.MathHelper;
 import net.minecraftforge.common.util.ForgeDirection;
 import num.complexwiring.api.prefab.IFacing;
 import num.complexwiring.api.prefab.tile.TileEntityBase;
@@ -102,8 +101,7 @@ public class TileSmasher extends TileEntityBase implements IFacing {
         ItemStack is = player.getCurrentEquippedItem();
         if (is != null) {
             if (is.getItem() instanceof ItemScrewdriver) {
-                int playerFacing = MathHelper.floor_double(player.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
-                this.setFacing(ForgeDirection.getOrientation(ForgeDirection.ROTATION_MATRIX[playerFacing][facing.ordinal()]));
+                this.setFacing(ItemScrewdriver.getSideToRotate(player.rotationYaw, player.rotationPitch, player.isSneaking()));
             }
         }
     }
