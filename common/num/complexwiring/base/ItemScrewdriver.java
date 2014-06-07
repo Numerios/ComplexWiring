@@ -15,7 +15,7 @@ public class ItemScrewdriver extends Item {
 
     public ItemScrewdriver() {
         super();
-        setUnlocalizedName(Reference.MOD_ID.toLowerCase() + "base.screwdriver");
+        setUnlocalizedName(Reference.MOD_ID.toLowerCase() + ".base.screwdriver");
         setCreativeTab(ModuleBase.tabCWBase);
     }
 

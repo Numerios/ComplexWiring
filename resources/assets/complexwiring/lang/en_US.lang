@@ -103,9 +103,11 @@ tile.complexwiring.machine.powered.crusher.name=Powered Crusher
 tile.complexwiring.machine.powered.crusher.desc=Crush your ores with MJ!
 
 tile.complexwiring.machine.storagebox.basic.name=Basic Storage Box
-tile.complexwiring.machine.storagebox.basic.desc=Store up to 32 stacks of one item in a single block!
+tile.complexwiring.machine.storagebox.basic.desc=32 stacks of storage!
 tile.complexwiring.machine.storagebox.advanced.name=Advanced Storage Box
-tile.complexwiring.machine.storagebox.advanced.desc=Store up to 128 stacks of one item in a single block!
+tile.complexwiring.machine.storagebox.advanced.desc=128 stacks of storage!
+
+tile.complexwiring.machine.smasher.name=Mechanical Smasher
 
 item.complexwiring.base.ingot.copper.name=Copper Ingot
 item.complexwiring.base.ingot.tin.name=Tin Ingot
@@ -124,6 +126,10 @@ item.complexwiring.base.nugget.copper.name=Copper Nugget
 item.complexwiring.base.nugget.tin.name=Tin Nugget
 item.complexwiring.base.nugget.silver.name=Silver Nugget
 item.complexwiring.base.nugget.lead.name=Lead Nugget
+
+item.complexwiring.base.screwdriver.name=Screwdriver
+
+item.complexwiring.base.component.woodpulp.name=Wood Pulp
 
 item.complexwiring.tablet.name=Tablet
 item.complexwiring.tablet.startpaper.name=§lThe Beginning
