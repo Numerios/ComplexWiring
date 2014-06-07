@@ -8,6 +8,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -16,9 +17,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
-import num.complexwiring.api.vec.Vector3;
 import num.complexwiring.client.RenderingHandler;
-import num.complexwiring.core.InventoryHelper;
 import num.complexwiring.lib.Reference;
 import num.complexwiring.machine.ModuleMachine;
 
@@ -69,10 +68,15 @@ public class BlockStorageBox extends Block implements ITileEntityProvider {
 
     @Override
     public void breakBlock(World world, int x, int y, int z, Block block, int par6) {
-        Vector3 vec3 = new Vector3(x, y, z);
-        InventoryHelper.dropInventory(world, vec3);
-        super.breakBlock(world, x, y, z, block, par6);
+        ItemStack itemStack = ((TileStorageBox) world.getTileEntity(x, y, z)).getContaining();
+        if(itemStack != null){
+            EntityItem entityItem = new EntityItem(world, x, y, z, itemStack);
+            entityItem.setVelocity(0, 0, 0);
+            entityItem.delayBeforeCanPickup = 0;
+            world.spawnEntityInWorld(entityItem);
+        }
         world.removeTileEntity(x, y, z);
+        super.breakBlock(world, x, y, z, block, par6);
     }
 
     @Override
