@@ -28,19 +28,7 @@ public class ItemScrewdriver extends Item {
     public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
         Block block = world.getBlock(x, y, z);
         if (block != null) {
-            ForgeDirection direction;
-            int playerFacing = MathHelper.floor_double((player.rotationYaw * 4F / 360F) + 0.5D) + 4;
-            switch (playerFacing){
-                case 1: direction = ForgeDirection.WEST; break;
-                case 2: direction = ForgeDirection.NORTH; break;
-                case 3: direction = ForgeDirection.EAST; break;
-                default: direction = ForgeDirection.SOUTH; break;
-            }
-
-            if(player.rotationPitch < -60) direction = ForgeDirection.UP;
-            if(player.rotationPitch > 60) direction = ForgeDirection.DOWN;
-
-            if(!player.isSneaking()) direction = direction.getOpposite();
+            ForgeDirection direction = getSideToRotate(player.cameraYaw, player.cameraPitch, player.isSneaking());
 
             if (block.rotateBlock(world, x, y, z, direction)) {
                 player.swingItem();

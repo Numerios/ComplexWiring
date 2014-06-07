@@ -8,6 +8,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.IModelCustom;
+import num.complexwiring.core.Logger;
 import num.complexwiring.lib.Reference;
 
 import static org.lwjgl.opengl.GL11.*;
@@ -29,11 +30,8 @@ public class RenderSmasher extends TileEntitySpecialRenderer {
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
         switch (smasher.getFacing()) {
-            case UP:
-                glRotatef(0, 0, 1, 0);   //TODO: facing could have UP and down too! :)
-                break;
             case DOWN:
-                glRotatef(180, 0, 1, 0);
+                glRotatef(180, 0, 0, 1);
                 break;
             case SOUTH:
                 glRotatef(90, 1, 0, 0);
@@ -46,8 +44,6 @@ public class RenderSmasher extends TileEntitySpecialRenderer {
                 break;
             case EAST:
                 glRotatef(-90, 0, 0, 1);
-                break;
-            default:
                 break;
         }
 
