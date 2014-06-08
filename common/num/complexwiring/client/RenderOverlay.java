@@ -12,8 +12,6 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
-import num.complexwiring.core.Logger;
-import num.complexwiring.machine.storagebox.TileStorageBox;
 import org.lwjgl.opengl.GL11;
 
 @SideOnly(Side.CLIENT)
@@ -173,8 +171,8 @@ public class RenderOverlay {
         renderItemOnSide(is, x, y, z, side);
         GL11.glPushMatrix();
         GL11.glDisable(GL11.GL_LIGHTING);
-        renderDynamicTextOnSide(name, side, 0.02F, x, y - 0.375F, z);
-        renderScaledTextOnSide(amount, side, 0.01F, x, y + 0.375F, z);
+        renderDynamicTextOnSide(name, side, 0.02F, x, y - 0.425F, z);
+        renderScaledTextOnSide(amount, side, 0.01F, x, y + 0.4F, z);
         GL11.glEnable(GL11.GL_LIGHTING);
         GL11.glPopMatrix();
     }
