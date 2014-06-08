@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.world.IBlockAccess;
 import num.complexwiring.machine.smasher.BlockSmasher;
+import num.complexwiring.machine.smasher.RenderSmasher;
 import num.complexwiring.machine.storagebox.BlockStorageBox;
 import org.lwjgl.opengl.GL11;
 
@@ -20,8 +21,8 @@ public class RenderingHandler implements ISimpleBlockRenderingHandler {
             return;
         }
         if (block instanceof BlockSmasher) {
-            //TODO: Render Smasher model instead of block!
-            renderStandardInvBlock(renderer, block, metadata);
+            RenderSmasher.instance.renderItemInInv();
+            return;
         }
     }
 

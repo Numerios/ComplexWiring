@@ -14,6 +14,8 @@ import static org.lwjgl.opengl.GL11.*;
 
 @SideOnly(Side.CLIENT)
 public class RenderSmasher extends TileEntitySpecialRenderer {
+    public static final RenderSmasher instance = new RenderSmasher();
+
     IModelCustom model = AdvancedModelLoader.loadModel(new ResourceLocation(Reference.MOD_ID.toLowerCase(), "models/smasher.tcn"));
     ResourceLocation texture = new ResourceLocation(Reference.MOD_ID.toLowerCase(), "models/smasher.png");
 
@@ -60,4 +62,24 @@ public class RenderSmasher extends TileEntitySpecialRenderer {
         glPopMatrix();
     }
 
+    public void renderItemInInv() {
+        glPushMatrix();
+        //glTranslated(x + 0.5D, y + 0.5D, z + 0.5D);
+
+        glShadeModel(GL_SMOOTH);
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+        glRotatef(-90, 0, 1, 0);
+
+        FMLClientHandler.instance().getClient().renderEngine.bindTexture(texture);
+        model.renderOnly("Block Base", "Block Interface");
+        model.renderAllExcept("Block Base", "Block Interface");
+        glShadeModel(GL_FLAT);
+        glDisable(GL_LINE_SMOOTH);
+        glDisable(GL_POLYGON_SMOOTH);
+        glDisable(GL_BLEND);
+
+        glPopMatrix();
+    }
 }

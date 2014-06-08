@@ -17,6 +17,6 @@ public class ClientProxy extends CommonProxy {
         AdvancedModelLoader.registerModelHandler(new TechneModelLoader());
         RenderingRegistry.registerBlockHandler(new RenderingHandler());
         ClientRegistry.bindTileEntitySpecialRenderer(TileStorageBox.class, new RenderStorageBox());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileSmasher.class, new RenderSmasher());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileSmasher.class, RenderSmasher.instance);
     }
 }
