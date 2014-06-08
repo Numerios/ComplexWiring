@@ -34,7 +34,7 @@ public class TileSmasher extends TileEntityBase implements IFacing {
 
     @Override
     public void update() {
-        if (!world().isRemote) {
+        if (!world().isRemote && !pos().isRSPowered(world())) {
             Vector3 facingVec = pos().clone().step(facing);
             if (recipe == null) {
                 if (RecipeManager.get(RecipeManager.Type.SMASHER, facingVec.getIS(world())) != null) {
