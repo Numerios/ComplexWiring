@@ -74,8 +74,9 @@ public class TileSmasher extends TileEntityBase implements IFacing {
         if (recipeOutput != null && recipeOutput.size() > 0) {
             for (ItemStack output : recipeOutput) {
                 if (output != null && output.stackSize != 0) {
-                    EntityItem entityItem = new EntityItem(world(), pos().getX() + 0.5, pos().getY() + 0.5, pos().getZ() + 0.5, output);
-                    entityItem.setVelocity(0, 0, 0);
+                    Vector3 blockPos = pos().clone().step(facing);
+                    EntityItem entityItem = new EntityItem(world(), blockPos.getX() + 0.5D, blockPos.getY() + 0.5D, blockPos.getZ() + 0.5D, output);
+                    entityItem.setVelocity(0D, 0D, 0D);
                     entityItem.delayBeforeCanPickup = 0;
                     world().spawnEntityInWorld(entityItem);
                 }

@@ -23,18 +23,18 @@ public class RenderOverlay {
             GL11.glPushMatrix();
             switch (side) {
                 case NORTH:
-                    GL11.glTranslated(x + 0.5 + 0.27, y + 0.5 + 0.27, z - 0.01);
+                    GL11.glTranslated(x + 0.755, y + 0.755, z - 0.001);
                     break;
                 case SOUTH:
-                    GL11.glTranslated(x + 0.5 - 0.27, y + 0.5 + 0.27, z + 1.01);
+                    GL11.glTranslated(x + 0.245, y + 0.755, z + 1.001);
                     GL11.glRotatef(180, 0, 1, 0);
                     break;
                 case WEST:
-                    GL11.glTranslated(x - 0.01, y + 0.5 + 0.27, z + 0.5 - 0.27);
+                    GL11.glTranslated(x - 0.001, y + 0.755, z + 0.245);
                     GL11.glRotatef(90, 0, 1, 0);
                     break;
                 case EAST:
-                    GL11.glTranslated(x + 1.01, y + 0.5 + 0.27, z + 0.5 + 0.27);
+                    GL11.glTranslated(x + 1.001, y + 0.755, z + 0.755);
                     GL11.glRotatef(-90, 0, 1, 0);
                     break;
             }
