@@ -8,7 +8,6 @@ import net.minecraftforge.common.util.ForgeDirection;
 import num.complexwiring.api.prefab.IFacing;
 import num.complexwiring.api.prefab.tile.TileEntityInventoryBase;
 import num.complexwiring.base.ItemScrewdriver;
-import num.complexwiring.core.Logger;
 
 public abstract class TileStorageBox extends TileEntityInventoryBase implements IStorageBox, IFacing {
     private ItemStack containing;
@@ -26,7 +25,6 @@ public abstract class TileStorageBox extends TileEntityInventoryBase implements 
                 if (getAmountInv() == 0) {
                     containing = null;
                 }
-                Logger.debug("Containing: " + getContaining());
             }
             worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
             markDirty();

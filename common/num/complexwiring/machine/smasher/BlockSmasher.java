@@ -14,9 +14,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
+import num.complexwiring.base.ItemScrewdriver;
 import num.complexwiring.client.RenderingHandler;
 import num.complexwiring.lib.Reference;
 import num.complexwiring.machine.ModuleMachine;
@@ -53,24 +52,8 @@ public class BlockSmasher extends Block implements ITileEntityProvider {
     @Override
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack is) {
         super.onBlockPlacedBy(world, x, y, z, entity, is);
-        int facing = MathHelper.floor_double(entity.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
         TileSmasher tile = (TileSmasher) world.getTileEntity(x, y, z);
-        if (tile != null) {
-            switch (facing) {
-                case 0:
-                    tile.setFacing(ForgeDirection.NORTH);
-                    break;
-                case 1:
-                    tile.setFacing(ForgeDirection.EAST);
-                    break;
-                case 2:
-                    tile.setFacing(ForgeDirection.SOUTH);
-                    break;
-                case 3:
-                    tile.setFacing(ForgeDirection.WEST);
-                    break;
-            }
-        }
+        tile.setFacing(ItemScrewdriver.getSideToRotate(entity.rotationYaw, entity.rotationPitch, true));
     }
 
     @Override
