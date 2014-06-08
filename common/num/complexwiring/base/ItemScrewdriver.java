@@ -43,10 +43,10 @@ public class ItemScrewdriver extends Item {
         ForgeDirection direction;
         int playerFacing = MathHelper.floor_double((yaw * 4F / 360F) + 0.5D) + 4;
         switch (playerFacing){
-            case 1: direction = ForgeDirection.WEST; break;
             case 2: direction = ForgeDirection.NORTH; break;
             case 3: direction = ForgeDirection.EAST; break;
-            default: direction = ForgeDirection.SOUTH; break;
+            case 4: direction = ForgeDirection.SOUTH; break;
+            default: direction = ForgeDirection.WEST; break;
         }
 
         if(pitch < -60) direction = ForgeDirection.UP;
