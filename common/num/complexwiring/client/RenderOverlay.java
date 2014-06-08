@@ -171,8 +171,8 @@ public class RenderOverlay {
         renderItemOnSide(is, x, y, z, side);
         GL11.glPushMatrix();
         GL11.glDisable(GL11.GL_LIGHTING);
-        renderDynamicTextOnSide(name, side, 0.02F, x, y - 0.425F, z);
-        renderScaledTextOnSide(amount, side, 0.01F, x, y + 0.4F, z);
+        renderDynamicTextOnSide(name, side, 0.0175F, x, y - 0.425F, z);
+        renderScaledTextOnSide(amount, side, 0.01F, x, y + 0.425F, z);
         GL11.glEnable(GL11.GL_LIGHTING);
         GL11.glPopMatrix();
     }
