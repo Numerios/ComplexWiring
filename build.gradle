@@ -34,9 +34,9 @@ minecraft {
 }
 
 dependencies {
-	compile "codechicken:CodeChickenLib:1.7.2-1.1.1.81:dev"
-	compile "codechicken:ForgeMultipart:1.7.2-1.1.0.282:dev"
-    compile files ("lib/buildcraft-6.0.10-dev.jar")
+    compile "codechicken:CodeChickenLib:1.7.2-1.1.1.81:dev"
+    compile "codechicken:ForgeMultipart:1.7.2-1.1.0.282:dev"
+    compile files("lib/buildcraft-6.0.10-dev.jar")
 }
 
 // configure the source folders
@@ -55,22 +55,24 @@ sourceSets {
     }
 }
 
-processResources
-        {
-            // replace stuff in mcmod.info, nothing else
-            from(sourceSets.main.resources.srcDirs) {
-                include 'mcmod.info'
+processResources {
+    // excludes psd files
+    exclude '**/*.psd'
 
-                // replace version and mcversion
-                // ${version} and ${mcversion} are the exact strings being replaced
-                // expand 'version': project.version, 'mcversion': project.minecraft.version
-            }
+    // replace stuff in mcmod.info, nothing else
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
 
-            // copy everything else, that's not the mcmod.info
-            from(sourceSets.main.resources.srcDirs) {
-                exclude 'mcmod.info'
-            }
-        }
+        // replace version and mcversion
+        // ${version} and ${mcversion} are the exact strings being replaced
+        // expand 'version': project.version, 'mcversion': project.minecraft.version
+    }
+
+    // copy everything else, that's not the mcmod.info
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+}
 
 // --------------------
 // extra jar section
@@ -79,6 +81,7 @@ processResources
 // add a source jar
 task sourceJar(type: Jar) {
     from sourceSets.main.allSource
+    exclude '**/*.psd'
     classifier = 'sources'
 }
 
