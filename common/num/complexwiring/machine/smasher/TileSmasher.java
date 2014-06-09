@@ -50,6 +50,7 @@ public class TileSmasher extends TileEntityBase implements IFacing {
             }
             if (recipe != null && facingVec.getIS(world()).isItemEqual(recipe.getInput())) {
                 processTime++;
+                world().destroyBlockInWorldPartially(0, facingVec.getX(), facingVec.getY(), facingVec.getZ(), (int) getProgress(10));
                 if (processTime >= recipeNeededPower) {
                     endProcessing();
                 }
@@ -75,6 +76,7 @@ public class TileSmasher extends TileEntityBase implements IFacing {
             for (ItemStack output : recipeOutput) {
                 if (output != null && output.stackSize != 0) {
                     Vector3 blockPos = pos().clone().step(facing);
+                    world().destroyBlockInWorldPartially(0, blockPos.getX(), blockPos.getY(), blockPos.getZ(), 10);
                     EntityItem entityItem = new EntityItem(world(), blockPos.getX() + 0.5D, blockPos.getY() + 0.5D, blockPos.getZ() + 0.5D, output);
                     entityItem.setVelocity(0D, 0D, 0D);
                     entityItem.delayBeforeCanPickup = 0;
