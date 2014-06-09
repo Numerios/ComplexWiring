@@ -1,16 +1,18 @@
 ## Complex Wiring
 
 ### Description
-Complex Wiring is a new mod for Minecraft creating a lot of possibilities for the player.
-Things in this mod are supposed to be complex, but not impossibly hard or tedious as other mod do.
-Complex Wiring will also have an in-game documentation method with the final release so you know what to actually do.
+Complex Wiring is a WIP tech-oriented Minecraft mod focusing on newbie friendliness, 
+in-world interaction and creating a lot of opportunities and challenges for the player.
 
-Please don't use the very early unstable versions of this mod in modpacks - it may break your precious worlds!
+The mod is complex, not tedious - the game should be fun after all.
 
-[**Here**](http://complexwiring.numerios.eu) is the *outdated!* wiki with line up of some concepts we're going to implement.
+WARNING: Do not use this mod in your stable precious worlds yet - 
+the early versions (0.0.x.x) might have *gamebreaking issues*!
+
+Any support is provided only for official builds (downloaded from here)
 
 ### Download
-None yet.
+None yet. *but soon there will be! :)*
 
 ### License
 This mod - ComplexWiring is licensed under the LGPLv3.
