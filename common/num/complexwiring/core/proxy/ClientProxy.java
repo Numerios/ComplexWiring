@@ -3,7 +3,7 @@ package num.complexwiring.core.proxy;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.client.model.AdvancedModelLoader;
-import num.complexwiring.client.CARE.TechneModelLoader;
+import num.complexwiring.client.temp.TechneModelLoader;
 import num.complexwiring.client.RenderingHandler;
 import num.complexwiring.machine.smasher.RenderSmasher;
 import num.complexwiring.machine.smasher.TileSmasher;
