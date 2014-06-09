@@ -28,6 +28,18 @@ public enum EnumMaterial {
         this.nugget = nugget;
     }
 
+    public static EnumMaterial getMaterial(EnumDust dust) {
+        return EnumMaterial.VALID[dust.meta];
+    }
+
+    public static EnumMaterial getMaterial(EnumIngot ingot) {
+        return EnumMaterial.VALID[ingot.meta + 2];
+    }
+
+    public static EnumMaterial getMaterial(EnumNugget nugget) {
+        return EnumMaterial.VALID[nugget.meta + 1];
+    }
+
     public String getOreName() {
         return "ore" + this.name.substring(0, 1).toUpperCase() + this.name.substring(1);
     }
@@ -42,18 +54,6 @@ public enum EnumMaterial {
 
     public String getNuggetName() {
         return "nugget" + this.name.substring(0, 1).toUpperCase() + this.name.substring(1);
-    }
-
-    public static EnumMaterial getMaterial(EnumDust dust) {
-        return EnumMaterial.VALID[dust.meta];
-    }
-
-    public static EnumMaterial getMaterial(EnumIngot ingot) {
-        return EnumMaterial.VALID[ingot.meta + 2];
-    }
-
-    public static EnumMaterial getMaterial(EnumNugget nugget) {
-        return EnumMaterial.VALID[nugget.meta + 1];
     }
 
     public ItemStack getOre() {

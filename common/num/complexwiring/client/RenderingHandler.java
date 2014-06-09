@@ -14,20 +14,7 @@ import org.lwjgl.opengl.GL11;
 public class RenderingHandler implements ISimpleBlockRenderingHandler {
     public static int renderID = RenderingRegistry.getNextAvailableRenderId();
 
-    @Override
-    public void renderInventoryBlock(Block block, int metadata, int modelId, RenderBlocks renderer) {
-        if(block instanceof BlockStorageBox) {
-            renderStandardInvBlock(renderer, block, metadata);
-            return;
-        }
-        if (block instanceof BlockSmasher) {
-            RenderSmasher.instance.renderItemInInv();
-            return;
-        }
-    }
-
-    public static void renderStandardInvBlock (RenderBlocks renderer, Block block, int meta)
-    {
+    public static void renderStandardInvBlock(RenderBlocks renderer, Block block, int meta) {
         Tessellator tessellator = Tessellator.instance;
         GL11.glTranslatef(-0.5F, -0.5F, -0.5F);
         tessellator.startDrawingQuads();
@@ -58,8 +45,20 @@ public class RenderingHandler implements ISimpleBlockRenderingHandler {
     }
 
     @Override
+    public void renderInventoryBlock(Block block, int metadata, int modelId, RenderBlocks renderer) {
+        if (block instanceof BlockStorageBox) {
+            renderStandardInvBlock(renderer, block, metadata);
+            return;
+        }
+        if (block instanceof BlockSmasher) {
+            RenderSmasher.instance.renderItemInInv();
+            return;
+        }
+    }
+
+    @Override
     public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
-        if(block instanceof BlockStorageBox) {
+        if (block instanceof BlockStorageBox) {
             renderer.renderStandardBlock(block, x, y, z);
             return false;
         }

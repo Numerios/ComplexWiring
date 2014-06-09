@@ -10,11 +10,11 @@ import num.complexwiring.world.decor.EnumDecor;
 import java.util.Random;
 
 public class DecorGenerator {
+    public final EnumDecor decor;
     private final int maxY;
     private final int minY;
     private final int clusterNum;
     private final int clusterSize;
-    public final EnumDecor decor;
 
     public DecorGenerator(EnumDecor decor, int maxY, int minY, int clusterNum, int clusterSize) {
         this.decor = decor;

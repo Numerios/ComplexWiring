@@ -68,7 +68,7 @@ public class BlockStorageBox extends Block implements ITileEntityProvider {
     @Override
     public void breakBlock(World world, int x, int y, int z, Block block, int par6) {
         ItemStack itemStack = ((TileStorageBox) world.getTileEntity(x, y, z)).getContaining();
-        if(itemStack != null){
+        if (itemStack != null) {
             EntityItem entityItem = new EntityItem(world, x, y, z, itemStack);
             entityItem.setVelocity(0, 0, 0);
             entityItem.delayBeforeCanPickup = 0;

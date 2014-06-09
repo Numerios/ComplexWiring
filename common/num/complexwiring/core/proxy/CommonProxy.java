@@ -8,11 +8,9 @@ public class CommonProxy {
     public void init() {
     }
 
-    public void updatePlayerInventory(EntityPlayer player)
-    {
-        if (player instanceof EntityPlayerMP)
-        {
-            EntityPlayerMP playerMP = (EntityPlayerMP)player;
+    public void updatePlayerInventory(EntityPlayer player) {
+        if (player instanceof EntityPlayerMP) {
+            EntityPlayerMP playerMP = (EntityPlayerMP) player;
             playerMP.sendContainerToPlayer(playerMP.inventoryContainer);
         }
     }

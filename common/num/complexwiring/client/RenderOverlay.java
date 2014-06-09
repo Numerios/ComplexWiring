@@ -163,7 +163,7 @@ public class RenderOverlay {
         if (is != null) {
             amount = (is.stackSize % 64) + "";
             int stacks = (is.stackSize / 64);
-            if(stacks > 0) amount = stacks + "x64 + " + amount;
+            if (stacks > 0) amount = stacks + "x64 + " + amount;
 
             name = is.getDisplayName();
         }

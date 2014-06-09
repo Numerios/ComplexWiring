@@ -24,6 +24,32 @@ public class ItemScrewdriver extends Item {
         setCreativeTab(ModuleBase.tabCWBase);
     }
 
+    public static ForgeDirection getSideToRotate(float yaw, float pitch, boolean opposite) {
+        ForgeDirection direction;
+        int playerFacing = MathHelper.floor_double((yaw * 4F / 360F) + 0.5D) + 4;
+        switch (playerFacing) {
+            case 2:
+                direction = ForgeDirection.NORTH;
+                break;
+            case 3:
+                direction = ForgeDirection.EAST;
+                break;
+            case 4:
+                direction = ForgeDirection.SOUTH;
+                break;
+            default:
+                direction = ForgeDirection.WEST;
+                break;
+        }
+
+        if (pitch < -60) direction = ForgeDirection.UP;
+        if (pitch > 60) direction = ForgeDirection.DOWN;
+
+        if (opposite) direction = direction.getOpposite();
+
+        return direction;
+    }
+
     @Override
     public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
         Block block = world.getBlock(x, y, z);
@@ -37,24 +63,6 @@ public class ItemScrewdriver extends Item {
         }
 
         return false;
-    }
-
-    public static ForgeDirection getSideToRotate(float yaw, float pitch, boolean opposite){
-        ForgeDirection direction;
-        int playerFacing = MathHelper.floor_double((yaw * 4F / 360F) + 0.5D) + 4;
-        switch (playerFacing){
-            case 2: direction = ForgeDirection.NORTH; break;
-            case 3: direction = ForgeDirection.EAST; break;
-            case 4: direction = ForgeDirection.SOUTH; break;
-            default: direction = ForgeDirection.WEST; break;
-        }
-
-        if(pitch < -60) direction = ForgeDirection.UP;
-        if(pitch > 60) direction = ForgeDirection.DOWN;
-
-        if(opposite) direction = direction.getOpposite();
-
-        return direction;
     }
 
     @Override
