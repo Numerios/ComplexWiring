@@ -241,7 +241,7 @@ public abstract class TileStorageBox extends TileEntityInventoryBase implements 
                 containing = null;
                 this.markDirty();
                 world().markBlockForUpdate(xCoord, yCoord, zCoord);
-                refreshInventory(getContaining());
+                refreshInventory(null);
                 return is;
             } else {
                 is = containing.splitStack(amount);
