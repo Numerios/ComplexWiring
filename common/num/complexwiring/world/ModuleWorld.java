@@ -34,12 +34,12 @@ public class ModuleWorld extends Module {
     @Override
     public void preInit() {
         registerBlocks();
-        registerItems();
         tabCWWorld.setIcon(EnumDecor.LIMESTONE.getIS(1));
     }
 
     @Override
     public void init() {
+        registerOres();
         registerVanillaRecipes();
         registerCWRecipes();
         new WorldGenerator();
@@ -48,28 +48,27 @@ public class ModuleWorld extends Module {
     private void registerBlocks() {
         //TODO: CONFIGS!
         orePrimary = new BlockOrePrimary();
-        ((BlockOrePrimary) orePrimary).registerOres();
         GameRegistry.registerBlock(orePrimary, ItemBlockOrePrimary.class, orePrimary.getUnlocalizedName());
 
         oreSecondaryClassic = new BlockOreSecondaryClassic();
-        ((BlockOreSecondaryClassic) oreSecondaryClassic).registerOres();
         GameRegistry.registerBlock(oreSecondaryClassic, ItemBlockOreSecondaryClassic.class, oreSecondaryClassic.getUnlocalizedName());
 
         oreSecondaryRare = new BlockOreSecondaryRare();
-        ((BlockOreSecondaryRare) oreSecondaryRare).registerOres();
         GameRegistry.registerBlock(oreSecondaryRare, ItemBlockOreSecondaryRare.class, oreSecondaryRare.getUnlocalizedName());
 
         oreSecondaryVanilla = new BlockOreSecondaryVanilla();
-        ((BlockOreSecondaryVanilla) oreSecondaryVanilla).registerOres();
         GameRegistry.registerBlock(oreSecondaryVanilla, ItemBlockOreSecondaryVanilla.class, oreSecondaryVanilla.getUnlocalizedName());
 
         decor = new BlockDecor();
-        ((BlockDecor) decor).registerOres();
         GameRegistry.registerBlock(decor, ItemBlockDecor.class, decor.getUnlocalizedName());
     }
 
-    private void registerItems() {
-
+    private void registerOres() {
+        ((BlockOrePrimary) orePrimary).registerOres();
+        ((BlockOreSecondaryClassic) oreSecondaryClassic).registerOres();
+        ((BlockOreSecondaryRare) oreSecondaryRare).registerOres();
+        ((BlockOreSecondaryVanilla) oreSecondaryVanilla).registerOres();
+        ((BlockDecor) decor).registerOres();
     }
 
     private void registerVanillaRecipes() {
