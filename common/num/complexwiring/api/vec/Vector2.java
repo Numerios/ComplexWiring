@@ -49,6 +49,12 @@ public class Vector2 implements Cloneable, Comparable {
         return this;
     }
 
+    public Vector2 multiply(Vector2 other) {
+        this.x *= other.x;
+        this.y *= other.y;
+        return this;
+    }
+
     public int getX() {
         return (int) Math.floor(this.x);
     }

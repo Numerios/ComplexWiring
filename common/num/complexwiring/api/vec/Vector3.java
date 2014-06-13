@@ -8,6 +8,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+import org.lwjgl.util.vector.Vector3f;
 
 /**
  * The ultimate class for coordinates in three-dimensional space. Uses doubles.
@@ -61,8 +62,6 @@ public class Vector3 implements Cloneable, Comparable {
     public Vector3 clone() {
         return new Vector3(this.x, this.y, this.z);
     }
-
-    // TODO: getCenter(Entity) - needs to offset properly!
 
     /**
      * Converts Vector3 to Vector2 by dropping the Y coord.
@@ -228,6 +227,10 @@ public class Vector3 implements Cloneable, Comparable {
 
     public Vector3 step(ForgeDirection dir) {
         return this.add(new Vector3(dir));
+    }
+
+    public Vector3f toVec3f() {
+        return new Vector3f((float) this.x, (float) this.y, (float) this.z);
     }
 
     @Override
