@@ -23,7 +23,7 @@ group = "num.complexwiring"
 archivesBaseName = "complexwiring" // the name that all artifacts will use as a base. artifacts names follow this pattern: [baseName]-[appendix]-[version]-[classifier].[extension]
 
 minecraft {
-    version = "1.7.2-10.12.1.1060"
+    version = "1.7.2-10.12.2.1121"
 
     assetDir = "debug/assets"
     // the place for ForgeGradle to download the assets. The assets that the launcher gets and stuff
