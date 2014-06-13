@@ -1,4 +1,4 @@
-package num.complexwiring.machine.smasher;
+package num.complexwiring.mechanical.smasher;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;

@@ -1,6 +1,6 @@
 itemGroup.tabCWBase=Complex Wiring - Base
 itemGroup.tabCWWorld=Complex Wiring - World
-itemGroup.tabCWMachine=Complex Wiring - Machine
+itemGroup.tabCWMechanical=Complex Wiring - Mechanical
 
 tile.complexwiring.world.ore.primary.copper.name=Měděná ruda
 tile.complexwiring.world.ore.primary.tin.name=Cínová ruda
@@ -86,24 +86,12 @@ tile.complexwiring.world.decor.darkDolomiteSmallbrick.name=Tmavé dolomitové ci
 
 tile.complexwiring.world.decor.dolomiteDarkDolomiteMix.name=Mix dolomitu a tmavého dolomitu
 
-tile.complexwiring.machine.basic.orelyzer.name=Základní rudolyzér
-tile.complexwiring.machine.basic.orelyzer.desc=Analyzuj své rudy!
+tile.complexwiring.mechanical.storagebox.basic.name=Základní úschovný box
+tile.complexwiring.mechanical.storagebox.basic.desc=Až 32 stacků!
+tile.complexwiring.mechanical.storagebox.advanced.name=Pokročilý úschovný box
+tile.complexwiring.mechanical.storagebox.advanced.desc=Až 128 stacků!
 
-tile.complexwiring.machine.powered.orelyzer.name=Napájený rudolyzér
-tile.complexwiring.machine.powered.orelyzer.desc=Analyzuj své rudy s MJ!
-
-tile.complexwiring.machine.basic.furnace.name=Základní pec
-tile.complexwiring.machine.basic.furnace.desc=Lepší vypalovačka
-
-tile.complexwiring.machine.powered.furnace.name=Napájená pec
-tile.complexwiring.machine.powered.furnace.desc=Lepší MJ vypalovačka
-
-tile.complexwiring.machine.basic.crusher.name=Základní drtič
-tile.complexwiring.machine.basic.crusher.desc=Rozdrť své nepřátele!
-
-tile.complexwiring.machine.powered.crusher.name=Napájený drtič
-tile.complexwiring.machine.powered.crusher.desc=Rozdrť své nepřátele s MJ!
-
+tile.complexwiring.mechanical.smasher.name=Mechanický drtič
 
 item.complexwiring.base.ingot.copper.name=Měděný ingot
 item.complexwiring.base.ingot.tin.name=Cínový ingot

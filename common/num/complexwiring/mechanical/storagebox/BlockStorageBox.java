@@ -1,4 +1,4 @@
-package num.complexwiring.machine.storagebox;
+package num.complexwiring.mechanical.storagebox;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -18,17 +18,17 @@ import net.minecraft.world.World;
 import num.complexwiring.base.ItemScrewdriver;
 import num.complexwiring.client.RenderingHandler;
 import num.complexwiring.lib.Reference;
-import num.complexwiring.machine.ModuleMachine;
+import num.complexwiring.mechanical.ModuleMechanical;
 
 import java.util.List;
 
 public class BlockStorageBox extends Block implements ITileEntityProvider {
     public BlockStorageBox() {
         super(Material.wood);
-        setBlockName(Reference.MOD_ID.toLowerCase() + ".machine.storagebox");
+        setBlockName(Reference.MOD_ID.toLowerCase() + ".mechanical.storagebox");
         setHardness(1.0F);
         setResistance(1.0F);
-        setCreativeTab(ModuleMachine.tabCWMachine);
+        setCreativeTab(ModuleMechanical.tabCWMechanical);
         isBlockContainer = true;
     }
 

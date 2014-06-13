@@ -1,4 +1,4 @@
-package num.complexwiring.machine.smasher;
+package num.complexwiring.mechanical.smasher;
 
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,7 +16,7 @@ import num.complexwiring.api.recipe.SmasherRecipe;
 import num.complexwiring.api.vec.Vector3;
 import num.complexwiring.base.ItemScrewdriver;
 import num.complexwiring.core.Logger;
-import num.complexwiring.machine.storagebox.TileStorageBox;
+import num.complexwiring.mechanical.storagebox.TileStorageBox;
 import num.complexwiring.recipe.RecipeManager;
 
 import java.util.ArrayList;

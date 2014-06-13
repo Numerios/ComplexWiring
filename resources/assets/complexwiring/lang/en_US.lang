@@ -1,8 +1,6 @@
 itemGroup.tabCWBase=Complex Wiring - Base
 itemGroup.tabCWWorld=Complex Wiring - World
-itemGroup.tabCWMachine=Complex Wiring - Machine
-itemGroup.tabCWPower=Complex Wiring - Power
-itemGroup.tabCWTools=Complex Wiring - Tools
+itemGroup.tabCWMechanical=Complex Wiring - Mechanical
 
 tile.complexwiring.world.ore.primary.copper.name=Copper Ore
 tile.complexwiring.world.ore.primary.tin.name=Tin Ore
@@ -88,26 +86,12 @@ tile.complexwiring.world.decor.darkDolomiteSmallbrick.name=Small Dark Dolomite B
 
 tile.complexwiring.world.decor.dolomiteDarkDolomiteMix.name=Dolomite - Dark Dolomite Mix
 
-tile.complexwiring.machine.basic.orelyzer.name=Basic Orelyzer
-tile.complexwiring.machine.basic.orelyzer.desc=Analyze your ores!
-tile.complexwiring.machine.basic.furnace.name=Basic Furnace
-tile.complexwiring.machine.basic.furnace.desc=Smelt your ores!
-tile.complexwiring.machine.basic.crusher.name=Basic Crusher
-tile.complexwiring.machine.basic.crusher.desc=Crush your ores!
+tile.complexwiring.mechanical.storagebox.basic.name=Basic Storage Box
+tile.complexwiring.mechanical.storagebox.basic.desc=32 stacks of storage!
+tile.complexwiring.mechanical.storagebox.advanced.name=Advanced Storage Box
+tile.complexwiring.mechanical.storagebox.advanced.desc=128 stacks of storage!
 
-tile.complexwiring.machine.powered.orelyzer.name=Powered Orelyzer
-tile.complexwiring.machine.powered.orelyzer.desc=Analyze your ores with MJ!
-tile.complexwiring.machine.powered.furnace.name=Powered Furnace
-tile.complexwiring.machine.powered.furnace.desc=Smelt your ores with MJ!
-tile.complexwiring.machine.powered.crusher.name=Powered Crusher
-tile.complexwiring.machine.powered.crusher.desc=Crush your ores with MJ!
-
-tile.complexwiring.machine.storagebox.basic.name=Basic Storage Box
-tile.complexwiring.machine.storagebox.basic.desc=32 stacks of storage!
-tile.complexwiring.machine.storagebox.advanced.name=Advanced Storage Box
-tile.complexwiring.machine.storagebox.advanced.desc=128 stacks of storage!
-
-tile.complexwiring.machine.smasher.name=Mechanical Smasher
+tile.complexwiring.mechanical.smasher.name=Mechanical Smasher
 
 item.complexwiring.base.ingot.copper.name=Copper Ingot
 item.complexwiring.base.ingot.tin.name=Tin Ingot

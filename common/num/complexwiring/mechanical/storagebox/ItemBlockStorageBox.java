@@ -1,4 +1,4 @@
-package num.complexwiring.machine.storagebox;
+package num.complexwiring.mechanical.storagebox;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -6,7 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import num.complexwiring.machine.ModuleMachine;
+import num.complexwiring.mechanical.ModuleMechanical;
 
 import java.util.List;
 
@@ -24,7 +24,7 @@ public class ItemBlockStorageBox extends ItemBlock {
 
     @Override
     public String getUnlocalizedName(ItemStack is) {
-        return ModuleMachine.storageBox.getUnlocalizedName() + "." + EnumStorageBox.VALID[is.getItemDamage()].getUnlocalizedName();
+        return ModuleMechanical.storageBox.getUnlocalizedName() + "." + EnumStorageBox.VALID[is.getItemDamage()].getUnlocalizedName();
     }
 
     @Override

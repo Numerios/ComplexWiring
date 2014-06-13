@@ -1,4 +1,4 @@
-package num.complexwiring.machine.smasher;
+package num.complexwiring.mechanical.smasher;
 
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;

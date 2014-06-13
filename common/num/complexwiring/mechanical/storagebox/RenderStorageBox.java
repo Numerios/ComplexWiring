@@ -1,4 +1,4 @@
-package num.complexwiring.machine.storagebox;
+package num.complexwiring.mechanical.storagebox;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

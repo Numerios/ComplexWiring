@@ -1,4 +1,4 @@
-package num.complexwiring.machine.smasher;
+package num.complexwiring.mechanical.smasher;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 import num.complexwiring.base.ItemScrewdriver;
 import num.complexwiring.client.RenderingHandler;
 import num.complexwiring.lib.Reference;
-import num.complexwiring.machine.ModuleMachine;
+import num.complexwiring.mechanical.ModuleMechanical;
 
 import java.util.List;
 
@@ -27,10 +27,10 @@ public class BlockSmasher extends Block implements ITileEntityProvider {
 
     public BlockSmasher() {
         super(Material.rock);
-        setBlockName(Reference.MOD_ID.toLowerCase() + ".machine.smasher");
+        setBlockName(Reference.MOD_ID.toLowerCase() + ".mechanical.smasher");
         setHardness(2F);
         setResistance(2F);
-        setCreativeTab(ModuleMachine.tabCWMachine);
+        setCreativeTab(ModuleMechanical.tabCWMechanical);
     }
 
     @Override
@@ -87,7 +87,7 @@ public class BlockSmasher extends Block implements ITileEntityProvider {
 
     @Override
     public void getSubBlocks(Item item, CreativeTabs tab, List list) {
-        list.add(new ItemStack(ModuleMachine.smasher));
+        list.add(new ItemStack(ModuleMechanical.smasher));
     }
 
     public void registerTiles() {

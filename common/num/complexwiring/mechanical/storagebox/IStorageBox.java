@@ -1,4 +1,4 @@
-package num.complexwiring.machine.storagebox;
+package num.complexwiring.mechanical.storagebox;
 
 import net.minecraft.item.ItemStack;
 

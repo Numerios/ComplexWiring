@@ -1,4 +1,4 @@
-package num.complexwiring.machine.storagebox;
+package num.complexwiring.mechanical.storagebox;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import num.complexwiring.lib.Reference;
 import num.complexwiring.lib.Strings;
-import num.complexwiring.machine.ModuleMachine;
+import num.complexwiring.mechanical.ModuleMechanical;
 
 public enum EnumStorageBox {
     BASIC(Strings.STORAGEBOX_BASIC_NAME, Strings.STORAGEBOX_BASIC_DESC, TileStorageBox.TileStorageBoxBasic.class, 32),
@@ -38,11 +38,11 @@ public enum EnumStorageBox {
     }
 
     public ItemStack getIS(int amount) {
-        return new ItemStack(ModuleMachine.storageBox, amount, meta);
+        return new ItemStack(ModuleMechanical.storageBox, amount, meta);
     }
 
     public String getFullUnlocalizedName() {
-        return ModuleMachine.storageBox.getUnlocalizedName() + "." + this.getUnlocalizedName();
+        return ModuleMechanical.storageBox.getUnlocalizedName() + "." + this.getUnlocalizedName();
     }
 
     public void registerTile() {

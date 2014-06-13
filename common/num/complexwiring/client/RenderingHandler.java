@@ -6,9 +6,9 @@ import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.world.IBlockAccess;
-import num.complexwiring.machine.smasher.BlockSmasher;
-import num.complexwiring.machine.smasher.RenderSmasher;
-import num.complexwiring.machine.storagebox.BlockStorageBox;
+import num.complexwiring.mechanical.smasher.BlockSmasher;
+import num.complexwiring.mechanical.smasher.RenderSmasher;
+import num.complexwiring.mechanical.storagebox.BlockStorageBox;
 import org.lwjgl.opengl.GL11;
 
 public class RenderingHandler implements ISimpleBlockRenderingHandler {

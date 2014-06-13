@@ -15,7 +15,7 @@ import num.complexwiring.core.ModuleManager;
 import num.complexwiring.core.network.PacketPipeline;
 import num.complexwiring.core.proxy.CommonProxy;
 import num.complexwiring.lib.Reference;
-import num.complexwiring.machine.ModuleMachine;
+import num.complexwiring.mechanical.ModuleMechanical;
 import num.complexwiring.world.ModuleWorld;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION)
@@ -35,7 +35,7 @@ public class ComplexWiring {
         ModuleManager.INSTANCE.register(new ModuleBase());
         //  ModuleManager.INSTANCE.register(new ModuleTablet());
         ModuleManager.INSTANCE.register(new ModuleWorld());
-        ModuleManager.INSTANCE.register(new ModuleMachine());
+        ModuleManager.INSTANCE.register(new ModuleMechanical());
 
         ModuleManager.INSTANCE.preInit();
 

@@ -1,4 +1,4 @@
-package num.complexwiring.machine;
+package num.complexwiring.mechanical;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
@@ -11,22 +11,22 @@ import num.complexwiring.base.EnumComponent;
 import num.complexwiring.base.EnumMaterial;
 import num.complexwiring.core.CreativeTabCW;
 import num.complexwiring.lib.Module;
-import num.complexwiring.machine.smasher.BlockSmasher;
-import num.complexwiring.machine.smasher.ItemBlockSmasher;
-import num.complexwiring.machine.storagebox.BlockStorageBox;
-import num.complexwiring.machine.storagebox.EnumStorageBox;
-import num.complexwiring.machine.storagebox.ItemBlockStorageBox;
+import num.complexwiring.mechanical.smasher.BlockSmasher;
+import num.complexwiring.mechanical.smasher.ItemBlockSmasher;
+import num.complexwiring.mechanical.storagebox.BlockStorageBox;
+import num.complexwiring.mechanical.storagebox.EnumStorageBox;
+import num.complexwiring.mechanical.storagebox.ItemBlockStorageBox;
 import num.complexwiring.recipe.RecipeManager;
 
-public class ModuleMachine extends Module {
+public class ModuleMechanical extends Module {
     public static Block storageBox, smasher;
-    public static CreativeTabCW tabCWMachine = new CreativeTabCW("tabCWMachine", null);
+    public static CreativeTabCW tabCWMechanical = new CreativeTabCW("tabCWMechanical", null);
 
     @Override
     public void preInit() {
         registerBlocks();
         registerItems();
-        tabCWMachine.setIcon(new ItemStack(smasher));
+        tabCWMechanical.setIcon(new ItemStack(smasher));
     }
 
     @Override
