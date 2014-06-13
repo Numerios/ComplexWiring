@@ -6,16 +6,11 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.ShapedOreRecipe;
-import num.complexwiring.ComplexWiring;
 import num.complexwiring.api.recipe.SmasherRecipe;
 import num.complexwiring.base.EnumComponent;
 import num.complexwiring.base.EnumMaterial;
 import num.complexwiring.core.CreativeTabCW;
 import num.complexwiring.lib.Module;
-import num.complexwiring.machine.basic.BlockBasicMachine;
-import num.complexwiring.machine.basic.ItemBlockBasicMachine;
-import num.complexwiring.machine.powered.BlockPoweredMachine;
-import num.complexwiring.machine.powered.ItemBlockPoweredMachine;
 import num.complexwiring.machine.smasher.BlockSmasher;
 import num.complexwiring.machine.smasher.ItemBlockSmasher;
 import num.complexwiring.machine.storagebox.BlockStorageBox;
@@ -24,7 +19,7 @@ import num.complexwiring.machine.storagebox.ItemBlockStorageBox;
 import num.complexwiring.recipe.RecipeManager;
 
 public class ModuleMachine extends Module {
-    public static Block machineBasic, machinePowered, storageBox, smasher;
+    public static Block storageBox, smasher;
     public static CreativeTabCW tabCWMachine = new CreativeTabCW("tabCWMachine", null);
 
     @Override
@@ -40,16 +35,6 @@ public class ModuleMachine extends Module {
     }
 
     private void registerBlocks() {
-        if (ComplexWiring.DEBUG) {
-            machineBasic = new BlockBasicMachine();
-            GameRegistry.registerBlock(machineBasic, ItemBlockBasicMachine.class, machineBasic.getUnlocalizedName());
-            ((BlockBasicMachine) machineBasic).registerTiles();
-
-            machinePowered = new BlockPoweredMachine();
-            GameRegistry.registerBlock(machinePowered, ItemBlockPoweredMachine.class, machinePowered.getUnlocalizedName());
-            ((BlockPoweredMachine) machinePowered).registerTiles();
-        }
-
         storageBox = new BlockStorageBox();
         GameRegistry.registerBlock(storageBox, ItemBlockStorageBox.class, storageBox.getUnlocalizedName());
         ((BlockStorageBox) storageBox).registerTiles();
