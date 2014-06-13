@@ -26,7 +26,7 @@ public class Cuboid6 implements Cloneable {
     }
 
     public AxisAlignedBB toAABB() {
-        return AxisAlignedBB.getAABBPool().getAABB(min.x, min.y, min.z, max.x, max.y, max.z);
+        return AxisAlignedBB.getBoundingBox(min.x, min.y, min.z, max.x, max.y, max.z);
     }
 
     @Override
