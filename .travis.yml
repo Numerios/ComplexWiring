@@ -1,0 +1,20 @@
+language: java
+jdk:
+  - openjdk7
+
+install: ./gradlew setupCIWorkspace -S
+script: ./gradlew build -S
+
+env:
+  global:
+    TERM=dumb
+
+notifications:
+  email:
+    recipients:
+      - complexwiring@gmail.com
+    on_success: change
+    on_failure: always
+  irc:
+    channels:
+      - "irc.esper.net#complexwiring"
