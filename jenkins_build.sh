@@ -4,8 +4,8 @@
 echo "Preparing to build"
 if [ ${GIT_BRANCH} == "origin/dev" ]; then
    echo "Building from dev (_alpha.xx)!"
-   sh ./gradlew.sh build -PisDev=1 -S
+   sh ./gradlew build -PisDev=1 -S
 elif [ ${GIT_BRANCH} == "origin/master" ];  then
    echo "Building from master (.xx)!"
-   sh ./gradlew.sh build -S
+   sh ./gradlew build -S
 fi
