@@ -1,6 +1,6 @@
 itemGroup.tabCWBase=Complex Wiring - Base
 itemGroup.tabCWWorld=Complex Wiring - World
-itemGroup.tabCWMachine=Complex Wiring - Machine
+itemGroup.tabCWMechanical=Complex Wiring - Mechanical
 
 tile.complexwiring.world.ore.primary.copper.name=Měděná ruda
 tile.complexwiring.world.ore.primary.tin.name=Cínová ruda
@@ -65,55 +65,51 @@ tile.complexwiring.world.ore.secondary.vanilla.subbituminous.name=Ložisko hněd
 tile.complexwiring.world.ore.secondary.vanilla.bituminous.name=Ložisko černého uhlí
 tile.complexwiring.world.ore.secondary.vanilla.anthracite.name=Ložisko antracitu
 
-tile.complexwiring.world.decor.limestonerough.name=Hrubý vápenec
-tile.complexwiring.world.decor.dolomiterough.name=Hrubý dolomit
-tile.complexwiring.world.decor.areniterough.name=Hrubý arenit
+tile.complexwiring.world.decor.limestoneRough.name=Hrubý vápenec
+tile.complexwiring.world.decor.dolomiteRough.name=Hrubý dolomit
+tile.complexwiring.world.decor.areniteRough.name=Hrubý arenit
 
 tile.complexwiring.world.decor.limestone.name=Vápenec
 tile.complexwiring.world.decor.dolomite.name=Dolomit
 tile.complexwiring.world.decor.arenite.name=Arenit
-tile.complexwiring.world.decor.darkdolomite.name=Tmavý dolomit
+tile.complexwiring.world.decor.darkDolomite.name=Tmavý dolomit
 
-tile.complexwiring.world.decor.limestonebrick.name=Vápencová cihla
-tile.complexwiring.world.decor.dolomitebrick.name=Dolomitová cihla
-tile.complexwiring.world.decor.arenitebrick.name=Arenitová cihla
-tile.complexwiring.world.decor.darkdolomitebrick.name=Tmavá dolomitová cihla
+tile.complexwiring.world.decor.limestoneBrick.name=Vápencová cihla
+tile.complexwiring.world.decor.dolomiteBrick.name=Dolomitová cihla
+tile.complexwiring.world.decor.areniteBrick.name=Arenitová cihla
+tile.complexwiring.world.decor.darkDolomiteBrick.name=Tmavá dolomitová cihla
 
-tile.complexwiring.world.decor.limestonesmallbrick.name=Vápencové cihličky
-tile.complexwiring.world.decor.dolomitesmallbrick.name=Dolomitové cihličky
-tile.complexwiring.world.decor.arenitesmallbrick.name=Arenitové cihličky
-tile.complexwiring.world.decor.darkdolomitesmallbrick.name=Tmavé dolomitové cihličky
+tile.complexwiring.world.decor.limestoneSmallbrick.name=Vápencové cihličky
+tile.complexwiring.world.decor.dolomiteSmallbrick.name=Dolomitové cihličky
+tile.complexwiring.world.decor.areniteSmallbrick.name=Arenitové cihličky
+tile.complexwiring.world.decor.darkDolomiteSmallbrick.name=Tmavé dolomitové cihličky
 
-tile.complexwiring.world.decor.dolomitedarkdolomitemix.name=Mix dolomitu a tmavého dolomitu
+tile.complexwiring.world.decor.dolomiteDarkDolomiteMix.name=Mix dolomitu a tmavého dolomitu
 
-tile.complexwiring.machine.basic.orelyzer.name=Základní rudolyzér
-tile.complexwiring.machine.basic.orelyzer.desc=Analyzuj své rudy!
+tile.complexwiring.mechanical.storagebox.basic.name=Základní úschovný box
+tile.complexwiring.mechanical.storagebox.basic.desc=Až 32 stacků!
+tile.complexwiring.mechanical.storagebox.advanced.name=Pokročilý úschovný box
+tile.complexwiring.mechanical.storagebox.advanced.desc=Až 128 stacků!
 
-tile.complexwiring.machine.powered.orelyzer.name=Napájený rudolyzér
-tile.complexwiring.machine.powered.orelyzer.desc=Analyzuj své rudy s MJ!
-
-tile.complexwiring.machine.basic.furnace.name=Základní pec
-tile.complexwiring.machine.basic.furnace.desc=Lepší vypalovačka
-
-tile.complexwiring.machine.powered.furnace.name=Napájená pec
-tile.complexwiring.machine.powered.furnace.desc=Lepší MJ vypalovačka
-
-tile.complexwiring.machine.basic.crusher.name=Základní drtič
-tile.complexwiring.machine.basic.crusher.desc=Rozdrť své nepřátele!
-
-tile.complexwiring.machine.powered.crusher.name=Napájený drtič
-tile.complexwiring.machine.powered.crusher.desc=Rozdrť své nepřátele s MJ!
-
+tile.complexwiring.mechanical.smasher.name=Mechanický drtič
 
 item.complexwiring.base.ingot.copper.name=Měděný ingot
 item.complexwiring.base.ingot.tin.name=Cínový ingot
 item.complexwiring.base.ingot.silver.name=Stříbrný ingot
 item.complexwiring.base.ingot.lead.name=Olověný ingot
 
+item.complexwiring.base.dust.iron.name=Železný prášek
+item.complexwiring.base.dust.gold.name=Zlatý prášek
 item.complexwiring.base.dust.copper.name=Měděný prášek
 item.complexwiring.base.dust.tin.name=Cínový prášek
 item.complexwiring.base.dust.silver.name=Stříbrný prášek
 item.complexwiring.base.dust.lead.name=Olověný prášek
+
+item.complexwiring.base.nugget.iron.name=Železný nuget
+item.complexwiring.base.nugget.copper.name=Měděný nuget
+item.complexwiring.base.nugget.tin.name=Cínový nuget
+item.complexwiring.base.nugget.silver.name=Stříbrný nuget
+item.complexwiring.base.nugget.lead.name=Olověný nuget
 
 item.complexwiring.tablet.name=Tablet
 item.complexwiring.tablet.startpaper.name=§lPočátek

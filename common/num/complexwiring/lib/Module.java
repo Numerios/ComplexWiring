@@ -6,4 +6,8 @@ public abstract class Module {
 
     public void init() {
     }
+
+    public void postInit() {
+
+    }
 }

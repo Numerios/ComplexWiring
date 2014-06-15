@@ -1,15 +1,12 @@
 package num.complexwiring.api.recipe;
 
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.OreDictionary;
 import num.complexwiring.recipe.RecipeManager;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 public class CrusherRecipe implements ICWRecipe {
-
-    private final String oreDictionary;
     private ItemStack input;
     private RecipeRandomOutput[] outputs;
     private int neededPower;
@@ -19,7 +16,6 @@ public class CrusherRecipe implements ICWRecipe {
         this.outputs = outputs;
         this.neededPower = neededPower;
 
-        oreDictionary = OreDictionary.getOreName(OreDictionary.getOreID(input));
     }
 
     public boolean matches(ItemStack is) {
@@ -35,11 +31,7 @@ public class CrusherRecipe implements ICWRecipe {
         return neededPower;
     }
 
-    public RecipeRandomOutput[] getOutputs() {
-        return outputs;
-    }
-
-    public ArrayList<ItemStack> getCompleteOutput(Random rand) {
+    public ArrayList<ItemStack> getOutput(Random rand) {
         ArrayList<ItemStack> completeOutput = new ArrayList<ItemStack>();
         for (RecipeRandomOutput output : outputs) {
             float f = rand.nextFloat();

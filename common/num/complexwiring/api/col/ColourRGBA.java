@@ -1,19 +1,16 @@
 package num.complexwiring.api.col;
 
 /**
- * A basic format for storing of and manipulating with colours.
+ * An extended format for storing colours and for their manipulation (RGB + alpha)
  * Uses the format RRGGBBAA (toString is 0xRRGGBBAA)
  */
-public class ColourRGBA {
-    public byte r, g, b, a;
-    public int colour;
+public class ColourRGBA extends ColourRGB {
+    public byte a;
 
     public ColourRGBA(int r, int g, int b, int a) {
-        this.r = (byte) r;
-        this.g = (byte) g;
-        this.b = (byte) b;
+        super(r, g, b);
         this.a = (byte) a;
-        colour = this.getIntRGBA();
+        colour = this.getInt();
     }
 
     public ColourRGBA(int colour) {
@@ -36,14 +33,12 @@ public class ColourRGBA {
         return new ColourRGBA((byte) rTotal / count, (byte) gTotal / count, (byte) bTotal / count, 0xFF);
     }
 
-    public int getIntRGBA() {
+    @Override
+    public int getInt() {
         return (this.r & 0xFF) << 24 | (this.g & 0xFF) << 16 | (this.b & 0xFF) << 8 | (this.a & 0xFF);
     }
 
-    public int getIntRGB() {
-        return (this.r & 0xFF) << 16 | (this.g & 0xFF) << 8 | (this.b & 0xFF);
-    }
-
+    @Override
     public ColourRGBA add(ColourRGBA other) {
         this.r += other.r;
         this.g += other.g;
@@ -52,6 +47,7 @@ public class ColourRGBA {
         return this;
     }
 
+    @Override
     public ColourRGBA invert() {
         r = (byte) (0xFF - (r & 0xFF));
         g = (byte) (0xFF - (g & 0xFF));
@@ -62,6 +58,6 @@ public class ColourRGBA {
 
     @Override
     public String toString() {
-        return "0x" + Integer.toHexString(this.getIntRGBA()).toUpperCase();
+        return "0x" + Integer.toHexString(this.getInt()).toUpperCase();
     }
 }

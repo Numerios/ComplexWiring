@@ -1,15 +1,17 @@
 package num.complexwiring.base;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.oredict.ShapedOreRecipe;
 import num.complexwiring.core.CreativeTabCW;
 import num.complexwiring.lib.Module;
 
 public class ModuleBase extends Module {
-    public static Item ingot, dust;
+    public static Item ingot, dust, nugget, screwdriver, component;
     public static CreativeTabCW tabCWBase = new CreativeTabCW("tabCWBase", null);
 
     @Override
@@ -19,7 +21,13 @@ public class ModuleBase extends Module {
 
     @Override
     public void init() {
+        registerVanillaOreDict();
         registerRecipes();
+    }
+
+    private void registerVanillaOreDict() {
+        OreDictionary.registerOre("ingotIron", Items.iron_ingot);
+        OreDictionary.registerOre("ingotGold", Items.gold_ingot);
     }
 
     private void registerItems() {
@@ -30,17 +38,37 @@ public class ModuleBase extends Module {
         dust = new ItemDust();
         ((ItemDust) dust).registerOres();
         GameRegistry.registerItem(dust, dust.getUnlocalizedName());
+
+      /*  nugget = new ItemNugget();
+        ((ItemNugget) nugget).registerOres();
+        GameRegistry.registerItem(nugget, nugget.getUnlocalizedName());    */
+
+        screwdriver = new ItemScrewdriver();
+        ((ItemScrewdriver) screwdriver).registerOres();
+        GameRegistry.registerItem(screwdriver, screwdriver.getUnlocalizedName());
+
+        component = new ItemComponent();
+        ((ItemComponent) component).registerOres();
+        GameRegistry.registerItem(component, component.getUnlocalizedName());
     }
 
     private void registerRecipes() {
         for (EnumDust dust : EnumDust.VALID) {
-            if (dust == EnumDust.IRON) {
-                FurnaceRecipes.smelting().func_151394_a(EnumDust.VALID[dust.meta].getIS(1), new ItemStack(Items.iron_ingot), 0.6F);
-            } else if (dust == EnumDust.GOLD) {
-                FurnaceRecipes.smelting().func_151394_a(EnumDust.VALID[dust.meta].getIS(1), new ItemStack(Items.gold_ingot), 0.6F);
-            } else {
-                FurnaceRecipes.smelting().func_151394_a(EnumDust.VALID[dust.meta].getIS(1), EnumIngot.VALID[dust.meta - 2].getIS(1), 0.6F);
-            }
+            GameRegistry.addSmelting(dust.getIS(1), EnumMaterial.getMaterial(dust).getIngot(), 0.6F);
         }
+
+     /*   for (EnumNugget nugget : EnumNugget.VALID) {
+            GameRegistry.addRecipe(new ShapelessOreRecipe(nugget.getIS(9), EnumMaterial.getMaterial(nugget).getIngot()));
+            GameRegistry.addRecipe(new ShapelessOreRecipe(EnumMaterial.getMaterial(nugget).getIngot().copy(), nugget.name, nugget.name, nugget.name,
+                    nugget.name, nugget.name, nugget.name, nugget.name, nugget.name, nugget.name));   //I'm so sorry
+        }            */
+
+        GameRegistry.addShapedRecipe(new ItemStack(Items.paper, 2), "###", '#', EnumComponent.WOOD_PULP.getIS(1));
+        GameRegistry.addShapedRecipe(new ItemStack(Blocks.planks), "#", "#", '#', EnumComponent.WOOD_PULP.getIS(1)); //wood - 4 plank
+        GameRegistry.addShapedRecipe(new ItemStack(Items.stick), "#", '#', EnumComponent.WOOD_PULP.getIS(1));     //wood - 8 stick
+
+        GameRegistry.addRecipe(new ShapedOreRecipe(screwdriver, "F  ", " S ", "  C", 'F', Items.flint, 'S', Items.stick, 'C', "cobblestone"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(screwdriver, "  F", " S ", "C  ", 'F', Items.flint, 'S', Items.stick, 'C', "cobblestone"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(screwdriver, "F", "S", "C", 'F', Items.flint, 'S', Items.stick, 'C', "cobblestone"));
     }
 }

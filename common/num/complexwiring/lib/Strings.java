@@ -62,9 +62,7 @@ public class Strings {
     // STONE/COBBLE Secondary
     public static final String ORE_PYROLUSITE_NAME = "orePyrolusite";
     public static final String ORE_CINNABAR_NAME = "oreCinnabar";
-    public static final String ORE_DOLOMITE_NAME = "oreDolomite";
     public static final String ORE_SPHALERITE_NAME = "oreSphalerite";
-    public static final String ORE_LIMESTONE_NAME = "oreLimestone";
     public static final String ORE_LIME_NAME = "oreLime";
     public static final String ORE_COBALTITE_NAME = "oreCobaltite";
 
@@ -116,26 +114,20 @@ public class Strings {
     public static final String DUST_SILVER_NAME = "dustSilver";
     public static final String DUST_LEAD_NAME = "dustLead";
 
-    public static final String MACHINE_BASIC_ORELYZER_NAME = "machineBasicOrelyzer";
-    public static final String MACHINE_BASIC_ORELYZER_DESC = StatCollector.translateToLocal("tile.complexwiring.machine.basic.orelyzer.desc");
-    public static final String MACHINE_BASIC_FURNACE_NAME = "machineBasicFurnace";
-    public static final String MACHINE_BASIC_FURNACE_DESC = StatCollector.translateToLocal("tile.complexwiring.machine.basic.furnace.desc");
-    public static final String MACHINE_BASIC_CRUSHER_NAME = "machineBasicCrusher";
-    public static final String MACHINE_BASIC_CRUSHER_DESC = StatCollector.translateToLocal("tile.complexwiring.machine.basic.crusher.desc");   //TODO MAKE THIS PRETTIER
+    public static final String NUGGET_IRON_NAME = "nuggetIron";
+    public static final String NUGGET_COPPER_NAME = "nuggetCopper";
+    public static final String NUGGET_TIN_NAME = "nuggetTin";
+    public static final String NUGGET_SILVER_NAME = "nuggetSilver";
+    public static final String NUGGET_LEAD_NAME = "nuggetLead";
 
-    public static final String MACHINE_POWERED_ORELYZER_NAME = "machinePoweredOrelyzer";
-    public static final String MACHINE_POWERED_ORELYZER_DESC = StatCollector.translateToLocal("tile.complexwiring.machine.powered.orelyzer.desc");
-    public static final String MACHINE_POWERED_FURNACE_NAME = "machinePoweredFurnace";
-    public static final String MACHINE_POWERED_FURNACE_DESC = StatCollector.translateToLocal("tile.complexwiring.machine.powered.furnace.desc");
-    public static final String MACHINE_POWERED_CRUSHER_NAME = "machinePoweredCrusher";
-    public static final String MACHINE_POWERED_CRUSHER_DESC = StatCollector.translateToLocal("tile.complexwiring.machine.powered.crusher.desc");   //TODO MAKE THIS PRETTIER
+    public static final String STORAGEBOX_BASIC_NAME = "storageBoxBasic";
+    public static final String STORAGEBOX_BASIC_DESC = StatCollector.translateToLocal("tile.complexwiring.mechanical.storagebox.basic.desc");
+    public static final String STORAGEBOX_ADVANCED_NAME = "storageBoxAdvanced";
+    public static final String STORAGEBOX_ADVANCED_DESC = StatCollector.translateToLocal("tile.complexwiring.mechanical.storagebox.advanced.desc");
 
     public static final String TABLET_NAME = "tablet";
     public static final String STARTPAPER_NAME = "startpaper";
     public static final String GUIDEBOOK_NAME = "guidebook";
 
-    public static final String SAW_NAME = "saw";
-    public static final String SMASHER_NAME = "smasher";
-
-    public static final String DRIVESHAFT_NAME = "driveShaft";
+    public static final String WOOD_PULP_NAME = "woodPulp";
 }

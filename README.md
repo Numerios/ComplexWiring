@@ -1,4 +1,4 @@
-## Complex Wiring
+## ComplexWiring
 
 ### Description
 Complex Wiring is a new mod for Minecraft creating a lot of possibilities for the player.

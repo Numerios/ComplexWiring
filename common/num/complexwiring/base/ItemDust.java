@@ -12,6 +12,8 @@ import java.util.List;
 public class ItemDust extends Item {
     public ItemDust() {
         super();
+        setHasSubtypes(true);
+        setMaxDamage(0);
         setUnlocalizedName(Reference.MOD_ID.toLowerCase() + ".base.dust");
         setCreativeTab(ModuleBase.tabCWBase);
     }
@@ -46,9 +48,8 @@ public class ItemDust extends Item {
     }
 
     public void registerOres() {
-        for (EnumDust ingot : EnumDust.VALID) {
-            ingot.registerOre();
+        for (EnumDust dust : EnumDust.VALID) {
+            dust.registerOre();
         }
     }
-
 }

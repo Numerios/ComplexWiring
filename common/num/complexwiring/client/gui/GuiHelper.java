@@ -3,8 +3,7 @@ package num.complexwiring.client.gui;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.util.StatCollector;
 
-public class GuiHelper {                //TODO Use the following method everywhere
-
+public class GuiHelper {
     public static void drawCenteredString(FontRenderer fontRenderer, String string, int width, int height, int colour) {
         fontRenderer.drawString(string, width / 2 - fontRenderer.getStringWidth(string) / 2, height, colour);
     }

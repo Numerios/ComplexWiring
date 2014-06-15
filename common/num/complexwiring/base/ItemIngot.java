@@ -12,6 +12,8 @@ import java.util.List;
 public class ItemIngot extends Item {
     public ItemIngot() {
         super();
+        setHasSubtypes(true);
+        setMaxDamage(0);
         setUnlocalizedName(Reference.MOD_ID.toLowerCase() + ".base.ingot");
         setCreativeTab(ModuleBase.tabCWBase);
     }

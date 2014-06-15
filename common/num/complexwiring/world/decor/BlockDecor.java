@@ -5,7 +5,9 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import num.complexwiring.lib.Reference;
 import num.complexwiring.world.ModuleWorld;
@@ -16,8 +18,8 @@ public class BlockDecor extends Block {
     public BlockDecor() {
         super(Material.rock);
         setBlockName(Reference.MOD_ID.toLowerCase() + ".world.decor");
-        setHardness(2.0F);
-        setResistance(3.0F);
+        setHardness(1.8F);
+        setResistance(2F);
         setCreativeTab(ModuleWorld.tabCWWorld);
     }
 
@@ -28,24 +30,20 @@ public class BlockDecor extends Block {
 
     @Override
     public void registerBlockIcons(IIconRegister ir) {
-        for (EnumDecor orePrimary : EnumDecor.VALID) {
-            orePrimary.registerIcon(ir);
+        for (EnumDecor decor : EnumDecor.VALID) {
+            decor.registerIcon(ir);
         }
     }
 
     @Override
     public void getSubBlocks(Item item, CreativeTabs tab, List list) {
-        for (EnumDecor orePrimary : EnumDecor.VALID) {
-            list.add(orePrimary.getIS(1));
+        for (EnumDecor decor : EnumDecor.VALID) {
+            list.add(decor.getIS(1));
         }
     }
 
     @Override
     public int damageDropped(int meta) {
-        if (meta == EnumDecor.ARENITE.meta) return EnumDecor.ARENITE_ROUGH.meta;
-        if (meta == EnumDecor.DOLOMITE.meta) return EnumDecor.DOLOMITE_ROUGH.meta;
-        if (meta == EnumDecor.LIMESTONE.meta) return EnumDecor.LIMESTONE_ROUGH.meta;
-
         return meta;
     }
 
@@ -54,9 +52,14 @@ public class BlockDecor extends Block {
         return world.getBlockMetadata(x, y, z);
     }
 
+    @Override
+    public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z) {
+        return new ItemStack(this, 1, world.getBlockMetadata(x, y, z));
+    }
+
     public void registerOres() {
-        for (EnumDecor orePrimary : EnumDecor.VALID) {
-            orePrimary.registerOre();
+        for (EnumDecor decor : EnumDecor.VALID) {
+            decor.registerOre();
         }
     }
 }

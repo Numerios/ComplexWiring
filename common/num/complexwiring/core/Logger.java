@@ -29,6 +29,6 @@ public class Logger {
 
     public static void debug(String message) {
         if (ComplexWiring.DEBUG)
-            log(Level.DEBUG, message);
+            log(Level.WARN, message);  //TODO: DO THE THING WITH log4j.properities!
     }
 }

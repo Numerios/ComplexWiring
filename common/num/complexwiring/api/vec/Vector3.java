@@ -2,16 +2,18 @@ package num.complexwiring.api.vec;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+import org.lwjgl.util.vector.Vector3f;
 
 /**
  * The ultimate class for coordinates in three-dimensional space. Uses doubles.
  */
-public class Vector3 implements Cloneable {
+public class Vector3 implements Cloneable, Comparable {
     public double x, y, z;
 
     public Vector3(double x, double y, double z) {
@@ -60,8 +62,6 @@ public class Vector3 implements Cloneable {
     public Vector3 clone() {
         return new Vector3(this.x, this.y, this.z);
     }
-
-    // TODO: getCenter(Entity) - needs to offset properly!
 
     /**
      * Converts Vector3 to Vector2 by dropping the Y coord.
@@ -162,6 +162,18 @@ public class Vector3 implements Cloneable {
         return world.getBlock(this.getX(), this.getY(), this.getZ());
     }
 
+    public void setBlock(World world, Block block) {
+        world.setBlock(this.getX(), this.getY(), this.getZ(), block);
+    }
+
+    public ItemStack getIS(World world) {
+        return getIS(world, 1);
+    }
+
+    public ItemStack getIS(World world, int amount) {
+        return new ItemStack(world.getBlock(this.getX(), this.getY(), this.getZ()), amount, world.getBlockMetadata(this.getX(), this.getY(), this.getZ()));
+    }
+
     public boolean isAir(World world) {
         return world.isAirBlock(this.getX(), this.getY(), this.getZ());
     }
@@ -191,15 +203,19 @@ public class Vector3 implements Cloneable {
     }
 
     public double mag() {
-        return Math.sqrt(this.magSqrt());
+        return Math.sqrt(this.magSquared());
     }
 
-    public double magSqrt() {
+    public double magSquared() {
         return this.x * this.x + this.y * this.y + this.z * this.z;
     }
 
     public double distance(Vector3 other) {
         return this.add(other.clone().invert()).mag();
+    }
+
+    public double distanceSquared(Vector3 other) {
+        return this.add(other.clone().invert()).magSquared();
     }
 
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
@@ -211,6 +227,10 @@ public class Vector3 implements Cloneable {
 
     public Vector3 step(ForgeDirection dir) {
         return this.add(new Vector3(dir));
+    }
+
+    public Vector3f toVec3f() {
+        return new Vector3f((float) this.x, (float) this.y, (float) this.z);
     }
 
     @Override
@@ -225,5 +245,20 @@ public class Vector3 implements Cloneable {
     @Override
     public String toString() {
         return "[x: " + this.x + ", y: " + this.y + ", z: " + this.z + "]";
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        if (o instanceof Vector3) {
+            Vector3 other = (Vector3) o;
+            if (this.x > other.x || this.y > other.y || this.z > other.z) {
+                return 1;
+            } else if (this.x < other.x || this.y < other.y || this.z < other.z) {
+                return -1;
+            } else {
+                return 0;
+            }
+        }
+        return 0;
     }
 }

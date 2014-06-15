@@ -39,7 +39,7 @@ public enum EnumDecor {
 
     public String getUnlocalizedName() {
         // removes the "decor" from the name and makes it lowercase (ex. decorLimestone -> limestone)
-        return name.toLowerCase().substring(5);
+        return name.substring(5, 6).toLowerCase() + name.substring(5 + 1);
     }
 
     public void registerIcon(IIconRegister ir) {
@@ -51,10 +51,10 @@ public enum EnumDecor {
     }
 
     public void registerOre() {
-        if (this.type.equals(Type.SMOOTH) || this.type.equals(Type.ROUGH)) {
-            OreDictionary.registerOre("stone", this.getIS(1));
+        if (this.type.equals(Type.SMOOTH)) {
+            OreDictionary.registerOre(getUnlocalizedName(), this.getIS(1));           // limestone
+            OreDictionary.registerOre("block" + getUnlocalizedName().substring(0, 1).toUpperCase() + getUnlocalizedName().substring(1), this.getIS(1));   // blockLimestone
         }
-        OreDictionary.registerOre(getUnlocalizedName(), this.getIS(1));
     }
 
     public enum Type {

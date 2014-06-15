@@ -1,6 +1,6 @@
 itemGroup.tabCWBase=Complex Wiring - Base
 itemGroup.tabCWWorld=Complex Wiring - World
-itemGroup.tabCWMachine=Complex Wiring - Machine
+itemGroup.tabCWMechanical=Complex Wiring - Mechanical
 
 tile.complexwiring.world.ore.primary.copper.name=Copper Ore
 tile.complexwiring.world.ore.primary.tin.name=Tin Ore
@@ -65,40 +65,33 @@ tile.complexwiring.world.ore.secondary.vanilla.subbituminous.name=Sub-Bituminous
 tile.complexwiring.world.ore.secondary.vanilla.bituminous.name=Bituminous Ore
 tile.complexwiring.world.ore.secondary.vanilla.anthracite.name=Anthracite Ore
 
-tile.complexwiring.world.decor.limestonerough.name=Rough Limestone
-tile.complexwiring.world.decor.dolomiterough.name=Rough Dolomite
-tile.complexwiring.world.decor.areniterough.name=Rough Arenite
+tile.complexwiring.world.decor.limestoneRough.name=Rough Limestone
+tile.complexwiring.world.decor.dolomiteRough.name=Rough Dolomite
+tile.complexwiring.world.decor.areniteRough.name=Rough Arenite
 
 tile.complexwiring.world.decor.limestone.name=Limestone
 tile.complexwiring.world.decor.dolomite.name=Dolomite
 tile.complexwiring.world.decor.arenite.name=Arenite
-tile.complexwiring.world.decor.darkdolomite.name=Dark Dolomite
+tile.complexwiring.world.decor.darkDolomite.name=Dark Dolomite
 
-tile.complexwiring.world.decor.limestonebrick.name=Limestone Brick
-tile.complexwiring.world.decor.dolomitebrick.name=Dolomite Brick
-tile.complexwiring.world.decor.arenitebrick.name=Arenite Brick
-tile.complexwiring.world.decor.darkdolomitebrick.name=Dark Dolomite Brick
+tile.complexwiring.world.decor.limestoneBrick.name=Limestone Brick
+tile.complexwiring.world.decor.dolomiteBrick.name=Dolomite Brick
+tile.complexwiring.world.decor.areniteBrick.name=Arenite Brick
+tile.complexwiring.world.decor.darkDolomiteBrick.name=Dark Dolomite Brick
 
-tile.complexwiring.world.decor.limestonesmallbrick.name=Small Limestone Bricks
-tile.complexwiring.world.decor.dolomitesmallbrick.name=Small Dolomite Bricks
-tile.complexwiring.world.decor.arenitesmallbrick.name=Small Arenite Bricks
-tile.complexwiring.world.decor.darkdolomitesmallbrick.name=Small Dark Dolomite Bricks
+tile.complexwiring.world.decor.limestoneSmallbrick.name=Small Limestone Bricks
+tile.complexwiring.world.decor.dolomiteSmallbrick.name=Small Dolomite Bricks
+tile.complexwiring.world.decor.areniteSmallbrick.name=Small Arenite Bricks
+tile.complexwiring.world.decor.darkDolomiteSmallbrick.name=Small Dark Dolomite Bricks
 
-tile.complexwiring.world.decor.dolomitedarkdolomitemix.name=Dolomite - Dark Dolomite Mix
+tile.complexwiring.world.decor.dolomiteDarkDolomiteMix.name=Dolomite - Dark Dolomite Mix
 
-tile.complexwiring.machine.basic.orelyzer.name=Basic Orelyzer
-tile.complexwiring.machine.basic.orelyzer.desc=Analyze your ores!
-tile.complexwiring.machine.basic.furnace.name=Basic Furnace
-tile.complexwiring.machine.basic.furnace.desc=Smelt your ores!
-tile.complexwiring.machine.basic.crusher.name=Basic Crusher
-tile.complexwiring.machine.basic.crusher.desc=Crush your ores!
+tile.complexwiring.mechanical.storagebox.basic.name=Basic Storage Box
+tile.complexwiring.mechanical.storagebox.basic.desc=32 stacks of storage!
+tile.complexwiring.mechanical.storagebox.advanced.name=Advanced Storage Box
+tile.complexwiring.mechanical.storagebox.advanced.desc=128 stacks of storage!
 
-tile.complexwiring.machine.powered.orelyzer.name=Powered Orelyzer
-tile.complexwiring.machine.powered.orelyzer.desc=Analyze your ores with MJ!
-tile.complexwiring.machine.powered.furnace.name=Powered Furnace
-tile.complexwiring.machine.powered.furnace.desc=Smelt your ores with MJ!
-tile.complexwiring.machine.powered.crusher.name=Powered Crusher
-tile.complexwiring.machine.powered.crusher.desc=Crush your ores with MJ!
+tile.complexwiring.mechanical.smasher.name=Mechanical Smasher
 
 item.complexwiring.base.ingot.copper.name=Copper Ingot
 item.complexwiring.base.ingot.tin.name=Tin Ingot
@@ -110,7 +103,17 @@ item.complexwiring.base.dust.gold.name=Gold Dust
 item.complexwiring.base.dust.copper.name=Copper Dust
 item.complexwiring.base.dust.tin.name=Tin Dust
 item.complexwiring.base.dust.silver.name=Silver Dust
-item.complexwiring.base.dust.lead.name=Leaden Dust
+item.complexwiring.base.dust.lead.name=Lead Dust
+
+item.complexwiring.base.nugget.iron.name=Iron Nugget
+item.complexwiring.base.nugget.copper.name=Copper Nugget
+item.complexwiring.base.nugget.tin.name=Tin Nugget
+item.complexwiring.base.nugget.silver.name=Silver Nugget
+item.complexwiring.base.nugget.lead.name=Lead Nugget
+
+item.complexwiring.base.screwdriver.name=Screwdriver
+
+item.complexwiring.base.component.woodpulp.name=Wood Pulp
 
 item.complexwiring.tablet.name=Tablet
 item.complexwiring.tablet.startpaper.name=§lThe Beginning
