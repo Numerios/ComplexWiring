@@ -30,7 +30,7 @@ public class ComplexWiring {
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         Logger.init();
-        Logger.debug("PreInit started!");
+        Logger.debug("Let's do this!");
 
         ModuleManager.INSTANCE.register(new ModuleBase());
         //  ModuleManager.INSTANCE.register(new ModuleTablet());
@@ -62,6 +62,6 @@ public class ComplexWiring {
         packetPipeline.postInit();
 
         ModuleManager.INSTANCE.postInit();
-        Logger.debug("PostInit finished!");
+        Logger.debug("I'm ready to rock!");
     }
 }
