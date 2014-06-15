@@ -7,6 +7,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import num.complexwiring.api.recipe.OrelyzerRecipe;
 import num.complexwiring.api.recipe.RecipeRandomOutput;
+import num.complexwiring.base.EnumIngot;
 import num.complexwiring.core.CreativeTabCW;
 import num.complexwiring.lib.Module;
 import num.complexwiring.recipe.RecipeManager;
@@ -72,6 +73,11 @@ public class ModuleWorld extends Module {
     }
 
     private void registerVanillaRecipes() {
+        GameRegistry.addSmelting(EnumOrePrimary.COPPER.getIS(1), EnumIngot.COPPER.getIS(1), 0.75F);
+        GameRegistry.addSmelting(EnumOrePrimary.TIN.getIS(1), EnumIngot.TIN.getIS(1), 0.75F);
+        GameRegistry.addSmelting(EnumOrePrimary.SILVER.getIS(1), EnumIngot.SILVER.getIS(1), 0.75F);
+        GameRegistry.addSmelting(EnumOrePrimary.LEAD.getIS(1), EnumIngot.LEAD.getIS(1), 0.75F);
+
         GameRegistry.addSmelting(EnumDecor.LIMESTONE_ROUGH.getIS(1), EnumDecor.LIMESTONE.getIS(1), 0.6F);
         GameRegistry.addSmelting(EnumDecor.DOLOMITE_ROUGH.getIS(1), EnumDecor.DOLOMITE.getIS(1), 0.6F);
         GameRegistry.addSmelting(EnumDecor.ARENITE_ROUGH.getIS(1), EnumDecor.ARENITE.getIS(1), 0.6F);
