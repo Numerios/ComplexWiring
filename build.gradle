@@ -18,25 +18,32 @@ buildscript {
 
 apply plugin: 'forge' // adds the forge dependency
 
-version = "0.0.0.0_alpha"
+ext.configFile = file "build.properties"  // loads the properties file as configFile
+
+configFile.withReader {
+    def prop = new Properties()
+    prop.load(it)
+    project.ext.config = new ConfigSlurper().parse prop  // enables access to the fields in properties as config.[property]
+}
+
+version = config.mod_version + "." + config.mod_buildnumber
 group = "num.complexwiring"
-archivesBaseName = "complexwiring" // the name that all artifacts will use as a base. artifacts names follow this pattern: [baseName]-[appendix]-[version]-[classifier].[extension]
+archivesBaseName = "ComplexWiring" // the name that all artifacts will use as a base. artifacts names follow this pattern: [baseName]-[appendix]-[version]-[classifier].[extension]
 
 minecraft {
-    version = "1.7.2-10.12.2.1121"
+    version = config.minecraft_version + "-" + config.forge_version
 
-    assetDir = "debug/assets"
     // the place for ForgeGradle to download the assets. The assets that the launcher gets and stuff
+    assetDir = "debug/assets"
 
     // replacing stuff in the source
     replace '@VERSION@', project.version
-    replace '@MC_VERSION@', version
 }
 
 dependencies {
-    compile "codechicken:CodeChickenLib:1.7.2-1.1.1.81:dev"
-    compile "codechicken:ForgeMultipart:1.7.2-1.1.0.282:dev"
-    compile files("lib/buildcraft-6.0.10-dev.jar")
+    //  compile "codechicken:CodeChickenLib:1.7.2-1.1.1.81:dev"
+    //  compile "codechicken:ForgeMultipart:1.7.2-1.1.0.282:dev"
+    //  compile files("lib/buildcraft-6.0.10-dev.jar")
 }
 
 // configure the source folders
