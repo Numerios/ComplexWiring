@@ -8,6 +8,7 @@ import net.minecraftforge.common.BiomeDictionary;
 import num.complexwiring.world.decor.EnumDecor;
 import num.complexwiring.world.ore.primary.EnumOrePrimary;
 
+import java.util.EnumSet;
 import java.util.Random;
 
 public class WorldGenerator implements IWorldGenerator {
@@ -22,8 +23,9 @@ public class WorldGenerator implements IWorldGenerator {
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
         chunkX *= 16;
         chunkZ *= 16;
-        if (isSurface(world)) {
-            for (EnumOrePrimary primaryOre : EnumOrePrimary.VALID) {
+        if (isSurface(world)) {                                                                          //TODO: Add all other ores!
+            EnumSet<EnumOrePrimary> generatedOres = EnumSet.of(EnumOrePrimary.COPPER, EnumOrePrimary.SILVER, EnumOrePrimary.TIN, EnumOrePrimary.LEAD);
+            for (EnumOrePrimary primaryOre : generatedOres) {
                 new OreGenerator(primaryOre).generate(world, chunkX, chunkZ, rand);
             }
             new DecorGenerator(EnumDecor.LIMESTONE_ROUGH, 80, 36, 8, 32).generate(world, chunkX, chunkZ, rand, BiomeDictionary.Type.PLAINS, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.JUNGLE, BiomeDictionary.Type.SWAMP, BiomeDictionary.Type.MAGICAL, BiomeDictionary.Type.MUSHROOM);
