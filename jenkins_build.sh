@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # This script is for CW's jenkins CI system that took a lot of time to set up
 # If you are building this mod yourself, just ignore this...
 echo "Preparing to build"
