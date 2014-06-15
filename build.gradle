@@ -23,10 +23,15 @@ ext.configFile = file "build.properties"  // loads the properties file as config
 configFile.withReader {
     def prop = new Properties()
     prop.load(it)
-    project.ext.config = new ConfigSlurper().parse prop  // enables access to the fields in properties as config.[property]
+    project.ext.config = new ConfigSlurper().parse prop
+    // enables access to the fields in properties as config.[property]
 }
+def isDev = project.hasProperty('isDev')
+def dev_check = isDev ? ("&" + "devbuild=1") : ""
 
-version = config.mod_version + "." + config.mod_buildnumber
+String web_version = ('http://complexwiring.numerios.eu/ci-stuff.php?version=' + config.mod_version + dev_check).toURL().getText();
+
+version = web_version ?: config.mod_version
 group = "num.complexwiring"
 archivesBaseName = "ComplexWiring" // the name that all artifacts will use as a base. artifacts names follow this pattern: [baseName]-[appendix]-[version]-[classifier].[extension]
 
