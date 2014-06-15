@@ -1,6 +1,7 @@
 package num.complexwiring.api.recipe;
 
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 import num.complexwiring.recipe.RecipeManager;
 
 import java.util.ArrayList;
@@ -11,15 +12,27 @@ public class OrelyzerRecipe implements ICWRecipe {
     private RecipeRandomOutput[] outputs;
     private int neededPower;
 
+    private int[] oreIds;
+
     public OrelyzerRecipe(ItemStack input, int neededPower, RecipeRandomOutput... outputs) {
         this.input = input;
         this.outputs = outputs;
         this.neededPower = neededPower;
+
+        oreIds = OreDictionary.getOreIDs(input);
     }
 
     public boolean matches(ItemStack is) {
-        //TODO: Working OreDictionary support
-        return input.isItemEqual(is);
+        if (is == null || is.getItem() == null || input == null) return false;
+        if (input.isItemEqual(is)) return true;
+
+        int[] matchedOres = OreDictionary.getOreIDs(is);
+        for (int matchedOre : matchedOres) {
+            for (int recipeOre : oreIds) {
+                if (recipeOre == matchedOre) return true;
+            }
+        }
+        return false;
     }
 
     public ItemStack getInput() {

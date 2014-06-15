@@ -2,6 +2,7 @@ package num.complexwiring.api.recipe;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import net.minecraftforge.oredict.OreDictionary;
 import num.complexwiring.api.vec.Vector3;
 import num.complexwiring.recipe.RecipeManager;
 
@@ -13,6 +14,8 @@ public class SmasherRecipe implements ICWRecipe {
     private ItemStack[] output;
     private int neededPower;
 
+    private int[] oreIds;
+
     public SmasherRecipe(Vector3 vec3, World world, int neededPower, ItemStack... output) {
         this(vec3.getIS(world), neededPower, output);
     }
@@ -21,11 +24,21 @@ public class SmasherRecipe implements ICWRecipe {
         this.input = input;
         this.output = output;
         this.neededPower = neededPower;
+
+        oreIds = OreDictionary.getOreIDs(input);
     }
 
     public boolean matches(ItemStack is) {
-        //TODO: Working OreDictionary support
-        return input.isItemEqual(is);
+        if (is == null || is.getItem() == null || input == null) return false;
+        if (input.isItemEqual(is)) return true;
+
+        int[] matchedOres = OreDictionary.getOreIDs(is);
+        for (int matchedOre : matchedOres) {
+            for (int recipeOre : oreIds) {
+                if (recipeOre == matchedOre) return true;
+            }
+        }
+        return false;
     }
 
     public ItemStack getInput() {

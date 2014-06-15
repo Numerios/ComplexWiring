@@ -49,7 +49,7 @@ public class TileSmasher extends TileEntityBase implements IFacing {
                     }
                 }
             }
-            if (recipe != null && (facingVec.getIS(world()).isItemEqual(recipe.getInput()) || facingVec.toTile(world()) instanceof TileStorageBox)) {
+            if (recipe != null && recipe.matches(facingVec.getIS(world())) || facingVec.toTile(world()) instanceof TileStorageBox) {
                 processTime++;
                 if (!(facingVec.toTile(world()) instanceof TileStorageBox)) {
                     world().destroyBlockInWorldPartially(0, facingVec.getX(), facingVec.getY(), facingVec.getZ(), (int) getProgress(10));
