@@ -11,14 +11,23 @@ import java.util.Random;
 public class OreGenerator {
     public final EnumOrePrimary ore;
 
-    public OreGenerator(EnumOrePrimary ore) {
+    private final int maxY;
+    private final int minY;
+    private final int clusterNum;
+    private final int clusterSize;
+
+    public OreGenerator(EnumOrePrimary ore, int maxY, int minY, int clusterNum, int clusterSize) {
         this.ore = ore;
+        this.maxY = maxY;
+        this.minY = minY;
+        this.clusterNum = clusterNum;
+        this.clusterSize = clusterSize;
     }
 
     public void generate(World world, int chunkX, int chunkZ, Random rand) {
-        for (int i = 0; i < this.ore.clusterNum; i++) {
+        for (int i = 0; i < clusterNum; i++) {
             int x = chunkX + rand.nextInt(16);
-            int y = rand.nextInt(Math.max(this.ore.maxY - this.ore.minY, 0) + this.ore.minY);
+            int y = rand.nextInt(Math.max(maxY - minY, 0) + minY);
             int z = chunkZ + rand.nextInt(16);
             generateMinable(world, rand, x, y, z);
         }
@@ -26,7 +35,7 @@ public class OreGenerator {
     }
 
     public boolean generateMinable(World world, Random rand, int x, int y, int z) {
-        WorldGenMinable minable = new WorldGenMinable(ModuleWorld.orePrimary, this.ore.meta, this.ore.clusterSize, Blocks.stone);
+        WorldGenMinable minable = new WorldGenMinable(ModuleWorld.orePrimary, ore.meta, clusterSize, Blocks.stone);
         return minable.generate(world, rand, x, y, z);
     }
 }

@@ -9,6 +9,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import num.complexwiring.base.ModuleBase;
+import num.complexwiring.config.ConfigHandler;
 import num.complexwiring.core.GuiHandler;
 import num.complexwiring.core.Logger;
 import num.complexwiring.core.ModuleManager;
@@ -17,6 +18,8 @@ import num.complexwiring.core.proxy.CommonProxy;
 import num.complexwiring.lib.Reference;
 import num.complexwiring.mechanical.ModuleMechanical;
 import num.complexwiring.world.ModuleWorld;
+
+import java.io.File;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION)
 public class ComplexWiring {
@@ -31,6 +34,8 @@ public class ComplexWiring {
     public void preInit(FMLPreInitializationEvent event) {
         Logger.init();
         Logger.debug("Let's do this!");
+
+        ConfigHandler.init(new File(event.getModConfigurationDirectory(), "/ComplexWiring.cfg"));
 
         ModuleManager.INSTANCE.register(new ModuleBase());
         //  ModuleManager.INSTANCE.register(new ModuleTablet());
@@ -53,6 +58,7 @@ public class ComplexWiring {
         NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
 
         ModuleManager.INSTANCE.init();
+        ConfigHandler.save();
         Logger.debug("Init finished!");
     }
 
