@@ -6,6 +6,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+import num.complexwiring.api.recipe.RecipeRandomOutput;
 import num.complexwiring.api.recipe.SmasherRecipe;
 import num.complexwiring.base.EnumComponent;
 import num.complexwiring.base.EnumMaterial;
@@ -49,7 +50,8 @@ public class ModuleMechanical extends Module {
 
     private void registerRecipes() {
         for (EnumMaterial material : EnumMaterial.VALID) {
-            RecipeManager.add(new SmasherRecipe(material.getOre(), 180, material.getDust(2)));
+            RecipeManager.add(new SmasherRecipe(material.getOre(), 180, new RecipeRandomOutput(material.getDust(1)),
+                    new RecipeRandomOutput(material.getDust(1), 0.75F), new RecipeRandomOutput(material.getDust(1), 0.25F)));
         }
 
         GameRegistry.addRecipe(new ShapedOreRecipe(EnumStorageBox.BASIC.getIS(1), "PCP", "C#C", "PCP", 'P', "plankWood", 'C', "cobblestone", '#', Blocks.chest));
@@ -62,10 +64,12 @@ public class ModuleMechanical extends Module {
 
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(smasher), "FFF", "PSP", "CCC", 'F', Items.flint, 'P', "plankWood", 'C', "cobblestone", 'S', Items.stick));
 
-        RecipeManager.add(new SmasherRecipe(new ItemStack(Blocks.log), 120, EnumComponent.WOOD_PULP.getIS(10)));
+        RecipeManager.add(new SmasherRecipe(new ItemStack(Blocks.log), 120, new RecipeRandomOutput(EnumComponent.WOOD_PULP.getIS(8)),
+                new RecipeRandomOutput(EnumComponent.WOOD_PULP.getIS(2), 0.75F), new RecipeRandomOutput(EnumComponent.WOOD_PULP.getIS(2), 0.25F)));
 
-        RecipeManager.add(new SmasherRecipe(new ItemStack(Blocks.planks), 90, EnumComponent.WOOD_PULP.getIS(2)));
+        RecipeManager.add(new SmasherRecipe(new ItemStack(Blocks.planks), 90, new RecipeRandomOutput(EnumComponent.WOOD_PULP.getIS(2))));
 
-        RecipeManager.add(new SmasherRecipe(new ItemStack(Blocks.gravel), 60, new ItemStack(Items.flint)));
+        RecipeManager.add(new SmasherRecipe(new ItemStack(Blocks.gravel), 60, new RecipeRandomOutput(new ItemStack(Items.flint), 0.80F),
+                new RecipeRandomOutput(new ItemStack(Items.flint), 0.10F)));
     }
 }
