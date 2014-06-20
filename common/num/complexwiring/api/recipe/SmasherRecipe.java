@@ -1,9 +1,7 @@
 package num.complexwiring.api.recipe;
 
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
-import num.complexwiring.api.vec.Vector3;
 import num.complexwiring.recipe.RecipeManager;
 
 import java.util.ArrayList;
@@ -11,21 +9,17 @@ import java.util.Random;
 
 public class SmasherRecipe implements ICWRecipe {
     private ItemStack input;
-    private ItemStack[] output;
+    private RecipeRandomOutput[] outputs;
     private int neededPower;
 
-    private int[] oreIds;
+    private int[] oreIDs;
 
-    public SmasherRecipe(Vector3 vec3, World world, int neededPower, ItemStack... output) {
-        this(vec3.getIS(world), neededPower, output);
-    }
-
-    public SmasherRecipe(ItemStack input, int neededPower, ItemStack... output) {
+    public SmasherRecipe(ItemStack input, int neededPower, RecipeRandomOutput... output) {
         this.input = input;
-        this.output = output;
+        this.outputs = output;
         this.neededPower = neededPower;
 
-        oreIds = OreDictionary.getOreIDs(input);
+        oreIDs = OreDictionary.getOreIDs(input);
     }
 
     public boolean matches(ItemStack is) {
@@ -34,7 +28,7 @@ public class SmasherRecipe implements ICWRecipe {
 
         int[] matchedOres = OreDictionary.getOreIDs(is);
         for (int matchedOre : matchedOres) {
-            for (int recipeOre : oreIds) {
+            for (int recipeOre : oreIDs) {
                 if (recipeOre == matchedOre) return true;
             }
         }
@@ -51,8 +45,11 @@ public class SmasherRecipe implements ICWRecipe {
 
     public ArrayList<ItemStack> getOutput(Random rand) {
         ArrayList<ItemStack> completeOutput = new ArrayList<ItemStack>();
-        for (ItemStack is : output) {
-            completeOutput.add(is.copy());
+        for (RecipeRandomOutput output : outputs) {
+            float f = rand.nextFloat();
+            if (output.getChance() >= f) {
+                completeOutput.add(output.getOutput().copy());
+            }
         }
         return completeOutput;
     }
@@ -64,6 +61,6 @@ public class SmasherRecipe implements ICWRecipe {
 
     @Override
     public String toString() {
-        return "Recipe: " + input.toString() + " >> " + output.toString();
+        return "Recipe: " + input.toString() + " >> " + outputs.toString();
     }
 }
