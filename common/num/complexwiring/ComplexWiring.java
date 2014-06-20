@@ -9,7 +9,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import num.complexwiring.base.ModuleBase;
-import num.complexwiring.config.ConfigHandler;
+import num.complexwiring.core.ConfigHandler;
 import num.complexwiring.core.GuiHandler;
 import num.complexwiring.core.Logger;
 import num.complexwiring.core.ModuleManager;

@@ -1,7 +1,6 @@
-package num.complexwiring.config;
+package num.complexwiring.core;
 
 import net.minecraftforge.common.config.Configuration;
-import num.complexwiring.core.Logger;
 
 import java.io.File;
 

@@ -5,7 +5,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.common.BiomeDictionary;
-import num.complexwiring.config.ConfigHandler;
+import num.complexwiring.core.ConfigHandler;
 import num.complexwiring.world.decor.EnumDecor;
 import num.complexwiring.world.ore.primary.EnumOrePrimary;
 
