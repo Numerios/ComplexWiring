@@ -9,6 +9,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 import num.complexwiring.api.prefab.IFacing;
 import num.complexwiring.api.prefab.tile.TileEntityBase;
@@ -24,6 +25,7 @@ import java.util.Random;
 
 public class TileSmasher extends TileEntityBase implements IFacing {
     private ForgeDirection facing;
+    private Vector3 facingVec;
     private SmasherRecipe recipe;
     private ArrayList<ItemStack> recipeOutput;
     private boolean isActive;
@@ -50,39 +52,40 @@ public class TileSmasher extends TileEntityBase implements IFacing {
             return;
         }
 
-        if (!world().isRemote) {
-            if (!pos().isRSPowered(world())) {
-                Vector3 facingVec = pos().clone().step(facing);
-                if (recipe == null) {
-                    if (RecipeManager.get(RecipeManager.Type.SMASHER, facingVec.getIS(world())) != null) {
-                        trySetupRecipe(facingVec.getIS(world()));
-                    } else if (facingVec.toTile(world()) instanceof TileStorageBox) {
-                        TileStorageBox storageBox = (TileStorageBox) facingVec.toTile(world());
-                        ItemStack is = storageBox.getContaining();
-                        if (is != null) {
-                            is.stackSize = 1;
-                            trySetupRecipe(is);
-                        }
+        if (!pos().isRSPowered(world())) {
+            TileEntity facingTile = facingVec.toTile(world());
+            if (recipe == null) {
+                if (RecipeManager.get(RecipeManager.Type.SMASHER, facingVec.getIS(world())) != null) {
+                    trySetupRecipe(facingVec.getIS(world()));
+                } else if (facingTile instanceof TileStorageBox) {
+                    TileStorageBox storageBox = (TileStorageBox) facingVec.toTile(world());
+                    ItemStack is = storageBox.getContaining();
+                    if (is != null) {
+                        is.stackSize = 1;
+                        trySetupRecipe(is);
                     }
-                }
-                if (recipe != null && (recipe.matches(facingVec.getIS(world())) || facingVec.toTile(world()) instanceof TileStorageBox)) {
-                    isActive = true;
-                    processTime++;
-                    if (!(facingVec.toTile(world()) instanceof TileStorageBox)) {
-                        world().destroyBlockInWorldPartially(0, facingVec.getX(), facingVec.getY(), facingVec.getZ(), (int) getProgress(10));
-                    }
-                    if (processTime >= recipeNeededPower) {
-                        endProcessing();
-                    }
-                } else {
-                    resetProcessing();
                 }
             }
-            if (needsSync) {
-                worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
-                markDirty();
+
+            if (recipe != null && (recipe.matches(facingVec.getIS(world())) || facingTile instanceof TileStorageBox)) {
+                isActive = true;
+                processTime++;
+                if (!(facingTile instanceof TileStorageBox)) {
+                    worldObj.destroyBlockInWorldPartially(0, xCoord + facing.offsetX, yCoord + facing.offsetY, zCoord + facing.offsetZ, (int) getProgress(10));
+                }
+                if (processTime >= recipeNeededPower) {
+                    endProcessing();
+                }
+            } else {
+                resetProcessing();
             }
         }
+
+        if (needsSync) {
+            worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
+            markDirty();
+        }
+
     }
 
     private void trySetupRecipe(ItemStack is) {
@@ -109,12 +112,12 @@ public class TileSmasher extends TileEntityBase implements IFacing {
     }
 
     public void endProcessing() {
-        Vector3 facingVec = pos().clone().step(facing);
         if (recipeOutput != null && recipeOutput.size() > 0) {
+            TileEntity facingTile = facingVec.toTile(world());
             for (ItemStack output : recipeOutput) {
                 if (output != null && output.stackSize != 0) {
-                    if (facingVec.toTile(world()) instanceof TileStorageBox) {
-                        world().destroyBlockInWorldPartially(0, facingVec.getX(), facingVec.getY(), facingVec.getZ(), 10);
+                    if (!(facingTile instanceof TileStorageBox)) {
+                        worldObj.destroyBlockInWorldPartially(0, xCoord + facing.offsetX, yCoord + facing.offsetY, zCoord + facing.offsetZ, 10);
                     }
                     EntityItem entityItem = new EntityItem(world(), facingVec.getX() + 0.5D, facingVec.getY() + 0.5D, facingVec.getZ() + 0.5D, output);
                     entityItem.setVelocity(0D, 0D, 0D);
@@ -122,8 +125,8 @@ public class TileSmasher extends TileEntityBase implements IFacing {
                     world().spawnEntityInWorld(entityItem);
                 }
             }
-            if (facingVec.toTile(world()) instanceof TileStorageBox) {
-                TileStorageBox storageBox = (TileStorageBox) facingVec.toTile(world());
+            if (facingTile instanceof TileStorageBox) {
+                TileStorageBox storageBox = (TileStorageBox) facingTile;
                 storageBox.decrStackSize(0, 1);
             } else {
                 facingVec.setBlock(world(), Blocks.air);
@@ -142,6 +145,7 @@ public class TileSmasher extends TileEntityBase implements IFacing {
     public void setFacing(ForgeDirection dir) {
         Logger.debug("My new facing is: " + dir.toString());
         this.facing = dir;
+        this.facingVec = pos().clone().step(facing);
     }
 
     public boolean isActive() {
@@ -191,6 +195,7 @@ public class TileSmasher extends TileEntityBase implements IFacing {
                 recipeOutput.add(ItemStack.loadItemStackFromNBT(itemNBT));
             }
         }
+        this.facingVec = pos().clone().step(facing);
     }
 
     @Override
