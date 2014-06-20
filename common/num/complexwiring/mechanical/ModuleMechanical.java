@@ -62,20 +62,10 @@ public class ModuleMechanical extends Module {
 
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(smasher), "FFF", "PSP", "CCC", 'F', Items.flint, 'P', "plankWood", 'C', "cobblestone", 'S', Items.stick));
 
-        RecipeManager.add(new SmasherRecipe(new ItemStack(Blocks.log, 1, 0), 90, EnumComponent.WOOD_PULP.getIS(10)));
-        RecipeManager.add(new SmasherRecipe(new ItemStack(Blocks.log, 1, 1), 90, EnumComponent.WOOD_PULP.getIS(10)));
-        RecipeManager.add(new SmasherRecipe(new ItemStack(Blocks.log, 1, 2), 90, EnumComponent.WOOD_PULP.getIS(10)));
-        RecipeManager.add(new SmasherRecipe(new ItemStack(Blocks.log, 1, 3), 90, EnumComponent.WOOD_PULP.getIS(10)));
-        RecipeManager.add(new SmasherRecipe(new ItemStack(Blocks.log2, 1, 0), 90, EnumComponent.WOOD_PULP.getIS(10)));
-        RecipeManager.add(new SmasherRecipe(new ItemStack(Blocks.log2, 1, 1), 90, EnumComponent.WOOD_PULP.getIS(10)));
+        RecipeManager.add(new SmasherRecipe(new ItemStack(Blocks.log), 120, EnumComponent.WOOD_PULP.getIS(10)));
 
-        RecipeManager.add(new SmasherRecipe(new ItemStack(Blocks.planks, 1, 0), 60, EnumComponent.WOOD_PULP.getIS(2)));
-        RecipeManager.add(new SmasherRecipe(new ItemStack(Blocks.planks, 1, 1), 60, EnumComponent.WOOD_PULP.getIS(2)));
-        RecipeManager.add(new SmasherRecipe(new ItemStack(Blocks.planks, 1, 2), 60, EnumComponent.WOOD_PULP.getIS(2)));
-        RecipeManager.add(new SmasherRecipe(new ItemStack(Blocks.planks, 1, 3), 60, EnumComponent.WOOD_PULP.getIS(2)));
-        RecipeManager.add(new SmasherRecipe(new ItemStack(Blocks.planks, 1, 4), 60, EnumComponent.WOOD_PULP.getIS(2)));
-        RecipeManager.add(new SmasherRecipe(new ItemStack(Blocks.planks, 1, 5), 60, EnumComponent.WOOD_PULP.getIS(2)));
+        RecipeManager.add(new SmasherRecipe(new ItemStack(Blocks.planks), 90, EnumComponent.WOOD_PULP.getIS(2)));
 
-        RecipeManager.add(new SmasherRecipe(new ItemStack(Blocks.gravel), 45, new ItemStack(Items.flint)));
+        RecipeManager.add(new SmasherRecipe(new ItemStack(Blocks.gravel), 60, new ItemStack(Items.flint)));
     }
 }
