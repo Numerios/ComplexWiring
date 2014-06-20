@@ -26,6 +26,9 @@ public class TileSmasher extends TileEntityBase implements IFacing {
     private ForgeDirection facing;
     private SmasherRecipe recipe;
     private ArrayList<ItemStack> recipeOutput;
+    private boolean isActive;
+    private boolean prevActive;
+    private boolean needsSync;
     private int processTime = 0;
     private int recipeNeededPower = 0;
 
@@ -35,35 +38,51 @@ public class TileSmasher extends TileEntityBase implements IFacing {
 
     @Override
     public void update() {
-        if (!world().isRemote && !pos().isRSPowered(world())) {
-            Vector3 facingVec = pos().clone().step(facing);
-            if (recipe == null) {
-                if (RecipeManager.get(RecipeManager.Type.SMASHER, facingVec.getIS(world())) != null) {
-                    trySetupRecipe(facingVec.getIS(world()));
-                } else if (facingVec.toTile(world()) instanceof TileStorageBox) {
-                    TileStorageBox storageBox = (TileStorageBox) facingVec.toTile(world());
-                    ItemStack is = storageBox.getContaining();
-                    if (is != null) {
-                        is.stackSize = 1;
-                        trySetupRecipe(is);
+        if (world() == null) {
+            return;
+        }
+
+        if (world().isRemote) {
+            if (isActive != prevActive) {
+                prevActive = isActive;
+                worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
+            }
+            return;
+        }
+
+        if (!world().isRemote) {
+            if (!pos().isRSPowered(world())) {
+                Vector3 facingVec = pos().clone().step(facing);
+                if (recipe == null) {
+                    if (RecipeManager.get(RecipeManager.Type.SMASHER, facingVec.getIS(world())) != null) {
+                        trySetupRecipe(facingVec.getIS(world()));
+                    } else if (facingVec.toTile(world()) instanceof TileStorageBox) {
+                        TileStorageBox storageBox = (TileStorageBox) facingVec.toTile(world());
+                        ItemStack is = storageBox.getContaining();
+                        if (is != null) {
+                            is.stackSize = 1;
+                            trySetupRecipe(is);
+                        }
                     }
                 }
+                if (recipe != null && (recipe.matches(facingVec.getIS(world())) || facingVec.toTile(world()) instanceof TileStorageBox)) {
+                    isActive = true;
+                    processTime++;
+                    if (!(facingVec.toTile(world()) instanceof TileStorageBox)) {
+                        world().destroyBlockInWorldPartially(0, facingVec.getX(), facingVec.getY(), facingVec.getZ(), (int) getProgress(10));
+                    }
+                    if (processTime >= recipeNeededPower) {
+                        endProcessing();
+                    }
+                } else {
+                    resetProcessing();
+                }
             }
-            if (recipe != null && recipe.matches(facingVec.getIS(world())) || facingVec.toTile(world()) instanceof TileStorageBox) {
-                processTime++;
-                if (!(facingVec.toTile(world()) instanceof TileStorageBox)) {
-                    world().destroyBlockInWorldPartially(0, facingVec.getX(), facingVec.getY(), facingVec.getZ(), (int) getProgress(10));
-                }
-                if (processTime >= recipeNeededPower) {
-                    endProcessing();
-                }
-            } else {
-                resetProcessing();
+            if (needsSync) {
+                worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
+                markDirty();
             }
         }
-        worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
-        markDirty();
-
     }
 
     private void trySetupRecipe(ItemStack is) {
@@ -73,6 +92,7 @@ public class TileSmasher extends TileEntityBase implements IFacing {
                 recipeNeededPower = recipe.getNeededPower();
                 recipeOutput = recipe.getOutput(new Random());
                 processTime = 0;
+                needsSync = true;
             } else {
                 recipe = null;
             }
@@ -84,8 +104,9 @@ public class TileSmasher extends TileEntityBase implements IFacing {
         recipeOutput.clear();
         recipeNeededPower = 0;
         processTime = 0;
+        isActive = false;
+        needsSync = true;
     }
-
 
     public void endProcessing() {
         Vector3 facingVec = pos().clone().step(facing);
@@ -121,6 +142,10 @@ public class TileSmasher extends TileEntityBase implements IFacing {
     public void setFacing(ForgeDirection dir) {
         Logger.debug("My new facing is: " + dir.toString());
         this.facing = dir;
+    }
+
+    public boolean isActive() {
+        return isActive;
     }
 
     public void onRightClick(EntityPlayer player) {
