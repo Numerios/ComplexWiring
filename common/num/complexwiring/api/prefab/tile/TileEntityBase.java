@@ -9,6 +9,7 @@ import num.complexwiring.api.vec.Vector3;
  */
 public abstract class TileEntityBase extends TileEntity {
     protected long ticks = 0;
+    protected Vector3 pos;
 
     @Override
     public void updateEntity() {
@@ -37,9 +38,11 @@ public abstract class TileEntityBase extends TileEntity {
     public void update() {
     }
 
-
     public Vector3 pos() {
-        return new Vector3(this.xCoord, this.yCoord, this.zCoord);
+        if (pos == null) {
+            pos = new Vector3(this.xCoord, this.yCoord, this.zCoord);
+        }
+        return pos;
     }
 
     public World world() {

@@ -40,10 +40,6 @@ public class TileSmasher extends TileEntityBase implements IFacing {
 
     @Override
     public void update() {
-        if (world() == null) {
-            return;
-        }
-
         if (world().isRemote) {
             if (isActive != prevActive) {
                 prevActive = isActive;
