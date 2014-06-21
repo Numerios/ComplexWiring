@@ -1,4 +1,4 @@
-package num.complexwiring.world.decor;
+package num.complexwiring.world.decor.dark;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -14,30 +14,30 @@ import num.complexwiring.world.ModuleWorld;
 
 import java.util.List;
 
-public class BlockDecor extends Block {
-    public BlockDecor() {
+public class BlockDarkDecor extends Block {
+    public BlockDarkDecor() {
         super(Material.rock);
-        setBlockName(Reference.MOD_ID.toLowerCase() + ".world.decor");
-        setHardness(1.8F);
+        setBlockName(Reference.MOD_ID.toLowerCase() + ".world.decor.dark");
+        setHardness(2F);
         setResistance(2F);
         setCreativeTab(ModuleWorld.tabCWWorld);
     }
 
     @Override
     public IIcon getIcon(int side, int meta) {
-        return EnumDecor.VALID[meta].icon;
+        return EnumDarkDecor.VALID[meta].icon;
     }
 
     @Override
     public void registerBlockIcons(IIconRegister ir) {
-        for (EnumDecor decor : EnumDecor.VALID) {
+        for (EnumDarkDecor decor : EnumDarkDecor.VALID) {
             decor.registerIcon(ir);
         }
     }
 
     @Override
     public void getSubBlocks(Item item, CreativeTabs tab, List list) {
-        for (EnumDecor decor : EnumDecor.VALID) {
+        for (EnumDarkDecor decor : EnumDarkDecor.VALID) {
             list.add(decor.getIS(1));
         }
     }
@@ -58,7 +58,7 @@ public class BlockDecor extends Block {
     }
 
     public void registerOres() {
-        for (EnumDecor decor : EnumDecor.VALID) {
+        for (EnumDarkDecor decor : EnumDarkDecor.VALID) {
             decor.registerOre();
         }
     }

@@ -81,6 +81,7 @@ public class Strings {
     public static final String ORE_BITUMINOUS_NAME = "oreBituminous";
     public static final String ORE_ANTHRACITE_NAME = "oreAnthracite";
 
+    //DECORS light
     public static final String DECOR_LIMESTONE_ROUGH_NAME = "decorLimestoneRough";
     public static final String DECOR_DOLOMITE_ROUGH_NAME = "decorDolomiteRough";
     public static final String DECOR_ARENITE_ROUGH_NAME = "decorAreniteRough";
@@ -88,20 +89,45 @@ public class Strings {
     public static final String DECOR_LIMESTONE_SMOOTH_NAME = "decorLimestone";
     public static final String DECOR_DOLOMITE_SMOOTH_NAME = "decorDolomite";
     public static final String DECOR_ARENITE_SMOOTH_NAME = "decorArenite";
-    public static final String DECOR_DARKDOLOMITE_NAME = "decorDarkDolomite";
 
     public static final String DECOR_LIMESTONE_BRICK_NAME = "decorLimestoneBrick";
     public static final String DECOR_DOLOMITE_BRICK_NAME = "decorDolomiteBrick";
     public static final String DECOR_ARENITE_BRICK_NAME = "decorAreniteBrick";
-    public static final String DECOR_DARKDOLOMITE_BRICK_NAME = "decorDarkDolomiteBrick";
 
     public static final String DECOR_LIMESTONE_SMALLBRICK_NAME = "decorLimestoneSmallbrick";
     public static final String DECOR_DOLOMITE_SMALLBRICK_NAME = "decorDolomiteSmallbrick";
     public static final String DECOR_ARENITE_SMALLBRICK_NAME = "decorAreniteSmallbrick";
-    public static final String DECOR_DARKDOLOMITE_SMALLBRICK_NAME = "decorDarkDolomiteSmallbrick";
 
-    public static final String DECOR_DOLOMITE_DARKDOLOMITE_MIX_NAME = "decorDolomiteDarkDolomiteMix";
+    public static final String DECOR_LIMESTONE_TILED_NAME = "decorLimestoneTiled";
+    public static final String DECOR_DOLOMITE_TILED_NAME = "decorDolomiteTiled";
+    public static final String DECOR_ARENITE_TILED_NAME = "decorAreniteTiled";
 
+    public static final String DECOR_DOLOMITE_MIX_NAME = "decorDolomiteMix";
+
+    //DECORS dark
+    public static final String DECOR_DARK_LIMESTONE_ROUGH_NAME = "decorDarkLimestoneRough";
+    public static final String DECOR_DARK_DOLOMITE_ROUGH_NAME = "decorDarkDolomiteRough";
+    public static final String DECOR_DARK_ARENITE_ROUGH_NAME = "decorDarkAreniteRough";
+
+    public static final String DECOR_DARK_LIMESTONE_SMOOTH_NAME = "decorDarkLimestone";
+    public static final String DECOR_DARK_DOLOMITE_SMOOTH_NAME = "decorDarkDolomite";
+    public static final String DECOR_DARK_ARENITE_SMOOTH_NAME = "decorDarkArenite";
+
+    public static final String DECOR_DARK_LIMESTONE_BRICK_NAME = "decorDarkLimestoneBrick";
+    public static final String DECOR_DARK_DOLOMITE_BRICK_NAME = "decorDarkDolomiteBrick";
+    public static final String DECOR_DARK_ARENITE_BRICK_NAME = "decorDarkAreniteBrick";
+
+    public static final String DECOR_DARK_LIMESTONE_SMALLBRICK_NAME = "decorDarkLimestoneSmallbrick";
+    public static final String DECOR_DARK_DOLOMITE_SMALLBRICK_NAME = "decorDarkDolomiteSmallbrick";
+    public static final String DECOR_DARK_ARENITE_SMALLBRICK_NAME = "decorDarkAreniteSmallbrick";
+
+    public static final String DECOR_DARK_LIMESTONE_TILED_NAME = "decorDarkLimestoneTiled";
+    public static final String DECOR_DARK_DOLOMITE_TILED_NAME = "decorDarkDolomiteTiled";
+    public static final String DECOR_DARK_ARENITE_TILED_NAME = "decorDarkAreniteTiled";
+
+    public static final String DECOR_LIMESTONE_MIX_NAME = "decorLimestoneMix";
+
+    //BASE
     public static final String INGOT_COPPER_NAME = "ingotCopper";
     public static final String INGOT_TIN_NAME = "ingotTin";
     public static final String INGOT_SILVER_NAME = "ingotSilver";

@@ -5,18 +5,18 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraftforge.common.BiomeDictionary;
 import num.complexwiring.world.ModuleWorld;
-import num.complexwiring.world.decor.EnumDecor;
+import num.complexwiring.world.decor.light.EnumLightDecor;
 
 import java.util.Random;
 
 public class DecorGenerator {
-    public final EnumDecor decor;
+    public final EnumLightDecor decor;
     private final int maxY;
     private final int minY;
     private final int clusterNum;
     private final int clusterSize;
 
-    public DecorGenerator(EnumDecor decor, int maxY, int minY, int clusterNum, int clusterSize) {
+    public DecorGenerator(EnumLightDecor decor, int maxY, int minY, int clusterNum, int clusterSize) {
         this.decor = decor;
         this.maxY = maxY;
         this.minY = minY;
@@ -43,7 +43,7 @@ public class DecorGenerator {
     }
 
     public boolean generateMinable(World world, Random rand, int x, int y, int z) {
-        WorldGenMinable minable = new WorldGenMinable(ModuleWorld.decor, this.decor.meta, clusterSize, Blocks.stone);
+        WorldGenMinable minable = new WorldGenMinable(ModuleWorld.decorLight, this.decor.meta, clusterSize, Blocks.stone);
         return world.getChunkProvider().chunkExists(x >> 4, z >> 4) && minable.generate(world, rand, x, y, z);
     }
 }

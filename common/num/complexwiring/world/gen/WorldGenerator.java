@@ -7,7 +7,7 @@ import net.minecraft.world.WorldType;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.common.BiomeDictionary;
 import num.complexwiring.core.ConfigHandler;
-import num.complexwiring.world.decor.EnumDecor;
+import num.complexwiring.world.decor.light.EnumLightDecor;
 import num.complexwiring.world.ore.primary.EnumOrePrimary;
 
 import java.util.ArrayList;
@@ -41,7 +41,7 @@ public class WorldGenerator implements IWorldGenerator {
             if (generate) primaryOres.add(new OreGenerator(ore, mayY, minY, clusterNum, clusterSize));
         }
 
-        for (EnumDecor decor : EnumSet.of(EnumDecor.LIMESTONE_ROUGH, EnumDecor.DOLOMITE_ROUGH, EnumDecor.ARENITE_ROUGH)) {
+        for (EnumLightDecor decor : EnumSet.of(EnumLightDecor.LIMESTONE_ROUGH, EnumLightDecor.DOLOMITE_ROUGH, EnumLightDecor.ARENITE_ROUGH)) {
             decorName = decor.name.substring(5);
             decorName = decorName.substring(0, decorName.length() - 5);
 

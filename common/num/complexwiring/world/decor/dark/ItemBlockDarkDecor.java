@@ -1,12 +1,12 @@
-package num.complexwiring.world.decor;
+package num.complexwiring.world.decor.dark;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import num.complexwiring.world.ModuleWorld;
 
-public class ItemBlockDecor extends ItemBlock {
-    public ItemBlockDecor(Block block) {
+public class ItemBlockDarkDecor extends ItemBlock {
+    public ItemBlockDarkDecor(Block block) {
         super(block);
         setHasSubtypes(true);
         setMaxDamage(0);
@@ -19,6 +19,6 @@ public class ItemBlockDecor extends ItemBlock {
 
     @Override
     public String getUnlocalizedName(ItemStack is) {
-        return ModuleWorld.decor.getUnlocalizedName() + "." + EnumDecor.VALID[is.getItemDamage()].getUnlocalizedName();
+        return ModuleWorld.decorDark.getUnlocalizedName() + "." + EnumDarkDecor.VALID[is.getItemDamage()].getUnlocalizedName();
     }
 }
