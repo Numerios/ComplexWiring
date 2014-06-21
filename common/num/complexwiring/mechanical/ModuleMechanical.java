@@ -26,13 +26,13 @@ public class ModuleMechanical extends Module {
     @Override
     public void preInit() {
         registerBlocks();
-        registerItems();
         tabCWMechanical.setIcon(new ItemStack(smasher));
     }
 
     @Override
     public void init() {
-        registerRecipes();
+        registerVanillaRecipes();
+        registerCWRecipes();
     }
 
     private void registerBlocks() {
@@ -45,10 +45,19 @@ public class ModuleMechanical extends Module {
         ((BlockSmasher) smasher).registerTiles();
     }
 
-    private void registerItems() {
+    private void registerVanillaRecipes() {
+        GameRegistry.addRecipe(new ShapedOreRecipe(EnumStorageBox.BASIC.getIS(1), "PCP", "C#C", "PCP", 'P', "plankWood", 'C', "cobblestone", '#', Blocks.chest));
+        GameRegistry.addRecipe(new ShapedOreRecipe(EnumStorageBox.BASIC.getIS(1), "CPC", "P#P", "CPC", 'P', "plankWood", 'C', "cobblestone", '#', Blocks.chest));
+
+        GameRegistry.addRecipe(new ShapedOreRecipe(EnumStorageBox.ADVANCED.getIS(1), " I ", "I#I", " I ", 'I', "ingotIron", '#', EnumStorageBox.BASIC.getIS(1)));
+
+        GameRegistry.addRecipe(new ShapedOreRecipe(EnumStorageBox.ADVANCED.getIS(1), "PIP", "I#I", "PIP", 'P', "plankWood", 'I', "ingotIron", '#', Blocks.chest));
+        GameRegistry.addRecipe(new ShapedOreRecipe(EnumStorageBox.ADVANCED.getIS(1), "IPI", "P#P", "IPI", 'P', "plankWood", 'I', "ingotIron", '#', Blocks.chest));
+
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(smasher), "FFF", "PSP", "CCC", 'F', Items.flint, 'P', "plankWood", 'C', "cobblestone", 'S', Items.stick));
     }
 
-    private void registerRecipes() {
+    private void registerCWRecipes() {
         for (EnumMaterial material : EnumMaterial.VALID) {
             RecipeManager.add(new SmasherRecipe(material.getOre(), 180, new RecipeRandomOutput(material.getDust(1)),
                     new RecipeRandomOutput(material.getDust(1), 0.75F), new RecipeRandomOutput(material.getDust(1), 0.25F)));
@@ -65,16 +74,6 @@ public class ModuleMechanical extends Module {
 
         RecipeManager.add(new SmasherRecipe(new ItemStack(Blocks.redstone_ore), 160, new RecipeRandomOutput(new ItemStack(Items.redstone, 8)),
                 new RecipeRandomOutput(new ItemStack(Items.redstone), 0.20F)));
-
-        GameRegistry.addRecipe(new ShapedOreRecipe(EnumStorageBox.BASIC.getIS(1), "PCP", "C#C", "PCP", 'P', "plankWood", 'C', "cobblestone", '#', Blocks.chest));
-        GameRegistry.addRecipe(new ShapedOreRecipe(EnumStorageBox.BASIC.getIS(1), "CPC", "P#P", "CPC", 'P', "plankWood", 'C', "cobblestone", '#', Blocks.chest));
-
-        GameRegistry.addRecipe(new ShapedOreRecipe(EnumStorageBox.ADVANCED.getIS(1), " I ", "I#I", " I ", 'I', "ingotIron", '#', EnumStorageBox.BASIC.getIS(1)));
-
-        GameRegistry.addRecipe(new ShapedOreRecipe(EnumStorageBox.ADVANCED.getIS(1), "PIP", "I#I", "PIP", 'P', "plankWood", 'I', "ingotIron", '#', Blocks.chest));
-        GameRegistry.addRecipe(new ShapedOreRecipe(EnumStorageBox.ADVANCED.getIS(1), "IPI", "P#P", "IPI", 'P', "plankWood", 'I', "ingotIron", '#', Blocks.chest));
-
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(smasher), "FFF", "PSP", "CCC", 'F', Items.flint, 'P', "plankWood", 'C', "cobblestone", 'S', Items.stick));
 
         RecipeManager.add(new SmasherRecipe(new ItemStack(Blocks.log), 120, new RecipeRandomOutput(EnumComponent.WOOD_PULP.getIS(8)),
                 new RecipeRandomOutput(EnumComponent.WOOD_PULP.getIS(2), 0.75F), new RecipeRandomOutput(EnumComponent.WOOD_PULP.getIS(2), 0.25F)));
