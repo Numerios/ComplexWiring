@@ -9,7 +9,7 @@ import num.complexwiring.api.vec.Vector3;
  */
 public abstract class TileEntityBase extends TileEntity {
     protected long ticks = 0;
-    protected Vector3 pos;
+    private Vector3 pos;
 
     @Override
     public void updateEntity() {
