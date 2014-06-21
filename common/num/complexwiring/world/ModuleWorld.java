@@ -15,6 +15,10 @@ import num.complexwiring.world.decor.BlockDecor;
 import num.complexwiring.world.decor.EnumDecor;
 import num.complexwiring.world.decor.ItemBlockDecor;
 import num.complexwiring.world.gen.WorldGenerator;
+import num.complexwiring.world.industrial.stone.BlockStoneIndustrial;
+import num.complexwiring.world.industrial.stone.ItemBlockStoneIndustrial;
+import num.complexwiring.world.industrial.wood.BlockWoodIndustrial;
+import num.complexwiring.world.industrial.wood.ItemBlockWoodIndustrial;
 import num.complexwiring.world.ore.primary.BlockOrePrimary;
 import num.complexwiring.world.ore.primary.EnumOrePrimary;
 import num.complexwiring.world.ore.primary.ItemBlockOrePrimary;
@@ -29,7 +33,7 @@ import num.complexwiring.world.ore.secondary.vanilla.EnumOreSecondaryVanilla;
 import num.complexwiring.world.ore.secondary.vanilla.ItemBlockOreSecondaryVanilla;
 
 public class ModuleWorld extends Module {
-    public static Block orePrimary, oreSecondaryClassic, oreSecondaryRare, oreSecondaryVanilla, decor;
+    public static Block orePrimary, oreSecondaryClassic, oreSecondaryRare, oreSecondaryVanilla, decor, woodIndustrial, stoneIndustrial;
     public static CreativeTabCW tabCWWorld = new CreativeTabCW("tabCWWorld", null);
 
     @Override
@@ -62,6 +66,12 @@ public class ModuleWorld extends Module {
 
         decor = new BlockDecor();
         GameRegistry.registerBlock(decor, ItemBlockDecor.class, decor.getUnlocalizedName());
+
+        woodIndustrial = new BlockWoodIndustrial();
+        GameRegistry.registerBlock(woodIndustrial, ItemBlockWoodIndustrial.class, woodIndustrial.getUnlocalizedName());
+
+        stoneIndustrial = new BlockStoneIndustrial();
+        GameRegistry.registerBlock(stoneIndustrial, ItemBlockStoneIndustrial.class, stoneIndustrial.getUnlocalizedName());
     }
 
     private void registerOres() {
@@ -70,6 +80,8 @@ public class ModuleWorld extends Module {
         ((BlockOreSecondaryRare) oreSecondaryRare).registerOres();
         ((BlockOreSecondaryVanilla) oreSecondaryVanilla).registerOres();
         ((BlockDecor) decor).registerOres();
+        ((BlockWoodIndustrial) woodIndustrial).registerOres();
+        ((BlockStoneIndustrial) stoneIndustrial).registerOres();
     }
 
     private void registerVanillaRecipes() {
