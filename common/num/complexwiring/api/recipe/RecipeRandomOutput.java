@@ -12,7 +12,7 @@ public class RecipeRandomOutput {
     private ItemStack output;
     private float chance;
 
-    public RecipeRandomOutput(ItemStack output){
+    public RecipeRandomOutput(ItemStack output) {
         this.output = output;
         this.chance = 1F;
     }

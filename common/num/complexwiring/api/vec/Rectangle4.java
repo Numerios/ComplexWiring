@@ -1,4 +1,5 @@
 package num.complexwiring.api.vec;
+
 /**
  * The ultimate class for regions in two-dimensional space. Uses two {@link num.complexwiring.api.vec.Vector2}.
  */

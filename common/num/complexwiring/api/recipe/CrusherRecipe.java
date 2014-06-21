@@ -12,14 +12,14 @@ public class CrusherRecipe implements ICWRecipe {
     private RecipeRandomOutput[] outputs;
     private int neededPower;
 
-    private int[] oreIds;
+    private int[] oreIDs;
 
     public CrusherRecipe(ItemStack input, int neededPower, RecipeRandomOutput... outputs) {
         this.input = input;
         this.outputs = outputs;
         this.neededPower = neededPower;
 
-        oreIds = OreDictionary.getOreIDs(input);
+        oreIDs = OreDictionary.getOreIDs(input);
     }
 
     public boolean matches(ItemStack is) {
@@ -28,7 +28,7 @@ public class CrusherRecipe implements ICWRecipe {
 
         int[] matchedOres = OreDictionary.getOreIDs(is);
         for (int matchedOre : matchedOres) {
-            for (int recipeOre : oreIds) {
+            for (int recipeOre : oreIDs) {
                 if (recipeOre == matchedOre) return true;
             }
         }

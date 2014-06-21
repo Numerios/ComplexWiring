@@ -6,6 +6,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 
 import java.util.List;
+
 /**
  * The ultimate class for regions in three-dimensional space. Uses two {@link num.complexwiring.api.vec.Vector3}.
  */

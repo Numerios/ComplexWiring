@@ -15,16 +15,16 @@ import java.util.List;
 import java.util.Random;
 
 public class WorldGenerator implements IWorldGenerator {
-    private Random rand;
     List<OreGenerator> primaryOres = new ArrayList<OreGenerator>();
     List<DecorGenerator> decorBlocks = new ArrayList<DecorGenerator>();
+    private Random rand;
 
     public WorldGenerator() {
         GameRegistry.registerWorldGenerator(this, 0);
         rand = new Random();
 
         String oreName, decorName;
-        for(EnumOrePrimary ore : EnumOrePrimary.VALID) {
+        for (EnumOrePrimary ore : EnumOrePrimary.VALID) {
             oreName = ore.name.substring(3);
 
             //For now here, so it would be saved into config file after INIT completes
@@ -37,10 +37,10 @@ public class WorldGenerator implements IWorldGenerator {
             int clusterNum = ConfigHandler.conf.get("WorldGeneration.PrimaryOres." + oreName, "numClusters", ore.clusterNum).getInt(ore.clusterNum);
             boolean retrogen = ConfigHandler.conf.get("WorldGeneration.PrimaryOres." + oreName, "retrogen", false).getBoolean(false); //TODO: Retrogen
 
-            if(generate) primaryOres.add(new OreGenerator(ore, mayY, minY, clusterNum, clusterSize));
+            if (generate) primaryOres.add(new OreGenerator(ore, mayY, minY, clusterNum, clusterSize));
         }
 
-        for(EnumDecor decor : EnumSet.of(EnumDecor.LIMESTONE_ROUGH, EnumDecor.DOLOMITE_ROUGH, EnumDecor.ARENITE_ROUGH)) {
+        for (EnumDecor decor : EnumSet.of(EnumDecor.LIMESTONE_ROUGH, EnumDecor.DOLOMITE_ROUGH, EnumDecor.ARENITE_ROUGH)) {
             decorName = decor.name.substring(5);
             decorName = decorName.substring(0, decorName.length() - 5);
 
@@ -52,7 +52,7 @@ public class WorldGenerator implements IWorldGenerator {
             int clusterNum = ConfigHandler.conf.get("WorldGeneration.Decor." + decorName, "numClusters", 32).getInt(32);
             boolean retrogen = ConfigHandler.conf.get("WorldGeneration.Decor." + decorName, "retrogen", false).getBoolean(false);
 
-            if(generate) decorBlocks.add(new DecorGenerator(decor, maxY, minY, clusterNum, clusterSize));
+            if (generate) decorBlocks.add(new DecorGenerator(decor, maxY, minY, clusterNum, clusterSize));
         }
     }
 
@@ -61,15 +61,21 @@ public class WorldGenerator implements IWorldGenerator {
         chunkX *= 16;
         chunkZ *= 16;
         if (isSurface(world)) {     //TODO: Add all other ores!
-            for(OreGenerator primaryOreGenerator : primaryOres) {
+            for (OreGenerator primaryOreGenerator : primaryOres) {
                 primaryOreGenerator.generate(world, chunkX, chunkZ, rand);
             }
 
-            for(DecorGenerator decor : decorBlocks){
-                switch (decor.decor){
-                    case LIMESTONE_ROUGH: decor.generate(world, chunkX, chunkZ, rand, BiomeDictionary.Type.PLAINS, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.JUNGLE, BiomeDictionary.Type.SWAMP, BiomeDictionary.Type.MAGICAL, BiomeDictionary.Type.MUSHROOM); break;
-                    case DOLOMITE_ROUGH: decor.generate(world, chunkX, chunkZ, rand, BiomeDictionary.Type.HILLS, BiomeDictionary.Type.FROZEN, BiomeDictionary.Type.MOUNTAIN); break;
-                    case ARENITE_ROUGH: decor.generate(world, chunkX, chunkZ, rand, BiomeDictionary.Type.BEACH, BiomeDictionary.Type.DESERT, BiomeDictionary.Type.WASTELAND); break;
+            for (DecorGenerator decor : decorBlocks) {
+                switch (decor.decor) {
+                    case LIMESTONE_ROUGH:
+                        decor.generate(world, chunkX, chunkZ, rand, BiomeDictionary.Type.PLAINS, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.JUNGLE, BiomeDictionary.Type.SWAMP, BiomeDictionary.Type.MAGICAL, BiomeDictionary.Type.MUSHROOM);
+                        break;
+                    case DOLOMITE_ROUGH:
+                        decor.generate(world, chunkX, chunkZ, rand, BiomeDictionary.Type.HILLS, BiomeDictionary.Type.FROZEN, BiomeDictionary.Type.MOUNTAIN);
+                        break;
+                    case ARENITE_ROUGH:
+                        decor.generate(world, chunkX, chunkZ, rand, BiomeDictionary.Type.BEACH, BiomeDictionary.Type.DESERT, BiomeDictionary.Type.WASTELAND);
+                        break;
                 }
             }
         }
