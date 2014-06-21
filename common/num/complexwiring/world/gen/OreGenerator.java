@@ -36,6 +36,6 @@ public class OreGenerator {
 
     public boolean generateMinable(World world, Random rand, int x, int y, int z) {
         WorldGenMinable minable = new WorldGenMinable(ModuleWorld.orePrimary, ore.meta, clusterSize, Blocks.stone);
-        return minable.generate(world, rand, x, y, z);
+        return world.getChunkProvider().chunkExists(x >> 4, z >> 4) && minable.generate(world, rand, x, y, z);
     }
 }
