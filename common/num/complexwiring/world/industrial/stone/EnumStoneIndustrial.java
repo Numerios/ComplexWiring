@@ -4,25 +4,26 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import num.complexwiring.lib.Reference;
+import num.complexwiring.lib.Strings;
 import num.complexwiring.world.ModuleWorld;
 
 public enum EnumStoneIndustrial {
-    LIGHT("stoneLight", Type.SMOOTH),
-    DARK("stoneDark", Type.SMOOTH),
-    LIGHT_ROUGH("stoneLightRough", Type.ROUGH),
-    DARK_ROUGH("stoneDarkRough", Type.ROUGH),
-    LIGHT_BRICK("stoneLightBrick", Type.BRICK),
-    DARK_BRICK("stoneDarkBrick", Type.BRICK),
-    LIGHT_SMALLBRICK("stoneLightSmallbrick", Type.SMALLBRICK),
-    DARK_SMALLBRICK("stoneDarkSmallbrick", Type.SMALLBRICK),
-    LIGHT_COBBLE("stoneLightCobble", Type.COBBLE),
-    DARK_COBBLE("stoneDarkCobble", Type.COBBLE),
-    LIGHT_PAVED("stoneLightPaved", Type.PAVED),
-    DARK_PAVED("stoneDarkPaved", Type.PAVED),
-    LIGHT_TILED("stoneLightTiled", Type.TILED),
-    DARK_TILED("stoneDarkTiled", Type.TILED),
-    LIGHT_CHISELEDBRICK("stoneLightChiseledbrick", Type.CHISELEDBRICK),
-    DARK_CHISELEDBRICK("stoneDarkChiseledbrick", Type.CHISELEDBRICK);
+    LIGHT(Strings.INDUSTRIAL_STONE, Type.SMOOTH),
+    DARK(Strings.INDUSTRIAL_STONE_DARK, Type.SMOOTH),
+    LIGHT_ROUGH(Strings.INDUSTRIAL_STONE_ROUGH, Type.ROUGH),
+    DARK_ROUGH(Strings.INDUSTRIAL_STONE_DARK_ROUGH, Type.ROUGH),
+    LIGHT_BRICK(Strings.INDUSTRIAL_STONE_BRICK, Type.BRICK),
+    DARK_BRICK(Strings.INDUSTRIAL_STONE_DARK_BRICK, Type.BRICK),
+    LIGHT_SMALLBRICK(Strings.INDUSTRIAL_STONE_SMALLBRICK, Type.SMALLBRICK),
+    DARK_SMALLBRICK(Strings.INDUSTRIAL_STONE_DARK_SMALLBRICK, Type.SMALLBRICK),
+    LIGHT_COBBLE(Strings.INDUSTRIAL_STONE_COBBLE, Type.COBBLE),
+    DARK_COBBLE(Strings.INDUSTRIAL_STONE_DARK_COBBLE, Type.COBBLE),
+    LIGHT_PAVED(Strings.INDUSTRIAL_STONE_PAVED, Type.PAVED),
+    DARK_PAVED(Strings.INDUSTRIAL_STONE_DARK_PAVED, Type.PAVED),
+    LIGHT_TILED(Strings.INDUSTRIAL_STONE_TILED, Type.TILED),
+    DARK_TILED(Strings.INDUSTRIAL_STONE_DARK_TILED, Type.TILED),
+    LIGHT_CHISELEDBRICK(Strings.INDUSTRIAL_STONE_CHISELEDBRICK, Type.CHISELEDBRICK),
+    DARK_CHISELEDBRICK(Strings.INDUSTRIAL_STONE_DARK_CHISELEDBRICK, Type.CHISELEDBRICK);
 
     public static final EnumStoneIndustrial[] VALID = values();
     public final String name;

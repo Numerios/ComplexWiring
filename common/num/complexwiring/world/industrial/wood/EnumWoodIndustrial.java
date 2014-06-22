@@ -4,25 +4,26 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import num.complexwiring.lib.Reference;
+import num.complexwiring.lib.Strings;
 import num.complexwiring.world.ModuleWorld;
 
 public enum EnumWoodIndustrial {
-    LIGHT("woodLight", Type.SMOOTH),
-    DARK("woodDark", Type.SMOOTH),
-    LIGHT_ROUGH("woodLightRough", Type.ROUGH),
-    DARK_ROUGH("woodDarkRough", Type.ROUGH),
-    LIGHT_TILED("woodLightTiled", Type.TILED),
-    DARK_TILED("woodDarkTiled", Type.TILED),
-    LIGHT_SMALLTILED("woodLightSmalltiled", Type.SMALLTILED),
-    DARK_SMALLTILED("woodDarkSmalltiled", Type.SMALLTILED),
-    LIGHT_DOUBLE("woodLightDouble", Type.DOUBLE),
-    DARK_DOUBLE("woodDarkDouble", Type.DOUBLE),
-    LIGHT_SINGLE("woodLightSingle", Type.SINGLE),
-    DARK_SINGLE("woodDarkSingle", Type.SINGLE),
-    LIGHT_CHISELED("woodLightChiseledbrick", Type.CHISELED),
-    DARK_CHISELED("woodDarkChiseledbrick", Type.CHISELED),
-    LIGHT_PAVED("woodLightPaved", Type.PAVED),
-    DARK_PAVED("woodDarkPaved", Type.PAVED);
+    LIGHT(Strings.INDUSTRIAL_WOOD, Type.SMOOTH),
+    DARK(Strings.INDUSTRIAL_WOOD_DARK, Type.SMOOTH),
+    LIGHT_ROUGH(Strings.INDUSTRIAL_WOOD_ROUGH, Type.ROUGH),
+    DARK_ROUGH(Strings.INDUSTRIAL_WOOD_DARK_ROUGH, Type.ROUGH),
+    LIGHT_TILED(Strings.INDUSTRIAL_WOOD_TILED, Type.TILED),
+    DARK_TILED(Strings.INDUSTRIAL_WOOD_DARK_TILED, Type.TILED),
+    LIGHT_SMALLTILED(Strings.INDUSTRIAL_WOOD_SMALLTILED, Type.SMALLTILED),
+    DARK_SMALLTILED(Strings.INDUSTRIAL_WOOD_DARK_SMALLTILED, Type.SMALLTILED),
+    LIGHT_DOUBLE(Strings.INDUSTRIAL_WOOD_DOUBLE, Type.DOUBLE),
+    DARK_DOUBLE(Strings.INDUSTRIAL_WOOD_DARK_DOUBLE, Type.DOUBLE),
+    LIGHT_SINGLE(Strings.INDUSTRIAL_WOOD_SINGLE, Type.SINGLE),
+    DARK_SINGLE(Strings.INDUSTRIAL_WOOD_DARK_SINGLE, Type.SINGLE),
+    LIGHT_CHISELED(Strings.INDUSTRIAL_WOOD_CHISELED, Type.CHISELED),
+    DARK_CHISELED(Strings.INDUSTRIAL_WOOD_DARK_CHISELED, Type.CHISELED),
+    LIGHT_PAVED(Strings.INDUSTRIAL_WOOD_PAVED, Type.PAVED),
+    DARK_PAVED(Strings.INDUSTRIAL_WOOD_DARK_PAVED, Type.PAVED);
 
     public static final EnumWoodIndustrial[] VALID = values();
     public final String name;
@@ -56,6 +57,6 @@ public enum EnumWoodIndustrial {
     }
 
     public enum Type {
-        ROUGH, SMOOTH, TILED, SMALLTILED, DOUBLE, SINGLE, CHISELED, PAVED
+        SMOOTH, ROUGH, TILED, SMALLTILED, DOUBLE, SINGLE, CHISELED, PAVED
     }
 }
