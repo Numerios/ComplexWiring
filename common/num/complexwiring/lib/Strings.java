@@ -151,8 +151,8 @@ public class Strings {
     public static final String INDUSTRIAL_WOOD_ROUGH = "woodLightRough";
     public static final String INDUSTRIAL_WOOD_TILED = "woodLightTiled";
     public static final String INDUSTRIAL_WOOD_SMALLTILED = "woodLightSmalltiled";
-    public static final String INDUSTRIAL_WOOD_DOUBLE = "woodLightDouble";
-    public static final String INDUSTRIAL_WOOD_SINGLE = "woodLightSingle";
+    public static final String INDUSTRIAL_WOOD_DOUBLESLAB = "woodLightDouble";
+    public static final String INDUSTRIAL_WOOD_PANEL = "woodLightPanel";
     public static final String INDUSTRIAL_WOOD_CHISELED = "woodLightChiseled";
     public static final String INDUSTRIAL_WOOD_PAVED = "woodLightPaved";
 
@@ -160,8 +160,8 @@ public class Strings {
     public static final String INDUSTRIAL_WOOD_DARK_ROUGH = "woodDarkRough";
     public static final String INDUSTRIAL_WOOD_DARK_TILED = "woodDarkTiled";
     public static final String INDUSTRIAL_WOOD_DARK_SMALLTILED = "woodDarkSmalltiled";
-    public static final String INDUSTRIAL_WOOD_DARK_DOUBLE = "woodDarkDouble";
-    public static final String INDUSTRIAL_WOOD_DARK_SINGLE = "woodDarkSingle";
+    public static final String INDUSTRIAL_WOOD_DARK_DOUBLESLAB = "woodDarkDouble";
+    public static final String INDUSTRIAL_WOOD_DARK_PANEL = "woodDarkPanel";
     public static final String INDUSTRIAL_WOOD_DARK_CHISELED = "woodDarkChiseled";
     public static final String INDUSTRIAL_WOOD_DARK_PAVED = "woodDarkPaved";
 
