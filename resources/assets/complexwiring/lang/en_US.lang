@@ -117,7 +117,7 @@ tile.complexwiring.world.industrial.stone.lightSmallbrick.name=Small Light Indus
 tile.complexwiring.world.industrial.stone.lightCobble.name=Light Industrial Cobblestone
 tile.complexwiring.world.industrial.stone.lightPaved.name=Paved Light Industrial Stone
 tile.complexwiring.world.industrial.stone.lightTiled.name=Tiled Light Industrial Stone
-tile.complexwiring.world.industrial.stone.lightChiseled.name=Chiseled Light Industrial Brick
+tile.complexwiring.world.industrial.stone.lightChiseled.name=Chiseled Light Industrial Stone
 
 tile.complexwiring.world.industrial.stone.dark.name=Dark Industrial Stone
 tile.complexwiring.world.industrial.stone.darkRough.name=Rough Dark Industrial Stone
@@ -126,26 +126,26 @@ tile.complexwiring.world.industrial.stone.darkSmallbrick.name=Small Dark Industr
 tile.complexwiring.world.industrial.stone.darkCobble.name=Dark Industrial Cobblestone
 tile.complexwiring.world.industrial.stone.darkPaved.name=Paved Dark Industrial Stone
 tile.complexwiring.world.industrial.stone.darkTiled.name=Tiled Dark Industrial Stone
-tile.complexwiring.world.industrial.stone.darkChiseled.name=Chiseled Dark Industrial Brick
+tile.complexwiring.world.industrial.stone.darkChiseled.name=Chiseled Dark Industrial Stone
 
 
 tile.complexwiring.world.industrial.wood.light.name=Light Industrial Wood
 tile.complexwiring.world.industrial.wood.lightRough.name=Rough Light Industrial Wood
-tile.complexwiring.world.industrial.wood.lightTiled.name=Tiled Light Industrial Wood
-tile.complexwiring.world.industrial.wood.lightSmalltiled.name=Small Tiled Light Industrial Wood
-tile.complexwiring.world.industrial.wood.lightDouble.name=Double Light Industrial Wood
+tile.complexwiring.world.industrial.wood.lightBrick.name=Light Industrial Wood Brick
+tile.complexwiring.world.industrial.wood.lightSmallbrick.name=Small Light Industrial Wood Bricks
 tile.complexwiring.world.industrial.wood.lightPanel.name=Light Industrial Wood Panel
-tile.complexwiring.world.industrial.wood.lightChiseled.name=Chiseled Light Industrial Wood
 tile.complexwiring.world.industrial.wood.lightPaved.name=Paved Light Industrial Wood
+tile.complexwiring.world.industrial.wood.lightTiled.name=Tiled Light Industrial Wood
+tile.complexwiring.world.industrial.wood.lightChiseled.name=Chiseled Light Industrial Wood
 
 tile.complexwiring.world.industrial.wood.dark.name=Dark Industrial Wood
 tile.complexwiring.world.industrial.wood.darkRough.name=Rough Dark Industrial Wood
-tile.complexwiring.world.industrial.wood.darkTiled.name=Tiled Dark Industrial Wood
-tile.complexwiring.world.industrial.wood.darkSmalltiled.name=Small Tiled Dark Industrial Wood
-tile.complexwiring.world.industrial.wood.darkDouble.name=Double Dark Industrial Wood
+tile.complexwiring.world.industrial.wood.darkBrick.name=Dark Industrial Wood Brick
+tile.complexwiring.world.industrial.wood.darkSmallbrick.name=Small Dark Industrial Wood Bricks
 tile.complexwiring.world.industrial.wood.darkPanel.name=Dark Industrial Wood Panel
-tile.complexwiring.world.industrial.wood.darkChiseled.name=Chiseled Dark Industrial Wood
 tile.complexwiring.world.industrial.wood.darkPaved.name=Paved Dark Industrial Wood
+tile.complexwiring.world.industrial.wood.darkTiled.name=Tiled Dark Industrial Wood
+tile.complexwiring.world.industrial.wood.darkChiseled.name=Chiseled Dark Industrial Wood
 
 
 tile.complexwiring.mechanical.storagebox.basic.name=Basic Storage Box

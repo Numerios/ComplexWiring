@@ -144,26 +144,26 @@ public class Strings {
     public static final String INDUSTRIAL_STONE_DARK_COBBLE = "stoneDarkCobble";
     public static final String INDUSTRIAL_STONE_DARK_PAVED = "stoneDarkPaved";
     public static final String INDUSTRIAL_STONE_DARK_TILED = "stoneDarkTiled";
-    public static final String INDUSTRIAL_STONE_DARK_CHISELEDBRICK = "stoneDarkChiseled";
+    public static final String INDUSTRIAL_STONE_DARK_CHISELED = "stoneDarkChiseled";
 
     //INDUSTRIAL WOOD
     public static final String INDUSTRIAL_WOOD = "woodLight";
     public static final String INDUSTRIAL_WOOD_ROUGH = "woodLightRough";
-    public static final String INDUSTRIAL_WOOD_TILED = "woodLightTiled";
-    public static final String INDUSTRIAL_WOOD_SMALLTILED = "woodLightSmalltiled";
-    public static final String INDUSTRIAL_WOOD_DOUBLESLAB = "woodLightDouble";
+    public static final String INDUSTRIAL_WOOD_BRICK = "woodLightBrick";
+    public static final String INDUSTRIAL_WOOD_SMALLBRICK = "woodLightSmallbrick";
     public static final String INDUSTRIAL_WOOD_PANEL = "woodLightPanel";
-    public static final String INDUSTRIAL_WOOD_CHISELED = "woodLightChiseled";
     public static final String INDUSTRIAL_WOOD_PAVED = "woodLightPaved";
+    public static final String INDUSTRIAL_WOOD_TILED = "woodLightTiled";
+    public static final String INDUSTRIAL_WOOD_CHISELED = "woodLightChiseled";
 
     public static final String INDUSTRIAL_WOOD_DARK = "woodDark";
     public static final String INDUSTRIAL_WOOD_DARK_ROUGH = "woodDarkRough";
-    public static final String INDUSTRIAL_WOOD_DARK_TILED = "woodDarkTiled";
-    public static final String INDUSTRIAL_WOOD_DARK_SMALLTILED = "woodDarkSmalltiled";
-    public static final String INDUSTRIAL_WOOD_DARK_DOUBLESLAB = "woodDarkDouble";
+    public static final String INDUSTRIAL_WOOD_DARK_BRICK = "woodDarkBrick";
+    public static final String INDUSTRIAL_WOOD_DARK_SMALLBRICK = "woodDarkSmallbrick";
     public static final String INDUSTRIAL_WOOD_DARK_PANEL = "woodDarkPanel";
-    public static final String INDUSTRIAL_WOOD_DARK_CHISELED = "woodDarkChiseled";
     public static final String INDUSTRIAL_WOOD_DARK_PAVED = "woodDarkPaved";
+    public static final String INDUSTRIAL_WOOD_DARK_TILED = "woodDarkTiled";
+    public static final String INDUSTRIAL_WOOD_DARK_CHISELED = "woodDarkChiseled";
 
     //BASE
     public static final String INGOT_COPPER_NAME = "ingotCopper";
