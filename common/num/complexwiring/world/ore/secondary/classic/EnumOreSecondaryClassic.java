@@ -1,5 +1,7 @@
 package num.complexwiring.world.ore.secondary.classic;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -40,6 +42,7 @@ public enum EnumOreSecondaryClassic {
         return name.toLowerCase().substring(3);
     }
 
+    @SideOnly(Side.CLIENT)
     public void registerIcon(IIconRegister ir) {
         icon = ir.registerIcon(Reference.TEXTURE_PATH + "world/ore/secondary/" + name);
     }

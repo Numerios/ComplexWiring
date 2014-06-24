@@ -1,6 +1,8 @@
 package num.complexwiring.mechanical.storagebox;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -16,7 +18,7 @@ public enum EnumStorageBox {
     public final String name, desc;
     public final Class<? extends TileStorageBox> tile;
     public final int meta = this.ordinal();
-    public IIcon front, side, top_bottom;
+    public IIcon front;
     public int capacity;
 
     EnumStorageBox(String name, String desc, Class<? extends TileStorageBox> tile, int capacity) {
@@ -31,10 +33,9 @@ public enum EnumStorageBox {
         return name.toLowerCase().substring(10);
     }
 
+    @SideOnly(Side.CLIENT)
     public void registerIcon(IIconRegister ir) {
         front = ir.registerIcon(Reference.TEXTURE_PATH + name + "_front");
-        side = ir.registerIcon(Reference.TEXTURE_PATH + name + "_side");
-        top_bottom = ir.registerIcon(Reference.TEXTURE_PATH + name + "_top_bottom");
     }
 
     public ItemStack getIS(int amount) {

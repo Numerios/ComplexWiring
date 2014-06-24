@@ -1,5 +1,7 @@
 package num.complexwiring.base;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -28,6 +30,7 @@ public enum EnumNugget {
         return ModuleBase.nugget.getUnlocalizedName() + "." + name.toLowerCase().substring(6);
     }
 
+    @SideOnly(Side.CLIENT)
     public void registerIcon(IIconRegister ir) {
         icon = ir.registerIcon(Reference.TEXTURE_PATH + name);
     }

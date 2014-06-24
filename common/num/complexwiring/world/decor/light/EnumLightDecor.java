@@ -1,5 +1,7 @@
 package num.complexwiring.world.decor.light;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -47,6 +49,7 @@ public enum EnumLightDecor {
         return name.substring(5, 6).toLowerCase() + name.substring(5 + 1);
     }
 
+    @SideOnly(Side.CLIENT)
     public void registerIcon(IIconRegister ir) {
         icon = ir.registerIcon(Reference.TEXTURE_PATH + "world/decor/light/" + name);
     }
