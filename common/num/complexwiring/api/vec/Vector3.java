@@ -13,7 +13,7 @@ import org.lwjgl.util.vector.Vector3f;
 /**
  * The ultimate class for coordinates in three-dimensional space. Uses doubles.
  */
-public class Vector3 implements Cloneable, Comparable {
+public class Vector3 implements Cloneable, Comparable<Vector3> {
     public double x, y, z;
 
     public Vector3(double x, double y, double z) {
@@ -248,16 +248,13 @@ public class Vector3 implements Cloneable, Comparable {
     }
 
     @Override
-    public int compareTo(Object o) {
-        if (o instanceof Vector3) {
-            Vector3 other = (Vector3) o;
-            if (this.x > other.x || this.y > other.y || this.z > other.z) {
-                return 1;
-            } else if (this.x < other.x || this.y < other.y || this.z < other.z) {
-                return -1;
-            } else {
-                return 0;
-            }
+    public int compareTo(Vector3 other) {
+        double magThis = this.magSquared();
+        double magOther = other.magSquared();
+        if (magThis > magOther) {
+            return 1;
+        } else if (magThis < magOther) {
+            return -1;
         }
         return 0;
     }

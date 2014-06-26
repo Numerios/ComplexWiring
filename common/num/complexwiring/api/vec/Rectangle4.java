@@ -3,7 +3,7 @@ package num.complexwiring.api.vec;
 /**
  * The ultimate class for regions in two-dimensional space. Uses two {@link num.complexwiring.api.vec.Vector2}.
  */
-public class Rectangle4 {
+public class Rectangle4 implements Cloneable {
     public Vector2 min, max;
 
     public Rectangle4(Vector2 min, Vector2 max) {
