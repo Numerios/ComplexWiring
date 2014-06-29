@@ -162,6 +162,8 @@ public abstract class TileStorageBox extends TileEntityInventoryBase implements 
         if (is != null) {
             if (is.getItem() instanceof ItemScrewdriver) {
                 this.setFacing(ItemScrewdriver.getSideToRotate(player.rotationYaw, 0F, !player.isSneaking()));
+                player.swingItem();
+                is.damageItem(1, player);
                 return;
             }
 

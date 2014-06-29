@@ -1,5 +1,7 @@
 package num.complexwiring.base;
 
+import buildcraft.api.tools.IToolWrench;
+import cpw.mods.fml.common.Optional;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -15,11 +17,14 @@ import num.complexwiring.lib.Reference;
 
 import java.util.List;
 
-public class ItemScrewdriver extends Item {
+@Optional.Interface(iface = "buildcraft.api.tools.IToolWrench", modid = "BuildCraft")
+public class ItemScrewdriver extends Item implements IToolWrench{
     public IIcon icon;
 
     public ItemScrewdriver() {
         super();
+        setMaxDamage(256);
+        setMaxStackSize(1);
         setUnlocalizedName(Reference.MOD_ID.toLowerCase() + ".base.screwdriver");
         setCreativeTab(ModuleBase.tabCWBase);
     }
@@ -55,10 +60,9 @@ public class ItemScrewdriver extends Item {
     public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
         Block block = world.getBlock(x, y, z);
         if (block != null) {
-            ForgeDirection direction = getSideToRotate(player.cameraYaw, player.cameraPitch, player.isSneaking());
-
-            if (block.rotateBlock(world, x, y, z, direction)) {
+            if (block.rotateBlock(world, x, y, z, ForgeDirection.getOrientation(side))) {
                 player.swingItem();
+                stack.damageItem(1, player);
                 return !world.isRemote;
             }
         }
@@ -98,5 +102,15 @@ public class ItemScrewdriver extends Item {
 
     public void registerOres() {
         OreDictionary.registerOre("CW:screwdriver", new ItemStack(ModuleBase.screwdriver));
+    }
+
+    @Override
+    public boolean canWrench(EntityPlayer player, int x, int y, int z) {
+        return true;
+    }
+
+    @Override
+    public void wrenchUsed(EntityPlayer player, int x, int y, int z) {
+        player.swingItem();
     }
 }

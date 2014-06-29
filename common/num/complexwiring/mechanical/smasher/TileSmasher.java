@@ -153,6 +153,8 @@ public class TileSmasher extends TileEntityBase implements IFacing {
         if (is != null) {
             if (is.getItem() instanceof ItemScrewdriver) {
                 this.setFacing(ItemScrewdriver.getSideToRotate(player.rotationYaw, player.rotationPitch, !player.isSneaking()));
+                player.swingItem();
+                is.damageItem(1, player);
             }
         }
     }
