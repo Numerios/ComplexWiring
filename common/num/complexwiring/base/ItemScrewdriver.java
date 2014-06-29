@@ -26,19 +26,20 @@ public class ItemScrewdriver extends Item {
 
     public static ForgeDirection getSideToRotate(float yaw, float pitch, boolean opposite) {
         ForgeDirection direction;
-        int playerFacing = MathHelper.floor_double((yaw * 4F / 360F) + 0.5D) + 4;
+        if(yaw < 0) yaw += 360;
+        int playerFacing = MathHelper.floor_double((yaw * 4F / 360F) + 0.5D);
         switch (playerFacing) {
+            case 1:
+                direction = ForgeDirection.WEST;
+                break;
             case 2:
                 direction = ForgeDirection.NORTH;
                 break;
             case 3:
                 direction = ForgeDirection.EAST;
                 break;
-            case 4:
-                direction = ForgeDirection.SOUTH;
-                break;
             default:
-                direction = ForgeDirection.WEST;
+                direction = ForgeDirection.SOUTH;
                 break;
         }
 
