@@ -198,4 +198,4 @@ config.complexwiring.main.worldgen.tooltip=CW world generation settings
 config.complexwiring.worldgen.primaryores=Primary ores
 config.complexwiring.worldgen.primaryores.tooltip=Ores like Copper, Tin, Silver, etc.
 config.complexwiring.worldgen.decor=Decor blocks
-config.complexwiring.worldgen.decor.tooltip=Decor blocks like Limestone, Dolomit, Arenite
+config.complexwiring.worldgen.decor.tooltip=Decor blocks like Limestone, Dolomite, Arenite

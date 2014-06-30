@@ -114,3 +114,10 @@ item.complexwiring.base.nugget.lead.name=Olověný nuget
 item.complexwiring.tablet.name=Tablet
 item.complexwiring.tablet.startpaper.name=§lPočátek
 item.complexwiring.tablet.guidebook.name=§lPříručka
+
+config.complexwiring.main.worldgen=Nastavení worldgenu
+config.complexwiring.main.worldgen.tooltip=Nastavení generovaní CW bloků ve světě
+config.complexwiring.worldgen.primaryores=Hlavní rudy
+config.complexwiring.worldgen.primaryores.tooltip=Rudy jako např.: Měď, Cín, Stříbro, ...
+config.complexwiring.worldgen.decor=Okrasné bloky
+config.complexwiring.worldgen.decor.tooltip=Vápenec, Dolomit, Arenit
