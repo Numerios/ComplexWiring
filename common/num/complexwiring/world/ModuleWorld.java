@@ -5,6 +5,7 @@ import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 import num.complexwiring.api.recipe.OrelyzerRecipe;
 import num.complexwiring.api.recipe.RecipeRandomOutput;
 import num.complexwiring.base.EnumIngot;
@@ -39,6 +40,8 @@ public class ModuleWorld extends Module {
     public static Block orePrimary, oreSecondaryClassic, oreSecondaryRare, oreSecondaryVanilla, decorLight, decorDark, woodIndustrial, stoneIndustrial;
     public static CreativeTabCW tabCWWorld = new CreativeTabCW("tabCWWorld", null);
 
+    public static WorldGenerator worldGenerator;
+
     @Override
     public void preInit() {
         registerBlocks();
@@ -50,7 +53,7 @@ public class ModuleWorld extends Module {
         registerOres();
         registerVanillaRecipes();
         registerCWRecipes();
-        new WorldGenerator();
+        worldGenerator = new WorldGenerator();
     }
 
     private void registerBlocks() {

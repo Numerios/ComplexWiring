@@ -1,6 +1,8 @@
 package num.complexwiring.core;
 
 import net.minecraftforge.common.config.Configuration;
+import num.complexwiring.ComplexWiring;
+import num.complexwiring.world.ModuleWorld;
 
 import java.io.File;
 
@@ -13,6 +15,11 @@ public class ConfigHandler {
     }
 
     public static void save() {
-        conf.save();
+        if(conf.hasChanged()) conf.save();
+    }
+
+    public static void reloadConfig() {
+        save();
+        ModuleWorld.worldGenerator.loadConfig();
     }
 }

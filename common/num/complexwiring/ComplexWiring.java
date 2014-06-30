@@ -1,5 +1,7 @@
 package num.complexwiring;
 
+import cpw.mods.fml.client.event.ConfigChangedEvent;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -7,6 +9,7 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import num.complexwiring.base.ModuleBase;
 import num.complexwiring.core.ConfigHandler;
@@ -21,7 +24,7 @@ import num.complexwiring.world.ModuleWorld;
 
 import java.io.File;
 
-@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION)
+@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION, guiFactory = "num.complexwiring.client.gui.GuiFactory")
 public class ComplexWiring {
     public static final boolean DEBUG = true;
     public static final PacketPipeline packetPipeline = new PacketPipeline();
@@ -45,6 +48,7 @@ public class ComplexWiring {
         ModuleManager.INSTANCE.preInit();
 
         // FMLCommonHandler.instance().bus().register(new PlayerEventHandler());
+        FMLCommonHandler.instance().bus().register(instance);
 
         Logger.debug("PreInit finished!");
     }
@@ -69,5 +73,10 @@ public class ComplexWiring {
 
         ModuleManager.INSTANCE.postInit();
         Logger.debug("I'm ready to rock!");
+    }
+
+    @SubscribeEvent
+    public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event) {
+        if(event.modID.equals(Reference.MOD_ID)) ConfigHandler.reloadConfig();
     }
 }

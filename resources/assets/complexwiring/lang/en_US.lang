@@ -192,3 +192,10 @@ research.complexwiring.task.solid.stone.desc=YER PEASANT, GET STONE(D).
 
 research.complexwiring.task.solid.wood.name=Chop Chop
 research.complexwiring.task.solid.wood.desc=Get. That. Wood.
+
+config.complexwiring.main.worldgen=Worldgen settings
+config.complexwiring.main.worldgen.tooltip=CW world generation settings
+config.complexwiring.worldgen.primaryores=Primary ores
+config.complexwiring.worldgen.primaryores.tooltip=Ores like Copper, Tin, Silver, etc.
+config.complexwiring.worldgen.decor=Decor blocks
+config.complexwiring.worldgen.decor.tooltip=Decor blocks like Limestone, Dolomit, Arenite
