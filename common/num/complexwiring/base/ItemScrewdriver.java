@@ -13,12 +13,13 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.oredict.OreDictionary;
+import num.complexwiring.core.BlockHelper;
 import num.complexwiring.lib.Reference;
 
 import java.util.List;
 
 @Optional.Interface(iface = "buildcraft.api.tools.IToolWrench", modid = "BuildCraft")
-public class ItemScrewdriver extends Item implements IToolWrench{
+public class ItemScrewdriver extends Item implements IToolWrench {
     public IIcon icon;
 
     public ItemScrewdriver() {
@@ -31,7 +32,7 @@ public class ItemScrewdriver extends Item implements IToolWrench{
 
     public static ForgeDirection getSideToRotate(float yaw, float pitch, boolean opposite) {
         ForgeDirection direction;
-        if(yaw < 0) yaw += 360;
+        if (yaw < 0) yaw += 360;
         int playerFacing = MathHelper.floor_double((yaw * 4F / 360F) + 0.5D);
         switch (playerFacing) {
             case 1:
@@ -60,7 +61,11 @@ public class ItemScrewdriver extends Item implements IToolWrench{
     public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
         Block block = world.getBlock(x, y, z);
         if (block != null) {
-            if (block.rotateBlock(world, x, y, z, ForgeDirection.getOrientation(side))) {
+            int preMetadata = world.getBlockMetadata(x, y, z);
+            int metadata = BlockHelper.rotateBlock(block, preMetadata);
+
+            if(metadata != preMetadata) {
+                world.setBlockMetadataWithNotify(x, y, z, metadata, 3);
                 player.swingItem();
                 stack.damageItem(1, player);
                 return !world.isRemote;
