@@ -104,11 +104,13 @@ public class ItemScrewdriver extends Item implements IToolWrench{
         OreDictionary.registerOre("CW:screwdriver", new ItemStack(ModuleBase.screwdriver));
     }
 
+    @Optional.Method(modid = "BuildCraft")
     @Override
     public boolean canWrench(EntityPlayer player, int x, int y, int z) {
         return true;
     }
 
+    @Optional.Method(modid = "BuildCraft")
     @Override
     public void wrenchUsed(EntityPlayer player, int x, int y, int z) {
         player.swingItem();
