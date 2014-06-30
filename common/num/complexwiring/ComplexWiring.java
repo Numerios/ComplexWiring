@@ -24,7 +24,7 @@ import num.complexwiring.world.ModuleWorld;
 
 import java.io.File;
 
-@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION, guiFactory = "num.complexwiring.client.gui.GuiFactory")
+@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION, guiFactory = Reference.CONFIG_GUI_CLASS)
 public class ComplexWiring {
     public static final boolean DEBUG = true;
     public static final PacketPipeline packetPipeline = new PacketPipeline();
