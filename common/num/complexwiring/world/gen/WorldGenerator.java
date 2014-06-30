@@ -16,27 +16,32 @@ import java.util.List;
 import java.util.Random;
 
 public class WorldGenerator implements IWorldGenerator {
-    List<OreGenerator> primaryOres = new ArrayList<OreGenerator>();
-    List<DecorGenerator> decorBlocks = new ArrayList<DecorGenerator>();
+    List<OreGenerator> primaryOres;
+    List<DecorGenerator> decorBlocks;
     private Random rand;
 
     public WorldGenerator() {
         GameRegistry.registerWorldGenerator(this, 0);
         rand = new Random();
 
+        loadConfig();
+    }
+
+    public void loadConfig() {
         String oreName, decorName;
+        primaryOres = new ArrayList<OreGenerator>();
+        decorBlocks = new ArrayList<DecorGenerator>();
+
         for (EnumOrePrimary ore : EnumOrePrimary.VALID) {
             oreName = ore.name.substring(3);
 
-            //For now here, so it would be saved into config file after INIT completes
-            //TODO: Move somewhere else?
-            ConfigHandler.conf.addCustomCategoryComment("WorldGeneration.PrimaryOres." + oreName, "Default: " + ore.clusterSize + ", true, " + ore.maxY + ", " + ore.minY + ", " + ore.clusterNum + ", false");
-            boolean generate = ConfigHandler.conf.get("WorldGeneration.PrimaryOres." + oreName, "generate", true).getBoolean(true);
-            int minY = ConfigHandler.conf.get("WorldGeneration.PrimaryOres." + oreName, "minY", ore.minY).getInt(ore.minY);
-            int mayY = ConfigHandler.conf.get("WorldGeneration.PrimaryOres." + oreName, "maxY", ore.maxY).getInt(ore.maxY);
-            int clusterSize = ConfigHandler.conf.get("WorldGeneration.PrimaryOres." + oreName, "clusterSize", ore.clusterSize).getInt(ore.clusterSize);
-            int clusterNum = ConfigHandler.conf.get("WorldGeneration.PrimaryOres." + oreName, "numClusters", ore.clusterNum).getInt(ore.clusterNum);
-            boolean retrogen = ConfigHandler.conf.get("WorldGeneration.PrimaryOres." + oreName, "retrogen", false).getBoolean(false); //TODO: Retrogen
+            ConfigHandler.conf.addCustomCategoryComment("worldgeneration.primaryores." + oreName, "Default: " + ore.clusterSize + ", true, " + ore.maxY + ", " + ore.minY + ", " + ore.clusterNum + ", false");
+            boolean generate = ConfigHandler.conf.get("worldgeneration.primaryores." + oreName, "generate", true).getBoolean(true);
+            int minY = ConfigHandler.conf.get("worldgeneration.primaryores." + oreName, "minY", ore.minY).getInt(ore.minY);
+            int mayY = ConfigHandler.conf.get("worldgeneration.primaryores." + oreName, "maxY", ore.maxY).getInt(ore.maxY);
+            int clusterSize = ConfigHandler.conf.get("worldgeneration.primaryores." + oreName, "clusterSize", ore.clusterSize).getInt(ore.clusterSize);
+            int clusterNum = ConfigHandler.conf.get("worldgeneration.primaryores." + oreName, "numClusters", ore.clusterNum).getInt(ore.clusterNum);
+            boolean retrogen = ConfigHandler.conf.get("worldgeneration.primaryores." + oreName, "retrogen", false).getBoolean(false); //TODO: Retrogen
 
             if (generate) primaryOres.add(new OreGenerator(ore, mayY, minY, clusterNum, clusterSize));
         }
@@ -45,13 +50,13 @@ public class WorldGenerator implements IWorldGenerator {
             decorName = decor.name.substring(5);
             decorName = decorName.substring(0, decorName.length() - 5);
 
-            ConfigHandler.conf.addCustomCategoryComment("WorldGeneration.Decor." + decorName, "Default: 40, true, 80, 40, 5, false");
-            boolean generate = ConfigHandler.conf.get("WorldGeneration.Decor." + decorName, "generate", true).getBoolean(true);
-            int minY = ConfigHandler.conf.get("WorldGeneration.Decor." + decorName, "minY", 40).getInt(40);
-            int maxY = ConfigHandler.conf.get("WorldGeneration.Decor." + decorName, "maxY", 80).getInt(80);
-            int clusterSize = ConfigHandler.conf.get("WorldGeneration.Decor." + decorName, "clusterSize", 40).getInt(40);
-            int clusterNum = ConfigHandler.conf.get("WorldGeneration.Decor." + decorName, "numClusters", 5).getInt(5);
-            boolean retrogen = ConfigHandler.conf.get("WorldGeneration.Decor." + decorName, "retrogen", false).getBoolean(false);
+            ConfigHandler.conf.addCustomCategoryComment("worldgeneration.decor." + decorName, "Default: 40, true, 80, 40, 5, false");
+            boolean generate = ConfigHandler.conf.get("worldgeneration.decor." + decorName, "generate", true).getBoolean(true);
+            int minY = ConfigHandler.conf.get("worldgeneration.decor." + decorName, "minY", 40).getInt(40);
+            int maxY = ConfigHandler.conf.get("worldgeneration.decor." + decorName, "maxY", 80).getInt(80);
+            int clusterSize = ConfigHandler.conf.get("worldgeneration.decor." + decorName, "clusterSize", 40).getInt(40);
+            int clusterNum = ConfigHandler.conf.get("worldgeneration.decor." + decorName, "numClusters", 5).getInt(5);
+            boolean retrogen = ConfigHandler.conf.get("worldgeneration.decor." + decorName, "retrogen", false).getBoolean(false);
 
             if (generate) decorBlocks.add(new DecorGenerator(decor, maxY, minY, clusterNum, clusterSize));
         }
