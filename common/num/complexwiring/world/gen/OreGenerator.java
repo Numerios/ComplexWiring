@@ -8,7 +8,7 @@ import num.complexwiring.world.ore.primary.EnumOrePrimary;
 
 import java.util.Random;
 
-public class OreGenerator {
+public class OreGenerator implements ICWGenerator {
     public final EnumOrePrimary ore;
 
     private final int maxY;

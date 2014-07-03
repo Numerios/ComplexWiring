@@ -9,22 +9,24 @@ import num.complexwiring.world.decor.light.EnumLightDecor;
 
 import java.util.Random;
 
-public class DecorGenerator {
+public class DecorGenerator implements ICWGenerator {
     public final EnumLightDecor decor;
     private final int maxY;
     private final int minY;
     private final int clusterNum;
     private final int clusterSize;
+    private final BiomeDictionary.Type[] biomeTypes;
 
-    public DecorGenerator(EnumLightDecor decor, int maxY, int minY, int clusterNum, int clusterSize) {
+    public DecorGenerator(EnumLightDecor decor, int maxY, int minY, int clusterNum, int clusterSize, BiomeDictionary.Type... biomeTypes) {
         this.decor = decor;
         this.maxY = maxY;
         this.minY = minY;
         this.clusterNum = clusterNum;
         this.clusterSize = clusterSize;
+        this.biomeTypes = biomeTypes;
     }
 
-    public void generate(World world, int chunkX, int chunkZ, Random rand, BiomeDictionary.Type... biomeTypes) {
+    public void generate(World world, int chunkX, int chunkZ, Random rand) {
         boolean doGenerate = false;
         for (BiomeDictionary.Type type : biomeTypes) {
             if (BiomeDictionary.isBiomeOfType(world.getBiomeGenForCoords(chunkX + 8, chunkZ + 8), type)) {
