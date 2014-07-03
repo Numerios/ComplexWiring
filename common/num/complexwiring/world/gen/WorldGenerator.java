@@ -1,7 +1,6 @@
 package num.complexwiring.world.gen;
 
 import cpw.mods.fml.common.IWorldGenerator;
-import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.chunk.IChunkProvider;
@@ -16,21 +15,23 @@ import java.util.List;
 import java.util.Random;
 
 public class WorldGenerator implements IWorldGenerator {
-    List<OreGenerator> primaryOres;
-    List<DecorGenerator> decorBlocks;
-    private Random rand;
     public static WorldGenerator INSTANCE = new WorldGenerator();
 
-    public WorldGenerator() {
-        rand = new Random();
+    private List<ICWGenerator> generators, retrogenerators;
+    public boolean retrogen;
 
+    public List<String> retroGeneratedNames;
+
+    public WorldGenerator() {
         loadConfig();
     }
 
     public void loadConfig() {
         String oreName, decorName;
-        primaryOres = new ArrayList<OreGenerator>();
-        decorBlocks = new ArrayList<DecorGenerator>();
+
+        generators = new ArrayList<ICWGenerator>();
+        retrogenerators = new ArrayList<ICWGenerator>();
+        retroGeneratedNames = new ArrayList<String>();
 
         for (EnumOrePrimary ore : EnumOrePrimary.VALID) {
             oreName = ore.name.substring(3);
@@ -38,12 +39,19 @@ public class WorldGenerator implements IWorldGenerator {
             ConfigHandler.conf.addCustomCategoryComment("worldgeneration.primaryores." + oreName, "Default: " + ore.clusterSize + ", true, " + ore.maxY + ", " + ore.minY + ", " + ore.clusterNum + ", false");
             boolean generate = ConfigHandler.conf.get("worldgeneration.primaryores." + oreName, "generate", true).getBoolean(true);
             int minY = ConfigHandler.conf.get("worldgeneration.primaryores." + oreName, "minY", ore.minY).getInt(ore.minY);
-            int mayY = ConfigHandler.conf.get("worldgeneration.primaryores." + oreName, "maxY", ore.maxY).getInt(ore.maxY);
+            int maxY = ConfigHandler.conf.get("worldgeneration.primaryores." + oreName, "maxY", ore.maxY).getInt(ore.maxY);
             int clusterSize = ConfigHandler.conf.get("worldgeneration.primaryores." + oreName, "clusterSize", ore.clusterSize).getInt(ore.clusterSize);
             int clusterNum = ConfigHandler.conf.get("worldgeneration.primaryores." + oreName, "numClusters", ore.clusterNum).getInt(ore.clusterNum);
             boolean retrogen = ConfigHandler.conf.get("worldgeneration.primaryores." + oreName, "retrogen", false).getBoolean(false); //TODO: Retrogen
 
-            if (generate) primaryOres.add(new OreGenerator(ore, mayY, minY, clusterNum, clusterSize));
+            if (generate){
+                OreGenerator generator = new OreGenerator(ore, maxY, minY, clusterNum, clusterSize);
+                generators.add(generator);
+                if(retrogen){
+                    retrogenerators.add(generator);
+                    retroGeneratedNames.add(ore.name);
+                }
+            }
         }
 
         for (EnumLightDecor decor : EnumSet.of(EnumLightDecor.LIMESTONE_ROUGH, EnumLightDecor.DOLOMITE_ROUGH, EnumLightDecor.ARENITE_ROUGH)) {
@@ -58,32 +66,35 @@ public class WorldGenerator implements IWorldGenerator {
             int clusterNum = ConfigHandler.conf.get("worldgeneration.decor." + decorName, "numClusters", 5).getInt(5);
             boolean retrogen = ConfigHandler.conf.get("worldgeneration.decor." + decorName, "retrogen", false).getBoolean(false);
 
-            if (generate) decorBlocks.add(new DecorGenerator(decor, maxY, minY, clusterNum, clusterSize));
+            if (generate){
+                BiomeDictionary.Type[] biomes = null;
+                switch (decor) {
+                    case LIMESTONE_ROUGH:
+                        biomes = new BiomeDictionary.Type[]{ BiomeDictionary.Type.PLAINS, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.JUNGLE, BiomeDictionary.Type.SWAMP, BiomeDictionary.Type.MAGICAL, BiomeDictionary.Type.MUSHROOM };
+                        break;
+                    case DOLOMITE_ROUGH:
+                        biomes = new BiomeDictionary.Type[]{ BiomeDictionary.Type.HILLS, BiomeDictionary.Type.FROZEN, BiomeDictionary.Type.MOUNTAIN };
+                        break;
+                    case ARENITE_ROUGH:
+                        biomes = new BiomeDictionary.Type[]{ BiomeDictionary.Type.BEACH, BiomeDictionary.Type.DESERT, BiomeDictionary.Type.WASTELAND };
+                        break;
+                }
+                DecorGenerator generator = new DecorGenerator(decor, maxY, minY, clusterNum, clusterSize, biomes);
+                generators.add(generator);
+                if(retrogen){
+                    retrogenerators.add(generator);
+                    retroGeneratedNames.add(decor.name);
+                }
+            }
         }
+
+        retrogen = !retrogenerators.isEmpty();
     }
 
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
-        chunkX *= 16;
-        chunkZ *= 16;
         if (isSurface(world) && !isFlat(world)) {
-            for (OreGenerator primaryOreGenerator : primaryOres) {
-                primaryOreGenerator.generate(world, chunkX, chunkZ, rand);
-            }
-
-            for (DecorGenerator decor : decorBlocks) {
-                switch (decor.decor) {
-                    case LIMESTONE_ROUGH:
-                        decor.generate(world, chunkX, chunkZ, rand, BiomeDictionary.Type.PLAINS, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.JUNGLE, BiomeDictionary.Type.SWAMP, BiomeDictionary.Type.MAGICAL, BiomeDictionary.Type.MUSHROOM);
-                        break;
-                    case DOLOMITE_ROUGH:
-                        decor.generate(world, chunkX, chunkZ, rand, BiomeDictionary.Type.HILLS, BiomeDictionary.Type.FROZEN, BiomeDictionary.Type.MOUNTAIN);
-                        break;
-                    case ARENITE_ROUGH:
-                        decor.generate(world, chunkX, chunkZ, rand, BiomeDictionary.Type.BEACH, BiomeDictionary.Type.DESERT, BiomeDictionary.Type.WASTELAND);
-                        break;
-                }
-            }
+            generateWorld(random, chunkX, chunkZ, world, false);
         }
     }
 
@@ -93,5 +104,21 @@ public class WorldGenerator implements IWorldGenerator {
 
     public boolean isFlat(World world) {
         return world.provider.terrainType == WorldType.FLAT;
+    }
+
+    public void generateWorld(Random rand, int chunkX, int chunkZ, World world, boolean isRetro) {
+        if(isRetro && !retrogen) {
+            return;
+        }
+
+        List<ICWGenerator> generators = this.generators;
+        if(isRetro) generators = retrogenerators;
+
+        chunkX *= 16;
+        chunkZ *= 16;
+
+        for(ICWGenerator generator : generators) {
+            generator.generate(world, chunkX, chunkZ, rand);
+        }
     }
 }

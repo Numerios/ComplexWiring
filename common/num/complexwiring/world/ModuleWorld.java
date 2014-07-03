@@ -1,11 +1,12 @@
 package num.complexwiring.world;
 
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
 import num.complexwiring.api.recipe.OrelyzerRecipe;
 import num.complexwiring.api.recipe.RecipeRandomOutput;
 import num.complexwiring.base.EnumIngot;
@@ -19,6 +20,7 @@ import num.complexwiring.world.decor.light.BlockLightDecor;
 import num.complexwiring.world.decor.light.EnumLightDecor;
 import num.complexwiring.world.decor.light.ItemBlockLightDecor;
 import num.complexwiring.world.gen.WorldGenerator;
+import num.complexwiring.world.gen.WorldHandler;
 import num.complexwiring.world.industrial.stone.BlockStoneIndustrial;
 import num.complexwiring.world.industrial.stone.ItemBlockStoneIndustrial;
 import num.complexwiring.world.industrial.wood.BlockWoodIndustrial;
@@ -52,6 +54,9 @@ public class ModuleWorld extends Module {
         registerVanillaRecipes();
         registerCWRecipes();
         GameRegistry.registerWorldGenerator(WorldGenerator.INSTANCE, 0);
+
+        MinecraftForge.EVENT_BUS.register(WorldHandler.INSTANCE);
+        FMLCommonHandler.instance().bus().register(WorldHandler.INSTANCE);
     }
 
     private void registerBlocks() {
