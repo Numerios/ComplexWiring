@@ -69,6 +69,8 @@ public class ItemScrewdriver extends Item implements IToolWrench {
                 player.swingItem();
                 stack.damageItem(1, player);
                 return !world.isRemote;
+            } else {
+                block.rotateBlock(world, x, y, z, ForgeDirection.getOrientation(side));
             }
         }
 

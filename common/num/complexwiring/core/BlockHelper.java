@@ -20,6 +20,10 @@ public class BlockHelper {
             if (metadata > 7) metadata = 0;
         }
 
+        if (block instanceof BlockLog) {
+            metadata = (metadata + 4) % 16;
+        }
+
         if (block instanceof BlockFurnace || block instanceof BlockChest || block instanceof BlockEnderChest) {
             switch (metadata) {
                 case 2:
