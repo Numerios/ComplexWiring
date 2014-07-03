@@ -31,7 +31,7 @@ public class OreGenerator implements ICWGenerator {
             int z = chunkZ + rand.nextInt(16);
             generateMinable(world, rand, x, y, z);
         }
-        world.getChunkFromChunkCoords(chunkX, chunkZ).setChunkModified();
+        world.getChunkFromBlockCoords(chunkX, chunkZ).setChunkModified();
     }
 
     public boolean generateMinable(World world, Random rand, int x, int y, int z) {
