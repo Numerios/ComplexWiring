@@ -40,8 +40,6 @@ public class ModuleWorld extends Module {
     public static Block orePrimary, oreSecondaryClassic, oreSecondaryRare, oreSecondaryVanilla, decorLight, decorDark, woodIndustrial, stoneIndustrial;
     public static CreativeTabCW tabCWWorld = new CreativeTabCW("tabCWWorld", null);
 
-    public static WorldGenerator worldGenerator;
-
     @Override
     public void preInit() {
         registerBlocks();
@@ -53,7 +51,7 @@ public class ModuleWorld extends Module {
         registerOres();
         registerVanillaRecipes();
         registerCWRecipes();
-        worldGenerator = new WorldGenerator();
+        GameRegistry.registerWorldGenerator(WorldGenerator.INSTANCE, 0);
     }
 
     private void registerBlocks() {

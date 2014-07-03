@@ -19,9 +19,9 @@ public class WorldGenerator implements IWorldGenerator {
     List<OreGenerator> primaryOres;
     List<DecorGenerator> decorBlocks;
     private Random rand;
+    public static WorldGenerator INSTANCE = new WorldGenerator();
 
     public WorldGenerator() {
-        GameRegistry.registerWorldGenerator(this, 0);
         rand = new Random();
 
         loadConfig();
