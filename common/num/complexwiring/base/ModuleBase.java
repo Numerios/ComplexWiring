@@ -7,11 +7,12 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+import num.complexwiring.ComplexWiring;
 import num.complexwiring.core.CreativeTabCW;
 import num.complexwiring.lib.Module;
 
 public class ModuleBase extends Module {
-    public static Item ingot, dust, nugget, screwdriver, component;
+    public static Item ingot, dust, nugget, screwdriver, component, debugger;
     public static CreativeTabCW tabCWBase = new CreativeTabCW("tabCWBase", null);
 
     @Override
@@ -46,6 +47,12 @@ public class ModuleBase extends Module {
         screwdriver = new ItemScrewdriver();
         ((ItemScrewdriver) screwdriver).registerOres();
         GameRegistry.registerItem(screwdriver, screwdriver.getUnlocalizedName());
+
+        if(ComplexWiring.DEBUG) {
+            debugger = new ItemDebugger();
+            ((ItemDebugger) debugger).registerOres();
+            GameRegistry.registerItem(debugger, debugger.getUnlocalizedName());
+        }
 
         component = new ItemComponent();
         ((ItemComponent) component).registerOres();
