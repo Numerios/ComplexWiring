@@ -54,14 +54,13 @@ public class RenderOverlay {
         GL11.glPolygonOffset(-10, -10);
         GL11.glEnable(GL11.GL_POLYGON_OFFSET_FILL);
 
-        float displayWidth = 1 - (2 / 16);
-        float displayHeight = 1 - (2 / 16);
         GL11.glTranslated(x, y, z);
         GL11.glPushMatrix();
 
         rotate(side);
 
-        GL11.glTranslatef(displayWidth / 2, 1F, displayHeight / 2);
+        float displaySize = 1 - (1 / 16);   // width and height, 0.9375
+        GL11.glTranslatef(displaySize / 2, 1F, displaySize / 2);
         GL11.glRotatef(-90, 1, 0, 0);
 
         FontRenderer fontRenderer = FMLClientHandler.instance().getClient().fontRenderer;
@@ -69,15 +68,15 @@ public class RenderOverlay {
         int requiredWidth = Math.max(fontRenderer.getStringWidth(string), 1);
         int requiredHeight = fontRenderer.FONT_HEIGHT + 2;
 
-        float scaleX = (displayWidth / requiredWidth);
-        float scaleY = (displayHeight / requiredHeight);
+        float scaleX = (displaySize / requiredWidth);
+        float scaleY = (displaySize / requiredHeight);
         float scale = Math.min(maxScale, Math.min(scaleX, scaleY) * 0.8F);
 
         GL11.glScalef(scale, -scale, scale);
         GL11.glDepthMask(false);
 
-        int realHeight = (int) Math.floor(displayHeight / scale);
-        int realWidth = (int) Math.floor(displayWidth / scale);
+        int realHeight = (int) Math.floor(displaySize / scale);
+        int realWidth = (int) Math.floor(displaySize / scale);
 
         int offsetX = (realWidth - requiredWidth) / 2;
         int offsetY = (realHeight - requiredHeight) / 2;
@@ -98,14 +97,13 @@ public class RenderOverlay {
         GL11.glPolygonOffset(-10, -10);
         GL11.glEnable(GL11.GL_POLYGON_OFFSET_FILL);
 
-        float displayWidth = 1 - (2 / 16);
-        float displayHeight = 1 - (2 / 16);
         GL11.glTranslated(x, y, z);
         GL11.glPushMatrix();
 
         rotate(side);
 
-        GL11.glTranslatef(displayWidth / 2, 1F, displayHeight / 2);
+        float displaySize = 1 - (1 / 16);   // width and height, 0.9375
+        GL11.glTranslatef(displaySize / 2, 1F, displaySize / 2);
         GL11.glRotatef(-90, 1, 0, 0);
 
         FontRenderer fontRenderer = FMLClientHandler.instance().getClient().fontRenderer;
@@ -116,8 +114,8 @@ public class RenderOverlay {
         GL11.glScalef(scale, -scale, scale);
         GL11.glDepthMask(false);
 
-        int realHeight = (int) Math.floor(displayHeight / scale);
-        int realWidth = (int) Math.floor(displayWidth / scale);
+        int realHeight = (int) Math.floor(displaySize / scale);
+        int realWidth = (int) Math.floor(displaySize / scale);
 
         int offsetX = (realWidth - requiredWidth) / 2;
         int offsetY = (realHeight - requiredHeight) / 2;
