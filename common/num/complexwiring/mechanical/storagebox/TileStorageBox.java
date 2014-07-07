@@ -5,6 +5,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.ForgeDirection;
+import num.complexwiring.ComplexWiring;
 import num.complexwiring.api.prefab.IFacing;
 import num.complexwiring.api.prefab.tile.TileEntityInventoryBase;
 import num.complexwiring.base.ItemScrewdriver;
@@ -169,6 +170,23 @@ public abstract class TileStorageBox extends TileEntityInventoryBase implements 
 
             if ((getContaining() != null && containing.isItemEqual(is)) || getContaining() == null) {
                 player.inventory.setInventorySlotContents(player.inventory.currentItem, addChecked(is));
+            }
+        } else {
+            if (inventory[0] != null && getAmountInv() < getInventoryStackLimit()*getSizeInventory()) {
+                boolean somethingAdded = false;
+                for (int slot = 0; slot < player.inventory.getSizeInventory(); slot++) {
+                    ItemStack itemInSlot = player.inventory.getStackInSlot(slot);
+                    if (itemInSlot != null && itemInSlot.isItemEqual(inventory[0])) {
+                        somethingAdded = true;
+                        player.inventory.setInventorySlotContents(slot, addChecked(itemInSlot));
+                    }
+                }
+
+                if (somethingAdded) {
+                    world().markBlockForUpdate(xCoord, yCoord, zCoord);
+                    ComplexWiring.proxy.updatePlayerInventory(player);
+                    markDirty();
+                }
             }
         }
     }
