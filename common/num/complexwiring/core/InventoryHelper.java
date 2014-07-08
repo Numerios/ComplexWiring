@@ -6,9 +6,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import net.minecraftforge.oredict.OreDictionary;
 import num.complexwiring.api.vec.Vector3;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 
@@ -76,5 +78,20 @@ public class InventoryHelper {
             return 0;
         }
         return Math.min(is1.getMaxStackSize() - is1.stackSize, is2.stackSize);
+    }
+
+    public static boolean isOreDictionaryMatch(int[] oreDictionaryIs1, ItemStack is2) {
+        int[] oreDictionaryIs2 = OreDictionary.getOreIDs(is2);
+        HashSet<Integer> map = new HashSet<Integer>();
+
+        for (int i : oreDictionaryIs1) map.add(i);
+        for (int i : oreDictionaryIs2) {
+            if (map.contains(i)) return true;
+        }
+
+        return false;
+    }
+    public static boolean isOreDictionaryMatch(ItemStack is1, ItemStack is2) {
+        return isOreDictionaryMatch(OreDictionary.getOreIDs(is1), is2);
     }
 }

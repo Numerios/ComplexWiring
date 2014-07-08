@@ -5,10 +5,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraftforge.oredict.OreDictionary;
 import num.complexwiring.ComplexWiring;
 import num.complexwiring.api.prefab.IFacing;
 import num.complexwiring.api.prefab.tile.TileEntityInventoryBase;
 import num.complexwiring.base.ItemScrewdriver;
+import num.complexwiring.core.InventoryHelper;
 
 public abstract class TileStorageBox extends TileEntityInventoryBase implements IStorageBox, IFacing {
     private ItemStack containing;
@@ -168,15 +170,16 @@ public abstract class TileStorageBox extends TileEntityInventoryBase implements 
                 return;
             }
 
-            if ((getContaining() != null && containing.isItemEqual(is)) || getContaining() == null) {
+            if (getContaining() == null || (containing.isItemEqual(is) || InventoryHelper.isOreDictionaryMatch(getContaining(), is))) {
                 player.inventory.setInventorySlotContents(player.inventory.currentItem, addChecked(is));
             }
         } else {
             if (inventory[0] != null && getAmountInv() < getInventoryStackLimit()*getSizeInventory()) {
                 boolean somethingAdded = false;
+                int[] containingOreDict = OreDictionary.getOreIDs(getContaining());
                 for (int slot = 0; slot < player.inventory.getSizeInventory(); slot++) {
                     ItemStack itemInSlot = player.inventory.getStackInSlot(slot);
-                    if (itemInSlot != null && itemInSlot.isItemEqual(inventory[0])) {
+                    if (itemInSlot != null && (itemInSlot.isItemEqual(inventory[0]) || InventoryHelper.isOreDictionaryMatch(containingOreDict, itemInSlot))) {
                         somethingAdded = true;
                         player.inventory.setInventorySlotContents(slot, addChecked(itemInSlot));
                     }
