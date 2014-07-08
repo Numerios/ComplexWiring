@@ -42,7 +42,7 @@ public class WorldGenerator implements IWorldGenerator {
             int maxY = ConfigHandler.conf.get("worldgeneration.primaryores." + oreName, "maxY", ore.maxY).getInt(ore.maxY);
             int clusterSize = ConfigHandler.conf.get("worldgeneration.primaryores." + oreName, "clusterSize", ore.clusterSize).getInt(ore.clusterSize);
             int clusterNum = ConfigHandler.conf.get("worldgeneration.primaryores." + oreName, "numClusters", ore.clusterNum).getInt(ore.clusterNum);
-            boolean retrogen = ConfigHandler.conf.get("worldgeneration.primaryores." + oreName, "retrogen", false).getBoolean(false); //TODO: Retrogen
+            boolean retrogen = ConfigHandler.conf.get("worldgeneration.primaryores." + oreName, "retrogen", false).getBoolean(false);
 
             if (generate){
                 OreGenerator generator = new OreGenerator(ore, maxY, minY, clusterNum, clusterSize);

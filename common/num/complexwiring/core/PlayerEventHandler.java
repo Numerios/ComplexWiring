@@ -17,7 +17,7 @@ public class PlayerEventHandler {
         onPlayerLogin(event.player);
     }
 
-    public void onPlayerLogin(EntityPlayer player) {      // TODO: FIX (1.7) && later use this for research stuff!
+    public void onPlayerLogin(EntityPlayer player) {
         NBTTagCompound nbt = player.getEntityData();
         if (!nbt.getBoolean(Reference.MOD_ID + " " + "spawnPaper")) {
             nbt.setBoolean(Reference.MOD_ID + " " + "spawnPaper", true);

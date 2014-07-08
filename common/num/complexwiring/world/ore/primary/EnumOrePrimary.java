@@ -12,8 +12,8 @@ import num.complexwiring.world.ModuleWorld;
 
 public enum EnumOrePrimary {
     COPPER(Strings.ORE_COPPER_NAME, 1, 0, 64, 16, 8),
-    TIN(Strings.ORE_TIN_NAME, 1, 0, 64, 12, 6), //TODO: CONFIGS + REAL VALUES!
-    SILVER(Strings.ORE_SILVER_NAME, 2, 0, 64, 10, 8), //TODO: RETRO WORLDGEN!
+    TIN(Strings.ORE_TIN_NAME, 1, 0, 64, 12, 6),
+    SILVER(Strings.ORE_SILVER_NAME, 2, 0, 64, 10, 8),
     LEAD(Strings.ORE_LEAD_NAME, 2, 0, 64, 8, 12),
     ALUMINIUM(Strings.ORE_ALUMINIUM_NAME, 2, 16, 48, 4, 4),
     URANIUM(Strings.ORE_URANIUM_NAME, 2, 16, 48, 2, 1),

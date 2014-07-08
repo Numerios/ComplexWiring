@@ -160,7 +160,7 @@ public abstract class TileStorageBox extends TileEntityInventoryBase implements 
         }
     }
 
-    public void onRightClick(EntityPlayer player) { //FIXME: Override placing blocks when sneaking to allow inserting by one
+    public void onRightClick(EntityPlayer player) {
         ItemStack is = player.getCurrentEquippedItem();
         if (is != null) {
             if (is.getItem() instanceof ItemScrewdriver) {
