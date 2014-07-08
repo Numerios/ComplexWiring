@@ -3,6 +3,7 @@ package num.complexwiring.mechanical.smasher;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -111,10 +112,45 @@ public class TileSmasher extends TileEntityBase implements IFacing {
         if (recipeOutput != null && recipeOutput.size() > 0) {
             TileEntity facingTile = facingVec.toTile(world());
             for (ItemStack output : recipeOutput) {
+                boolean outputted = false;
                 if (output != null && output.stackSize != 0) {
                     if (!(facingTile instanceof TileStorageBox)) {
                         worldObj.destroyBlockInWorldPartially(0, xCoord + facing.offsetX, yCoord + facing.offsetY, zCoord + facing.offsetZ, 10);
                     }
+
+                    for (ForgeDirection direction : ForgeDirection.VALID_DIRECTIONS) {
+                        if (direction != facing && direction != facing.getOpposite()) {
+                            Vector3 blockPos = pos().clone().step(direction);
+                            TileEntity tileEntity = worldObj.getTileEntity(blockPos.getX(), blockPos.getY(), blockPos.getZ());
+                            if (tileEntity != null && tileEntity instanceof IInventory) {
+                                if (tileEntity instanceof TileStorageBox) {
+                                    ((TileStorageBox) tileEntity).add(output);
+                                    outputted = true;
+                                } else {
+                                    IInventory inventoryTile = (IInventory) tileEntity;
+                                    for (int slot = 0; slot < inventoryTile.getSizeInventory(); slot++) {
+                                        ItemStack slotIs = inventoryTile.getStackInSlot(slot);
+                                        if (slotIs == null) {
+                                            inventoryTile.setInventorySlotContents(slot, output);
+                                            outputted = true;
+                                        } else if (slotIs.isItemEqual(output)) {
+                                            if (output.stackSize <= (slotIs.getMaxStackSize() - slotIs.stackSize)) {
+                                                slotIs.stackSize += output.stackSize;
+                                                outputted = true;
+                                            } else {
+                                                int spaceFor = slotIs.getMaxStackSize() - slotIs.stackSize;
+                                                slotIs.stackSize += output.splitStack(spaceFor).stackSize;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        if (outputted) break;
+                    }
+                }
+
+                if (output != null && !outputted) {
                     EntityItem entityItem = new EntityItem(world(), facingVec.getX() + 0.5D, facingVec.getY() + 0.5D, facingVec.getZ() + 0.5D, output);
                     entityItem.setVelocity(0D, 0D, 0D);
                     entityItem.delayBeforeCanPickup = 0;
