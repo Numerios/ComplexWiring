@@ -142,6 +142,7 @@ public class TileSmasher extends TileEntityBase implements IFacing {
                                                 slotIs.stackSize += output.splitStack(spaceFor).stackSize;
                                             }
                                         }
+                                        if (outputted) break;
                                     }
                                 }
                             }
