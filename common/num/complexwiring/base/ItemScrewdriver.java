@@ -1,7 +1,6 @@
 package num.complexwiring.base;
 
-import buildcraft.api.tools.IToolWrench;
-import cpw.mods.fml.common.Optional;
+//import cpw.mods.fml.common.Optional;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -18,8 +17,8 @@ import num.complexwiring.lib.Reference;
 
 import java.util.List;
 
-@Optional.Interface(iface = "buildcraft.api.tools.IToolWrench", modid = "BuildCraft")
-public class ItemScrewdriver extends Item implements IToolWrench {
+//@Optional.Interface(iface = "buildcraft.api.tools.IToolWrench", modid = "BuildCraft")
+public class ItemScrewdriver extends Item /*implements IToolWrench*/ {
     public IIcon icon;
 
     public ItemScrewdriver() {
@@ -111,7 +110,7 @@ public class ItemScrewdriver extends Item implements IToolWrench {
         OreDictionary.registerOre("CW:screwdriver", new ItemStack(ModuleBase.screwdriver));
     }
 
-    @Optional.Method(modid = "BuildCraft")
+    /*@Optional.Method(modid = "BuildCraft")
     @Override
     public boolean canWrench(EntityPlayer player, int x, int y, int z) {
         return true;
@@ -121,5 +120,5 @@ public class ItemScrewdriver extends Item implements IToolWrench {
     @Override
     public void wrenchUsed(EntityPlayer player, int x, int y, int z) {
         player.swingItem();
-    }
+    }*/
 }
