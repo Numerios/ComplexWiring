@@ -298,11 +298,13 @@ public abstract class TileStorageBox extends TileEntityInventoryBase implements 
 
     public ItemStack removeAll() {
         if(containing == null) assembleContaining();
-        ItemStack content = containing.copy();
-        inventory = new ItemStack[getSizeInventory()];
-        world().markBlockForUpdate(xCoord, yCoord, zCoord);
-        markDirty();
-        return content;
+        if(containing != null) {
+            ItemStack content = containing.copy();
+            inventory = new ItemStack[getSizeInventory()];
+            world().markBlockForUpdate(xCoord, yCoord, zCoord);
+            markDirty();
+            return content;
+        } else return null;
     }
 
     public static class TileStorageBoxBasic extends TileStorageBox {
