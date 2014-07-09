@@ -49,6 +49,22 @@ public class BlockStorageBox extends Block implements ITileEntityProvider {
     }
 
     @Override
+    public boolean removedByPlayer(World world, EntityPlayer player, int x, int y, int z, boolean willHarvest) {
+        if(player.capabilities.isCreativeMode) {
+            ItemStack itemStack = ((TileStorageBox) player.worldObj.getTileEntity(x, y, z)).removeAll();
+            if (itemStack != null) {
+                EntityItem entityItem = new EntityItem(world, x, y, z, itemStack);
+                entityItem.setVelocity(0, 0, 0);
+                entityItem.delayBeforeCanPickup = 0;
+                player.worldObj.spawnEntityInWorld(entityItem);
+
+                return false;
+            }
+        }
+        return super.removedByPlayer(world, player, x, y, z, willHarvest);
+    }
+
+    @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9) {
         if (!world.isRemote && world.getTileEntity(x, y, z) instanceof TileStorageBox) {
             TileStorageBox tile = (TileStorageBox) world.getTileEntity(x, y, z);

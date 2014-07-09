@@ -282,12 +282,27 @@ public abstract class TileStorageBox extends TileEntityInventoryBase implements 
     }
 
     @Override
+    public boolean isItemValidForSlot(int slot, ItemStack is) {
+        if(containing == null) assembleContaining();
+        return (containing == null || (containing.isItemEqual(is) || InventoryHelper.isOreDictionaryMatch(containing, is)));
+    }
+
+    @Override
     public void addToStorage(ItemStack is) {
         this.addChecked(is);
     }
 
     public boolean isEmpty() {
         return containing == null;
+    }
+
+    public ItemStack removeAll() {
+        if(containing == null) assembleContaining();
+        ItemStack content = containing.copy();
+        inventory = new ItemStack[getSizeInventory()];
+        world().markBlockForUpdate(xCoord, yCoord, zCoord);
+        markDirty();
+        return content;
     }
 
     public static class TileStorageBoxBasic extends TileStorageBox {
