@@ -18,7 +18,6 @@ public class RenderStorageBox extends TileEntitySpecialRenderer {
             TileStorageBox storageBox = (TileStorageBox) tile;
 
             Vector3 facing = storageBox.pos().clone().step(storageBox.getFacing());
-            System.err.println("facing: " + facing.toString());
             Block block = storageBox.world().getBlock(facing.getX(), facing.getY(), facing.getZ());
             if (!block.isOpaqueCube()) {
                 RenderOverlay.renderISWithTextOnSide(storageBox, storageBox.getContaining(), x, y, z, storageBox.getFacing());
