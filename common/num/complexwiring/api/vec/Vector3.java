@@ -230,7 +230,7 @@ public class Vector3 implements Cloneable, Comparable<Vector3> {
     }
 
     public Vector3 step(ForgeDirection dir) {
-        return this.add(dir);
+        return this.add(dir.offsetX, dir.offsetY, dir.offsetZ);
     }
 
     public Vector3f toVec3f() {
