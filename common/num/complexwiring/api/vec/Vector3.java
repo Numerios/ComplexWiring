@@ -103,6 +103,10 @@ public class Vector3 implements Cloneable, Comparable<Vector3> {
         return this;
     }
 
+    public Vector3 add(ForgeDirection dir) {
+        return this.add(dir.offsetX, dir.offsetY, dir.offsetZ);
+    }
+
     public Vector3 scale(double d) {
         return this.multiply(d);
     }
