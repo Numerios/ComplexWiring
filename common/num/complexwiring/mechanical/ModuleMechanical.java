@@ -60,7 +60,7 @@ public class ModuleMechanical extends Module {
     private void registerCWRecipes() {
         for (EnumMaterial material : EnumMaterial.VALID) {
             RecipeManager.add(new SmasherRecipe(material.getOre(), 180, new RecipeRandomOutput(material.getDust(1)),
-                    new RecipeRandomOutput(material.getDust(1), 0.75F), new RecipeRandomOutput(material.getDust(1), 0.25F)));
+                    new RecipeRandomOutput(material.getDust(1), 0.75F)));
         }
 
         RecipeManager.add(new SmasherRecipe(new ItemStack(Blocks.coal_ore), 160, new RecipeRandomOutput(new ItemStack(Items.coal, 3)),
@@ -84,7 +84,6 @@ public class ModuleMechanical extends Module {
                 new RecipeRandomOutput(new ItemStack(Blocks.gravel), 0.10F), new RecipeRandomOutput(new ItemStack(Items.flint), 0.20F)));
 
         RecipeManager.add(new SmasherRecipe(new ItemStack(Blocks.gravel), 90, new RecipeRandomOutput(new ItemStack(Blocks.sand)),
-                new RecipeRandomOutput(new ItemStack(Blocks.sand), 0.10F), new RecipeRandomOutput(new ItemStack(Items.flint), 0.80F),
-                new RecipeRandomOutput(new ItemStack(Items.flint), 0.10F)));
+                new RecipeRandomOutput(new ItemStack(Blocks.sand), 0.10F), new RecipeRandomOutput(new ItemStack(Items.flint), 0.75F)));
     }
 }
