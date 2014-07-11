@@ -25,7 +25,7 @@ import java.io.File;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION, guiFactory = Reference.GUI_CONFIG_CLASS)
 public class ComplexWiring {
-    public static final boolean DEBUG = true;
+    public static final boolean DEBUG = (Reference.MOD_VERSION.contains("alpha") || Reference.MOD_VERSION.contains("VERSION"));
     @Instance(Reference.MOD_ID)
     public static ComplexWiring instance;
     @SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.COMMON_PROXY_CLASS)
@@ -73,6 +73,6 @@ public class ComplexWiring {
 
     @SubscribeEvent
     public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event) {
-        if(event.modID.equals(Reference.MOD_ID)) ConfigHandler.reloadConfig();
+        if (event.modID.equals(Reference.MOD_ID)) ConfigHandler.reloadConfig();
     }
 }
