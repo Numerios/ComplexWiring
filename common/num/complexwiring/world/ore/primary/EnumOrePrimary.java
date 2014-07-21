@@ -11,17 +11,18 @@ import num.complexwiring.lib.Strings;
 import num.complexwiring.world.ModuleWorld;
 
 public enum EnumOrePrimary {
-    COPPER(Strings.ORE_COPPER_NAME, 1, 0, 64, 16, 8, true),
-    TIN(Strings.ORE_TIN_NAME, 1, 0, 64, 12, 6, true),
-    SILVER(Strings.ORE_SILVER_NAME, 2, 0, 64, 10, 8, true),
-    LEAD(Strings.ORE_LEAD_NAME, 2, 0, 64, 8, 12, true),
-    NICKEL(Strings.ORE_NICKEL_NAME, 2, 16, 48, 2, 1, true),
-    URANIUM(Strings.ORE_URANIUM_NAME, 2, 16, 48, 2, 1, true),
-    ALUMINIUM(Strings.ORE_ALUMINIUM_NAME, 2, 16, 48, 4, 4, true),
-    TUNGSTEN(Strings.ORE_TUNGSTEN_NAME, 3, 0, 24, 2, 3, false),
-    TITANIUM(Strings.ORE_TITANIUM_NAME, 3, 16, 48, 2, 3, false) ,
-    ZINC(Strings.ORE_ZINC_NAME, 3, 0, 24, 2, 3, false),
-    COBALT(Strings.ORE_COBALT_NAME, 3, 0, 24, 2, 3, false);
+    // overworld ores
+    COPPER(Strings.ORE_COPPER_NAME, 1, 36, 96, 20, 10, true),
+    TIN(Strings.ORE_TIN_NAME, 1, 40, 64, 12, 8, true),
+    SILVER(Strings.ORE_SILVER_NAME, 2, 16, 48, 8, 6, true),
+    LEAD(Strings.ORE_LEAD_NAME, 2, 16, 48, 8, 12, true),
+    NICKEL(Strings.ORE_NICKEL_NAME, 2, 0, 32, 2, 4, true),
+    ALUMINIUM(Strings.ORE_ALUMINIUM_NAME, 3, 0, 32, 10, 8, true),
+    TUNGSTEN(Strings.ORE_TUNGSTEN_NAME, 3, 0, 24, 4, 2, true),
+    // nether ores
+    TITANIUM(Strings.ORE_TITANIUM_NAME, 3, 16, 96, 10, 2, false),
+    ZINC(Strings.ORE_ZINC_NAME, 3, 0, 100, 20, 4, false),
+    COBALT(Strings.ORE_COBALT_NAME, 3, 32, 64, 6, 4, false);
 
     public static final EnumOrePrimary[] VALID = values();
     public final String name;

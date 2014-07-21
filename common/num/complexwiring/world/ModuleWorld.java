@@ -202,9 +202,9 @@ public class ModuleWorld extends Module {
                 new RecipeRandomOutput(EnumOreSecondaryRare.BAUXITE.getIS(1), 0.725F),
                 new RecipeRandomOutput(EnumOreSecondaryRare.CRYOLITE.getIS(1), 0.425F)));
 
-        RecipeManager.add(new OrelyzerRecipe(EnumOrePrimary.URANIUM.getIS(1), 640,
+      /*  RecipeManager.add(new OrelyzerRecipe(EnumOrePrimary.URANIUM.getIS(1), 640,
                 new RecipeRandomOutput(EnumOreSecondaryRare.URANINITE.getIS(1), 0.65F),
-                new RecipeRandomOutput(EnumOreSecondaryRare.AUTUNITE.getIS(1), 0.25F)));
+                new RecipeRandomOutput(EnumOreSecondaryRare.AUTUNITE.getIS(1), 0.25F)));  */
 
         RecipeManager.add(new OrelyzerRecipe(EnumOrePrimary.TUNGSTEN.getIS(1), 720,
                 new RecipeRandomOutput(EnumOreSecondaryRare.WOLFRAMITE.getIS(1), 0.7125F),
