@@ -149,9 +149,9 @@ tile.complexwiring.world.industrial.wood.darkChiseled.name=Chiseled Dark Industr
 
 
 tile.complexwiring.mechanical.storagebox.basic.name=Basic Storage Box
-tile.complexwiring.mechanical.storagebox.basic.desc=32 stacks of storage!
+tile.complexwiring.mechanical.storagebox.basic.tooltip=32 stacks of storage!
 tile.complexwiring.mechanical.storagebox.advanced.name=Advanced Storage Box
-tile.complexwiring.mechanical.storagebox.advanced.desc=128 stacks of storage!
+tile.complexwiring.mechanical.storagebox.advanced.tooltip=128 stacks of storage!
 
 tile.complexwiring.mechanical.smasher.name=Mechanical Smasher
 
@@ -181,18 +181,6 @@ item.complexwiring.base.component.woodpulp.name=Wood Pulp
 item.complexwiring.tablet.name=Tablet
 item.complexwiring.tablet.startpaper.name=§lThe Beginning
 item.complexwiring.tablet.guidebook.name=§lThe Guidebook
-
-research.complexwiring.research.first.name=First!
-research.complexwiring.research.first.desc=IT BEGINS!
-
-research.complexwiring.research.second.name=Second!
-research.complexwiring.research.second.desc=IT HAS BEGUN!
-
-research.complexwiring.task.solid.stone.name=Stone. Get it.
-research.complexwiring.task.solid.stone.desc=YER PEASANT, GET STONE(D).
-
-research.complexwiring.task.solid.wood.name=Chop Chop
-research.complexwiring.task.solid.wood.desc=Get. That. Wood.
 
 config.complexwiring.main.worldgen=Worldgen settings
 config.complexwiring.main.worldgen.tooltip=CW world generation settings

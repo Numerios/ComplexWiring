@@ -87,9 +87,9 @@ tile.complexwiring.world.decor.darkDolomiteSmallbrick.name=Tmavé dolomitové ci
 tile.complexwiring.world.decor.dolomiteDarkDolomiteMix.name=Mix dolomitu a tmavého dolomitu
 
 tile.complexwiring.mechanical.storagebox.basic.name=Základní úschovný box
-tile.complexwiring.mechanical.storagebox.basic.desc=Až 32 stacků!
+tile.complexwiring.mechanical.storagebox.basic.tooltip=Až 32 stacků!
 tile.complexwiring.mechanical.storagebox.advanced.name=Pokročilý úschovný box
-tile.complexwiring.mechanical.storagebox.advanced.desc=Až 128 stacků!
+tile.complexwiring.mechanical.storagebox.advanced.tooltip=Až 128 stacků!
 
 tile.complexwiring.mechanical.smasher.name=Mechanický drtič
 

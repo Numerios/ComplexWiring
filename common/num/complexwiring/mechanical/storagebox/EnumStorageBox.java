@@ -11,19 +11,19 @@ import num.complexwiring.lib.Strings;
 import num.complexwiring.mechanical.ModuleMechanical;
 
 public enum EnumStorageBox {
-    BASIC(Strings.STORAGEBOX_BASIC_NAME, Strings.STORAGEBOX_BASIC_DESC, TileStorageBox.TileStorageBoxBasic.class, 32),
-    ADVANCED(Strings.STORAGEBOX_ADVANCED_NAME, Strings.STORAGEBOX_ADVANCED_DESC, TileStorageBox.TileStorageBoxAdvanced.class, 128);
+    BASIC(Strings.STORAGEBOX_BASIC_NAME, Strings.STORAGEBOX_BASIC_TOOLTIP, TileStorageBox.TileStorageBoxBasic.class, 32),
+    ADVANCED(Strings.STORAGEBOX_ADVANCED_NAME, Strings.STORAGEBOX_ADVANCED_TOOLTIP, TileStorageBox.TileStorageBoxAdvanced.class, 128);
 
     public static final EnumStorageBox[] VALID = values();
-    public final String name, desc;
+    public final String name, tooltip;
     public final Class<? extends TileStorageBox> tile;
     public final int meta = this.ordinal();
     public IIcon front;
     public int capacity;
 
-    EnumStorageBox(String name, String desc, Class<? extends TileStorageBox> tile, int capacity) {
+    EnumStorageBox(String name, String tooltip, Class<? extends TileStorageBox> tile, int capacity) {
         this.name = name;
-        this.desc = "§o" + desc;
+        this.tooltip = tooltip;
         this.tile = tile;
         this.capacity = capacity;
     }

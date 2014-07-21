@@ -30,6 +30,6 @@ public class ItemBlockStorageBox extends ItemBlock {
     @Override
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack is, EntityPlayer player, List list, boolean bool) {
-        list.add(EnumStorageBox.VALID[is.getItemDamage()].desc);
+        list.add(EnumStorageBox.VALID[is.getItemDamage()].tooltip);
     }
 }

@@ -189,9 +189,9 @@ public class Strings {
     public static final String NUGGET_LEAD_NAME = "nuggetLead";
 
     public static final String STORAGEBOX_BASIC_NAME = "storageBoxBasic";
-    public static final String STORAGEBOX_BASIC_DESC = StatCollector.translateToLocal("tile.complexwiring.mechanical.storagebox.basic.desc");
+    public static final String STORAGEBOX_BASIC_TOOLTIP = StatCollector.translateToLocal("tile.complexwiring.mechanical.storagebox.basic.tooltip");
     public static final String STORAGEBOX_ADVANCED_NAME = "storageBoxAdvanced";
-    public static final String STORAGEBOX_ADVANCED_DESC = StatCollector.translateToLocal("tile.complexwiring.mechanical.storagebox.advanced.desc");
+    public static final String STORAGEBOX_ADVANCED_TOOLTIP = StatCollector.translateToLocal("tile.complexwiring.mechanical.storagebox.advanced.tooltip");
 
     public static final String TABLET_NAME = "tablet";
     public static final String STARTPAPER_NAME = "startpaper";
