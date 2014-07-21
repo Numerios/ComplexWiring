@@ -17,7 +17,7 @@ import java.util.Random;
 public class WorldGenerator implements IWorldGenerator {
     public static WorldGenerator INSTANCE = new WorldGenerator();
 
-    private List<ICWGenerator> generators, retrogenerators;
+    private List<ICWGenerator> generators, retroGenerators;
     public boolean retrogen;
 
     public List<String> retroGeneratedNames;
@@ -30,7 +30,7 @@ public class WorldGenerator implements IWorldGenerator {
         String oreName, decorName;
 
         generators = new ArrayList<ICWGenerator>();
-        retrogenerators = new ArrayList<ICWGenerator>();
+        retroGenerators = new ArrayList<ICWGenerator>();
         retroGeneratedNames = new ArrayList<String>();
 
         for (EnumOrePrimary ore : EnumOrePrimary.VALID) {
@@ -44,11 +44,16 @@ public class WorldGenerator implements IWorldGenerator {
             int clusterNum = ConfigHandler.conf.get("worldgeneration.primaryores." + oreName, "numClusters", ore.clusterNum).getInt(ore.clusterNum);
             boolean retrogen = ConfigHandler.conf.get("worldgeneration.primaryores." + oreName, "retrogen", false).getBoolean(false);
 
-            if (generate){
-                OreGenerator generator = new OreGenerator(ore, maxY, minY, clusterNum, clusterSize);
+            if (generate) {
+                ICWGenerator generator;
+                if (ore.isOverworld) {
+                    generator = new OreGenerator(ore, maxY, minY, clusterNum, clusterSize);
+                } else {
+                    generator = new NetherOreGenerator(ore, maxY, minY, clusterNum, clusterSize);
+                }
                 generators.add(generator);
-                if(retrogen){
-                    retrogenerators.add(generator);
+                if (retrogen) {
+                    retroGenerators.add(generator);
                     retroGeneratedNames.add(ore.name);
                 }
             }
@@ -66,39 +71,39 @@ public class WorldGenerator implements IWorldGenerator {
             int clusterNum = ConfigHandler.conf.get("worldgeneration.decor." + decorName, "numClusters", 5).getInt(5);
             boolean retrogen = ConfigHandler.conf.get("worldgeneration.decor." + decorName, "retrogen", false).getBoolean(false);
 
-            if (generate){
+            if (generate) {
                 BiomeDictionary.Type[] biomes = null;
                 switch (decor) {
                     case LIMESTONE_ROUGH:
-                        biomes = new BiomeDictionary.Type[]{ BiomeDictionary.Type.PLAINS, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.JUNGLE, BiomeDictionary.Type.SWAMP, BiomeDictionary.Type.MAGICAL, BiomeDictionary.Type.MUSHROOM };
+                        biomes = new BiomeDictionary.Type[]{BiomeDictionary.Type.PLAINS, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.JUNGLE, BiomeDictionary.Type.SWAMP, BiomeDictionary.Type.MAGICAL, BiomeDictionary.Type.MUSHROOM};
                         break;
                     case DOLOMITE_ROUGH:
-                        biomes = new BiomeDictionary.Type[]{ BiomeDictionary.Type.HILLS, BiomeDictionary.Type.FROZEN, BiomeDictionary.Type.MOUNTAIN };
+                        biomes = new BiomeDictionary.Type[]{BiomeDictionary.Type.HILLS, BiomeDictionary.Type.FROZEN, BiomeDictionary.Type.MOUNTAIN};
                         break;
                     case ARENITE_ROUGH:
-                        biomes = new BiomeDictionary.Type[]{ BiomeDictionary.Type.BEACH, BiomeDictionary.Type.DESERT, BiomeDictionary.Type.WASTELAND };
+                        biomes = new BiomeDictionary.Type[]{BiomeDictionary.Type.BEACH, BiomeDictionary.Type.DESERT, BiomeDictionary.Type.WASTELAND};
                         break;
                 }
                 DecorGenerator generator = new DecorGenerator(decor, maxY, minY, clusterNum, clusterSize, biomes);
                 generators.add(generator);
-                if(retrogen){
-                    retrogenerators.add(generator);
+                if (retrogen) {
+                    retroGenerators.add(generator);
                     retroGeneratedNames.add(decor.name);
                 }
             }
         }
 
-        retrogen = !retrogenerators.isEmpty();
+        retrogen = !retroGenerators.isEmpty();
     }
 
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
-        if (isSurface(world) && !isFlat(world)) {
+        if (!isFlat(world)) {
             generateWorld(random, chunkX, chunkZ, world, false);
         }
     }
 
-    public boolean isSurface(World world) {
+    public boolean isOverworld(World world) {
         return world.provider.dimensionId == 0 || world.provider.dimensionId > 1;
     }
 
@@ -107,18 +112,18 @@ public class WorldGenerator implements IWorldGenerator {
     }
 
     public void generateWorld(Random rand, int chunkX, int chunkZ, World world, boolean isRetro) {
-        if(isRetro && !retrogen) {
+        if (isRetro && !retrogen) {
             return;
         }
 
         List<ICWGenerator> generators = this.generators;
-        if(isRetro) generators = retrogenerators;
+        if (isRetro) generators = retroGenerators;
 
         chunkX *= 16;
         chunkZ *= 16;
 
-        for(ICWGenerator generator : generators) {
-            generator.generate(world, chunkX, chunkZ, rand);
+        for (ICWGenerator generator : generators) {
+            generator.generate(world, chunkX, chunkZ, rand, isOverworld(world));
         }
     }
 }

@@ -11,28 +11,33 @@ import num.complexwiring.lib.Strings;
 import num.complexwiring.world.ModuleWorld;
 
 public enum EnumOrePrimary {
-    COPPER(Strings.ORE_COPPER_NAME, 1, 0, 64, 16, 8),
-    TIN(Strings.ORE_TIN_NAME, 1, 0, 64, 12, 6),
-    SILVER(Strings.ORE_SILVER_NAME, 2, 0, 64, 10, 8),
-    LEAD(Strings.ORE_LEAD_NAME, 2, 0, 64, 8, 12),
-    ALUMINIUM(Strings.ORE_ALUMINIUM_NAME, 2, 16, 48, 4, 4),
-    URANIUM(Strings.ORE_URANIUM_NAME, 2, 16, 48, 2, 1),
-    TUNGSTEN(Strings.ORE_TUNGSTEN_NAME, 3, 0, 24, 2, 3),
-    TITANIUM(Strings.ORE_TITANIUM_NAME, 3, 16, 48, 2, 3);
+    COPPER(Strings.ORE_COPPER_NAME, 1, 0, 64, 16, 8, true),
+    TIN(Strings.ORE_TIN_NAME, 1, 0, 64, 12, 6, true),
+    SILVER(Strings.ORE_SILVER_NAME, 2, 0, 64, 10, 8, true),
+    LEAD(Strings.ORE_LEAD_NAME, 2, 0, 64, 8, 12, true),
+    NICKEL(Strings.ORE_NICKEL_NAME, 2, 16, 48, 2, 1, true),
+    URANIUM(Strings.ORE_URANIUM_NAME, 2, 16, 48, 2, 1, true),
+    ALUMINIUM(Strings.ORE_ALUMINIUM_NAME, 2, 16, 48, 4, 4, true),
+    TUNGSTEN(Strings.ORE_TUNGSTEN_NAME, 3, 0, 24, 2, 3, false),
+    TITANIUM(Strings.ORE_TITANIUM_NAME, 3, 16, 48, 2, 3, false) ,
+    ZINC(Strings.ORE_ZINC_NAME, 3, 0, 24, 2, 3, false),
+    COBALT(Strings.ORE_COBALT_NAME, 3, 0, 24, 2, 3, false);
 
     public static final EnumOrePrimary[] VALID = values();
     public final String name;
     public final int harvestLevel, minY, maxY, clusterNum, clusterSize;
+    public final boolean isOverworld;   // true means spawn in overworld, false means spawn in the nether
     public final int meta = this.ordinal();
     public IIcon icon;
 
-    private EnumOrePrimary(String name, int harvestLevel, int minY, int maxY, int clusterNum, int clusterSize) {
+    private EnumOrePrimary(String name, int harvestLevel, int minY, int maxY, int clusterNum, int clusterSize, boolean isOverworld) {
         this.name = name;
         this.harvestLevel = harvestLevel;
         this.minY = minY;
         this.maxY = maxY;
         this.clusterNum = clusterNum;
         this.clusterSize = clusterSize;
+        this.isOverworld = isOverworld;
     }
 
     public String getUnlocalizedName() {

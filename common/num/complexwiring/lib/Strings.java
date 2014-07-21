@@ -7,10 +7,14 @@ public class Strings {
     public static final String ORE_TIN_NAME = "oreTin";
     public static final String ORE_SILVER_NAME = "oreSilver";
     public static final String ORE_LEAD_NAME = "oreLead";
-    public static final String ORE_ALUMINIUM_NAME = "oreAluminium";
+    public static final String ORE_NICKEL_NAME = "oreNickel";
     public static final String ORE_URANIUM_NAME = "oreUranium";
+    public static final String ORE_ALUMINIUM_NAME = "oreAluminium";
+
     public static final String ORE_TUNGSTEN_NAME = "oreTungsten";
     public static final String ORE_TITANIUM_NAME = "oreTitanium";
+    public static final String ORE_ZINC_NAME = "oreZinc";
+    public static final String ORE_COBALT_NAME = "oreCobalt";
 
     // COPPER Secondary
     public static final String ORE_CHALCOCITE_NAME = "oreChalcocite";

@@ -8,12 +8,12 @@ import num.complexwiring.world.ore.primary.EnumOrePrimary;
 
 import java.util.Random;
 
-public class OreGenerator implements ICWGenerator {
+public class NetherOreGenerator implements ICWGenerator {
     public final EnumOrePrimary ore;
 
     private final int maxY, minY, clusterNum, clusterSize;
 
-    public OreGenerator(EnumOrePrimary ore, int maxY, int minY, int clusterNum, int clusterSize) {
+    public NetherOreGenerator(EnumOrePrimary ore, int maxY, int minY, int clusterNum, int clusterSize) {
         this.ore = ore;
         this.maxY = maxY;
         this.minY = minY;
@@ -22,7 +22,7 @@ public class OreGenerator implements ICWGenerator {
     }
 
     public void generate(World world, int chunkX, int chunkZ, Random rand, boolean isOverworld) {
-        if (!isOverworld) return;
+        if (isOverworld) return;
 
         for (int i = 0; i < clusterNum; i++) {
             int x = chunkX + rand.nextInt(16);
@@ -34,7 +34,7 @@ public class OreGenerator implements ICWGenerator {
     }
 
     public boolean generateMinable(World world, Random rand, int x, int y, int z) {
-        WorldGenMinable minable = new WorldGenMinable(ModuleWorld.orePrimary, ore.meta, clusterSize, Blocks.stone);
+        WorldGenMinable minable = new WorldGenMinable(ModuleWorld.orePrimary, ore.meta, clusterSize, Blocks.netherrack);
         return world.getChunkProvider().chunkExists(x >> 4, z >> 4) && minable.generate(world, rand, x, y, z);
     }
 }
