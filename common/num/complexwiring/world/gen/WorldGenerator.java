@@ -63,12 +63,12 @@ public class WorldGenerator implements IWorldGenerator {
             decorName = decor.name.substring(5);
             decorName = decorName.substring(0, decorName.length() - 5);
 
-            ConfigHandler.conf.addCustomCategoryComment("worldgeneration.decor." + decorName, "Default: 40, true, 80, 40, 5, false");
+            ConfigHandler.conf.addCustomCategoryComment("worldgeneration.decor." + decorName, "Default: 40, true, 100, 40, 3, false");
             boolean generate = ConfigHandler.conf.get("worldgeneration.decor." + decorName, "generate", true).getBoolean(true);
             int minY = ConfigHandler.conf.get("worldgeneration.decor." + decorName, "minY", 40).getInt(40);
-            int maxY = ConfigHandler.conf.get("worldgeneration.decor." + decorName, "maxY", 80).getInt(80);
+            int maxY = ConfigHandler.conf.get("worldgeneration.decor." + decorName, "maxY", 100).getInt(100);
             int clusterSize = ConfigHandler.conf.get("worldgeneration.decor." + decorName, "clusterSize", 40).getInt(40);
-            int clusterNum = ConfigHandler.conf.get("worldgeneration.decor." + decorName, "numClusters", 5).getInt(5);
+            int clusterNum = ConfigHandler.conf.get("worldgeneration.decor." + decorName, "numClusters", 3).getInt(3);
             boolean retrogen = ConfigHandler.conf.get("worldgeneration.decor." + decorName, "retrogen", false).getBoolean(false);
 
             if (generate) {
