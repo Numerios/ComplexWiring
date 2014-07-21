@@ -48,7 +48,7 @@ minecraft {
 dependencies {
     //  compile "codechicken:CodeChickenLib:1.7.2-1.1.1.81:dev"
     //  compile "codechicken:ForgeMultipart:1.7.2-1.1.0.282:dev"
-    // compile 'com.mod-buildcraft:buildcraft:6.0.16:dev'
+    compile 'com.mod-buildcraft:buildcraft:6.0.17:dev'
 }
 
 // configure the source folders
