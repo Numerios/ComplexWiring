@@ -109,7 +109,7 @@ public abstract class TileStorageBox extends TileEntityInventoryBase implements 
             if (this.getContaining() == null) {
                 this.containing = is;
                 refreshInventory(getContaining());
-            } else if (this.getContaining().isItemEqual(is)) {
+            } else if (this.getContaining().isItemEqual(is) || InventoryHelper.isOreDictionaryMatch(getContaining(), is)) {
                 getContaining().stackSize += is.stackSize;
                 refreshInventory(getContaining());
             }
@@ -170,7 +170,7 @@ public abstract class TileStorageBox extends TileEntityInventoryBase implements 
                 return;
             }
 
-            if (getContaining() == null || (containing.isItemEqual(is) || InventoryHelper.isOreDictionaryMatch(getContaining(), is))) {
+            if (getContaining() == null || containing.isItemEqual(is) || InventoryHelper.isOreDictionaryMatch(getContaining(), is)) {
                 player.inventory.setInventorySlotContents(player.inventory.currentItem, addChecked(is));
             }
         } else {
@@ -208,7 +208,7 @@ public abstract class TileStorageBox extends TileEntityInventoryBase implements 
         if (is == null) {
             return is;
         }
-        if (getContaining() == null || getContaining().isItemEqual(is)) {
+        if (getContaining() == null || getContaining().isItemEqual(is) || InventoryHelper.isOreDictionaryMatch(getContaining(), is)) {
             int free = Math.max((getSizeInventory() * 64) - (containing != null ? containing.stackSize : 0), 0);
             if (is.stackSize <= free) {
                 this.add(is);
