@@ -216,4 +216,7 @@ public class Strings {
     public static final String GUIDEBOOK_NAME = "guidebook";
 
     public static final String WOOD_PULP_NAME = "woodPulp";
+
+    public static final String TEMPLATE_EMPTY = StatCollector.translateToLocal("item.complexwiring.mechanical.template.empty");
+    public static final String TEMPLATE_CONTENTS = StatCollector.translateToLocal("item.complexwiring.mechanical.template.contents");
 }

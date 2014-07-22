@@ -200,6 +200,10 @@ item.complexwiring.base.debugger.name=Debugger tool
 
 item.complexwiring.base.component.woodpulp.name=Wood Pulp
 
+item.complexwiring.mechanical.template.name=Template
+item.complexwiring.mechanical.template.empty=empty
+item.complexwiring.mechanical.template.contents=Contents
+
 item.complexwiring.tablet.name=Tablet
 item.complexwiring.tablet.startpaper.name=§lThe Beginning
 item.complexwiring.tablet.guidebook.name=§lThe Guidebook

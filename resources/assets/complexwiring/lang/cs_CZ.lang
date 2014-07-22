@@ -132,6 +132,10 @@ item.complexwiring.base.nugget.titanium.name=Titanový nuget
 item.complexwiring.base.nugget.zinc.name=Zinkový nuget
 item.complexwiring.base.nugget.cobalt.name=Kobaltový nuget
 
+item.complexwiring.mechanical.template.name=Vzor
+item.complexwiring.mechanical.template.empty=prázdný
+item.complexwiring.mechanical.template.contents=Obsah
+
 item.complexwiring.tablet.name=Tablet
 item.complexwiring.tablet.startpaper.name=§lPočátek
 item.complexwiring.tablet.guidebook.name=§lPříručka

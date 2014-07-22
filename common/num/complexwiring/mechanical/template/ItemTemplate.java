@@ -12,6 +12,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import num.complexwiring.base.ModuleBase;
 import num.complexwiring.lib.Reference;
+import num.complexwiring.lib.Strings;
 import num.complexwiring.mechanical.ModuleMechanical;
 
 import java.util.List;
@@ -82,11 +83,12 @@ public class ItemTemplate extends Item {
 
     @Override
     public void addInformation(ItemStack is, EntityPlayer player, List list, boolean b) {
+        list.add(Strings.TEMPLATE_CONTENTS + ":");
         if (hasContents(is)) {
-            list.add("Contents:");
-            list.add("" + getContents(is, false));
+            ItemStack contents = getContents(is, false);
+            list.add("§o" + contents.stackSize + "x " + contents.getDisplayName());
         } else {
-            list.add("empty");
+            list.add("§o" + Strings.TEMPLATE_EMPTY);
         }
         super.addInformation(is, player, list, b);
     }
