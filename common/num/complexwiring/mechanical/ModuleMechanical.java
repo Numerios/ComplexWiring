@@ -64,6 +64,8 @@ public class ModuleMechanical extends Module {
         GameRegistry.addRecipe(new ShapedOreRecipe(EnumStorageBox.ADVANCED.getIS(1), "IPI", "P#P", "IPI", 'P', "plankWood", 'I', "ingotIron", '#', Blocks.chest));
 
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(smasher), "FFF", "PSP", "CCC", 'F', Items.flint, 'P', "plankWood", 'C', "cobblestone", 'S', Items.stick));
+
+        GameRegistry.addRecipe(new ShapedOreRecipe(ItemTemplate.create(), " I ", "IPI", 'I', "nuggetIron", 'P', Items.paper));
     }
 
     private void registerCWRecipes() {
