@@ -12,16 +12,16 @@ import num.complexwiring.world.ModuleWorld;
 
 public enum EnumOrePrimary {
     // overworld ores
-    COPPER(Strings.ORE_COPPER_NAME, 1, 36, 96, 20, 10, true),
-    TIN(Strings.ORE_TIN_NAME, 1, 40, 64, 6, 8, true),
+    COPPER(Strings.ORE_COPPER_NAME, 1, 46, 96, 14, 10, true),
+    TIN(Strings.ORE_TIN_NAME, 1, 40, 64, 7, 5, true),
     SILVER(Strings.ORE_SILVER_NAME, 2, 16, 48, 6, 8, true),
-    LEAD(Strings.ORE_LEAD_NAME, 2, 12, 44, 6, 12, true),
-    NICKEL(Strings.ORE_NICKEL_NAME, 2, 16, 54, 10, 2, true),
-    ALUMINIUM(Strings.ORE_ALUMINIUM_NAME, 3, 8, 32, 8, 6, true),
+    LEAD(Strings.ORE_LEAD_NAME, 2, 24, 44, 8, 9, true),
+    NICKEL(Strings.ORE_NICKEL_NAME, 2, 16, 54, 8, 3, true),
+    ALUMINIUM(Strings.ORE_ALUMINIUM_NAME, 3, 8, 32, 8, 7, true),
     TUNGSTEN(Strings.ORE_TUNGSTEN_NAME, 3, 0, 24, 5, 3, true),
     // nether ores
     TITANIUM(Strings.ORE_TITANIUM_NAME, 3, 16, 96, 8, 3, false),
-    ZINC(Strings.ORE_ZINC_NAME, 3, 0, 100, 8, 10, false),
+    ZINC(Strings.ORE_ZINC_NAME, 3, 0, 100, 8, 9, false),
     COBALT(Strings.ORE_COBALT_NAME, 3, 32, 64, 12, 4, false);
 
     public static final EnumOrePrimary[] VALID = values();
