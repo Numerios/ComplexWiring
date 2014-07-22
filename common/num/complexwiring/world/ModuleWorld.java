@@ -26,15 +26,9 @@ import num.complexwiring.world.industrial.wood.ItemBlockWoodIndustrial;
 import num.complexwiring.world.ore.primary.BlockOrePrimary;
 import num.complexwiring.world.ore.primary.EnumOrePrimary;
 import num.complexwiring.world.ore.primary.ItemBlockOrePrimary;
-import num.complexwiring.world.ore.secondary.classic.BlockOreSecondaryClassic;
 import num.complexwiring.world.ore.secondary.classic.EnumOreSecondaryClassic;
-import num.complexwiring.world.ore.secondary.classic.ItemBlockOreSecondaryClassic;
-import num.complexwiring.world.ore.secondary.rare.BlockOreSecondaryRare;
 import num.complexwiring.world.ore.secondary.rare.EnumOreSecondaryRare;
-import num.complexwiring.world.ore.secondary.rare.ItemBlockOreSecondaryRare;
-import num.complexwiring.world.ore.secondary.vanilla.BlockOreSecondaryVanilla;
 import num.complexwiring.world.ore.secondary.vanilla.EnumOreSecondaryVanilla;
-import num.complexwiring.world.ore.secondary.vanilla.ItemBlockOreSecondaryVanilla;
 
 public class ModuleWorld extends Module {
     public static Block orePrimary, oreSecondaryClassic, oreSecondaryRare, oreSecondaryVanilla, decorLight, decorDark, woodIndustrial, stoneIndustrial;
@@ -61,14 +55,14 @@ public class ModuleWorld extends Module {
         orePrimary = new BlockOrePrimary();
         GameRegistry.registerBlock(orePrimary, ItemBlockOrePrimary.class, orePrimary.getUnlocalizedName());
 
-        oreSecondaryClassic = new BlockOreSecondaryClassic();
+     /*   oreSecondaryClassic = new BlockOreSecondaryClassic();
         GameRegistry.registerBlock(oreSecondaryClassic, ItemBlockOreSecondaryClassic.class, oreSecondaryClassic.getUnlocalizedName());
 
         oreSecondaryRare = new BlockOreSecondaryRare();
         GameRegistry.registerBlock(oreSecondaryRare, ItemBlockOreSecondaryRare.class, oreSecondaryRare.getUnlocalizedName());
 
         oreSecondaryVanilla = new BlockOreSecondaryVanilla();
-        GameRegistry.registerBlock(oreSecondaryVanilla, ItemBlockOreSecondaryVanilla.class, oreSecondaryVanilla.getUnlocalizedName());
+        GameRegistry.registerBlock(oreSecondaryVanilla, ItemBlockOreSecondaryVanilla.class, oreSecondaryVanilla.getUnlocalizedName());    */
 
         decorLight = new BlockLightDecor();
         GameRegistry.registerBlock(decorLight, ItemBlockLightDecor.class, decorLight.getUnlocalizedName());
@@ -85,9 +79,9 @@ public class ModuleWorld extends Module {
 
     private void registerOres() {
         ((BlockOrePrimary) orePrimary).registerOres();
-        ((BlockOreSecondaryClassic) oreSecondaryClassic).registerOres();
+      /*  ((BlockOreSecondaryClassic) oreSecondaryClassic).registerOres();
         ((BlockOreSecondaryRare) oreSecondaryRare).registerOres();
-        ((BlockOreSecondaryVanilla) oreSecondaryVanilla).registerOres();
+        ((BlockOreSecondaryVanilla) oreSecondaryVanilla).registerOres();     */
         ((BlockLightDecor) decorLight).registerOres();
         ((BlockDarkDecor) decorDark).registerOres();
         ((BlockWoodIndustrial) woodIndustrial).registerOres();
