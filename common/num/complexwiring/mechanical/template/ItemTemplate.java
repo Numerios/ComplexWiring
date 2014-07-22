@@ -83,13 +83,14 @@ public class ItemTemplate extends Item {
 
     @Override
     public void addInformation(ItemStack is, EntityPlayer player, List list, boolean b) {
-        list.add(Strings.TEMPLATE_CONTENTS + ":");
+        String contentString;
         if (hasContents(is)) {
             ItemStack contents = getContents(is, false);
-            list.add("§o" + contents.stackSize + "x " + contents.getDisplayName());
+            contentString = "§o" + contents.stackSize + "x " + contents.getDisplayName();
         } else {
-            list.add("§o" + Strings.TEMPLATE_EMPTY);
+            contentString = "§o" + Strings.TEMPLATE_EMPTY;
         }
+        list.add(Strings.TEMPLATE_CONTENTS + ": " + contentString);
         super.addInformation(is, player, list, b);
     }
 
