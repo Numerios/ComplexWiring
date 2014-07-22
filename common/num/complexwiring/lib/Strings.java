@@ -174,6 +174,12 @@ public class Strings {
     public static final String INGOT_TIN_NAME = "ingotTin";
     public static final String INGOT_SILVER_NAME = "ingotSilver";
     public static final String INGOT_LEAD_NAME = "ingotLead";
+    public static final String INGOT_NICKEL_NAME = "ingotNickel";
+    public static final String INGOT_ALUMINIUM_NAME = "ingotAluminium";
+    public static final String INGOT_TUNGSTEN_NAME = "ingotTungsten";
+    public static final String INGOT_TITANIUM_NAME = "ingotTitanium";
+    public static final String INGOT_ZINC_NAME = "ingotZinc";
+    public static final String INGOT_COBALT_NAME = "ingotCobalt";
 
     public static final String DUST_IRON_NAME = "dustIron";
     public static final String DUST_GOLD_NAME = "dustGold";
@@ -181,12 +187,24 @@ public class Strings {
     public static final String DUST_TIN_NAME = "dustTin";
     public static final String DUST_SILVER_NAME = "dustSilver";
     public static final String DUST_LEAD_NAME = "dustLead";
+    public static final String DUST_NICKEL_NAME = "dustNickel";
+    public static final String DUST_ALUMINIUM_NAME = "dustAluminium";
+    public static final String DUST_TUNGSTEN_NAME = "dustTungsten";
+    public static final String DUST_TITANIUM_NAME = "dustTitanium";
+    public static final String DUST_ZINC_NAME = "dustZinc";
+    public static final String DUST_COBALT_NAME = "dustCobalt";
 
     public static final String NUGGET_IRON_NAME = "nuggetIron";
     public static final String NUGGET_COPPER_NAME = "nuggetCopper";
     public static final String NUGGET_TIN_NAME = "nuggetTin";
     public static final String NUGGET_SILVER_NAME = "nuggetSilver";
     public static final String NUGGET_LEAD_NAME = "nuggetLead";
+    public static final String NUGGET_NICKEL_NAME = "nuggetNickel";
+    public static final String NUGGET_ALUMINIUM_NAME = "nuggetAluminium";
+    public static final String NUGGET_TUNGSTEN_NAME = "nuggetTungsten";
+    public static final String NUGGET_TITANIUM_NAME = "nuggetTitanium";
+    public static final String NUGGET_ZINC_NAME = "nuggetZinc";
+    public static final String NUGGET_COBALT_NAME = "nuggetCobalt";
 
     public static final String STORAGEBOX_BASIC_NAME = "storageBoxBasic";
     public static final String STORAGEBOX_BASIC_TOOLTIP = StatCollector.translateToLocal("tile.complexwiring.mechanical.storagebox.basic.tooltip");

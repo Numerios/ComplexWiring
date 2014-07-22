@@ -7,6 +7,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
 import num.complexwiring.ComplexWiring;
 import num.complexwiring.core.CreativeTabCW;
 import num.complexwiring.lib.Module;
@@ -40,9 +41,9 @@ public class ModuleBase extends Module {
         ((ItemDust) dust).registerOres();
         GameRegistry.registerItem(dust, dust.getUnlocalizedName());
 
-      /*  nugget = new ItemNugget();
+        nugget = new ItemNugget();
         ((ItemNugget) nugget).registerOres();
-        GameRegistry.registerItem(nugget, nugget.getUnlocalizedName());    */
+        GameRegistry.registerItem(nugget, nugget.getUnlocalizedName());
 
         screwdriver = new ItemScrewdriver();
         ((ItemScrewdriver) screwdriver).registerOres();
@@ -64,11 +65,11 @@ public class ModuleBase extends Module {
             GameRegistry.addSmelting(dust.getIS(1), EnumMaterial.getMaterial(dust).getIngot(), 0.6F);
         }
 
-     /*   for (EnumNugget nugget : EnumNugget.VALID) {
+       for (EnumNugget nugget : EnumNugget.VALID) {
             GameRegistry.addRecipe(new ShapelessOreRecipe(nugget.getIS(9), EnumMaterial.getMaterial(nugget).getIngot()));
             GameRegistry.addRecipe(new ShapelessOreRecipe(EnumMaterial.getMaterial(nugget).getIngot().copy(), nugget.name, nugget.name, nugget.name,
                     nugget.name, nugget.name, nugget.name, nugget.name, nugget.name, nugget.name));   //I'm so sorry
-        }            */
+        }
 
         GameRegistry.addShapedRecipe(new ItemStack(Items.paper, 2), "###", '#', EnumComponent.WOOD_PULP.getIS(1));
         GameRegistry.addShapedRecipe(new ItemStack(Blocks.planks), "#", "#", '#', EnumComponent.WOOD_PULP.getIS(1)); //wood - 4 plank

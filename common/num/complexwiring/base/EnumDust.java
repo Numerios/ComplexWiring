@@ -15,7 +15,13 @@ public enum EnumDust {
     COPPER(Strings.DUST_COPPER_NAME),
     TIN(Strings.DUST_TIN_NAME),
     SILVER(Strings.DUST_SILVER_NAME),
-    LEAD(Strings.DUST_LEAD_NAME);
+    LEAD(Strings.DUST_LEAD_NAME),
+    NICKEL(Strings.DUST_NICKEL_NAME),
+    ALUMINIUM(Strings.DUST_ALUMINIUM_NAME),
+    TUNGSTEN(Strings.DUST_TUNGSTEN_NAME),
+    TITANIUM(Strings.DUST_TITANIUM_NAME),
+    ZINC(Strings.DUST_ZINC_NAME),
+    COBALT(Strings.DUST_COBALT_NAME);
 
     public static final EnumDust[] VALID = values();
     public final String name;

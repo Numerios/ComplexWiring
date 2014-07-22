@@ -14,8 +14,14 @@ public enum EnumNugget {
     COPPER(Strings.NUGGET_COPPER_NAME),
     TIN(Strings.NUGGET_TIN_NAME),
     SILVER(Strings.NUGGET_SILVER_NAME),
-    LEAD(Strings.NUGGET_LEAD_NAME);
-
+    LEAD(Strings.NUGGET_LEAD_NAME),
+    NICKEL(Strings.NUGGET_NICKEL_NAME),
+    ALUMINIUM(Strings.NUGGET_ALUMINIUM_NAME),
+    TUNGSTEN(Strings.NUGGET_TUNGSTEN_NAME),
+    TITANIUM(Strings.NUGGET_TITANIUM_NAME),
+    ZINC(Strings.NUGGET_ZINC_NAME),
+    COBALT(Strings.NUGGET_COBALT_NAME);
+    
     public static final EnumNugget[] VALID = values();
     public final String name;
     public final int meta = this.ordinal();

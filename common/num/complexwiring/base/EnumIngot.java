@@ -13,7 +13,13 @@ public enum EnumIngot {
     COPPER(Strings.INGOT_COPPER_NAME),
     TIN(Strings.INGOT_TIN_NAME),
     SILVER(Strings.INGOT_SILVER_NAME),
-    LEAD(Strings.INGOT_LEAD_NAME);
+    LEAD(Strings.INGOT_LEAD_NAME),
+    NICKEL(Strings.INGOT_NICKEL_NAME),
+    ALUMINIUM(Strings.INGOT_ALUMINIUM_NAME),
+    TUNGSTEN(Strings.INGOT_TUNGSTEN_NAME),
+    TITANIUM(Strings.INGOT_TITANIUM_NAME),
+    ZINC(Strings.INGOT_ZINC_NAME),
+    COBALT(Strings.INGOT_COBALT_NAME);
 
     public static final EnumIngot[] VALID = values();
     public final String name;

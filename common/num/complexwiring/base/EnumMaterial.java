@@ -12,8 +12,14 @@ public enum EnumMaterial {
     COPPER("copper", new ColourRGB(239, 155, 71), EnumOrePrimary.COPPER.getIS(1), EnumIngot.COPPER.getIS(1), EnumDust.COPPER.getIS(1), EnumNugget.COPPER.getIS(1)),
     TIN("tin", new ColourRGB(242, 242, 242), EnumOrePrimary.TIN.getIS(1), EnumIngot.TIN.getIS(1), EnumDust.TIN.getIS(1), EnumNugget.TIN.getIS(1)),
     SILVER("silver", new ColourRGB(201, 225, 237), EnumOrePrimary.SILVER.getIS(1), EnumIngot.SILVER.getIS(1), EnumDust.SILVER.getIS(1), EnumNugget.SILVER.getIS(1)),
-    LEAD("lead", new ColourRGB(62, 84, 124), EnumOrePrimary.LEAD.getIS(1), EnumIngot.LEAD.getIS(1), EnumDust.LEAD.getIS(1), EnumNugget.LEAD.getIS(1));
-
+    LEAD("lead", new ColourRGB(62, 84, 124), EnumOrePrimary.LEAD.getIS(1), EnumIngot.LEAD.getIS(1), EnumDust.LEAD.getIS(1), EnumNugget.LEAD.getIS(1)),
+    NICKEL("nickel", new ColourRGB(62, 84, 124), EnumOrePrimary.NICKEL.getIS(1), EnumIngot.NICKEL.getIS(1), EnumDust.NICKEL.getIS(1), EnumNugget.NICKEL.getIS(1)),
+    ALUMINIUM("aluminium", new ColourRGB(62, 84, 124), EnumOrePrimary.ALUMINIUM.getIS(1), EnumIngot.ALUMINIUM.getIS(1), EnumDust.ALUMINIUM.getIS(1), EnumNugget.ALUMINIUM.getIS(1)),
+    TUNGSTEN("tungsten", new ColourRGB(62, 84, 124), EnumOrePrimary.TUNGSTEN.getIS(1), EnumIngot.TUNGSTEN.getIS(1), EnumDust.TUNGSTEN.getIS(1), EnumNugget.TUNGSTEN.getIS(1)),
+    TITANIUM("titanium", new ColourRGB(62, 84, 124), EnumOrePrimary.TITANIUM.getIS(1), EnumIngot.TITANIUM.getIS(1), EnumDust.TITANIUM.getIS(1), EnumNugget.TITANIUM.getIS(1)),
+    ZINC("zinc", new ColourRGB(62, 84, 124), EnumOrePrimary.ZINC.getIS(1), EnumIngot.ZINC.getIS(1), EnumDust.ZINC.getIS(1), EnumNugget.ZINC.getIS(1)),
+    COBALT("cobalt", new ColourRGB(62, 84, 124), EnumOrePrimary.COBALT.getIS(1), EnumIngot.COBALT.getIS(1), EnumDust.COBALT.getIS(1), EnumNugget.COBALT.getIS(1));
+                                                                   //TODO: FIX COLOURS!
     public static final EnumMaterial[] VALID = values();
     public final String name;
     public final ColourRGB colour;
