@@ -59,7 +59,7 @@ public class ModuleMechanical extends Module {
 
     private void registerCWRecipes() {
         for (EnumMaterial material : EnumMaterial.VALID) {
-            RecipeManager.add(new SmasherRecipe(material.getOre(), 180, new RecipeRandomOutput(material.getDust(1)),
+            RecipeManager.add(new SmasherRecipe(material.getOre(), 90 + 45 * material.harvestLevel, new RecipeRandomOutput(material.getDust(1)),
                     new RecipeRandomOutput(material.getDust(1), 0.75F)));
         }
 
