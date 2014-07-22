@@ -4,6 +4,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import num.complexwiring.api.recipe.RecipeRandomOutput;
@@ -17,15 +18,18 @@ import num.complexwiring.mechanical.smasher.ItemBlockSmasher;
 import num.complexwiring.mechanical.storagebox.BlockStorageBox;
 import num.complexwiring.mechanical.storagebox.EnumStorageBox;
 import num.complexwiring.mechanical.storagebox.ItemBlockStorageBox;
+import num.complexwiring.mechanical.template.ItemTemplate;
 import num.complexwiring.recipe.RecipeManager;
 
 public class ModuleMechanical extends Module {
     public static Block storageBox, smasher;
+    public static Item template;
     public static CreativeTabCW tabCWMechanical = new CreativeTabCW("tabCWMechanical", null);
 
     @Override
     public void preInit() {
         registerBlocks();
+        registerItems();
         tabCWMechanical.setIcon(new ItemStack(smasher));
     }
 
@@ -43,6 +47,11 @@ public class ModuleMechanical extends Module {
         smasher = new BlockSmasher();
         GameRegistry.registerBlock(smasher, ItemBlockSmasher.class, smasher.getUnlocalizedName());
         ((BlockSmasher) smasher).registerTiles();
+    }
+
+    private void registerItems() {
+        template = new ItemTemplate();
+        GameRegistry.registerItem(template, template.getUnlocalizedName());
     }
 
     private void registerVanillaRecipes() {
