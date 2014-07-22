@@ -1,15 +1,19 @@
-itemGroup.tabCWBase=Complex Wiring - Base
-itemGroup.tabCWWorld=Complex Wiring - World
-itemGroup.tabCWMechanical=Complex Wiring - Mechanical
+itemGroup.tabCWBase=ComplexWiring - Base
+itemGroup.tabCWWorld=ComplexWiring - World
+itemGroup.tabCWMechanical=ComplexWiring - Mechanical
 
 tile.complexwiring.world.ore.primary.copper.name=Copper Ore
 tile.complexwiring.world.ore.primary.tin.name=Tin Ore
 tile.complexwiring.world.ore.primary.silver.name=Silver Ore
 tile.complexwiring.world.ore.primary.lead.name=Lead Ore
+tile.complexwiring.world.ore.primary.nickel.name=Nickel Ore
 tile.complexwiring.world.ore.primary.aluminium.name=Aluminium Ore
-tile.complexwiring.world.ore.primary.uranium.name=Uranium Ore
 tile.complexwiring.world.ore.primary.tungsten.name=Tungsten Ore
+
 tile.complexwiring.world.ore.primary.titanium.name=Titanium Ore
+tile.complexwiring.world.ore.primary.zinc.name=Zinc Ore
+tile.complexwiring.world.ore.primary.cobalt.name=Cobalt Ore
+
 
 tile.complexwiring.world.ore.secondary.classic.chalcocite.name=Chalcocite Ore
 tile.complexwiring.world.ore.secondary.classic.bornite.name=Bornite Ore
@@ -159,6 +163,12 @@ item.complexwiring.base.ingot.copper.name=Copper Ingot
 item.complexwiring.base.ingot.tin.name=Tin Ingot
 item.complexwiring.base.ingot.silver.name=Silver Ingot
 item.complexwiring.base.ingot.lead.name=Lead Ingot
+item.complexwiring.base.ingot.nickel.name=Nickel Ingot
+item.complexwiring.base.ingot.aluminium.name=Aluminium Ingot
+item.complexwiring.base.ingot.tungsten.name=Tungsten Ingot
+item.complexwiring.base.ingot.titanium.name=Titanium Ingot
+item.complexwiring.base.ingot.zinc.name=Zinc Ingot
+item.complexwiring.base.ingot.cobalt.name=Cobalt Ingot
 
 item.complexwiring.base.dust.iron.name=Iron Dust
 item.complexwiring.base.dust.gold.name=Gold Dust
@@ -166,12 +176,24 @@ item.complexwiring.base.dust.copper.name=Copper Dust
 item.complexwiring.base.dust.tin.name=Tin Dust
 item.complexwiring.base.dust.silver.name=Silver Dust
 item.complexwiring.base.dust.lead.name=Lead Dust
+item.complexwiring.base.dust.nickel.name=Nickel Dust
+item.complexwiring.base.dust.aluminium.name=Aluminium Dust
+item.complexwiring.base.dust.tungsten.name=Tungsten Dust
+item.complexwiring.base.dust.titanium.name=Titanium Dust
+item.complexwiring.base.dust.zinc.name=Zinc Dust
+item.complexwiring.base.dust.cobalt.name=Cobalt Dust
 
 item.complexwiring.base.nugget.iron.name=Iron Nugget
 item.complexwiring.base.nugget.copper.name=Copper Nugget
 item.complexwiring.base.nugget.tin.name=Tin Nugget
 item.complexwiring.base.nugget.silver.name=Silver Nugget
 item.complexwiring.base.nugget.lead.name=Lead Nugget
+item.complexwiring.base.ingot.nickel.name=Nickel Nugget
+item.complexwiring.base.ingot.aluminium.name=Aluminium Nugget
+item.complexwiring.base.ingot.tungsten.name=Tungsten Nugget
+item.complexwiring.base.ingot.titanium.name=Titanium Nugget
+item.complexwiring.base.ingot.zinc.name=Zinc Nugget
+item.complexwiring.base.ingot.cobalt.name=Cobalt Nugget
 
 item.complexwiring.base.screwdriver.name=Screwdriver
 item.complexwiring.base.debugger.name=Debugger tool

@@ -6,10 +6,13 @@ tile.complexwiring.world.ore.primary.copper.name=Měděná ruda
 tile.complexwiring.world.ore.primary.tin.name=Cínová ruda
 tile.complexwiring.world.ore.primary.silver.name=Stříbrná ruda
 tile.complexwiring.world.ore.primary.lead.name=Olověná ruda
+tile.complexwiring.world.ore.primary.nickel.name=Niklová ruda
 tile.complexwiring.world.ore.primary.aluminium.name=Hliníková ruda
-tile.complexwiring.world.ore.primary.uranium.name=Uranová ruda
 tile.complexwiring.world.ore.primary.tungsten.name=Wolframová ruda
+
 tile.complexwiring.world.ore.primary.titanium.name=Titanová ruda
+tile.complexwiring.world.ore.primary.zinc.name=Zinková ruda
+tile.complexwiring.world.ore.primary.cobalt.name=Kobaltová ruda
 
 tile.complexwiring.world.ore.secondary.classic.chalcocite.name=Chalcozín
 tile.complexwiring.world.ore.secondary.classic.bornite.name=Bornit
@@ -97,6 +100,12 @@ item.complexwiring.base.ingot.copper.name=Měděný ingot
 item.complexwiring.base.ingot.tin.name=Cínový ingot
 item.complexwiring.base.ingot.silver.name=Stříbrný ingot
 item.complexwiring.base.ingot.lead.name=Olověný ingot
+item.complexwiring.base.ingot.nickel.name=Niklový ingot
+item.complexwiring.base.ingot.aluminium.name=Hliníkový ingot
+item.complexwiring.base.ingot.tungsten.name=Wolframový ingot
+item.complexwiring.base.ingot.titanium.name=Titanový ingot
+item.complexwiring.base.ingot.zinc.name=Zinkový ingot
+item.complexwiring.base.ingot.cobalt.name=Kobaltový ingot
 
 item.complexwiring.base.dust.iron.name=Železný prášek
 item.complexwiring.base.dust.gold.name=Zlatý prášek
@@ -104,12 +113,24 @@ item.complexwiring.base.dust.copper.name=Měděný prášek
 item.complexwiring.base.dust.tin.name=Cínový prášek
 item.complexwiring.base.dust.silver.name=Stříbrný prášek
 item.complexwiring.base.dust.lead.name=Olověný prášek
+item.complexwiring.base.dust.nickel.name=Niklový prášek
+item.complexwiring.base.dust.aluminium.name=Hliníkový prášek
+item.complexwiring.base.dust.tungsten.name=Wolframový prášek
+item.complexwiring.base.dust.titanium.name=Titanový prášek
+item.complexwiring.base.dust.zinc.name=Zinkový prášek
+item.complexwiring.base.dust.cobalt.name=Kobaltový prášek
 
 item.complexwiring.base.nugget.iron.name=Železný nuget
 item.complexwiring.base.nugget.copper.name=Měděný nuget
 item.complexwiring.base.nugget.tin.name=Cínový nuget
 item.complexwiring.base.nugget.silver.name=Stříbrný nuget
 item.complexwiring.base.nugget.lead.name=Olověný nuget
+item.complexwiring.base.ingot.nickel.name=Niklový nuget
+item.complexwiring.base.ingot.aluminium.name=Hliníkový nuget
+item.complexwiring.base.ingot.tungsten.name=Wolframový nuget
+item.complexwiring.base.ingot.titanium.name=Titanový nuget
+item.complexwiring.base.ingot.zinc.name=Zinkový nuget
+item.complexwiring.base.ingot.cobalt.name=Kobaltový nuget
 
 item.complexwiring.tablet.name=Tablet
 item.complexwiring.tablet.startpaper.name=§lPočátek
