@@ -35,9 +35,11 @@ public class DecorGenerator implements ICWGenerator {
         if (doGenerate) {
             for (int i = 0; i < clusterNum; i++) {
                 int x = chunkX + rand.nextInt(16);
-                int y = rand.nextInt(Math.max(maxY - minY, 0) + minY);
+                int y = rand.nextInt(Math.max(maxY - minY, 0)) + minY;
                 int z = chunkZ + rand.nextInt(16);
-                generateMinable(world, rand, x, y, z);
+                if (world.getChunkProvider().chunkExists(x >> 4, z >> 4)) {
+                    generateMinable(world, rand, x, y, z);
+                }
             }
             world.getChunkFromBlockCoords(chunkX, chunkZ).setChunkModified();
         }
@@ -45,6 +47,6 @@ public class DecorGenerator implements ICWGenerator {
 
     public boolean generateMinable(World world, Random rand, int x, int y, int z) {
         WorldGenMinable minable = new WorldGenMinable(ModuleWorld.decorLight, this.decor.meta, clusterSize, Blocks.stone);
-        return world.getChunkProvider().chunkExists(x >> 4, z >> 4) && minable.generate(world, rand, x, y, z);
+        return minable.generate(world, rand, x, y, z);
     }
 }
