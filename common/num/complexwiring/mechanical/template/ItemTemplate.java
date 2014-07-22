@@ -2,12 +2,14 @@ package num.complexwiring.mechanical.template;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
+import net.minecraft.world.World;
 import num.complexwiring.base.ModuleBase;
 import num.complexwiring.lib.Reference;
 import num.complexwiring.mechanical.ModuleMechanical;
@@ -21,6 +23,7 @@ public class ItemTemplate extends Item {
         super();
         setHasSubtypes(true);
         setMaxDamage(0);
+        setMaxStackSize(1);
         setUnlocalizedName(Reference.MOD_ID.toLowerCase() + ".mechanical.template");
         setCreativeTab(ModuleBase.tabCWBase);
     }
@@ -55,6 +58,20 @@ public class ItemTemplate extends Item {
     }
 
     @Override
+    public ItemStack onItemRightClick(ItemStack is, World world, EntityPlayer player) {
+        if (player.isSneaking()) {
+            if (hasContents(is)) {
+                ItemStack contents = getContents(is, true);
+                if (contents != null) {
+                    EntityItem item = new EntityItem(world, player.posX + 0.5D, player.posY + 0.5D, player.posZ + 0.5D, contents);
+                    world.spawnEntityInWorld(item);
+                }
+            }
+        }
+        return super.onItemRightClick(is, world, player);
+    }
+
+    @Override
     public void getSubItems(Item item, CreativeTabs tab, List list) {
         ItemStack empty = create();
         list.add(empty);
@@ -82,10 +99,8 @@ public class ItemTemplate extends Item {
     }
 
     public static boolean hasContents(ItemStack template) {
-        if (template.stackTagCompound == null || !template.stackTagCompound.getBoolean("hasContents")) {
-            return false;
-        }
-        return template.stackTagCompound.getBoolean("hasContents");
+        return template.stackTagCompound != null && template.stackTagCompound.getBoolean("hasContents") &&
+                template.stackTagCompound.getCompoundTag("contents") != null && ItemStack.loadItemStackFromNBT(template.stackTagCompound.getCompoundTag("contents")) != null;
     }
 
     public static boolean setContents(ItemStack template, ItemStack contents) {
@@ -106,7 +121,7 @@ public class ItemTemplate extends Item {
         ItemStack contents = ItemStack.loadItemStackFromNBT(template.stackTagCompound.getCompoundTag("contents"));
         if (remove) {
             template.stackTagCompound.setBoolean("hasContents", false);
-            template.stackTagCompound.setTag("contents", null);
+            template.stackTagCompound.setTag("contents", new NBTTagCompound());
         }
         return contents;
     }
