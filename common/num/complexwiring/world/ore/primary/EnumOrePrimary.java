@@ -14,15 +14,15 @@ public enum EnumOrePrimary {
     // overworld ores
     COPPER(Strings.ORE_COPPER_NAME, 1, 36, 96, 20, 10, true),
     TIN(Strings.ORE_TIN_NAME, 1, 40, 64, 12, 8, true),
-    SILVER(Strings.ORE_SILVER_NAME, 2, 16, 48, 8, 6, true),
-    LEAD(Strings.ORE_LEAD_NAME, 2, 16, 48, 8, 12, true),
-    NICKEL(Strings.ORE_NICKEL_NAME, 2, 0, 32, 2, 4, true),
-    ALUMINIUM(Strings.ORE_ALUMINIUM_NAME, 3, 0, 32, 10, 8, true),
+    SILVER(Strings.ORE_SILVER_NAME, 2, 16, 48, 6, 8, true),
+    LEAD(Strings.ORE_LEAD_NAME, 2, 16, 48, 6, 12, true),
+    NICKEL(Strings.ORE_NICKEL_NAME, 2, 0, 32, 10, 2, true),
+    ALUMINIUM(Strings.ORE_ALUMINIUM_NAME, 3, 0, 32, 8, 8, true),
     TUNGSTEN(Strings.ORE_TUNGSTEN_NAME, 3, 0, 24, 4, 2, true),
     // nether ores
-    TITANIUM(Strings.ORE_TITANIUM_NAME, 3, 16, 96, 10, 2, false),
-    ZINC(Strings.ORE_ZINC_NAME, 3, 0, 100, 20, 4, false),
-    COBALT(Strings.ORE_COBALT_NAME, 3, 32, 64, 6, 4, false);
+    TITANIUM(Strings.ORE_TITANIUM_NAME, 3, 16, 96, 8, 2, false),
+    ZINC(Strings.ORE_ZINC_NAME, 3, 0, 100, 8, 10, false),
+    COBALT(Strings.ORE_COBALT_NAME, 3, 32, 64, 12, 4, false);
 
     public static final EnumOrePrimary[] VALID = values();
     public final String name;
