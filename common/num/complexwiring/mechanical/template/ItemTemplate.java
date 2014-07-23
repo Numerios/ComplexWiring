@@ -10,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+import num.complexwiring.ComplexWiring;
 import num.complexwiring.base.ModuleBase;
 import num.complexwiring.lib.Reference;
 import num.complexwiring.lib.Strings;
@@ -79,6 +80,19 @@ public class ItemTemplate extends Item {
         ItemStack diamond = create();
         setContents(diamond, new ItemStack(Items.diamond));
         list.add(diamond);
+        if (ComplexWiring.DEBUG) {    // inception
+            ItemStack we_need_to_go_deeper = create();
+            ItemStack need_to_go_deeper = create();
+            ItemStack to_go_deeper = create();
+            ItemStack go_deeper = create();
+            ItemStack deeper = create();
+            setContents(deeper, new ItemStack(Items.carrot));
+            setContents(go_deeper, deeper);
+            setContents(to_go_deeper, go_deeper);
+            setContents(need_to_go_deeper, to_go_deeper);
+            setContents(we_need_to_go_deeper, need_to_go_deeper);
+            list.add(we_need_to_go_deeper);
+        }
     }
 
     @Override
