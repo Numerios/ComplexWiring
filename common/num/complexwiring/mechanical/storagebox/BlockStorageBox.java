@@ -50,7 +50,7 @@ public class BlockStorageBox extends Block implements ITileEntityProvider {
 
     @Override
     public boolean removedByPlayer(World world, EntityPlayer player, int x, int y, int z, boolean willHarvest) {
-        if(player.capabilities.isCreativeMode) {
+        if (player.capabilities.isCreativeMode) {
             ItemStack itemStack = ((TileStorageBox) player.worldObj.getTileEntity(x, y, z)).removeAll();
             if (itemStack != null) {
                 EntityItem entityItem = new EntityItem(world, x, y, z, itemStack);

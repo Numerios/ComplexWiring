@@ -64,7 +64,7 @@ public class ItemScrewdriver extends Item implements IToolWrench {
             int preMetadata = world.getBlockMetadata(x, y, z);
             int metadata = BlockHelper.rotateBlock(block, preMetadata);
 
-            if(metadata != preMetadata) {
+            if (metadata != preMetadata) {
                 world.setBlockMetadataWithNotify(x, y, z, metadata, 3);
                 player.swingItem();
                 stack.damageItem(1, player);

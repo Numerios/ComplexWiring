@@ -19,7 +19,7 @@ public enum EnumMaterial {
     TITANIUM("titanium", 3, new ColourRGB(62, 84, 124), EnumOrePrimary.TITANIUM.getIS(1), EnumIngot.TITANIUM.getIS(1), EnumDust.TITANIUM.getIS(1), EnumNugget.TITANIUM.getIS(1)),
     ZINC("zinc", 3, new ColourRGB(62, 84, 124), EnumOrePrimary.ZINC.getIS(1), EnumIngot.ZINC.getIS(1), EnumDust.ZINC.getIS(1), EnumNugget.ZINC.getIS(1)),
     COBALT("cobalt", 3, new ColourRGB(62, 84, 124), EnumOrePrimary.COBALT.getIS(1), EnumIngot.COBALT.getIS(1), EnumDust.COBALT.getIS(1), EnumNugget.COBALT.getIS(1));
-                                                                   //TODO: FIX COLOURS!
+    //TODO: FIX COLOURS!
     public static final EnumMaterial[] VALID = values();
     public final String name;
     public final int harvestLevel;

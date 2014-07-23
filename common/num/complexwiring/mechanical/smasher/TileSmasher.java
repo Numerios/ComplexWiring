@@ -29,11 +29,8 @@ public class TileSmasher extends TileEntityBase implements IFacing {
     private Vector3 facingVec;
     private SmasherRecipe recipe;
     private ArrayList<ItemStack> recipeOutput;
-    private boolean isActive;
-    private boolean prevActive;
-    private boolean needsSync;
-    private int processTime = 0;
-    private int recipeNeededPower = 0;
+    private boolean isActive, prevActive, needsSync;
+    private int processTime = 0, recipeNeededPower = 0;
 
     public TileSmasher() {
         recipeOutput = new ArrayList<ItemStack>();

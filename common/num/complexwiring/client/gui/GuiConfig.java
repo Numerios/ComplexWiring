@@ -36,7 +36,7 @@ public class GuiConfig extends cpw.mods.fml.client.config.GuiConfig {
     private static List<IConfigElement> getWorldGenPrimaryOresElements() {
         List<IConfigElement> elementList = new ArrayList<IConfigElement>();
 
-        for(EnumOrePrimary ore : EnumOrePrimary.VALID) {
+        for (EnumOrePrimary ore : EnumOrePrimary.VALID) {
             String oreName = ore.name.substring(3).toLowerCase();
             elementList.add(new DummyConfigElement.DummyCategoryElement<IConfigElement>(ore.name.substring(3), "tile.complexwiring.world.ore.primary." + oreName + ".name", getConfigElements("worldgeneration.primaryores." + oreName)));
         }
@@ -50,7 +50,7 @@ public class GuiConfig extends cpw.mods.fml.client.config.GuiConfig {
     private static List<IConfigElement> getWorldGenDecorElements() {
         List<IConfigElement> elementList = new ArrayList<IConfigElement>();
 
-        for(EnumLightDecor decor : EnumSet.of(EnumLightDecor.LIMESTONE_ROUGH, EnumLightDecor.DOLOMITE_ROUGH, EnumLightDecor.ARENITE_ROUGH)) {
+        for (EnumLightDecor decor : EnumSet.of(EnumLightDecor.LIMESTONE_ROUGH, EnumLightDecor.DOLOMITE_ROUGH, EnumLightDecor.ARENITE_ROUGH)) {
             String decorName = decor.name.substring(5);
             decorName = decorName.substring(0, decorName.length() - 5);
             elementList.add(new DummyConfigElement.DummyCategoryElement<IConfigElement>(decorName, decor.getUnlocalizedName(), getConfigElements("worldgeneration.decor." + decorName.toLowerCase())));

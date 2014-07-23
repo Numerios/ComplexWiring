@@ -174,7 +174,7 @@ public abstract class TileStorageBox extends TileEntityInventoryBase implements 
                 player.inventory.setInventorySlotContents(player.inventory.currentItem, addChecked(is));
             }
         } else {
-            if (inventory[0] != null && getAmountInv() < getInventoryStackLimit()*getSizeInventory()) {
+            if (inventory[0] != null && getAmountInv() < getInventoryStackLimit() * getSizeInventory()) {
                 boolean somethingAdded = false;
                 int[] containingOreDict = OreDictionary.getOreIDs(getContaining());
                 for (int slot = 0; slot < player.inventory.getSizeInventory(); slot++) {
@@ -283,7 +283,7 @@ public abstract class TileStorageBox extends TileEntityInventoryBase implements 
 
     @Override
     public boolean isItemValidForSlot(int slot, ItemStack is) {
-        if(containing == null) assembleContaining();
+        if (containing == null) assembleContaining();
         return (containing == null || (containing.isItemEqual(is) || InventoryHelper.isOreDictionaryMatch(containing, is)));
     }
 
@@ -297,8 +297,8 @@ public abstract class TileStorageBox extends TileEntityInventoryBase implements 
     }
 
     public ItemStack removeAll() {
-        if(containing == null) assembleContaining();
-        if(containing != null) {
+        if (containing == null) assembleContaining();
+        if (containing != null) {
             ItemStack content = containing.copy();
             inventory = new ItemStack[getSizeInventory()];
             world().markBlockForUpdate(xCoord, yCoord, zCoord);

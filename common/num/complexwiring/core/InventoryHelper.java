@@ -91,6 +91,7 @@ public class InventoryHelper {
 
         return false;
     }
+
     public static boolean isOreDictionaryMatch(ItemStack is1, ItemStack is2) {
         return isOreDictionaryMatch(OreDictionary.getOreIDs(is1), is2);
     }

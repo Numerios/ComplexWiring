@@ -49,7 +49,7 @@ public class ModuleBase extends Module {
         ((ItemScrewdriver) screwdriver).registerOres();
         GameRegistry.registerItem(screwdriver, screwdriver.getUnlocalizedName());
 
-        if(ComplexWiring.DEBUG) {
+        if (ComplexWiring.DEBUG) {
             debugger = new ItemDebugger();
             ((ItemDebugger) debugger).registerOres();
             GameRegistry.registerItem(debugger, debugger.getUnlocalizedName());
@@ -65,7 +65,7 @@ public class ModuleBase extends Module {
             GameRegistry.addSmelting(dust.getIS(1), EnumMaterial.getMaterial(dust).getIngot(), 0.6F);
         }
 
-       for (EnumNugget nugget : EnumNugget.VALID) {
+        for (EnumNugget nugget : EnumNugget.VALID) {
             GameRegistry.addRecipe(new ShapelessOreRecipe(nugget.getIS(9), EnumMaterial.getMaterial(nugget).getIngot()));
             GameRegistry.addRecipe(new ShapelessOreRecipe(EnumMaterial.getMaterial(nugget).getIngot().copy(), nugget.name, nugget.name, nugget.name,
                     nugget.name, nugget.name, nugget.name, nugget.name, nugget.name, nugget.name));   //I'm so sorry

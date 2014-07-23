@@ -21,7 +21,7 @@ public enum EnumNugget {
     TITANIUM(Strings.NUGGET_TITANIUM_NAME),
     ZINC(Strings.NUGGET_ZINC_NAME),
     COBALT(Strings.NUGGET_COBALT_NAME);
-    
+
     public static final EnumNugget[] VALID = values();
     public final String name;
     public final int meta = this.ordinal();

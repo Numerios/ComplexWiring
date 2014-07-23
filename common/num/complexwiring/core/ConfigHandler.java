@@ -14,7 +14,7 @@ public class ConfigHandler {
     }
 
     public static void save() {
-        if(conf.hasChanged()) conf.save();
+        if (conf.hasChanged()) conf.save();
     }
 
     public static void reloadConfig() {
