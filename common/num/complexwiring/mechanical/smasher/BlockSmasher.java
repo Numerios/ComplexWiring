@@ -104,4 +104,9 @@ public class BlockSmasher extends Block implements ITileEntityProvider {
     public boolean renderAsNormalBlock() {
         return false;
     }
+
+    @Override
+    public boolean isOpaqueCube() {
+        return false;
+    }
 }

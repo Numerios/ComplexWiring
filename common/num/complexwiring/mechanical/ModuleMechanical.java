@@ -72,6 +72,7 @@ public class ModuleMechanical extends Module {
         for (EnumMaterial material : EnumMaterial.VALID) {
             RecipeManager.add(new SmasherRecipe(material.getOre(), 90 + 45 * material.harvestLevel, new RecipeRandomOutput(material.getDust(1)),
                     new RecipeRandomOutput(material.getDust(1), 0.75F)));
+            RecipeManager.add(new SmasherRecipe(material.getIngot(), 90 + 45 * material.harvestLevel, new RecipeRandomOutput(material.getDust(1))));
         }
 
         RecipeManager.add(new SmasherRecipe(new ItemStack(Blocks.coal_ore), 160, new RecipeRandomOutput(new ItemStack(Items.coal, 3)),
