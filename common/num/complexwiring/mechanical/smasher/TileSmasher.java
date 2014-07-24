@@ -13,6 +13,7 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 import num.complexwiring.api.prefab.IFacing;
+import num.complexwiring.api.prefab.IMachine;
 import num.complexwiring.api.prefab.tile.TileEntityBase;
 import num.complexwiring.api.recipe.SmasherRecipe;
 import num.complexwiring.api.vec.Vector3;
@@ -24,8 +25,9 @@ import num.complexwiring.recipe.RecipeManager;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class TileSmasher extends TileEntityBase implements IFacing {
+public class TileSmasher extends TileEntityBase implements IFacing, IMachine {
     private ForgeDirection facing;
+    private TileEntity facingTile;
     private Vector3 facingVec;
     private SmasherRecipe recipe;
     private ArrayList<ItemStack> recipeOutput;
@@ -47,29 +49,11 @@ public class TileSmasher extends TileEntityBase implements IFacing {
         }
 
         if (!pos().isRSPowered(world())) {
-            TileEntity facingTile = facingVec.toTile(world());
             if (recipe == null) {
-                if (RecipeManager.get(RecipeManager.Type.SMASHER, facingVec.getIS(world())) != null) {
-                    trySetupRecipe(facingVec.getIS(world()));
-                } else if (facingTile instanceof TileStorageBox) {
-                    TileStorageBox storageBox = (TileStorageBox) facingVec.toTile(world());
-                    ItemStack is = storageBox.getContaining();
-                    if (is != null) {
-                        is.stackSize = 1;
-                        trySetupRecipe(is);
-                    }
-                }
+                setupProcessing();
             }
-
             if (recipe != null && (recipe.matches(facingVec.getIS(world())) || facingTile instanceof TileStorageBox)) {
-                isActive = true;
-                processTime++;
-                if (!(facingTile instanceof TileStorageBox)) {
-                    worldObj.destroyBlockInWorldPartially(0, xCoord + facing.offsetX, yCoord + facing.offsetY, zCoord + facing.offsetZ, (int) getProgress(10));
-                }
-                if (processTime >= recipeNeededPower) {
-                    endProcessing();
-                }
+                process();
             } else {
                 resetProcessing();
             }
@@ -79,10 +63,33 @@ public class TileSmasher extends TileEntityBase implements IFacing {
             worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
             markDirty();
         }
-
     }
 
-    private void trySetupRecipe(ItemStack is) {
+    private void process() {
+        isActive = true;
+        processTime++;
+        if (!(facingTile instanceof TileStorageBox)) {
+            worldObj.destroyBlockInWorldPartially(0, xCoord + facing.offsetX, yCoord + facing.offsetY, zCoord + facing.offsetZ, (int) getProgress(10));
+        }
+        if (processTime >= recipeNeededPower) {
+            endProcessing();
+        }
+    }
+
+    private void setupProcessing() {
+        if (RecipeManager.get(RecipeManager.Type.SMASHER, facingVec.getIS(world())) != null) {
+            setupRecipe(facingVec.getIS(world()));
+        } else if (facingTile instanceof TileStorageBox) {
+            TileStorageBox storageBox = (TileStorageBox) facingVec.toTile(world());
+            ItemStack is = storageBox.getContaining();
+            if (is != null) {
+                is.stackSize = 1;
+                setupRecipe(is);
+            }
+        }
+    }
+
+    private void setupRecipe(ItemStack is) {
         if (RecipeManager.get(RecipeManager.Type.SMASHER, is) != null) {
             recipe = (SmasherRecipe) RecipeManager.get(RecipeManager.Type.SMASHER, is);
             if (recipe != null) { // + hasPower
@@ -105,7 +112,7 @@ public class TileSmasher extends TileEntityBase implements IFacing {
         needsSync = true;
     }
 
-    public void endProcessing() {
+    private void endProcessing() {
         if (recipeOutput != null && recipeOutput.size() > 0) {
             TileEntity facingTile = facingVec.toTile(world());
             for (ItemStack output : recipeOutput) {
@@ -115,7 +122,7 @@ public class TileSmasher extends TileEntityBase implements IFacing {
                         worldObj.destroyBlockInWorldPartially(0, xCoord + facing.offsetX, yCoord + facing.offsetY, zCoord + facing.offsetZ, 10);
                     }
 
-                    for (ForgeDirection direction : ForgeDirection.VALID_DIRECTIONS) {
+                    for (ForgeDirection direction : ForgeDirection.VALID_DIRECTIONS) {              //TODO: Move to InventoryHelper!
                         if (direction != facing && direction != facing.getOpposite()) {
                             Vector3 blockPos = pos().clone().step(direction);
                             TileEntity tileEntity = worldObj.getTileEntity(blockPos.getX(), blockPos.getY(), blockPos.getZ());
@@ -176,8 +183,10 @@ public class TileSmasher extends TileEntityBase implements IFacing {
         Logger.debug("My new facing is: " + dir.toString());
         this.facing = dir;
         this.facingVec = pos().clone().step(facing);
+        this.facingTile = facingVec.toTile(world());
     }
 
+    @Override
     public boolean isActive() {
         return isActive;
     }
@@ -228,6 +237,7 @@ public class TileSmasher extends TileEntityBase implements IFacing {
             }
         }
         this.facingVec = pos().clone().step(facing);
+        this.facingTile = facingVec.toTile(world());
     }
 
     @Override
@@ -253,6 +263,7 @@ public class TileSmasher extends TileEntityBase implements IFacing {
         readPacketNBT(packet.func_148857_g());
     }
 
+    @Override
     public float getProgress(int scale) {
         if (processTime == 0 || recipeNeededPower == 0) {
             return 0;
