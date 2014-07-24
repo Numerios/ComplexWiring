@@ -109,4 +109,14 @@ public class BlockSmasher extends Block implements ITileEntityProvider {
     public boolean isOpaqueCube() {
         return false;
     }
+
+    @Override
+    public boolean hasComparatorInputOverride() {
+        return true;
+    }
+
+    @Override
+    public int getComparatorInputOverride(World world, int x, int y, int z, int i) {
+        return (int) ((TileSmasher) world.getTileEntity(x, y, z)).getProgress(15);
+    }
 }
