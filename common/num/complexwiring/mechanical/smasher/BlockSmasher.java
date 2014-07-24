@@ -15,6 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+import num.complexwiring.api.prefab.IMachine;
 import num.complexwiring.base.ItemScrewdriver;
 import num.complexwiring.client.RenderingHandler;
 import num.complexwiring.lib.Reference;
@@ -117,6 +118,6 @@ public class BlockSmasher extends Block implements ITileEntityProvider {
 
     @Override
     public int getComparatorInputOverride(World world, int x, int y, int z, int i) {
-        return (int) ((TileSmasher) world.getTileEntity(x, y, z)).getProgress(15);
+        return ((IMachine) world.getTileEntity(x, y, z)).isActive() ? 15 : 0;
     }
 }
