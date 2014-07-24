@@ -48,6 +48,13 @@ public class TileSmasher extends TileEntityBase implements IFacing, IMachine {
             return;
         }
 
+        if (facingVec == null) {
+            this.facingVec = pos().clone().step(facing);
+        }
+        if (facingTile == null) {
+            this.facingTile = facingVec.toTile(world());
+        }
+
         if (!pos().isRSPowered(world())) {
             if (recipe == null) {
                 setupProcessing();
@@ -236,7 +243,7 @@ public class TileSmasher extends TileEntityBase implements IFacing, IMachine {
                 recipeOutput.add(ItemStack.loadItemStackFromNBT(itemNBT));
             }
         }
-        this.facingVec = pos().clone().step(facing);
+        this.facingVec = pos().clone().step(this.facing);
         this.facingTile = facingVec.toTile(world());
     }
 

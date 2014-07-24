@@ -46,6 +46,9 @@ public class RenderSmasher extends TileEntitySpecialRenderer {
             case EAST:
                 glRotatef(-90, 0, 0, 1);
                 break;
+            case UP:
+            default:
+                break;
         }
 
         FMLClientHandler.instance().getClient().renderEngine.bindTexture(texture);
