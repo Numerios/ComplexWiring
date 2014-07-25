@@ -170,6 +170,8 @@ public class Strings {
     public static final String INDUSTRIAL_WOOD_DARK_CHISELED = "woodDarkChiseled";
 
     //BASE
+    public static final String DEBUGGER_TOOLTIP = StatCollector.translateToLocal("item.complexwiring.base.debugger.tooltip");
+
     public static final String INGOT_COPPER_NAME = "ingotCopper";
     public static final String INGOT_TIN_NAME = "ingotTin";
     public static final String INGOT_SILVER_NAME = "ingotSilver";

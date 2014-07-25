@@ -51,7 +51,6 @@ public class ModuleBase extends Module {
 
         if (ComplexWiring.DEBUG) {
             debugger = new ItemDebugger();
-            ((ItemDebugger) debugger).registerOres();
             GameRegistry.registerItem(debugger, debugger.getUnlocalizedName());
         }
 

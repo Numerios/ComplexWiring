@@ -196,7 +196,8 @@ item.complexwiring.base.nugget.zinc.name=Zinc Nugget
 item.complexwiring.base.nugget.cobalt.name=Cobalt Nugget
 
 item.complexwiring.base.screwdriver.name=Screwdriver
-item.complexwiring.base.debugger.name=Debugger tool
+item.complexwiring.base.debugger.name=Debugger
+item.complexwiring.base.debugger.tooltip=THE CHUNK WRECKER
 
 item.complexwiring.base.component.woodpulp.name=Wood Pulp
 
