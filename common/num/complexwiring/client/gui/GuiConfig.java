@@ -5,7 +5,7 @@ import cpw.mods.fml.client.config.IConfigElement;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.common.config.ConfigElement;
 import num.complexwiring.core.ConfigHandler;
-import num.complexwiring.lib.Reference;
+import num.complexwiring.core.Reference;
 import num.complexwiring.world.decor.light.EnumLightDecor;
 import num.complexwiring.world.ore.primary.EnumOrePrimary;
 

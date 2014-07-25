@@ -12,8 +12,8 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import num.complexwiring.ComplexWiring;
 import num.complexwiring.base.ModuleBase;
-import num.complexwiring.lib.Reference;
-import num.complexwiring.lib.Strings;
+import num.complexwiring.core.Reference;
+import num.complexwiring.core.Strings;
 import num.complexwiring.mechanical.ModuleMechanical;
 
 import java.util.List;

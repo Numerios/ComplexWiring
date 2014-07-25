@@ -1,4 +1,4 @@
-package num.complexwiring.lib;
+package num.complexwiring.core;
 
 public class Reference {
     public static final String MOD_ID = "ComplexWiring";

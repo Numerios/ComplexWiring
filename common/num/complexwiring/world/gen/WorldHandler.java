@@ -64,7 +64,7 @@ public class WorldHandler {
             generate = true;
         } else {
             for (String name : WorldGenerator.INSTANCE.retroGeneratedNames) {
-                if (tag.getBoolean(name) != true) {
+                if (!tag.getBoolean(name)) {
                     generate = true;
                     break;
                 }

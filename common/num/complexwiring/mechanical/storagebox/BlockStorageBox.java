@@ -19,7 +19,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import num.complexwiring.base.ItemScrewdriver;
 import num.complexwiring.client.RenderingHandler;
-import num.complexwiring.lib.Reference;
+import num.complexwiring.core.Reference;
 import num.complexwiring.mechanical.ModuleMechanical;
 
 import java.util.List;

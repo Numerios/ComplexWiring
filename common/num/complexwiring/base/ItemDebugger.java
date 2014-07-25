@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.oredict.OreDictionary;
-import num.complexwiring.lib.Reference;
+import num.complexwiring.core.Reference;
 
 public class ItemDebugger extends Item {
 

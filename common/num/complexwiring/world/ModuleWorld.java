@@ -11,7 +11,7 @@ import num.complexwiring.api.recipe.OrelyzerRecipe;
 import num.complexwiring.api.recipe.RecipeRandomOutput;
 import num.complexwiring.base.EnumIngot;
 import num.complexwiring.core.CreativeTabCW;
-import num.complexwiring.lib.Module;
+import num.complexwiring.core.module.Module;
 import num.complexwiring.recipe.RecipeManager;
 import num.complexwiring.world.decor.dark.BlockDarkDecor;
 import num.complexwiring.world.decor.dark.EnumDarkDecor;

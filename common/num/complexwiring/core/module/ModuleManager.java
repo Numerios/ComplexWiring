@@ -1,6 +1,4 @@
-package num.complexwiring.core;
-
-import num.complexwiring.lib.Module;
+package num.complexwiring.core.module;
 
 import java.util.ArrayList;
 

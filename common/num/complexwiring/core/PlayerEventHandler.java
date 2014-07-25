@@ -6,7 +6,6 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import num.complexwiring.lib.Reference;
 import num.complexwiring.tablet.ModuleTablet;
 
 import java.util.Random;

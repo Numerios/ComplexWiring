@@ -10,7 +10,7 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import num.complexwiring.ComplexWiring;
 import num.complexwiring.core.CreativeTabCW;
-import num.complexwiring.lib.Module;
+import num.complexwiring.core.module.Module;
 
 public class ModuleBase extends Module {
     public static Item ingot, dust, nugget, screwdriver, component, debugger;

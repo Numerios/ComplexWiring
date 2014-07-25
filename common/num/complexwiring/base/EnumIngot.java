@@ -6,8 +6,8 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.oredict.OreDictionary;
-import num.complexwiring.lib.Reference;
-import num.complexwiring.lib.Strings;
+import num.complexwiring.core.Reference;
+import num.complexwiring.core.Strings;
 
 public enum EnumIngot {
     COPPER(Strings.INGOT_COPPER_NAME),

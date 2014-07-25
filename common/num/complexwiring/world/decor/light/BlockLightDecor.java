@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
-import num.complexwiring.lib.Reference;
+import num.complexwiring.core.Reference;
 import num.complexwiring.world.ModuleWorld;
 
 import java.util.List;

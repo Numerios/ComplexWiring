@@ -2,8 +2,8 @@ package num.complexwiring.tablet;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.item.Item;
-import num.complexwiring.lib.Module;
-import num.complexwiring.lib.Strings;
+import num.complexwiring.core.module.Module;
+import num.complexwiring.core.Strings;
 import num.complexwiring.tablet.guidebook.ItemGuidebook;
 import num.complexwiring.tablet.startpaper.ItemStartPaper;
 import num.complexwiring.tablet.tablet.ItemTablet;

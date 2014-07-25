@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.oredict.OreDictionary;
 import num.complexwiring.core.BlockHelper;
-import num.complexwiring.lib.Reference;
+import num.complexwiring.core.Reference;
 
 import java.util.List;
 

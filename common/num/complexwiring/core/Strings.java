@@ -1,4 +1,4 @@
-package num.complexwiring.lib;
+package num.complexwiring.core;
 
 import net.minecraft.util.StatCollector;
 

@@ -15,9 +15,9 @@ import num.complexwiring.base.ModuleBase;
 import num.complexwiring.core.ConfigHandler;
 import num.complexwiring.core.GuiHandler;
 import num.complexwiring.core.Logger;
-import num.complexwiring.core.ModuleManager;
+import num.complexwiring.core.module.ModuleManager;
 import num.complexwiring.core.proxy.CommonProxy;
-import num.complexwiring.lib.Reference;
+import num.complexwiring.core.Reference;
 import num.complexwiring.mechanical.ModuleMechanical;
 import num.complexwiring.world.ModuleWorld;
 

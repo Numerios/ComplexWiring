@@ -6,7 +6,7 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.util.IIcon;
-import num.complexwiring.lib.Reference;
+import num.complexwiring.core.Reference;
 import num.complexwiring.world.ModuleWorld;
 import num.complexwiring.world.ore.secondary.classic.EnumOreSecondaryClassic;
 

@@ -1,7 +1,6 @@
 package num.complexwiring.core;
 
 import num.complexwiring.ComplexWiring;
-import num.complexwiring.lib.Reference;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 

@@ -1,4 +1,4 @@
-package num.complexwiring.lib;
+package num.complexwiring.core.module;
 
 public abstract class Module {
     public void preInit() {
@@ -8,6 +8,5 @@ public abstract class Module {
     }
 
     public void postInit() {
-
     }
 }

@@ -10,7 +10,7 @@ import net.minecraft.world.World;
 import num.complexwiring.ComplexWiring;
 import num.complexwiring.base.ModuleBase;
 import num.complexwiring.core.GuiHandler;
-import num.complexwiring.lib.Reference;
+import num.complexwiring.core.Reference;
 
 import java.util.List;
 

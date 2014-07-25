@@ -8,7 +8,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.IModelCustom;
-import num.complexwiring.lib.Reference;
+import num.complexwiring.core.Reference;
 
 import static org.lwjgl.opengl.GL11.*;
 

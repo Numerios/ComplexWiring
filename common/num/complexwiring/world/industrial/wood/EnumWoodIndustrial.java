@@ -5,8 +5,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
-import num.complexwiring.lib.Reference;
-import num.complexwiring.lib.Strings;
+import num.complexwiring.core.Reference;
+import num.complexwiring.core.Strings;
 import num.complexwiring.world.ModuleWorld;
 
 public enum EnumWoodIndustrial {

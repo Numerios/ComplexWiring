@@ -12,7 +12,7 @@ import num.complexwiring.api.recipe.SmasherRecipe;
 import num.complexwiring.base.EnumComponent;
 import num.complexwiring.base.EnumMaterial;
 import num.complexwiring.core.CreativeTabCW;
-import num.complexwiring.lib.Module;
+import num.complexwiring.core.module.Module;
 import num.complexwiring.mechanical.smasher.BlockSmasher;
 import num.complexwiring.mechanical.smasher.ItemBlockSmasher;
 import num.complexwiring.mechanical.storagebox.BlockStorageBox;
