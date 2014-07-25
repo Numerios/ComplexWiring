@@ -1,5 +1,7 @@
 package num.complexwiring.api.col;
 
+import java.awt.*;
+
 /**
  * A basic standard format for storing colours and for their manipulation (RGB)
  * Uses the classic format RRGGBB (toString is 0xRRGGBB)
@@ -17,6 +19,10 @@ public class ColourRGB {
 
     public ColourRGB(int colour) {
         this((colour >> 16) & 0xFF, (colour >> 8) & 0xFF, colour & 0xFF);
+    }
+
+    public ColourRGB(Color color) {
+        this(color.getRed(), color.getBlue(), color.getGreen());
     }
 
     public static ColourRGB average(ColourRGBA... colours) {
@@ -45,6 +51,10 @@ public class ColourRGB {
 
     public ColourRGBA toRGBA(int a) {
         return new ColourRGBA(this.r, this.g, this.b, a);
+    }
+
+    public Color toAWTColor() {
+        return new Color(this.r, this.g, this.b);
     }
 
     public ColourRGB add(ColourRGBA other) {
