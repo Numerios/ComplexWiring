@@ -10,30 +10,56 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RecipeManager {
-
     private static List<OrelyzerRecipe> orelyzerRecipes = new ArrayList<OrelyzerRecipe>();
     private static List<CrusherRecipe> crusherRecipes = new ArrayList<CrusherRecipe>();
     private static List<SmasherRecipe> smasherRecipes = new ArrayList<SmasherRecipe>();
 
     public static void add(ICWRecipe recipe) {
-        if (recipe.getType() == Type.ORELYZER) orelyzerRecipes.add((OrelyzerRecipe) recipe);
-        else if (recipe.getType() == Type.CRUSHER) crusherRecipes.add((CrusherRecipe) recipe);
-        else if (recipe.getType() == Type.SMASHER) smasherRecipes.add((SmasherRecipe) recipe);
+        switch (recipe.getType()) {
+            case ORELYZER: {
+                if (!orelyzerRecipes.contains(recipe)) orelyzerRecipes.add((OrelyzerRecipe) recipe);
+                return;
+            }
+            case CRUSHER: {
+                if (!crusherRecipes.contains(recipe)) crusherRecipes.add((CrusherRecipe) recipe);
+                break;
+            }
+            case SMASHER: {
+                if (!smasherRecipes.contains(recipe)) smasherRecipes.add((SmasherRecipe) recipe);
+                break;
+            }
+        }
+    }
+
+    public static boolean contains(ICWRecipe recipe) {
+        switch (recipe.getType()) {
+            case ORELYZER:
+                return orelyzerRecipes.contains(recipe);
+            case CRUSHER:
+                return crusherRecipes.contains(recipe);
+            case SMASHER:
+                return smasherRecipes.contains(recipe);
+        }
+        return false;
     }
 
     public static ICWRecipe get(Type type, ItemStack is) {
         if (is != null) {
-            if (type == Type.ORELYZER) {
-                for (OrelyzerRecipe orelyzerRecipe : orelyzerRecipes) {
-                    if (orelyzerRecipe.matches(is)) return orelyzerRecipe;
+            switch (type) {
+                case ORELYZER: {
+                    for (OrelyzerRecipe orelyzerRecipe : orelyzerRecipes) {
+                        if (orelyzerRecipe.matches(is)) return orelyzerRecipe;
+                    }
                 }
-            } else if (type == Type.CRUSHER) {
-                for (CrusherRecipe crusherRecipe : crusherRecipes) {
-                    if (crusherRecipe.matches(is)) return crusherRecipe;
+                case CRUSHER: {
+                    for (CrusherRecipe crusherRecipe : crusherRecipes) {
+                        if (crusherRecipe.matches(is)) return crusherRecipe;
+                    }
                 }
-            } else if (type == Type.SMASHER) {
-                for (SmasherRecipe smasherRecipe : smasherRecipes) {
-                    if (smasherRecipe.matches(is)) return smasherRecipe;
+                case SMASHER: {
+                    for (SmasherRecipe smasherRecipe : smasherRecipes) {
+                        if (smasherRecipe.matches(is)) return smasherRecipe;
+                    }
                 }
             }
         }
@@ -41,17 +67,26 @@ public class RecipeManager {
     }
 
     public static int toRecipeID(Type type, ICWRecipe recipe) {
-        if (type == Type.ORELYZER && orelyzerRecipes.contains(recipe)) return orelyzerRecipes.indexOf(recipe);
-        else if (type == Type.CRUSHER && crusherRecipes.contains(recipe)) return crusherRecipes.indexOf(recipe);
-        else if (type == Type.SMASHER && smasherRecipes.contains(recipe)) return smasherRecipes.indexOf(recipe);
-
-        else return -1;
+        switch (type) {
+            case ORELYZER:
+                if (orelyzerRecipes.contains(recipe)) return orelyzerRecipes.indexOf(recipe);
+            case CRUSHER:
+                if (crusherRecipes.contains(recipe)) return crusherRecipes.indexOf(recipe);
+            case SMASHER:
+                if (smasherRecipes.contains(recipe)) return smasherRecipes.indexOf(recipe);
+        }
+        return -1;
     }
 
     public static ICWRecipe fromRecipeID(Type type, int ID) {
-        if (type == Type.ORELYZER && orelyzerRecipes.size() < ID) return orelyzerRecipes.get(ID);
-        else if (type == Type.CRUSHER && crusherRecipes.size() < ID) return crusherRecipes.get(ID);
-        else if (type == Type.SMASHER && smasherRecipes.size() < ID) return smasherRecipes.get(ID);
+        switch (type) {
+            case ORELYZER:
+                if (orelyzerRecipes.size() < ID) return orelyzerRecipes.get(ID);
+            case CRUSHER:
+                if (orelyzerRecipes.size() < ID) return orelyzerRecipes.get(ID);
+            case SMASHER:
+                if (smasherRecipes.size() < ID) return smasherRecipes.get(ID);
+        }
         return null;
     }
 
