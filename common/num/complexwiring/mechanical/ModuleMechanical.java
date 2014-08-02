@@ -18,11 +18,13 @@ import num.complexwiring.mechanical.smasher.ItemBlockSmasher;
 import num.complexwiring.mechanical.storagebox.BlockStorageBox;
 import num.complexwiring.mechanical.storagebox.EnumStorageBox;
 import num.complexwiring.mechanical.storagebox.ItemBlockStorageBox;
+import num.complexwiring.mechanical.template.BlockTemplater;
+import num.complexwiring.mechanical.template.ItemBlockTemplater;
 import num.complexwiring.mechanical.template.ItemTemplate;
 import num.complexwiring.recipe.RecipeManager;
 
 public class ModuleMechanical extends Module {
-    public static Block storageBox, smasher;
+    public static Block storageBox, smasher, templater;
     public static Item template;
     public static CreativeTabCW tabCWMechanical = new CreativeTabCW("tabCWMechanical", null);
 
@@ -47,6 +49,10 @@ public class ModuleMechanical extends Module {
         smasher = new BlockSmasher();
         GameRegistry.registerBlock(smasher, ItemBlockSmasher.class, smasher.getUnlocalizedName());
         ((BlockSmasher) smasher).registerTiles();
+
+        templater = new BlockTemplater();
+        GameRegistry.registerBlock(templater, ItemBlockTemplater.class, templater.getUnlocalizedName());
+        ((BlockTemplater) templater).registerTiles();
     }
 
     private void registerItems() {
